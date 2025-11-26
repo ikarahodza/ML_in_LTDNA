@@ -1,0 +1,82 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Random Forest Model Comparison Report</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 40px;
+                background-color: #f5f5f5;
+            }
+            h1 {
+                color: #2c3e50;
+                text-align: center;
+                border-bottom: 3px solid #3498db;
+                padding-bottom: 10px;
+            }
+            h2 {
+                color: #34495e;
+                margin-top: 30px;
+                border-left: 4px solid #3498db;
+                padding-left: 10px;
+            }
+            table {
+                border-collapse: collapse;
+                width: 100%;
+                margin: 20px 0;
+                background-color: white;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            th {
+                background-color: #3498db;
+                color: white;
+                padding: 12px;
+                text-align: center;
+                font-weight: bold;
+            }
+            td {
+                border: 1px solid #ddd;
+                padding: 10px;
+                text-align: center;
+            }
+            tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+            tr:hover {
+                background-color: #f0f0f0;
+            }
+            .best {
+                background-color: #2ecc71 !important;
+                color: white;
+                font-weight: bold;
+            }
+            .info {
+                background-color: #ecf0f1;
+                padding: 15px;
+                border-radius: 5px;
+                margin: 20px 0;
+            }
+            .timestamp {
+                text-align: center;
+                color: #7f8c8d;
+                font-style: italic;
+                margin-bottom: 30px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>🌲 Random Forest Model Comparison Report</h1>
+        <div class="timestamp">Generated: 2025-11-23 13:38:23</div>
+        
+        <div class="info">
+            <strong>Dataset:</strong> Input_Data-Mix-train.csv<br>
+            <strong>Target Column:</strong> Classification<br>
+            <strong>Test Size:</strong> 30.0%<br>
+            <strong>Random State:</strong> 42
+        </div>
+    <h2>📊 Overall Performance Metrics</h2><table><tr><th>Strategy</th><th>Accuracy</th><th>Balanced Accuracy</th><th>F1 (macro)</th><th>Log Loss</th></tr><tr><td><strong>No Resampling</strong></td><td>0.7891</td><td>0.7330</td><td>0.7363</td><td>0.5895</td></tr><tr><td><strong>Class Weights</strong></td><td>0.6797</td><td>0.7044</td><td>0.6557</td><td>0.7949</td></tr><tr class="best"><td><strong>SMOTE</strong></td><td>0.8047</td><td>0.8232</td><td>0.7724</td><td>0.5574</td></tr><tr><td><strong>Borderline SMOTE</strong></td><td>0.7422</td><td>0.7409</td><td>0.7042</td><td>0.5580</td></tr><tr><td><strong>SVM SMOTE</strong></td><td>0.7812</td><td>0.8120</td><td>0.7641</td><td>0.5641</td></tr></table><p><strong>🏆 Best Strategy:</strong> SMOTE (Balanced Accuracy: 0.8232)</p><h2>🎯 Per-Class Recall</h2><table><tr><th>Strategy</th><th>Allele</th><th>Back_Stutter</th><th>Forward_Stutter</th><th>Pull_Up</th></tr><tr><td><strong>No Resampling</strong></td><td style="background-color: #f39c12; color: white;">0.8209</td><td style="background-color: #f39c12; color: white;">0.7778</td><td>0.5000</td><td style="background-color: #f39c12; color: white;">0.8333</td></tr><tr><td><strong>Class Weights</strong></td><td>0.6269</td><td style="background-color: #f39c12; color: white;">0.7407</td><td style="background-color: #f39c12; color: white;">0.7000</td><td style="background-color: #f39c12; color: white;">0.7500</td></tr><tr class="best"><td><strong>SMOTE</strong></td><td style="background-color: #f39c12; color: white;">0.7612</td><td style="background-color: #f39c12; color: white;">0.8148</td><td style="background-color: #f39c12; color: white;">0.8000</td><td style="background-color: #2ecc71; color: white;">0.9167</td></tr><tr><td><strong>Borderline SMOTE</strong></td><td style="background-color: #f39c12; color: white;">0.7313</td><td style="background-color: #f39c12; color: white;">0.7407</td><td style="background-color: #f39c12; color: white;">0.7000</td><td style="background-color: #f39c12; color: white;">0.7917</td></tr><tr><td><strong>SVM SMOTE</strong></td><td style="background-color: #f39c12; color: white;">0.7164</td><td style="background-color: #f39c12; color: white;">0.8148</td><td style="background-color: #f39c12; color: white;">0.8000</td><td style="background-color: #2ecc71; color: white;">0.9167</td></tr></table><h2>📈 Summary Statistics</h2><table><tr><th>Metric</th><th>Best</th><th>Worst</th><th>Average</th></tr><tr><td><strong>Accuracy</strong></td><td>0.8047</td><td>0.6797</td><td>0.7594</td></tr><tr><td><strong>Balanced Accuracy</strong></td><td>0.8232</td><td>0.7044</td><td>0.7627</td></tr><tr><td><strong>F1 Macro</strong></td><td>0.7724</td><td>0.6557</td><td>0.7265</td></tr></table><h2>💡 Recommendations</h2><div class='info'><strong>Best Overall:</strong> SMOTE<br><br><strong>Best for Minority Class (Pull_Up):</strong> SMOTE (Recall: 0.9167)<br><br><strong>Use Case Guidance:</strong><br>• <strong>Balanced Performance:</strong> Use the strategy with highest Balanced Accuracy<br>• <strong>Minority Class Detection:</strong> Prioritize high recall for rare classes<br>• <strong>Production Deployment:</strong> Consider both performance and training time<br></div>
+    </body>
+    </html>
+    
