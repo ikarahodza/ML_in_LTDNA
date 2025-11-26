@@ -1,0 +1,16 @@
+
+    <html>
+    <head><meta charset='utf-8'><title>Comparison Report - xgboost</title></head>
+    <body>
+    <h1>Comparison Report - xgboost</h1>
+    <div>Generated: 2025-11-26 22:24:43</div>
+    <div>Dataset: Input_Data-Mix-train.csv</div>
+    <table border='1' cellpadding='6' cellspacing='0'>
+    <tr><th>Strategy</th><th>Accuracy</th><th>Balanced Accuracy</th><th>F1 (macro)</th><th>Log Loss</th></tr>
+    <tr><td>Original</td><td>0.7907</td><td>0.7360</td><td>0.7381</td><td>0.5129200805619747</td></tr><tr><td>SMOTE</td><td>0.8488</td><td>0.8341</td><td>0.8159</td><td>0.47371099704710484</td></tr><tr><td>RandomOverSampler</td><td>0.7791</td><td>0.7405</td><td>0.7308</td><td>0.5526935139267891</td></tr></table>
+<h2>Per-class Recall</h2>
+<table border='1' cellpadding='6' cellspacing='0'><tr><th>Strategy</th><th>0</th><th>1</th><th>2</th><th>3</th></tr>
+<tr><td>Original</td><td>0.8000</td><td>0.7778</td><td>0.4286</td><td>0.9375</td></tr>
+<tr><td>SMOTE</td><td>0.8444</td><td>0.7778</td><td>0.7143</td><td>1.0000</td></tr>
+<tr><td>RandomOverSampler</td><td>0.7556</td><td>0.7778</td><td>0.4286</td><td>1.0000</td></tr>
+</table>

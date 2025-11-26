@@ -1,0 +1,16 @@
+
+    <html>
+    <head><meta charset='utf-8'><title>Comparison Report - lgbm</title></head>
+    <body>
+    <h1>Comparison Report - lgbm</h1>
+    <div>Generated: 2025-11-26 22:17:48</div>
+    <div>Dataset: Input_Data-Mix-train.csv</div>
+    <table border='1' cellpadding='6' cellspacing='0'>
+    <tr><th>Strategy</th><th>Accuracy</th><th>Balanced Accuracy</th><th>F1 (macro)</th><th>Log Loss</th></tr>
+    <tr><td>Original</td><td>0.8488</td><td>0.8123</td><td>0.8131</td><td>0.6926304660789888</td></tr><tr><td>SMOTE</td><td>0.8372</td><td>0.8067</td><td>0.8006</td><td>0.7597141846026401</td></tr><tr><td>RandomOverSampler</td><td>0.8488</td><td>0.8508</td><td>0.8368</td><td>0.7490527932744093</td></tr></table>
+<h2>Per-class Recall</h2>
+<table border='1' cellpadding='6' cellspacing='0'><tr><th>Strategy</th><th>0</th><th>1</th><th>2</th><th>3</th></tr>
+<tr><td>Original</td><td>0.8444</td><td>0.8333</td><td>0.5714</td><td>1.0000</td></tr>
+<tr><td>SMOTE</td><td>0.8222</td><td>0.8333</td><td>0.5714</td><td>1.0000</td></tr>
+<tr><td>RandomOverSampler</td><td>0.8000</td><td>0.8889</td><td>0.7143</td><td>1.0000</td></tr>
+</table>

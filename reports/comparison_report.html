@@ -1,0 +1,19 @@
+
+    <html>
+    <head><meta charset='utf-8'><title>Comparison Report - randomforest</title></head>
+    <body>
+    <h1>Comparison Report - randomforest</h1>
+    <div>Generated: 2025-11-26 21:59:32</div>
+    <div>Dataset: Input_Data-Mix-train.csv | Target: Classification | Test size: 0.3</div>
+    <table border='1' cellpadding='6' cellspacing='0'>
+    <tr><th>Strategy</th><th>Accuracy</th><th>Balanced Accuracy</th><th>F1 (macro)</th><th>Log Loss</th></tr>
+    <tr><td>No Resampling</td><td>0.7891</td><td>0.7330</td><td>0.7363</td><td>0.589535770456971</td></tr><tr><td>Class Weights</td><td>0.6797</td><td>0.7044</td><td>0.6557</td><td>0.7948956909297276</td></tr><tr><td>SMOTE</td><td>0.8047</td><td>0.8232</td><td>0.7724</td><td>0.5573815216602453</td></tr><tr><td>Borderline SMOTE</td><td>0.7422</td><td>0.7409</td><td>0.7042</td><td>0.5580442123903252</td></tr><tr><td>SVM SMOTE</td><td>0.7812</td><td>0.8120</td><td>0.7641</td><td>0.5640587117446246</td></tr></table>
+<h2>Per-class Recall</h2>
+<table border='1' cellpadding='6' cellspacing='0'><tr><th>Strategy</th><th>Allele</th><th>Back_Stutter</th><th>Forward_Stutter</th><th>Pull_Up</th></tr>
+<tr><td>No Resampling</td><td>0.8209</td><td>0.7778</td><td>0.5000</td><td>0.8333</td></tr>
+<tr><td>Class Weights</td><td>0.6269</td><td>0.7407</td><td>0.7000</td><td>0.7500</td></tr>
+<tr><td>SMOTE</td><td>0.7612</td><td>0.8148</td><td>0.8000</td><td>0.9167</td></tr>
+<tr><td>Borderline SMOTE</td><td>0.7313</td><td>0.7407</td><td>0.7000</td><td>0.7917</td></tr>
+<tr><td>SVM SMOTE</td><td>0.7164</td><td>0.8148</td><td>0.8000</td><td>0.9167</td></tr>
+</table>
+</body></html>
