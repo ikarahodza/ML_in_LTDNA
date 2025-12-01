@@ -4,11 +4,12 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
-from sklearn.metrics import ( accuracy_score, classification_report, confusion_matrix, balanced_accuracy_score, f1_score, log_loss, recall_score)
+from sklearn.metrics import ( accuracy_score, classification_report, confusion_matrix, balanced_accuracy_score, f1_score, log_loss, recall_score, mean_squared_error, mean_absolute_error, precision_recall_fscore_support)
 from imblearn.over_sampling import SMOTE, RandomOverSampler
 from lightgbm import LGBMClassifier
 import joblib
 import os
+import helper_functions as hf
 
 MODEL_NAME = 'lgbm'
 DATA_DIR = 'data'
@@ -16,7 +17,11 @@ FIG_DIR = 'figures'
 MODEL_DIR = 'models'
 REPORTS_DIR = 'reports'
 
-df_m = pd.read_csv("Input_Data-Mix-train.csv")
+data_mix = 'Input_Data-Mix-train.csv'
+data_single = 'Input_Data-Single-train.csv'
+DATA_FILE = data_mix
+
+df_m = pd.read_csv(data_mix)
 original_data = df_m.copy()
 
 X = df_m.drop(['sample', 'PoI', 'Classification'], axis=1)
@@ -33,46 +38,7 @@ X_train, X_test, y_train, y_test, train_idx, test_idx = train_test_split(
     random_state=42
 )
 
-# Helper Functions
-def plot_confusion_matrix(cm, class_names, save_path='confusion_matrix_lgbm.png'):
-    plt.figure(figsize=(6, 5))
-    sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=class_names, yticklabels=class_names)
-    plt.title('Confusion Matrix', fontsize=14, fontweight='bold')
-    plt.xlabel("Predicted")
-    plt.ylabel("True")
-    plt.tight_layout()
-    plt.savefig(save_path, dpi=300)
-    print(f"Confusion matrix saved to: {save_path}")
-    plt.close()
-
-def plot_feature_importance(model, feature_names, top_n=15, save_path='feature_importance_lgbm.png'):
-    importance = model.feature_importances_
-    sorted_idx = importance.argsort()[::-1][:top_n]
-    plt.figure(figsize=(8, 6))
-    plt.barh(feature_names[sorted_idx][::-1], importance[sorted_idx][::-1])
-    plt.title(f"Top {top_n} Feature Importances", fontsize=14, fontweight='bold')
-    plt.xlabel("Importance Score")
-    plt.tight_layout()
-    plt.savefig(save_path, dpi=300)
-    print(f"Feature importance saved to: {save_path}")
-    plt.close()
-
-def save_predictions(data, y_test, y_pred, test_indices, class_names, save_path='predictions_lgbm.csv'):
-    results = data.iloc[test_indices].copy()
-    results['True_Label'] = y_test
-    results['Predicted_Label'] = y_pred
-    results.to_csv(save_path, index=False)
-    print(f"Predictions saved to: {save_path}")
-
-def analyze_errors(data, y_test, y_pred, test_indices, save_path='error_analysis_lgbm.csv'):
-    errors = data.iloc[test_indices].copy()
-    errors['True_Label'] = y_test
-    errors['Predicted_Label'] = y_pred
-    errors['Correct'] = (y_test == y_pred)
-    misclassified = errors[~errors['Correct']].copy()
-    misclassified.to_csv(save_path, index=False)
-    print(f"Error analysis saved to: {save_path} ({len(misclassified)} misclassifications)")
-    return misclassified
+# Use shared helpers from `helper_functions.py` as `hf`
 
 def train_eval_plot(X_tr, y_tr, title, strategy_name):
     model = LGBMClassifier(
@@ -84,6 +50,10 @@ def train_eval_plot(X_tr, y_tr, title, strategy_name):
     )
     model.fit(X_tr, y_tr)
     y_pred = model.predict(X_test)
+    try:
+        y_pred_proba = model.predict_proba(X_test)
+    except Exception:
+        y_pred_proba = None
     
     # Metrics
     acc = accuracy_score(y_test, y_pred)
@@ -93,26 +63,49 @@ def train_eval_plot(X_tr, y_tr, title, strategy_name):
     
     # Confusion Matrix 
     cm_path = os.path.join(FIG_DIR, f"confusion_matrix_{strategy_name}.png")
-    plot_confusion_matrix(confusion_matrix(y_test, y_pred), le.classes_, save_path=cm_path)
+    cm_path = hf.plot_confusion_matrix(confusion_matrix(y_test, y_pred), le.classes_, save_path=cm_path)
     
     # Feature Importance 
     fi_path = os.path.join(FIG_DIR, f"feature_importance_{strategy_name}.png")
-    plot_feature_importance(model, X.columns.values, save_path=fi_path)
+    try:
+        fi_path, fi_csv = hf.plot_feature_importance(model, X.columns.values, save_path=fi_path)
+    except Exception:
+        fi_path = hf.plot_feature_importance(model, X.columns.values, save_path=fi_path)
     
     # Save Predictions 
     pred_path = os.path.join(DATA_DIR, f"predictions_{strategy_name}.csv")
-    save_predictions(original_data, y_test, y_pred, test_idx, le.classes_, save_path=pred_path)
+    pred_path = hf.save_predictions(original_data, y_test, y_pred, y_pred_proba, test_indices=test_idx, class_names=le.classes_, save_path=pred_path)
     
     # Analyze Errors 
     error_path = os.path.join(DATA_DIR, f"error_analysis_{strategy_name}.csv")
-    analyze_errors(original_data, y_test, y_pred, test_idx, save_path=error_path)
-    
+    error_path = hf.analyze_errors(original_data, y_test, y_pred, y_pred_proba, test_indices=test_idx, class_names=le.classes_, save_path=error_path)
+
+    # ROC and PR curves
+    if y_pred_proba is not None:
+        roc_path = os.path.join(FIG_DIR, f'roc_curves_{strategy_name}.png')
+        roc_path = hf.plot_roc_curves(y_test, y_pred_proba, le.classes_, save_path=roc_path)
+        pr_path = os.path.join(FIG_DIR, f'pr_curves_{strategy_name}.png')
+        pr_path = hf.plot_precision_recall_curves(y_test, y_pred_proba, le.classes_, save_path=pr_path)
+    else:
+        roc_path = None
+        pr_path = None
+
     # Save Model 
     model_path = os.path.join(MODEL_DIR, f"lgbm_model_{strategy_name}.pkl")
     joblib.dump(model, model_path)
     print(f"Model saved to: {model_path}")
-    
-    return model
+
+    assets = {
+        'confusion_matrix': cm_path,
+        'feature_importance': fi_path,
+        'predictions': pred_path,
+        'error_analysis': error_path,
+        'roc_curves': roc_path,
+        'pr_curves': pr_path,
+        'model': model_path
+    }
+
+    return model, assets
 
 strategies = {
     "Original": (X_train, y_train),
@@ -121,48 +114,18 @@ strategies = {
 }
 
 models = {}
+assets = {}
 for name, (X_tr, y_tr) in strategies.items():
     safe_name = f"{MODEL_NAME}_{name.replace(' ', '_').lower()}"
     print(f"\n==== Running strategy: {name} ====")
-    models[name] = train_eval_plot(X_tr, y_tr, title=name, strategy_name=safe_name)
+    model, asset = train_eval_plot(X_tr, y_tr, title=name, strategy_name=safe_name)
+    models[name] = model
+    assets[name] = asset
 
-def generate_html_report(results, class_names, output_path=f'comparison_report_{MODEL_NAME}.html'):
-    from datetime import datetime
-    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
-    html = f"""
-    <html>
-    <head><meta charset='utf-8'><title>Comparison Report - {MODEL_NAME}</title></head>
-    <body>
-    <h1>Comparison Report - {MODEL_NAME}</h1>
-    <div>Generated: {timestamp}</div>
-    <div>Dataset: Input_Data-Mix-train.csv</div>
-    <table border='1' cellpadding='6' cellspacing='0'>
-    <tr><th>Strategy</th><th>Accuracy</th><th>Balanced Accuracy</th><th>F1 (macro)</th><th>Log Loss</th></tr>
-    """
-
-    for name, r in results.items():
-        logloss_display = r['log_loss'] if (r.get('log_loss') is not None) else 'N/A'
-        html += f"<tr><td>{name}</td><td>{r['accuracy']:.4f}</td><td>{r['balanced_accuracy']:.4f}</td><td>{r['f1_macro']:.4f}</td><td>{logloss_display}</td></tr>"
-
-    html += "</table>\n"
-
-    # Per-class recall table
-    html += "<h2>Per-class Recall</h2>\n"
-    html += "<table border='1' cellpadding='6' cellspacing='0'><tr><th>Strategy</th>"
-    for cn in class_names:
-        html += f"<th>{cn}</th>"
-    html += "</tr>\n"
-    for name, r in results.items():
-        html += f"<tr><td>{name}</td>"
-        for recall in r.get('per_class_recall', []):
-            html += f"<td>{recall:.4f}</td>"
-        html += "</tr>\n"
-    html += "</table>\n"
-
-    with open(output_path, 'w', encoding='utf-8') as f:
-        f.write(html)
-    print(f"\nComparison report saved to: {output_path}")
+def generate_html_report(results, class_names, output_path=None, assets=None):
+    if output_path is None:
+        output_path = os.path.join(REPORTS_DIR, f'comparison_report_{MODEL_NAME}.html')
+    hf.generate_model_html_report(MODEL_NAME, results, class_names, output_path=output_path, dataset=DATA_FILE, fig_dir=FIG_DIR, reports_dir=REPORTS_DIR, assets=assets)
 
 # Build results by evaluating each trained model on the test set
 results = {}
@@ -173,16 +136,31 @@ for name, model in models.items():
         y_pred_proba = model.predict_proba(X_test)
     except Exception:
         y_pred_proba = None
+    
+    # Calculate per-class metrics
+    precision, recall, f1, support = precision_recall_fscore_support(y_test, y_pred, average=None, zero_division=0)
+    
     results[name] = {
         'accuracy': accuracy_score(y_test, y_pred),
         'balanced_accuracy': balanced_accuracy_score(y_test, y_pred),
         'f1_macro': f1_score(y_test, y_pred, average='macro'),
+        'mse': mean_squared_error(y_test, y_pred),
+        'mae': mean_absolute_error(y_test, y_pred),
         'log_loss': (log_loss(y_test, y_pred_proba) if y_pred_proba is not None else None),
-        'per_class_recall': recall_score(y_test, y_pred, average=None),
+        'per_class_precision': precision.tolist(),
+        'per_class_recall': recall.tolist(),
+        'per_class_f1': f1.tolist(),
+        'per_class_support': support.tolist(),
         'y_pred': y_pred,
         'y_pred_proba': y_pred_proba,
         'confusion_matrix': confusion_matrix(y_test, y_pred)
     }
 
-class_names = [str(c) for c in np.unique(y)]
-generate_html_report(results, class_names)
+class_names = le.classes_.tolist()
+generate_html_report(results, class_names, assets=assets)
+# Append to combined results JSON and regenerate combined HTML
+try:
+    hf.append_model_results_to_json(MODEL_NAME, results, class_names, assets=assets)
+    hf.generate_combined_html()
+except Exception as e:
+    print(f"Warning: failed to append/generate combined report: {e}")

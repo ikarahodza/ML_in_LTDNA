@@ -3,23 +3,28 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split, GridSearchCV
+from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import (
     confusion_matrix, classification_report,
     accuracy_score, precision_recall_fscore_support, log_loss,
     balanced_accuracy_score, precision_score, recall_score, f1_score,
+    mean_squared_error, mean_absolute_error
 )
 from sklearn.metrics import roc_curve, auc, precision_recall_curve, average_precision_score
 import joblib
 import warnings
 import os
+import helper_functions as hf
 
 warnings.filterwarnings("ignore", category=UserWarning)
 
-CSV_FILE_PATH = "Input_Data-Mix-train.csv"  
+data_mix = 'Input_Data-Mix-train.csv'
+data_single = 'Input_Data-Single-train.csv'
+CSV_FILE_PATH = data_mix  
 TARGET_COLUMN = "Classification"  
 OUTPUT_MODEL_PATH = "trained_rf_model.pkl"  
 
-FEATURE_COLUMNS = None  # use all columns except target; non-numeric columns will be dropped
+FEATURE_COLUMNS = None  
 
 DROP_COLUMNS = ['sample', 'PoI']
 
@@ -31,7 +36,6 @@ RESAMPLING_STRATEGY = 'compare_all'   # Options: None, 'smote', 'class_weights',
 SMOTE_SAMPLING_STRATEGY = 'auto'  # Options: 'auto', 'minority', 'not majority', etc.
 SMOTE_K_NEIGHBORS = 5  # Number of neighbors for SMOTE  
 
-# Hyperparameter search space (adjust based on your needs)
 HYPERPARAMETERS = {
     'n_estimators': [10, 20, 50],
     'max_depth': [None, 5, 10],
@@ -40,7 +44,6 @@ HYPERPARAMETERS = {
     'max_features': ['sqrt', 'log2', 10]
 }
 
-# Model identifier used in output filenames
 MODEL_NAME = 'randomforest'
 DATA_DIR = 'data'
 FIG_DIR = 'figures'
@@ -79,14 +82,19 @@ def load_and_prepare_data(csv_path, target_col, feature_cols=None):
         print(f"Dropping non-numeric feature columns: {dropped}")
     X = numeric_X
     
-    y = data[target_col]
+    y_raw = data[target_col]
+    
+    # Encode target labels to numeric values
+    le = LabelEncoder()
+    y = le.fit_transform(y_raw)
     
     print(f"\nFeatures shape: {X.shape}")
     print(f"Target shape: {y.shape}")
-    print(f"Target classes: {y.unique()}")
-    print(f"Class distribution:\n{y.value_counts()}")
+    print(f"Target classes (encoded): {np.unique(y)}")
+    print(f"Target classes (original): {le.classes_}")
+    print(f"Class distribution:\n{pd.Series(y).value_counts()}")
     
-    return X, y, data
+    return X, y, data, le
 
 def calculate_class_weights(y):
     from sklearn.utils.class_weight import compute_class_weight
@@ -139,32 +147,7 @@ def train_random_forest(X_train, y_train, hyperparams, class_weight_param=None):
     return grid_search.best_estimator_
 
 def compute_metrics(y_true, y_pred, y_prob):
-    """Compute advanced metrics including binary-specific measures when applicable."""
-    cm = confusion_matrix(y_true, y_pred)
-
-    metrics = {
-        "Balanced Accuracy": balanced_accuracy_score(y_true, y_pred),
-        "Precision (macro)": precision_score(y_true, y_pred, average="macro", zero_division=0),
-        "Recall (macro)": recall_score(y_true, y_pred, average="macro", zero_division=0),
-        "F1 Score (macro)": f1_score(y_true, y_pred, average="macro", zero_division=0),
-        "Log Loss": log_loss(y_true, y_prob),
-    }
-
-    if cm.shape == (2, 2):
-        TN, FP, FN, TP = cm.ravel()
-        sensitivity = TP / (TP + FN) if (TP + FN) > 0 else 0
-        specificity = TN / (TN + FP) if (TN + FP) > 0 else 0
-        precision_pos = TP / (TP + FP) if (TP + FP) > 0 else 0
-        npv = TN / (TN + FN) if (TN + FN) > 0 else 0
-
-        metrics.update({
-            "Sensitivity (TPR)": sensitivity,
-            "Specificity (TNR)": specificity,
-            "Precision (positive)": precision_pos,
-            "NPV": npv,
-        })
-
-    return metrics
+    return hf.compute_metrics(y_true, y_pred, y_prob)
 
 def evaluate_model(model, X_test, y_test, class_names):
     """Evaluate model performance."""
@@ -206,7 +189,7 @@ def evaluate_model(model, X_test, y_test, class_names):
     print(cm)
     
     # Advanced metrics (binary-specific extras included when applicable)
-    adv_metrics = compute_metrics(y_test, y_pred, y_pred_proba)
+    adv_metrics = hf.compute_metrics(y_test, y_pred, y_pred_proba)
     print("\nAdvanced Metrics:")
     for k, v in adv_metrics.items():
         if isinstance(v, float):
@@ -217,183 +200,29 @@ def evaluate_model(model, X_test, y_test, class_names):
     return y_pred, y_pred_proba, cm
 
 def plot_confusion_matrix(cm, class_names, save_path='confusion_matrix_rf.png'):
-    """Plot and save confusion matrix."""
-    plt.figure(figsize=(10, 8))
-    plt.imshow(cm, interpolation='nearest', cmap=plt.cm.Blues)
-    plt.title('Confusion Matrix', fontsize=16, fontweight='bold')
-    plt.colorbar()
-    
-    tick_marks = np.arange(len(class_names))
-    plt.xticks(tick_marks, class_names, rotation=45, ha='right')
-    plt.yticks(tick_marks, class_names)
-    
-    # Add text annotations
-    thresh = cm.max() / 2.
-    for i, j in np.ndindex(cm.shape):
-        plt.text(j, i, format(cm[i, j], 'd'),
-                ha="center", va="center",
-                color="white" if cm[i, j] > thresh else "black",
-                fontsize=12, fontweight='bold')
-    
-    plt.ylabel('True Label', fontsize=12, fontweight='bold')
-    plt.xlabel('Predicted Label', fontsize=12, fontweight='bold')
-    plt.tight_layout()
-    plt.savefig(save_path, dpi=300, bbox_inches='tight')
-    print(f"\nConfusion matrix saved to: {save_path}")
-    plt.close()
+    return hf.plot_confusion_matrix(cm, class_names, save_path=save_path)
 
 def plot_feature_importance(model, feature_names, top_n=20, save_path='feature_importance_rf.png'):
-    """Plot and save feature importance."""
-    importances = model.feature_importances_
-    indices = np.argsort(importances)[::-1][:top_n]
-    
-    plt.figure(figsize=(10, 8))
-    plt.title(f'Top {top_n} Feature Importances', fontsize=16, fontweight='bold')
-    plt.barh(range(top_n), importances[indices], color='steelblue')
-    plt.yticks(range(top_n), [feature_names[i] for i in indices])
-    plt.xlabel('Importance', fontsize=12, fontweight='bold')
-    plt.gca().invert_yaxis()
-    plt.tight_layout()
-    plt.savefig(save_path, dpi=300, bbox_inches='tight')
-    print(f"Feature importance plot saved to: {save_path}")
-    plt.close()
+    return hf.plot_feature_importance(model, feature_names, top_n=top_n, save_path=save_path)
 
 def save_predictions(data, y_test, y_pred, y_pred_proba, test_indices, class_names, save_path='predictions_rf.csv'):
-    """Save predictions to CSV."""
-    results = data.iloc[test_indices].copy()
-    results['True_Label'] = y_test.values
-    results['Predicted_Label'] = y_pred
-    
-    # Add probability columns
-    for i, class_name in enumerate(class_names):
-        results[f'Prob_{class_name}'] = y_pred_proba[:, i]
-    
-    results.to_csv(save_path, index=False)
-    print(f"\nPredictions saved to: {save_path}")
+    return hf.save_predictions(data, y_test, y_pred, y_pred_proba, test_indices, class_names, save_path=save_path)
 
 def plot_roc_curves(y_test, y_pred_proba, class_names, save_path='roc_curves_rf.png'):
-    """Plot and save ROC curves for each class."""
-    from sklearn.metrics import roc_curve, auc
-    from sklearn.preprocessing import label_binarize
-    from sklearn.multiclass import OneVsRestClassifier
-
-    y_test_bin = label_binarize(y_test, classes=range(len(class_names)))
-    
-    plt.figure(figsize=(10, 8))
-    
-    # Plot ROC curve for each class
-    for i, class_name in enumerate(class_names):
-        fpr, tpr, _ = roc_curve(y_test_bin[:, i], y_pred_proba[:, i])
-        roc_auc = auc(fpr, tpr)
-        plt.plot(fpr, tpr, linewidth=2, label=f'{class_name} (AUC = {roc_auc:.3f})')
-    
-    # Plot diagonal line
-    plt.plot([0, 1], [0, 1], 'k--', linewidth=2, label='Random Classifier')
-    
-    plt.xlim([0.0, 1.0])
-    plt.ylim([0.0, 1.05])
-    plt.xlabel('False Positive Rate', fontsize=12, fontweight='bold')
-    plt.ylabel('True Positive Rate', fontsize=12, fontweight='bold')
-    plt.title('ROC Curves - Multi-class', fontsize=16, fontweight='bold')
-    plt.legend(loc="lower right")
-    plt.grid(alpha=0.3)
-    plt.tight_layout()
-    plt.savefig(save_path, dpi=300, bbox_inches='tight')
-    print(f"ROC curves saved to: {save_path}")
-    plt.close()
+    """Wrapper to call helper ROC plotting (returns saved path)."""
+    return hf.plot_roc_curves(y_test, y_pred_proba, class_names, save_path=save_path)
 
 def plot_precision_recall_curves(y_test, y_pred_proba, class_names, save_path='pr_curves_rf.png'):
-    """Plot precision-recall curves for each class."""
-    from sklearn.preprocessing import label_binarize
-    # Binarize the labels
-    y_test_bin = label_binarize(y_test, classes=range(len(class_names)))
-    
-    plt.figure(figsize=(10, 8))
-    
-    # Plot PR curve for each class
-    for i, class_name in enumerate(class_names):
-        precision, recall, _ = precision_recall_curve(y_test_bin[:, i], y_pred_proba[:, i])
-        ap = average_precision_score(y_test_bin[:, i], y_pred_proba[:, i])
-        plt.plot(recall, precision, linewidth=2, label=f'{class_name} (AP = {ap:.3f})')
-    
-    plt.xlim([0.0, 1.0])
-    plt.ylim([0.0, 1.05])
-    plt.xlabel('Recall', fontsize=12, fontweight='bold')
-    plt.ylabel('Precision', fontsize=12, fontweight='bold')
-    plt.title('Precision-Recall Curves', fontsize=16, fontweight='bold')
-    plt.legend(loc="lower left")
-    plt.grid(alpha=0.3)
-    plt.tight_layout()
-    plt.savefig(save_path, dpi=300, bbox_inches='tight')
-    print(f"Precision-Recall curves saved to: {save_path}")
-    plt.close()
+    """Wrapper to call helper PR plotting (returns saved path)."""
+    return hf.plot_precision_recall_curves(y_test, y_pred_proba, class_names, save_path=save_path)
 
 def analyze_errors(data, y_test, y_pred, y_pred_proba, test_indices, class_names, save_path = 'error_analysis_rf.csv'):
-    """Save detailed analysis of misclassified samples."""
-    errors = data.iloc[test_indices].copy()
-    errors['True_Label'] = y_test.values
-    errors['Predicted_Label'] = y_pred
-    errors['Correct'] = (y_test.values == y_pred)
-    
-    # Add prediction probabilities
-    for i, class_name in enumerate(class_names):
-        errors[f'Prob_{class_name}'] = y_pred_proba[:, i]
-    
-    # Add confidence (max probability)
-    errors['Confidence'] = y_pred_proba.max(axis=1)
-    
-    # Only keep misclassified samples
-    misclassified = errors[~errors['Correct']].copy()
-    
-    # Sort by confidence (most confident errors first)
-    misclassified = misclassified.sort_values('Confidence', ascending=False)
-    
-    misclassified.to_csv(save_path, index=False)
-    print(f"Error analysis saved to: {save_path} ({len(misclassified)} misclassifications)")
-    
-    return misclassified
+    return hf.analyze_errors(data, y_test, y_pred, y_pred_proba, test_indices, class_names, save_path=save_path)
 
-def generate_html_report(results, class_names, output_path ='comparison_report_rf.html'):
-    from datetime import datetime
-    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
-    # Simple, compact HTML report similar to other model scripts
-    html = f"""
-    <html>
-    <head><meta charset='utf-8'><title>Comparison Report - {MODEL_NAME}</title></head>
-    <body>
-    <h1>Comparison Report - {MODEL_NAME}</h1>
-    <div>Generated: {timestamp}</div>
-    <div>Dataset: {CSV_FILE_PATH} | Target: {TARGET_COLUMN} | Test size: {TEST_SIZE}</div>
-    <table border='1' cellpadding='6' cellspacing='0'>
-    <tr><th>Strategy</th><th>Accuracy</th><th>Balanced Accuracy</th><th>F1 (macro)</th><th>Log Loss</th></tr>
-    """
-
-    for name, r in results.items():
-        logloss_display = r['log_loss'] if (r.get('log_loss') is not None) else 'N/A'
-        html += f"<tr><td>{name}</td><td>{r['accuracy']:.4f}</td><td>{r['balanced_accuracy']:.4f}</td><td>{r['f1_macro']:.4f}</td><td>{logloss_display}</td></tr>"
-
-    html += "</table>\n"
-
-    # Per-class recall table
-    html += "<h2>Per-class Recall</h2>\n"
-    html += "<table border='1' cellpadding='6' cellspacing='0'><tr><th>Strategy</th>"
-    for cn in class_names:
-        html += f"<th>{cn}</th>"
-    html += "</tr>\n"
-    for name, r in results.items():
-        html += f"<tr><td>{name}</td>"
-        for recall in r.get('per_class_recall', []):
-            html += f"<td>{recall:.4f}</td>"
-        html += "</tr>\n"
-    html += "</table>\n"
-
-    html += "</body></html>"
-
-    with open(output_path, 'w', encoding='utf-8') as f:
-        f.write(html)
-
-    print(f"\nComparison report saved to: {output_path}")
+def generate_html_report(results, class_names, output_path=None, assets=None):
+    if output_path is None:
+        output_path = os.path.join(REPORTS_DIR, f'comparison_report_{MODEL_NAME}.html')
+    hf.generate_model_html_report(MODEL_NAME, results, class_names, output_path=output_path, dataset=CSV_FILE_PATH, fig_dir=FIG_DIR, reports_dir=REPORTS_DIR, assets=assets)
 
 if __name__ == "__main__":
     print("\n" + "="*60)
@@ -401,7 +230,7 @@ if __name__ == "__main__":
     print("="*60)
     
     # Load data
-    X, y, original_data = load_and_prepare_data(
+    X, y, original_data, le = load_and_prepare_data(
         CSV_FILE_PATH, 
         TARGET_COLUMN, 
         FEATURE_COLUMNS
@@ -475,13 +304,21 @@ if __name__ == "__main__":
         y_pred = model.predict(X_test)
         y_pred_proba = model.predict_proba(X_test)
 
+        # Calculate per-class metrics
+        precision, recall, f1, support = precision_recall_fscore_support(y_test, y_pred, average=None, zero_division=0)
+
         # Store results
         results[strategy_name] = {
             'accuracy': accuracy_score(y_test, y_pred),
             'balanced_accuracy': balanced_accuracy_score(y_test, y_pred),
             'f1_macro': f1_score(y_test, y_pred, average='macro'),
+            'mse': mean_squared_error(y_test, y_pred),
+            'mae': mean_absolute_error(y_test, y_pred),
             'log_loss': log_loss(y_test, y_pred_proba),
-            'per_class_recall': recall_score(y_test, y_pred, average=None),
+            'per_class_precision': precision.tolist(),
+            'per_class_recall': recall.tolist(),
+            'per_class_f1': f1.tolist(),
+            'per_class_support': support.tolist(),
             'y_pred': y_pred,
             'y_pred_proba': y_pred_proba,
             'confusion_matrix': confusion_matrix(y_test, y_pred)
@@ -494,7 +331,7 @@ if __name__ == "__main__":
         print(f"F1 (macro): {results[strategy_name]['f1_macro']:.4f}")
         print(f"Log Loss: {results[strategy_name]['log_loss']:.4f}")
     
-    class_names = [str(cls) for cls in np.unique(y)]
+    class_names = le.classes_.tolist()
     if len(strategies_to_test) > 1:
         print("FINAL COMPARISON - ALL STRATEGIES")
         print("\n{:<25s} {:>10s} {:>12s} {:>10s} {:>10s}".format(
@@ -529,6 +366,7 @@ if __name__ == "__main__":
         print(f"   Balanced Accuracy: {results[best_strategy]['balanced_accuracy']:.4f}")
         
         print("SAVING INDIVIDUAL STRATEGU OUTPUTS")
+        assets = {}
 
         for strategy_name in results.keys():
             # Create clean filename from strategy name and include model name
@@ -538,23 +376,32 @@ if __name__ == "__main__":
 
             # Save confusion matrix
             cm_path = os.path.join(FIG_DIR, f'confusion_matrix_{safe_name}.png')
-            plot_confusion_matrix(results[strategy_name]['confusion_matrix'], class_names, save_path=cm_path)
+            cm_path = plot_confusion_matrix(results[strategy_name]['confusion_matrix'], class_names, save_path=cm_path)
 
             # Save feature importance
             fi_path = os.path.join(FIG_DIR, f'feature_importance_{safe_name}.png')
-            plot_feature_importance(models[strategy_name], X.columns.tolist(), save_path=fi_path)
+            try:
+                fi_path, fi_csv = plot_feature_importance(models[strategy_name], X.columns.tolist(), save_path=fi_path)
+            except Exception:
+                fi_path = plot_feature_importance(models[strategy_name], X.columns.tolist(), save_path=fi_path)
 
             # Save ROC curves
             roc_path = os.path.join(FIG_DIR, f'roc_curves_{safe_name}.png')
-            plot_roc_curves(y_test, results[strategy_name]['y_pred_proba'], class_names, save_path=roc_path)
+            try:
+                roc_path = plot_roc_curves(y_test, results[strategy_name]['y_pred_proba'], class_names, save_path=roc_path)
+            except Exception:
+                roc_path = None
 
             # Save Precision-Recall curves
             pr_path = os.path.join(FIG_DIR, f'pr_curves_{safe_name}.png')
-            plot_precision_recall_curves(y_test, results[strategy_name]['y_pred_proba'], class_names, save_path=pr_path)
+            try:
+                pr_path = plot_precision_recall_curves(y_test, results[strategy_name]['y_pred_proba'], class_names, save_path=pr_path)
+            except Exception:
+                pr_path = None
 
             # Save predictions
             pred_path = os.path.join(DATA_DIR, f'predictions_{safe_name}.csv')
-            save_predictions(
+            pred_path = save_predictions(
                 original_data, y_test, 
                 results[strategy_name]['y_pred'], 
                 results[strategy_name]['y_pred_proba'], 
@@ -564,7 +411,7 @@ if __name__ == "__main__":
 
             # Save error analysis
             error_path = os.path.join(DATA_DIR, f'error_analysis_{safe_name}.csv')
-            analyze_errors(original_data, y_test, results[strategy_name]['y_pred'], 
+            error_path = analyze_errors(original_data, y_test, results[strategy_name]['y_pred'], 
                            results[strategy_name]['y_pred_proba'], test_idx, class_names, 
                            save_path=error_path)
 
@@ -572,11 +419,22 @@ if __name__ == "__main__":
             model_path = os.path.join(MODEL_DIR, f'model_{safe_name}.pkl')
             joblib.dump(models[strategy_name], model_path)
             print(f"Model saved to: {model_path}")
+
+            # record assets for report
+            assets[strategy_name] = {
+                'confusion_matrix': cm_path,
+                'feature_importance': fi_path,
+                'roc_curves': roc_path,
+                'pr_curves': pr_path,
+                'predictions': pred_path,
+                'error_analysis': error_path,
+                'model': model_path
+            }
         
         print("\n✓ All individual strategy outputs saved!")
 
         os.makedirs(REPORTS_DIR, exist_ok=True)
-        generate_html_report(results, class_names, output_path=os.path.join(REPORTS_DIR, 'comparison_report.html'))
+        generate_html_report(results, class_names, output_path=os.path.join(REPORTS_DIR, 'comparison_report.html'), assets=assets)
 
         best_model_to_save = models[best_strategy]
         y_pred = results[best_strategy]['y_pred']
@@ -596,13 +454,26 @@ if __name__ == "__main__":
         print(f"\nSaving outputs for: {strategy_name}")
 
         cm_path = os.path.join(FIG_DIR, f'confusion_matrix_{safe_name}.png')
-        plot_confusion_matrix(cm, class_names, save_path=cm_path)
+        cm_path = plot_confusion_matrix(cm, class_names, save_path=cm_path)
 
         fi_path = os.path.join(FIG_DIR, f'feature_importance_{safe_name}.png')
-        plot_feature_importance(best_model_to_save, X.columns.tolist(), save_path=fi_path)
+        try:
+            fi_path, fi_csv = plot_feature_importance(best_model_to_save, X.columns.tolist(), save_path=fi_path)
+        except Exception:
+            fi_path = plot_feature_importance(best_model_to_save, X.columns.tolist(), save_path=fi_path)
+
+        # ROC/PR if available
+        try:
+            roc_path = plot_roc_curves(y_test, y_pred_proba, class_names, save_path=os.path.join(FIG_DIR, f'roc_curves_{safe_name}.png'))
+        except Exception:
+            roc_path = None
+        try:
+            pr_path = plot_precision_recall_curves(y_test, y_pred_proba, class_names, save_path=os.path.join(FIG_DIR, f'pr_curves_{safe_name}.png'))
+        except Exception:
+            pr_path = None
 
         pred_path = os.path.join(DATA_DIR, f'predictions_{safe_name}.csv')
-        save_predictions(
+        pred_path = save_predictions(
             original_data, y_test, y_pred, 
             y_pred_proba, test_idx, class_names, 
             save_path=pred_path
@@ -611,9 +482,29 @@ if __name__ == "__main__":
         model_path = os.path.join(MODEL_DIR, f'model_{safe_name}.pkl')
         joblib.dump(best_model_to_save, model_path)
         print(f"Model saved to: {model_path}")
+
+        assets = {strategy_name: {
+            'confusion_matrix': cm_path,
+            'feature_importance': fi_path,
+            'roc_curves': roc_path,
+            'pr_curves': pr_path,
+            'predictions': pred_path,
+            'model': model_path
+        }}
+
+        # generate per-model report including assets
+        os.makedirs(REPORTS_DIR, exist_ok=True)
+        generate_html_report(results, class_names, output_path=os.path.join(REPORTS_DIR, 'comparison_report.html'), assets=assets)
     
     # Also save the generic output model if requested, but include model name
     # Also save the generic output model if requested, but include model dir
+    # Append to combined results JSON and regenerate combined HTML
+    try:
+        hf.append_model_results_to_json(MODEL_NAME, results, class_names, assets=assets)
+        hf.generate_combined_html()
+    except Exception as e:
+        print(f"Warning: failed to append/generate combined report: {e}")
+
     os.makedirs(MODEL_DIR, exist_ok=True)
     generic_output = OUTPUT_MODEL_PATH
     joblib.dump(best_model_to_save, generic_output)

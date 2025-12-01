@@ -1,19 +1,347 @@
 
-    <html>
-    <head><meta charset='utf-8'><title>Comparison Report - randomforest</title></head>
+<!doctype html>
+    <html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Comparison Report - randomforest</title>
+      <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial; margin: 24px; color: #222; }
+        h1 { margin: 0 0 8px 0; }
+        h2 { margin-top: 24px; margin-bottom: 12px; }
+        h3 { margin-top: 20px; margin-bottom: 10px; }
+        .meta { color: #666; margin-bottom: 16px; }
+        table { border-collapse: collapse; width: 100%; margin-top: 8px; margin-bottom: 12px; }
+        table, th, td { border: 1px solid #dcdcdc; }
+        th, td { padding: 8px 10px; text-align: left; }
+        th { background: #f6f8fa; font-weight: 600; }
+        .strategy-name { width: 220px; }
+        .small { font-size: 0.9em; color: #555; margin-bottom: 8px; }
+        footer { margin-top: 32px; padding-top: 16px; border-top: 1px solid #e1e4e8; color: #666; font-size: 0.9em; text-align: center; }
+      </style>
+    </head>
     <body>
-    <h1>Comparison Report - randomforest</h1>
-    <div>Generated: 2025-11-26 21:59:32</div>
-    <div>Dataset: Input_Data-Mix-train.csv | Target: Classification | Test size: 0.3</div>
-    <table border='1' cellpadding='6' cellspacing='0'>
-    <tr><th>Strategy</th><th>Accuracy</th><th>Balanced Accuracy</th><th>F1 (macro)</th><th>Log Loss</th></tr>
-    <tr><td>No Resampling</td><td>0.7891</td><td>0.7330</td><td>0.7363</td><td>0.589535770456971</td></tr><tr><td>Class Weights</td><td>0.6797</td><td>0.7044</td><td>0.6557</td><td>0.7948956909297276</td></tr><tr><td>SMOTE</td><td>0.8047</td><td>0.8232</td><td>0.7724</td><td>0.5573815216602453</td></tr><tr><td>Borderline SMOTE</td><td>0.7422</td><td>0.7409</td><td>0.7042</td><td>0.5580442123903252</td></tr><tr><td>SVM SMOTE</td><td>0.7812</td><td>0.8120</td><td>0.7641</td><td>0.5640587117446246</td></tr></table>
-<h2>Per-class Recall</h2>
-<table border='1' cellpadding='6' cellspacing='0'><tr><th>Strategy</th><th>Allele</th><th>Back_Stutter</th><th>Forward_Stutter</th><th>Pull_Up</th></tr>
-<tr><td>No Resampling</td><td>0.8209</td><td>0.7778</td><td>0.5000</td><td>0.8333</td></tr>
-<tr><td>Class Weights</td><td>0.6269</td><td>0.7407</td><td>0.7000</td><td>0.7500</td></tr>
-<tr><td>SMOTE</td><td>0.7612</td><td>0.8148</td><td>0.8000</td><td>0.9167</td></tr>
-<tr><td>Borderline SMOTE</td><td>0.7313</td><td>0.7407</td><td>0.7000</td><td>0.7917</td></tr>
-<tr><td>SVM SMOTE</td><td>0.7164</td><td>0.8148</td><td>0.8000</td><td>0.9167</td></tr>
-</table>
-</body></html>
+      <h1>Comparison Report - randomforest</h1>
+      <div class="meta">Generated: 2025-12-01 20:01:05</div>
+      <div class="meta">Dataset: Input_Data-Mix-train.csv</div>
+      <div class="small">Strategies: No Resampling, Class Weights, SMOTE, Borderline SMOTE, SVM SMOTE</div>
+      <h2>Summary by Strategy</h2>
+      <table>
+        <thead>
+          <tr>
+            <th class="strategy-name">Strategy</th>
+            <th>Accuracy</th>
+            <th>Balanced Accuracy</th>
+            <th>F1 (macro)</th>
+            <th>MSE</th>
+            <th>MAE</th>
+            <th>Log Loss</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="strategy-name">No Resampling</td>
+            <td>0.7891</td>
+            <td>0.7330</td>
+            <td>0.7363</td>
+            <td>0.9766</td>
+            <td>0.4141</td>
+            <td>0.5895</td>
+          </tr>
+          <tr>
+            <td class="strategy-name">Class Weights</td>
+            <td>0.6797</td>
+            <td>0.7044</td>
+            <td>0.6557</td>
+            <td>1.6719</td>
+            <td>0.6719</td>
+            <td>0.7949</td>
+          </tr>
+          <tr>
+            <td class="strategy-name">SMOTE</td>
+            <td>0.8047</td>
+            <td>0.8232</td>
+            <td>0.7724</td>
+            <td>0.7734</td>
+            <td>0.3516</td>
+            <td>0.5574</td>
+          </tr>
+          <tr>
+            <td class="strategy-name">Borderline SMOTE</td>
+            <td>0.7422</td>
+            <td>0.7409</td>
+            <td>0.7042</td>
+            <td>1.1719</td>
+            <td>0.5000</td>
+            <td>0.5580</td>
+          </tr>
+          <tr>
+            <td class="strategy-name">SVM SMOTE</td>
+            <td>0.7812</td>
+            <td>0.8120</td>
+            <td>0.7641</td>
+            <td>1.0859</td>
+            <td>0.4453</td>
+            <td>0.5641</td>
+          </tr>
+        </tbody>
+      </table>
+      <h3>Per-class Metrics - No Resampling</h3>
+      <table>
+        <thead>
+          <tr>
+            <th class="strategy-name">Class</th>
+            <th>Precision</th>
+            <th>Recall</th>
+            <th>F1-Score</th>
+            <th>Support</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="strategy-name">Allele</td>
+            <td>0.8333</td>
+            <td>0.8209</td>
+            <td>0.8271</td>
+            <td>67</td>
+          </tr>
+          <tr>
+            <td class="strategy-name">Back_Stutter</td>
+            <td>0.8400</td>
+            <td>0.7778</td>
+            <td>0.8077</td>
+            <td>27</td>
+          </tr>
+          <tr>
+            <td class="strategy-name">Forward_Stutter</td>
+            <td>0.6250</td>
+            <td>0.5000</td>
+            <td>0.5556</td>
+            <td>10</td>
+          </tr>
+          <tr>
+            <td class="strategy-name">Pull_Up</td>
+            <td>0.6897</td>
+            <td>0.8333</td>
+            <td>0.7547</td>
+            <td>24</td>
+          </tr>
+        </tbody>
+      </table>
+      <h3>Per-class Metrics - Class Weights</h3>
+      <table>
+        <thead>
+          <tr>
+            <th class="strategy-name">Class</th>
+            <th>Precision</th>
+            <th>Recall</th>
+            <th>F1-Score</th>
+            <th>Support</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="strategy-name">Allele</td>
+            <td>0.8400</td>
+            <td>0.6269</td>
+            <td>0.7179</td>
+            <td>67</td>
+          </tr>
+          <tr>
+            <td class="strategy-name">Back_Stutter</td>
+            <td>0.7692</td>
+            <td>0.7407</td>
+            <td>0.7547</td>
+            <td>27</td>
+          </tr>
+          <tr>
+            <td class="strategy-name">Forward_Stutter</td>
+            <td>0.4667</td>
+            <td>0.7000</td>
+            <td>0.5600</td>
+            <td>10</td>
+          </tr>
+          <tr>
+            <td class="strategy-name">Pull_Up</td>
+            <td>0.4865</td>
+            <td>0.7500</td>
+            <td>0.5902</td>
+            <td>24</td>
+          </tr>
+        </tbody>
+      </table>
+      <h3>Per-class Metrics - SMOTE</h3>
+      <table>
+        <thead>
+          <tr>
+            <th class="strategy-name">Class</th>
+            <th>Precision</th>
+            <th>Recall</th>
+            <th>F1-Score</th>
+            <th>Support</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="strategy-name">Allele</td>
+            <td>0.9107</td>
+            <td>0.7612</td>
+            <td>0.8293</td>
+            <td>67</td>
+          </tr>
+          <tr>
+            <td class="strategy-name">Back_Stutter</td>
+            <td>0.8462</td>
+            <td>0.8148</td>
+            <td>0.8302</td>
+            <td>27</td>
+          </tr>
+          <tr>
+            <td class="strategy-name">Forward_Stutter</td>
+            <td>0.5000</td>
+            <td>0.8000</td>
+            <td>0.6154</td>
+            <td>10</td>
+          </tr>
+          <tr>
+            <td class="strategy-name">Pull_Up</td>
+            <td>0.7333</td>
+            <td>0.9167</td>
+            <td>0.8148</td>
+            <td>24</td>
+          </tr>
+        </tbody>
+      </table>
+      <h3>Per-class Metrics - Borderline SMOTE</h3>
+      <table>
+        <thead>
+          <tr>
+            <th class="strategy-name">Class</th>
+            <th>Precision</th>
+            <th>Recall</th>
+            <th>F1-Score</th>
+            <th>Support</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="strategy-name">Allele</td>
+            <td>0.8448</td>
+            <td>0.7313</td>
+            <td>0.7840</td>
+            <td>67</td>
+          </tr>
+          <tr>
+            <td class="strategy-name">Back_Stutter</td>
+            <td>0.8000</td>
+            <td>0.7407</td>
+            <td>0.7692</td>
+            <td>27</td>
+          </tr>
+          <tr>
+            <td class="strategy-name">Forward_Stutter</td>
+            <td>0.4667</td>
+            <td>0.7000</td>
+            <td>0.5600</td>
+            <td>10</td>
+          </tr>
+          <tr>
+            <td class="strategy-name">Pull_Up</td>
+            <td>0.6333</td>
+            <td>0.7917</td>
+            <td>0.7037</td>
+            <td>24</td>
+          </tr>
+        </tbody>
+      </table>
+      <h3>Per-class Metrics - SVM SMOTE</h3>
+      <table>
+        <thead>
+          <tr>
+            <th class="strategy-name">Class</th>
+            <th>Precision</th>
+            <th>Recall</th>
+            <th>F1-Score</th>
+            <th>Support</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="strategy-name">Allele</td>
+            <td>0.9057</td>
+            <td>0.7164</td>
+            <td>0.8000</td>
+            <td>67</td>
+          </tr>
+          <tr>
+            <td class="strategy-name">Back_Stutter</td>
+            <td>0.8148</td>
+            <td>0.8148</td>
+            <td>0.8148</td>
+            <td>27</td>
+          </tr>
+          <tr>
+            <td class="strategy-name">Forward_Stutter</td>
+            <td>0.6154</td>
+            <td>0.8000</td>
+            <td>0.6957</td>
+            <td>10</td>
+          </tr>
+          <tr>
+            <td class="strategy-name">Pull_Up</td>
+            <td>0.6286</td>
+            <td>0.9167</td>
+            <td>0.7458</td>
+            <td>24</td>
+          </tr>
+        </tbody>
+      </table>
+      <h2>Visualizations</h2>
+      <h3>No Resampling</h3>
+      <div style="margin: 20px 0;">
+        <h4>Confusion Matrix</h4>
+        <img src="..\figures\confusion_matrix_randomforest_no_resampling.png" alt="Confusion Matrix - No Resampling" style="max-width: 600px; border: 1px solid #ddd; padding: 10px; background: white;">
+      </div>
+      <div style="margin: 20px 0;">
+        <h4>Feature Importance</h4>
+        <img src="..\figures\feature_importance_randomforest_no_resampling.png" alt="Feature Importance - No Resampling" style="max-width: 800px; border: 1px solid #ddd; padding: 10px; background: white;">
+      </div>
+      <h3>Class Weights</h3>
+      <div style="margin: 20px 0;">
+        <h4>Confusion Matrix</h4>
+        <img src="..\figures\confusion_matrix_randomforest_class_weights.png" alt="Confusion Matrix - Class Weights" style="max-width: 600px; border: 1px solid #ddd; padding: 10px; background: white;">
+      </div>
+      <div style="margin: 20px 0;">
+        <h4>Feature Importance</h4>
+        <img src="..\figures\feature_importance_randomforest_class_weights.png" alt="Feature Importance - Class Weights" style="max-width: 800px; border: 1px solid #ddd; padding: 10px; background: white;">
+      </div>
+      <h3>SMOTE</h3>
+      <div style="margin: 20px 0;">
+        <h4>Confusion Matrix</h4>
+        <img src="..\figures\confusion_matrix_randomforest_smote.png" alt="Confusion Matrix - SMOTE" style="max-width: 600px; border: 1px solid #ddd; padding: 10px; background: white;">
+      </div>
+      <div style="margin: 20px 0;">
+        <h4>Feature Importance</h4>
+        <img src="..\figures\feature_importance_randomforest_smote.png" alt="Feature Importance - SMOTE" style="max-width: 800px; border: 1px solid #ddd; padding: 10px; background: white;">
+      </div>
+      <h3>Borderline SMOTE</h3>
+      <div style="margin: 20px 0;">
+        <h4>Confusion Matrix</h4>
+        <img src="..\figures\confusion_matrix_randomforest_borderline_smote.png" alt="Confusion Matrix - Borderline SMOTE" style="max-width: 600px; border: 1px solid #ddd; padding: 10px; background: white;">
+      </div>
+      <div style="margin: 20px 0;">
+        <h4>Feature Importance</h4>
+        <img src="..\figures\feature_importance_randomforest_borderline_smote.png" alt="Feature Importance - Borderline SMOTE" style="max-width: 800px; border: 1px solid #ddd; padding: 10px; background: white;">
+      </div>
+      <h3>SVM SMOTE</h3>
+      <div style="margin: 20px 0;">
+        <h4>Confusion Matrix</h4>
+        <img src="..\figures\confusion_matrix_randomforest_svm_smote.png" alt="Confusion Matrix - SVM SMOTE" style="max-width: 600px; border: 1px solid #ddd; padding: 10px; background: white;">
+      </div>
+      <div style="margin: 20px 0;">
+        <h4>Feature Importance</h4>
+        <img src="..\figures\feature_importance_randomforest_svm_smote.png" alt="Feature Importance - SVM SMOTE" style="max-width: 800px; border: 1px solid #ddd; padding: 10px; background: white;">
+      </div>
+      <footer>Report generated by ML_in_LTDNA pipeline</footer>
+    </body>
+    </html>
