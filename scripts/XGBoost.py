@@ -73,7 +73,11 @@ def train_xgb_pipeline(X_train, y_train, X_test, y_test, feature_names, strategy
     safe_name = f"{MODEL_NAME}_{strategy_name.replace(' ', '_').lower()}"
 
     cm_path = os.path.join(FIG_DIR, f'confusion_matrix_{safe_name}.png')
-    cm_path = hf.plot_confusion_matrix(confusion_matrix(y_test, y_pred), class_names, save_path=cm_path)
+    try:
+        cm_path = hf.plot_confusion_matrix(confusion_matrix(y_test, y_pred), class_names, save_path=cm_path)
+    except Exception as e:
+        print(f"WARNING: Failed to save confusion matrix: {e}")
+        cm_path = None
 
     fi_path = os.path.join(FIG_DIR, f'feature_importance_{safe_name}.png')
     try:
@@ -82,12 +86,20 @@ def train_xgb_pipeline(X_train, y_train, X_test, y_test, feature_names, strategy
         fi_path = hf.plot_feature_importance(model, feature_names, save_path=fi_path)
 
     pred_path = os.path.join(DATA_DIR, f'predictions_{safe_name}.csv')
-    pred_path = hf.save_predictions(original_data, y_test, y_pred, y_pred_proba, test_idx, class_names,
-                     save_path=pred_path)
+    try:
+        pred_path = hf.save_predictions(original_data, y_test, y_pred, y_pred_proba, test_idx, class_names,
+                         save_path=pred_path)
+    except Exception as e:
+        print(f"WARNING: Failed to save predictions: {e}")
+        pred_path = None
 
     error_path = os.path.join(DATA_DIR, f'error_analysis_{safe_name}.csv')
-    error_path = hf.analyze_errors(original_data, y_test, y_pred, y_pred_proba, test_idx, class_names,
-                   save_path=error_path)
+    try:
+        error_path = hf.analyze_errors(original_data, y_test, y_pred, y_pred_proba, test_idx, class_names,
+                       save_path=error_path)
+    except Exception as e:
+        print(f"WARNING: Failed to save error analysis: {e}")
+        error_path = None
 
     if y_pred_proba is not None:
         roc_path = os.path.join(FIG_DIR, f'roc_curves_{safe_name}.png')
@@ -99,6 +111,7 @@ def train_xgb_pipeline(X_train, y_train, X_test, y_test, feature_names, strategy
         pr_path = None
 
     model_path = os.path.join(MODEL_DIR, f'model_{safe_name}.pkl')
+    os.makedirs(MODEL_DIR, exist_ok=True)
     joblib.dump(model, model_path)
     print(f"Model saved to: {model_path}")
 

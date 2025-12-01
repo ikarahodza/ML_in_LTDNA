@@ -91,6 +91,7 @@ def train_eval_plot(X_tr, y_tr, title, strategy_name):
     
     #  Save Model 
     model_path = os.path.join(MODEL_DIR, f"extratrees_model_{strategy_name}.pkl")
+    os.makedirs(MODEL_DIR, exist_ok=True)
     joblib.dump(model, model_path)
     print(f"Model saved to: {model_path}")
 

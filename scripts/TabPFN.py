@@ -111,10 +111,18 @@ def train_tabpfn_pipeline(X_train, y_train, X_test, y_test, strategy_name="Origi
     cm_path = hf.plot_confusion_matrix(confusion_matrix(y_test, y_pred), class_names, save_path=cm_path)
 
     pred_path = os.path.join(DATA_DIR, f'predictions_{safe_name}.csv')
-    pred_path = hf.save_predictions(original_data, y_test, y_pred, y_pred_proba, test_idx, class_names, save_path=pred_path)
+    try:
+        pred_path = hf.save_predictions(original_data, y_test, y_pred, y_pred_proba, test_idx, class_names, save_path=pred_path)
+    except Exception as e:
+        print(f"WARNING: Failed to save predictions: {e}")
+        pred_path = None
 
     error_path = os.path.join(DATA_DIR, f'error_analysis_{safe_name}.csv')
-    error_path = hf.analyze_errors(original_data, y_test, y_pred, y_pred_proba, test_idx, class_names, save_path=error_path)
+    try:
+        error_path = hf.analyze_errors(original_data, y_test, y_pred, y_pred_proba, test_idx, class_names, save_path=error_path)
+    except Exception as e:
+        print(f"WARNING: Failed to save error analysis: {e}")
+        error_path = None
 
     # ROC and PR plots
     if y_pred_proba is not None:
@@ -127,6 +135,7 @@ def train_tabpfn_pipeline(X_train, y_train, X_test, y_test, strategy_name="Origi
         pr_path = None
 
     model_path = os.path.join(MODEL_DIR, f'model_{safe_name}.pkl')
+    os.makedirs(MODEL_DIR, exist_ok=True)
     joblib.dump(clf, model_path)
     print(f"TabPFN model saved to: {model_path}")
 

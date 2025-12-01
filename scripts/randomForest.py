@@ -417,6 +417,7 @@ if __name__ == "__main__":
 
             # Save model
             model_path = os.path.join(MODEL_DIR, f'model_{safe_name}.pkl')
+            os.makedirs(MODEL_DIR, exist_ok=True)
             joblib.dump(models[strategy_name], model_path)
             print(f"Model saved to: {model_path}")
 
@@ -480,6 +481,7 @@ if __name__ == "__main__":
         )
 
         model_path = os.path.join(MODEL_DIR, f'model_{safe_name}.pkl')
+        os.makedirs(MODEL_DIR, exist_ok=True)
         joblib.dump(best_model_to_save, model_path)
         print(f"Model saved to: {model_path}")
 
