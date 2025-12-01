@@ -156,7 +156,7 @@ Each model generates:
 ✅ Consistent evaluation across all models  
 ✅ Multiple resampling strategies for imbalanced data  
 ✅ Comprehensive performance metrics  
-✅ Professional HTML reports with visualizations  
+✅ HTML reports with visualizations  
 ✅ Error analysis for misclassifications  
 ✅ Model persistence for future use  
 ✅ Modular code with shared helper functions  
@@ -185,7 +185,3 @@ Each model generates:
 - [ ] Additional resampling techniques (BorderlineSMOTE, ADASYN)
 - [ ] Model interpretation (SHAP values)
 - [ ] More models implemented 
-
-## Authors
-
-Research project for low template DNA analysis using machine learning.
