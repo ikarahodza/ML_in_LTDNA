@@ -12,6 +12,7 @@ from xgboost import XGBClassifier
 from imblearn.over_sampling import SMOTE, RandomOverSampler
 import joblib
 import os
+import shap
 import helper_functions as hf
 
 MODEL_NAME = 'xgboost'
@@ -115,6 +116,34 @@ def train_xgb_pipeline(X_train, y_train, X_test, y_test, feature_names, strategy
     joblib.dump(model, model_path)
     print(f"Model saved to: {model_path}")
 
+    # Generate SHAP values and plots
+    shap_summary_path = os.path.join(FIG_DIR, f'shap_summary_{safe_name}.png')
+    shap_bar_path = os.path.join(FIG_DIR, f'shap_bar_{safe_name}.png')
+    try:
+        explainer = shap.TreeExplainer(model)
+        shap_values = explainer.shap_values(X_test)
+        
+        # SHAP summary plot (beeswarm)
+        plt.figure(figsize=(12, 8))
+        shap.summary_plot(shap_values, X_test, feature_names=feature_names, show=False, plot_type="dot")
+        plt.tight_layout()
+        os.makedirs(os.path.dirname(shap_summary_path) or '.', exist_ok=True)
+        plt.savefig(shap_summary_path, dpi=150, bbox_inches='tight')
+        plt.close()
+        print(f"Saved SHAP summary plot: {shap_summary_path}")
+        
+        # SHAP bar plot (mean absolute values)
+        plt.figure(figsize=(10, 8))
+        shap.summary_plot(shap_values, X_test, feature_names=feature_names, show=False, plot_type="bar")
+        plt.tight_layout()
+        plt.savefig(shap_bar_path, dpi=150, bbox_inches='tight')
+        plt.close()
+        print(f"Saved SHAP bar plot: {shap_bar_path}")
+    except Exception as e:
+        print(f"WARNING: Failed to generate SHAP plots: {e}")
+        shap_summary_path = None
+        shap_bar_path = None
+
     assets = {
         'confusion_matrix': cm_path,
         'feature_importance': fi_path,
@@ -122,7 +151,9 @@ def train_xgb_pipeline(X_train, y_train, X_test, y_test, feature_names, strategy
         'error_analysis': error_path,
         'roc_curves': roc_path,
         'pr_curves': pr_path,
-        'model': model_path
+        'model': model_path,
+        'shap_summary': shap_summary_path,
+        'shap_bar': shap_bar_path
     }
 
     return model, assets

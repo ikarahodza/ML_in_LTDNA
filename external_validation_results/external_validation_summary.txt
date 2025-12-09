@@ -1,0 +1,90 @@
+================================================================================
+EXTERNAL VALIDATION SUMMARY
+================================================================================
+
+Validation Dataset: Input_Data-Single-train.csv
+  - Samples: 200
+  - Features: 305
+  - Classes: 4
+
+Models Tested: 33
+
+--------------------------------------------------------------------------------
+Model                                    Bal Acc      F1-Macro     Accuracy
+--------------------------------------------------------------------------------
+extratrees_model_extratrees_smote        0.9726       0.9764       0.9750
+model_tabpfn_original                    0.9615       0.9677       0.9700
+extratrees_model_extratrees_randomoversampler 0.9575       0.9635       0.9600
+lgbm_model_lgbm_original                 0.9402       0.9491       0.9500
+lgbm_model_lgbm_randomoversampler        0.9382       0.9467       0.9450
+extratrees_model_extratrees_original     0.9355       0.9441       0.9400
+lgbm_randomoversampler_best_model        0.9349       0.9422       0.9450
+extratrees_smote_best_model              0.9276       0.9371       0.9350
+model_randomforest_svm_smote             0.9223       0.9320       0.9300
+model_randomforest_smote                 0.9162       0.9243       0.9250
+randomforest_smote_best_model            0.9134       0.9221       0.9200
+xgboost_smote_best_model                 0.9119       0.9237       0.9250
+lgbm_model_lgbm_smote                    0.9075       0.9197       0.9200
+model_xgboost_original                   0.9039       0.9171       0.9150
+model_xgboost_smote                      0.8966       0.9088       0.9050
+model_xgboost_randomoversampler          0.8911       0.9022       0.9000
+model_tabpfn_smote                       0.8827       0.8954       0.9100
+model_randomforest_borderline_smote      0.8821       0.8947       0.8850
+model_randomforest_no_resampling         0.8771       0.8931       0.8850
+model_randomforest_class_weights         0.8583       0.8734       0.8650
+model_gnb_original                       0.8515       0.8666       0.8750
+model_logistic_regression_original       0.8408       0.8417       0.8800
+model_logistic_regression_randomoversampler 0.8408       0.8443       0.8800
+model_logistic_regression_smote          0.8372       0.8409       0.8750
+model_mlp_randomoversampler              0.8221       0.8370       0.8750
+model_gnb_randomoversampler              0.8199       0.8375       0.8500
+model_mlp_original                       0.8068       0.8115       0.8700
+model_mlp_smote                          0.7934       0.8029       0.8550
+model_tabpfn_randomoversampler           0.7795       0.7964       0.8300
+model_gnb_smote                          0.7209       0.7438       0.7800
+model_svm_original                       0.2500       0.1226       0.3250
+model_svm_randomoversampler              0.2500       0.1226       0.3250
+model_svm_smote                          0.2500       0.1226       0.3250
+--------------------------------------------------------------------------------
+
+GENERALIZATION ANALYSIS:
+Model                                    Train→Ext       Performance
+--------------------------------------------------------------------------------
+extratrees_model_extratrees_original     Improve (+0.1807) 0.9355
+extratrees_model_extratrees_randomoversampler Improve (+0.2128) 0.9575
+extratrees_model_extratrees_smote        Improve (+0.1877) 0.9726
+lgbm_model_lgbm_original                 Improve (+0.1279) 0.9402
+lgbm_model_lgbm_randomoversampler        Improve (+0.0874) 0.9382
+lgbm_model_lgbm_smote                    Improve (+0.1007) 0.9075
+model_gnb_original                       Improve (+0.3411) 0.8515
+model_gnb_randomoversampler              Improve (+0.3553) 0.8199
+model_gnb_smote                          Improve (+0.1367) 0.7209
+model_logistic_regression_original       Improve (+0.1125) 0.8408
+model_logistic_regression_randomoversampler Improve (+0.0903) 0.8408
+model_logistic_regression_smote          Improve (+0.1117) 0.8372
+model_mlp_original                       Improve (+0.0831) 0.8068
+model_mlp_randomoversampler              Improve (+0.0851) 0.8221
+model_mlp_smote                          Stable          0.7934
+model_randomforest_borderline_smote      Improve (+0.1411) 0.8821
+model_randomforest_class_weights         Improve (+0.1539) 0.8583
+model_randomforest_no_resampling         Improve (+0.1441) 0.8771
+model_randomforest_smote                 Improve (+0.0930) 0.9162
+model_randomforest_svm_smote             Improve (+0.1104) 0.9223
+model_svm_original                       Drop (-0.1972)  0.2500
+model_svm_randomoversampler              Drop (-0.3489)  0.2500
+model_svm_smote                          Drop (-0.3818)  0.2500
+model_tabpfn_original                    Improve (+0.1269) 0.9615
+model_tabpfn_randomoversampler           Improve (+0.0826) 0.7795
+model_tabpfn_smote                       Improve (+0.1363) 0.8827
+model_xgboost_original                   Improve (+0.1679) 0.9039
+model_xgboost_randomoversampler          Improve (+0.1506) 0.8911
+model_xgboost_smote                      Improve (+0.0625) 0.8966
+extratrees_smote_best_model              Improve (+0.1427) 0.9276
+lgbm_randomoversampler_best_model        Improve (+0.0841) 0.9349
+randomforest_smote_best_model            Improve (+0.0902) 0.9134
+xgboost_smote_best_model                 Improve (+0.0778) 0.9119
+
+INTERPRETATION:
+  - Stable: Performance similar on external data (good generalization)
+  - Drop: Lower performance on external data (possible overfitting)
+  - Improve: Better performance on external data (rare, but possible)

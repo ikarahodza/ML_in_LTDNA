@@ -14,6 +14,7 @@ from sklearn.metrics import roc_curve, auc, precision_recall_curve, average_prec
 import joblib
 import warnings
 import os
+import shap
 import helper_functions as hf
 
 warnings.filterwarnings("ignore", category=UserWarning)
@@ -421,6 +422,34 @@ if __name__ == "__main__":
             joblib.dump(models[strategy_name], model_path)
             print(f"Model saved to: {model_path}")
 
+            # Generate SHAP values and plots
+            shap_summary_path = os.path.join(FIG_DIR, f'shap_summary_{safe_name}.png')
+            shap_bar_path = os.path.join(FIG_DIR, f'shap_bar_{safe_name}.png')
+            try:
+                explainer = shap.TreeExplainer(models[strategy_name])
+                shap_values = explainer.shap_values(X_test)
+                
+                # SHAP summary plot (beeswarm)
+                plt.figure(figsize=(12, 8))
+                shap.summary_plot(shap_values, X_test, feature_names=X.columns.tolist(), show=False, plot_type="dot")
+                plt.tight_layout()
+                os.makedirs(os.path.dirname(shap_summary_path) or '.', exist_ok=True)
+                plt.savefig(shap_summary_path, dpi=150, bbox_inches='tight')
+                plt.close()
+                print(f"Saved SHAP summary plot: {shap_summary_path}")
+                
+                # SHAP bar plot (mean absolute values)
+                plt.figure(figsize=(10, 8))
+                shap.summary_plot(shap_values, X_test, feature_names=X.columns.tolist(), show=False, plot_type="bar")
+                plt.tight_layout()
+                plt.savefig(shap_bar_path, dpi=150, bbox_inches='tight')
+                plt.close()
+                print(f"Saved SHAP bar plot: {shap_bar_path}")
+            except Exception as e:
+                print(f"WARNING: Failed to generate SHAP plots: {e}")
+                shap_summary_path = None
+                shap_bar_path = None
+
             # record assets for report
             assets[strategy_name] = {
                 'confusion_matrix': cm_path,
@@ -429,7 +458,9 @@ if __name__ == "__main__":
                 'pr_curves': pr_path,
                 'predictions': pred_path,
                 'error_analysis': error_path,
-                'model': model_path
+                'model': model_path,
+                'shap_summary': shap_summary_path,
+                'shap_bar': shap_bar_path
             }
         
         print("\n✓ All individual strategy outputs saved!")
