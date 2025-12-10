@@ -21,7 +21,7 @@ warnings.filterwarnings("ignore", category=UserWarning)
 
 data_mix = 'Input_Data-Mix-train.csv'
 data_single = 'Input_Data-Single-train.csv'
-CSV_FILE_PATH = data_mix  
+CSV_FILE_PATH = data_single  
 TARGET_COLUMN = "Classification"  
 OUTPUT_MODEL_PATH = "trained_rf_model.pkl"  
 

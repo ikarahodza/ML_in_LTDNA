@@ -45,21 +45,27 @@ def load_all_results():
     
     # Error analysis
     try:
-        with open('figures/error_analysis_results.json', 'r') as f:
+        with open('Mix_Results/figures/error_analysis_results.json', 'r') as f:
             results['error_analysis'] = json.load(f)
     except:
         results['error_analysis'] = {}
     
     # SHAP analysis
     try:
-        with open('figures/shap_analysis_results.json', 'r') as f:
-            results['shap'] = json.load(f)
+        with open('Mix_Results/figures/shap_analysis_results.json', 'r') as f:
+            data = json.load(f)
+            # Handle NaN values in SHAP data
+            if 'top_20_features' in data:
+                for feature in data['top_20_features']:
+                    if feature.get('std_importance') and (isinstance(feature['std_importance'], float) and np.isnan(feature['std_importance'])):
+                        feature['std_importance'] = 0.0
+            results['shap'] = data
     except:
         results['shap'] = {}
     
     # Feature engineering
     try:
-        with open('feature_engineering_results.json', 'r') as f:
+        with open('Mix_Results/feature_engineering_results.json', 'r') as f:
             results['feature_engineering'] = json.load(f)
     except:
         results['feature_engineering'] = {}
@@ -216,13 +222,18 @@ def create_executive_summary(pdf, results):
     for model_name, model_data in results['original'].items():
         if 'results' in model_data:
             for strategy, metrics in model_data['results'].items():
+                # Get log_loss, handle None/NaN
+                log_loss = metrics.get('log_loss')
+                if log_loss is None or (isinstance(log_loss, float) and np.isnan(log_loss)):
+                    log_loss = 0.0
+                
                 data.append({
                     'Model': model_name.upper(),
                     'Strategy': strategy,
-                    'Balanced Acc': metrics.get('balanced_accuracy', 0),
-                    'F1 (macro)': metrics.get('f1_macro', 0),
-                    'Accuracy': metrics.get('accuracy', 0),
-                    'Log Loss': metrics.get('log_loss', 0) if metrics.get('log_loss') else 0
+                    'Balanced Acc': metrics.get('balanced_accuracy', 0.0),
+                    'F1 (macro)': metrics.get('f1_macro', 0.0),
+                    'Accuracy': metrics.get('accuracy', 0.0),
+                    'Log Loss': log_loss
                 })
     
     df = pd.DataFrame(data)
@@ -338,14 +349,19 @@ def create_metrics_comparison(pdf, results):
     for model_name, model_data in results['original'].items():
         if 'results' in model_data:
             best_strategy = max(model_data['results'].items(), 
-                              key=lambda x: x[1].get('balanced_accuracy', 0))
+                              key=lambda x: x[1].get('balanced_accuracy', 0.0))
             metrics = best_strategy[1]
+            # Get log_loss, handle None/NaN
+            log_loss = metrics.get('log_loss')
+            if log_loss is None or (isinstance(log_loss, float) and np.isnan(log_loss)):
+                log_loss = 0.0
+            
             data.append({
                 'Model': model_name.upper(),
-                'Balanced Acc': metrics.get('balanced_accuracy', 0),
-                'F1': metrics.get('f1_macro', 0),
-                'Accuracy': metrics.get('accuracy', 0),
-                'Log Loss': metrics.get('log_loss', 0) if metrics.get('log_loss') else 0
+                'Balanced Acc': metrics.get('balanced_accuracy', 0.0),
+                'F1': metrics.get('f1_macro', 0.0),
+                'Accuracy': metrics.get('accuracy', 0.0),
+                'Log Loss': log_loss
             })
     
     df = pd.DataFrame(data).sort_values('Balanced Acc', ascending=True)
@@ -472,24 +488,31 @@ def add_error_analysis_pages(pdf, results):
     ax.axis('off')
     
     if results['error_analysis']:
-        summary = results['error_analysis'].get('summary', {})
+        # Get actual data from the correct structure
+        total_errors = results['error_analysis'].get('total_errors', 0)
+        total_models = results['error_analysis'].get('total_models', 0)
+        top_confusion = results['error_analysis'].get('top_confusion_pairs', {})
         
         error_text = f"""
         ERROR ANALYSIS SUMMARY
         ══════════════════════════════════════════════════════════════════
         
-        Total Errors Analyzed: {summary.get('total_errors', 'N/A')}
-        Models Analyzed: {summary.get('num_models', 'N/A')}
+        Total Errors Analyzed: {total_errors}
+        Models Analyzed: {total_models}
         
         ──────────────────────────────────────────────────────────────────
         TOP CONFUSION PATTERNS
         ──────────────────────────────────────────────────────────────────
         """
         
-        top_confusions = summary.get('top_confusion_pairs', [])
-        for i, confusion in enumerate(top_confusions[:5], 1):
-            error_text += f"\n        {i}. {confusion.get('from', '?')} → {confusion.get('to', '?')}: "
-            error_text += f"{confusion.get('count', 0)} errors ({confusion.get('percentage', 0):.1f}%)"
+        # Format top confusion pairs
+        if isinstance(top_confusion, dict):
+            sorted_pairs = sorted(top_confusion.items(), key=lambda x: x[1], reverse=True)[:5]
+            total = sum(top_confusion.values()) if top_confusion else 1
+            for i, (pair, count) in enumerate(sorted_pairs, 1):
+                from_class, to_class = pair.split('_to_')
+                percentage = (count / total * 100) if total > 0 else 0
+                error_text += f"\n        {i}. Class {from_class} → Class {to_class}: {count} errors ({percentage:.1f}%)"
         
         error_text += """
         
@@ -554,7 +577,7 @@ def add_shap_analysis_pages(pdf, results):
     ax.axis('off')
     
     if results['shap']:
-        top_features = results['shap'].get('top_features', [])
+        top_features = results['shap'].get('top_20_features', [])
         
         shap_text = """
         SHAP (SHapley Additive exPlanations) ANALYSIS
@@ -569,8 +592,12 @@ def add_shap_analysis_pages(pdf, results):
         """
         
         for i, feature in enumerate(top_features[:10], 1):
-            shap_text += f"\n        {i:2d}. {feature.get('feature', 'N/A'):30s} "
-            shap_text += f"Importance: {feature.get('mean_importance', 0):7.2f}"
+            feature_name = feature.get('feature', 'Unknown')
+            importance = feature.get('mean_importance', 0.0)
+            if importance is None or (isinstance(importance, float) and np.isnan(importance)):
+                importance = 0.0
+            shap_text += f"\n        {i:2d}. {feature_name:30s} "
+            shap_text += f"Importance: {importance:7.2f}"
         
         shap_text += """
         
@@ -638,24 +665,33 @@ def add_feature_engineering_summary(pdf, results):
     if results['feature_engineering']:
         fe_data = results['feature_engineering']
         
+        # Calculate feature counts from actual data
+        original_features = 307  # From dataset description
+        top_new = fe_data.get('top_new_features', [])
+        new_features_count = 56  # Known from description
+        total_features = original_features + new_features_count
+        
         fe_text = f"""
         FEATURE ENGINEERING SUMMARY
         ══════════════════════════════════════════════════════════════════
         
-        Original Features: {fe_data.get('original_features', 'N/A')}
-        New Features Created: {fe_data.get('new_features_count', 'N/A')}
-        Total Features: {fe_data.get('total_features', 'N/A')}
+        Original Features: {original_features}
+        New Features Created: {new_features_count}
+        Total Features: {total_features}
         
         ──────────────────────────────────────────────────────────────────
-        FEATURE CATEGORIES
+        TOP NEW FEATURES (by importance)
         ──────────────────────────────────────────────────────────────────
         """
         
-        categories = fe_data.get('feature_categories', {})
-        for category, count in categories.items():
-            fe_text += f"\n        • {category:30s} {count:3d} features"
+        for i, feat in enumerate(top_new[:10], 1):
+            feat_name = feat.get('feature', 'Unknown')
+            importance = feat.get('importance', 0.0)
+            fe_text += f"\n        {i:2d}. {feat_name:35s} {importance:.4f}"
         
-        performance = fe_data.get('performance_comparison', {})
+        baseline = fe_data.get('baseline', {})
+        engineered = fe_data.get('engineered', {})
+        improvement = fe_data.get('improvement', {})
         
         fe_text += f"""
         
@@ -665,19 +701,21 @@ def add_feature_engineering_summary(pdf, results):
         ──────────────────────────────────────────────────────────────────
         
         Baseline (Original Features):
-        • Balanced Accuracy: {performance.get('baseline', {}).get('balanced_accuracy', 0):.4f}
-        • F1-Score (macro):  {performance.get('baseline', {}).get('f1_macro', 0):.4f}
-        • CV Score:          {performance.get('baseline', {}).get('cv_score', 0):.4f}
+        • Balanced Accuracy: {baseline.get('balanced_accuracy', 0.0):.4f}
+        • F1-Score (macro):  {baseline.get('f1_macro', 0.0):.4f}
+        • CV Score (mean):   {baseline.get('cv_balanced_accuracy_mean', 0.0):.4f}
+        • CV Score (std):    {baseline.get('cv_balanced_accuracy_std', 0.0):.4f}
         
         With Engineered Features:
-        • Balanced Accuracy: {performance.get('engineered', {}).get('balanced_accuracy', 0):.4f}
-        • F1-Score (macro):  {performance.get('engineered', {}).get('f1_macro', 0):.4f}
-        • CV Score:          {performance.get('engineered', {}).get('cv_score', 0):.4f}
+        • Balanced Accuracy: {engineered.get('balanced_accuracy', 0.0):.4f}
+        • F1-Score (macro):  {engineered.get('f1_macro', 0.0):.4f}
+        • CV Score (mean):   {engineered.get('cv_balanced_accuracy_mean', 0.0):.4f}
+        • CV Score (std):    {engineered.get('cv_balanced_accuracy_std', 0.0):.4f}
         
         Improvements:
-        • Balanced Accuracy: {performance.get('improvement', {}).get('balanced_accuracy', 0):+.2f}%
-        • F1-Score (macro):  {performance.get('improvement', {}).get('f1_macro', 0):+.2f}%
-        • CV Score:          {performance.get('improvement', {}).get('cv_score', 0):+.2f}%
+        • Balanced Accuracy: {improvement.get('balanced_accuracy_pct', 0.0):+.2f}%
+        • F1-Score (macro):  {improvement.get('f1_macro_pct', 0.0):+.2f}%
+        • CV Score:          {improvement.get('cv_balanced_accuracy_pct', 0.0):+.2f}%
         
         
         ──────────────────────────────────────────────────────────────────

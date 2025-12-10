@@ -60,9 +60,9 @@ REPORTS_DIR = 'reports'
 data_mix = 'Input_Data-Mix-train.csv'
 data_single = 'Input_Data-Single-train.csv'
 
-DATA_FILE = data_mix
+DATA_FILE = data_single
 
-df_m = pd.read_csv(data_mix) 
+df_m = pd.read_csv(DATA_FILE) 
 original_data = df_m.copy()
 
 X = df_m.drop(['sample', 'PoI', 'Classification'], axis=1)
