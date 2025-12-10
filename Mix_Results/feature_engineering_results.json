@@ -1,0 +1,101 @@
+{
+  "baseline": {
+    "balanced_accuracy": 0.7609623015873016,
+    "f1_macro": 0.770093795093795,
+    "cv_balanced_accuracy_mean": 0.7298983532807062,
+    "cv_balanced_accuracy_std": 0.0826739332081392
+  },
+  "engineered": {
+    "balanced_accuracy": 0.7720734126984127,
+    "f1_macro": 0.7886288902912943,
+    "cv_balanced_accuracy_mean": 0.7527762392835922,
+    "cv_balanced_accuracy_std": 0.10338920398625245
+  },
+  "improvement": {
+    "balanced_accuracy_pct": 1.1111111111111072,
+    "f1_macro_pct": 1.8535095197499296,
+    "cv_balanced_accuracy_pct": 2.2877886002885983
+  },
+  "top_new_features": [
+    {
+      "feature": "poi_relative_to_local",
+      "importance": 0.036190329560675666
+    },
+    {
+      "feature": "poi_to_upstream_ratio",
+      "importance": 0.019606924777104837
+    },
+    {
+      "feature": "UpStream_98_cubed",
+      "importance": 0.01675889115528668
+    },
+    {
+      "feature": "DownStream_40_cubed",
+      "importance": 0.014112721986867577
+    },
+    {
+      "feature": "interact_UpStream_98_x_DownStream_5",
+      "importance": 0.013551570959606782
+    },
+    {
+      "feature": "poi_to_downstream_ratio",
+      "importance": 0.013473434601210518
+    },
+    {
+      "feature": "DownStream_40_squared",
+      "importance": 0.011464618004339264
+    },
+    {
+      "feature": "upstream_max",
+      "importance": 0.00987104638782193
+    },
+    {
+      "feature": "UpStream_98_squared",
+      "importance": 0.009290880825652308
+    },
+    {
+      "feature": "interact_UpStream_97_x_DownStream_4",
+      "importance": 0.008647205249140002
+    },
+    {
+      "feature": "consistent_features_std",
+      "importance": 0.00797055003307536
+    },
+    {
+      "feature": "DownStream_42_cubed",
+      "importance": 0.007911879375998531
+    },
+    {
+      "feature": "DownStream_42_squared",
+      "importance": 0.007201374790539073
+    },
+    {
+      "feature": "upstream_std",
+      "importance": 0.006019962191831925
+    },
+    {
+      "feature": "ratio_C2_UpStream_10_over_top5mean",
+      "importance": 0.005856060731755034
+    },
+    {
+      "feature": "upstream_range",
+      "importance": 0.00543998781841037
+    },
+    {
+      "feature": "C2_UpStream_10_squared",
+      "importance": 0.005301135116748024
+    },
+    {
+      "feature": "C4_UpStream_1_cubed",
+      "importance": 0.005279895406560539
+    },
+    {
+      "feature": "UpStream_67_cubed",
+      "importance": 0.005098067070816554
+    },
+    {
+      "feature": "downstream_max",
+      "importance": 0.004924083478494642
+    }
+  ]
+}
