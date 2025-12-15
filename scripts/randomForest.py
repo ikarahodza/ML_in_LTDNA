@@ -19,8 +19,12 @@ import helper_functions as hf
 
 warnings.filterwarnings("ignore", category=UserWarning)
 
-data_mix = 'Input_Data-Mix-train.csv'
-data_single = 'Input_Data-Single-train.csv'
+# Get the project root directory (parent of scripts/)
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.dirname(SCRIPT_DIR)
+
+data_mix = os.path.join(PROJECT_ROOT, 'Input_Data-Mix-train.csv')
+data_single = os.path.join(PROJECT_ROOT, 'Input_Data-Single-train.csv')
 CSV_FILE_PATH = data_single  
 TARGET_COLUMN = "Classification"  
 OUTPUT_MODEL_PATH = "trained_rf_model.pkl"  
@@ -46,10 +50,10 @@ HYPERPARAMETERS = {
 }
 
 MODEL_NAME = 'randomforest'
-DATA_DIR = 'data'
-FIG_DIR = 'figures'
-MODEL_DIR = 'models'
-REPORTS_DIR = 'reports'
+DATA_DIR = os.path.join(PROJECT_ROOT, 'Single_Results', 'data')
+FIG_DIR = os.path.join(PROJECT_ROOT, 'Single_Results', 'figures')
+MODEL_DIR = os.path.join(PROJECT_ROOT, 'Single_Results', 'models')
+REPORTS_DIR = os.path.join(PROJECT_ROOT, 'Single_Results', 'reports')
 
 def load_and_prepare_data(csv_path, target_col, feature_cols=None):
     """Load CSV and prepare features and target."""
@@ -533,8 +537,10 @@ if __name__ == "__main__":
     # Also save the generic output model if requested, but include model dir
     # Append to combined results JSON and regenerate combined HTML
     try:
-        hf.append_model_results_to_json(MODEL_NAME, results, class_names, assets=assets)
-        hf.generate_combined_html()
+        json_path = os.path.join(REPORTS_DIR, 'combined_results.json')
+        output_path = os.path.join(REPORTS_DIR, 'combined_report_all_models.html')
+        hf.append_model_results_to_json(MODEL_NAME, results, class_names, json_path=json_path, assets=assets)
+        hf.generate_combined_html(json_path=json_path, output_path=output_path)
     except Exception as e:
         print(f"Warning: failed to append/generate combined report: {e}")
 

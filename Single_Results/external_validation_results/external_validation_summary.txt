@@ -1,0 +1,53 @@
+================================================================================
+EXTERNAL VALIDATION SUMMARY
+Training: Single Dataset -> External: Mix Dataset
+================================================================================
+
+Training Dataset: Input_Data-Single-train.csv
+  - Samples: 200
+  - Features: 305
+  - Classes: 4
+
+External Validation Dataset: Input_Data-Mix-train.csv
+  - Samples: 426
+  - Features: 305
+  - Classes: 4
+
+Models Tested: 30
+
+--------------------------------------------------------------------------------
+Model                                    Bal Acc      F1-Macro     Accuracy    
+--------------------------------------------------------------------------------
+model_tabpfn_smote                       0.7776       0.6769       0.6737      
+model_tabpfn_classweights                0.7708       0.6584       0.6596      
+model_tabpfn_original                    0.7708       0.6584       0.6596      
+model_tabpfn_randomundersampler          0.7647       0.6577       0.6596      
+model_logistic_regression_randomoversampler 0.7038       0.6035       0.6291      
+model_logistic_regression_original       0.7012       0.6095       0.6408      
+model_logistic_regression_smote          0.6976       0.6002       0.6291      
+model_mlp_randomoversampler              0.5666       0.4754       0.4859      
+model_mlp_original                       0.5604       0.4980       0.5235      
+model_svm_randomoversampler              0.5579       0.4842       0.5047      
+model_mlp_smote                          0.5534       0.4532       0.4624      
+model_svm_smote                          0.5528       0.4685       0.4906      
+model_gnb_randomoversampler              0.5334       0.4891       0.5141      
+model_svm_original                       0.5331       0.4817       0.5070      
+model_gnb_smote                          0.5211       0.4717       0.4906      
+model_gnb_original                       0.5205       0.4667       0.4859      
+extratrees_model_extratrees_original     0.2500       0.0799       0.1901      
+extratrees_model_extratrees_randomoversampler 0.2500       0.0799       0.1901      
+extratrees_model_extratrees_smote        0.2500       0.0799       0.1901      
+lgbm_model_lgbm_original                 0.2500       0.0799       0.1901      
+lgbm_model_lgbm_randomoversampler        0.2500       0.0799       0.1901      
+lgbm_model_lgbm_smote                    0.2500       0.0799       0.1901      
+model_randomforest_borderline_smote      0.2500       0.0799       0.1901      
+model_randomforest_class_weights         0.2500       0.0799       0.1901      
+model_randomforest_no_resampling         0.2500       0.0799       0.1901      
+model_randomforest_smote                 0.2500       0.0799       0.1901      
+model_randomforest_svm_smote             0.2500       0.0799       0.1901      
+model_xgboost_original                   0.2500       0.0799       0.1901      
+model_xgboost_randomoversampler          0.2500       0.0799       0.1901      
+model_xgboost_smote                      0.2500       0.0799       0.1901      
+--------------------------------------------------------------------------------
+
+================================================================================

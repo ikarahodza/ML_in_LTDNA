@@ -1,0 +1,31 @@
+================================================================================
+CROSS-VALIDATION ANALYSIS SUMMARY
+================================================================================
+
+Configuration:
+  - CV Folds: 10
+  - Total Samples: 200
+  - Features: 305
+  - Classes: 4
+
+Evaluated Models: 8
+
+--------------------------------------------------------------------------------
+Model                          Type       Bal Acc         F1-Macro        Std Dev   
+--------------------------------------------------------------------------------
+extratrees_baseline            baseline   0.9839 ± 0.0272  0.9838
+extratrees_smote               tuned      0.9825 ± 0.0285  0.9838
+randomforest_baseline          baseline   0.9562 ± 0.0349  0.9555
+randomforest_smote             tuned      0.9527 ± 0.0275  0.9525
+lgbm_randomoversampler         tuned      0.9458 ± 0.0555  0.9429
+lgbm_baseline                  baseline   0.9396 ± 0.0556  0.9392
+xgboost_smote                  tuned      0.9360 ± 0.0527  0.9361
+xgboost_baseline               baseline   0.9185 ± 0.0627  0.9164
+--------------------------------------------------------------------------------
+
+KEY OBSERVATIONS:
+  - Lower std dev indicates more stable performance across folds
+  - Compare baseline vs tuned to assess hyperparameter tuning impact
+  - Models with high variance may overfit or be sensitive to data splits
+
+================================================================================

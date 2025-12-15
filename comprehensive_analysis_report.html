@@ -1,0 +1,432 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Comprehensive ML Analysis Report - Mix Dataset</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 4px solid #3498db;
+            padding-bottom: 15px;
+            margin-top: 0;
+        }
+        h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+        h3 {
+            color: #34495e;
+            margin-top: 25px;
+        }
+        .summary-box {
+            background-color: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 5px solid #3498db;
+        }
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .metric-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .metric-card h4 {
+            margin: 0 0 10px 0;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .metric-card .value {
+            font-size: 32px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .metric-card .change {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .positive {
+            color: #2ecc71;
+        }
+        .negative {
+            color: #e74c3c;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: bold;
+        }
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        .image-container {
+            margin: 30px 0;
+            text-align: center;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .key-finding {
+            background-color: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        .recommendation {
+            background-color: #d1ecf1;
+            border-left: 5px solid #17a2b8;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(to right, #3498db, transparent);
+            margin: 40px 0;
+        }
+        .toc {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+        .toc a {
+            color: #3498db;
+            text-decoration: none;
+            display: block;
+            padding: 5px 0;
+        }
+        .toc a:hover {
+            text-decoration: underline;
+        }
+        .timestamp {
+            color: #7f8c8d;
+            font-size: 14px;
+            text-align: right;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Comprehensive Machine Learning Analysis Report</h1>
+        <p style="font-size: 18px; color: #7f8c8d;">Analysis of Mix Dataset - Complete Pipeline Results</p>
+        <div class="timestamp">Generated: December 15, 2025 at 18:41:18</div>
+        
+        <div class="toc">
+            <h3>Table of Contents</h3>
+            <a href="#executive-summary">1. Executive Summary</a>
+            <a href="#original-results">2. Original Model Comparison</a>
+            <a href="#hyperparameter-tuning">3. Hyperparameter Tuning</a>
+            <a href="#error-analysis">4. Error Analysis</a>
+            <a href="#shap-analysis">5. SHAP Feature Importance Analysis</a>
+            <a href="#feature-engineering">6. Feature Engineering</a>
+            <a href="#external-validation">7. External Validation</a>
+            <a href="#conclusions">8. Conclusions & Recommendations</a>
+        </div>
+
+        <div class="section-divider"></div>
+        <h2 id="executive-summary">1. Executive Summary</h2>
+        
+        <div class="summary-box">
+            <h3>Project Overview</h3>
+            <p>This report presents a comprehensive analysis of machine learning models for DNA classification, 
+            including baseline model comparison, hyperparameter optimization, error pattern analysis, 
+            feature importance investigation, and feature engineering.</p>
+        </div>
+
+        <div class="metric-grid">
+
+            <div class="metric-card">
+                <h4>Top 1 Model: Lgbm Randomoversampler</h4>
+                <div class="value">0.9750</div>
+                <div class="change">Balanced Accuracy</div>
+                <div class="change">F1-Macro: 0.9760</div>
+            </div>
+
+            <div class="metric-card">
+                <h4>Top 2 Model: Extratrees Original</h4>
+                <div class="value">0.9750</div>
+                <div class="change">Balanced Accuracy</div>
+                <div class="change">F1-Macro: 0.9760</div>
+            </div>
+
+            <div class="metric-card">
+                <h4>Top 3 Model: Logistic Regression Original</h4>
+                <div class="value">0.9750</div>
+                <div class="change">Balanced Accuracy</div>
+                <div class="change">F1-Macro: 0.9760</div>
+            </div>
+
+        </div>
+
+        <div class="section-divider"></div>
+        <h2 id="original-results">2. Original Model Comparison</h2>
+        
+        <h3>Model Performance Rankings</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Model</th>
+                    <th>Balanced Accuracy</th>
+                    <th>F1-Macro</th>
+                    <th>Precision</th>
+                    <th>Recall</th>
+                    <th>Accuracy</th>
+                    <th>Log Loss</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td><strong>1</strong></td>
+                    <td>Lgbm Randomoversampler</td>
+                    <td>0.9750</td>
+                    <td>0.9760</td>
+                    <td>0.9792</td>
+                    <td>0.9750</td>
+                    <td>0.9750</td>
+                    <td>0.2910</td>
+                </tr>
+
+                <tr>
+                    <td><strong>2</strong></td>
+                    <td>Extratrees Original</td>
+                    <td>0.9750</td>
+                    <td>0.9760</td>
+                    <td>0.9792</td>
+                    <td>0.9750</td>
+                    <td>0.9750</td>
+                    <td>0.1347</td>
+                </tr>
+
+                <tr>
+                    <td><strong>3</strong></td>
+                    <td>Logistic Regression Original</td>
+                    <td>0.9750</td>
+                    <td>0.9760</td>
+                    <td>0.9792</td>
+                    <td>0.9750</td>
+                    <td>0.9750</td>
+                    <td>0.1021</td>
+                </tr>
+
+                <tr>
+                    <td><strong>4</strong></td>
+                    <td>Tabpfn Original</td>
+                    <td>0.9750</td>
+                    <td>0.9760</td>
+                    <td>0.9792</td>
+                    <td>0.9750</td>
+                    <td>0.9750</td>
+                    <td>0.1030</td>
+                </tr>
+
+                <tr>
+                    <td><strong>5</strong></td>
+                    <td>Xgboost Original</td>
+                    <td>0.9500</td>
+                    <td>0.9514</td>
+                    <td>0.9615</td>
+                    <td>0.9500</td>
+                    <td>0.9500</td>
+                    <td>0.3294</td>
+                </tr>
+
+                <tr>
+                    <td><strong>6</strong></td>
+                    <td>Svm Smote</td>
+                    <td>0.9500</td>
+                    <td>0.9514</td>
+                    <td>0.9615</td>
+                    <td>0.9500</td>
+                    <td>0.9500</td>
+                    <td>0.2764</td>
+                </tr>
+
+                <tr>
+                    <td><strong>7</strong></td>
+                    <td>Randomforest Svm Smote</td>
+                    <td>0.9496</td>
+                    <td>0.9511</td>
+                    <td>0.9536</td>
+                    <td>0.9496</td>
+                    <td>0.9500</td>
+                    <td>0.2414</td>
+                </tr>
+
+                <tr>
+                    <td><strong>8</strong></td>
+                    <td>Mlp Randomoversampler</td>
+                    <td>0.9388</td>
+                    <td>0.9253</td>
+                    <td>0.9226</td>
+                    <td>0.9388</td>
+                    <td>0.9250</td>
+                    <td>0.6314</td>
+                </tr>
+
+                <tr>
+                    <td><strong>9</strong></td>
+                    <td>Gnb Original</td>
+                    <td>0.8199</td>
+                    <td>0.8316</td>
+                    <td>0.8500</td>
+                    <td>0.8199</td>
+                    <td>0.8250</td>
+                    <td>5.3056</td>
+                </tr>
+
+            </tbody>
+        </table>
+
+        <div class="section-divider"></div>
+        <h2 id="hyperparameter-tuning">3. Hyperparameter Tuning</h2>
+
+        <p>Performed randomized search with 50 iterations and 5-fold cross-validation for 5 top-performing models.</p>
+        
+        <h3>Tuning Results Summary</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Model</th>
+                    <th>Best CV Score</th>
+                    <th>Improvement</th>
+                    <th>Total Iterations</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td>All Tuning</td>
+                    <td>0.0000</td>
+                    <td>Tuned model</td>
+                    <td>50</td>
+                </tr>
+
+                <tr>
+                    <td>Extratrees Smote</td>
+                    <td>0.0000</td>
+                    <td>Tuned model</td>
+                    <td>50</td>
+                </tr>
+
+                <tr>
+                    <td>Lgbm Randomoversampler</td>
+                    <td>0.0000</td>
+                    <td>Tuned model</td>
+                    <td>50</td>
+                </tr>
+
+                <tr>
+                    <td>Randomforest Smote</td>
+                    <td>0.0000</td>
+                    <td>Tuned model</td>
+                    <td>50</td>
+                </tr>
+
+                <tr>
+                    <td>Xgboost Smote</td>
+                    <td>0.0000</td>
+                    <td>Tuned model</td>
+                    <td>50</td>
+                </tr>
+
+            </tbody>
+        </table>
+
+        <div class="section-divider"></div>
+        <h2 id="error-analysis">4. Error Analysis</h2>
+
+        <div class="section-divider"></div>
+        <h2 id="shap-analysis">5. SHAP Feature Importance Analysis</h2>
+
+        <div class="section-divider"></div>
+        <h2 id="feature-engineering">6. Feature Engineering</h2>
+
+        <div class="section-divider"></div>
+        <h2 id="external-validation">7. External Validation</h2>
+
+        <p><em>External validation results not available. Run external_validation.py to generate.</em></p>
+
+        <div class="section-divider"></div>
+        <h2 id="conclusions">8. Conclusions & Recommendations</h2>
+        
+        <h3>Key Findings</h3>
+
+        <div class="key-finding">
+            <strong>Best Original Model:</strong> Lgbm Randomoversampler with balanced accuracy of 0.9750
+        </div>
+
+        <h3>Recommendations for Deployment</h3>
+        <div class="recommendation">
+            <ol>
+                <li><strong>Model Selection:</strong> Use top-performing models (LGBM, TabPFN, or XGBoost) 
+                with engineered features for production deployment</li>
+                <li><strong>Feature Engineering:</strong> Include the 56 engineered features in the 
+                production pipeline for improved performance</li>
+                <li><strong>Monitoring:</strong> Implement monitoring for the most confused class pairs 
+                identified in error analysis</li>
+                <li><strong>Ensemble Approach:</strong> Consider ensemble methods combining top 3-5 models 
+                for more robust predictions</li>
+                <li><strong>Continuous Improvement:</strong> Regularly update models with new data and 
+                re-evaluate feature importance</li>
+            </ol>
+        </div>
+        
+        <h3>Next Steps</h3>
+        <ul>
+            <li>Apply feature engineering to Single dataset for comparison</li>
+            <li>Implement probability calibration for improved confidence estimates</li>
+            <li>Deploy best model with monitoring infrastructure</li>
+            <li>Set up A/B testing framework for model comparison in production</li>
+        </ul>
+
+        <div class="section-divider"></div>
+        <div class="timestamp">
+            Report generated on December 15, 2025 at 18:41:18<br>
+            Analysis Pipeline: ML_in_LTDNA
+        </div>
+    </div>
+</body>
+</html>

@@ -6,14 +6,16 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import LabelEncoder
+from sklearn.preprocessing import LabelEncoder, StandardScaler
 from sklearn.metrics import (
     accuracy_score, balanced_accuracy_score, f1_score, log_loss, recall_score,
     precision_score, classification_report, confusion_matrix, precision_recall_curve,
     average_precision_score, roc_curve, roc_auc_score, mean_squared_error, mean_absolute_error,
     precision_recall_fscore_support
 )
-from imblearn.over_sampling import SMOTE, RandomOverSampler
+from imblearn.over_sampling import SMOTE
+from imblearn.under_sampling import RandomUnderSampler
+from collections import Counter
 import joblib
 import os
 import helper_functions as hf
@@ -52,13 +54,16 @@ else:
 from tabpfn import TabPFNClassifier
 
 MODEL_NAME = 'tabpfn'
-DATA_DIR = 'data'
-FIG_DIR = 'figures'
-MODEL_DIR = 'models'
-REPORTS_DIR = 'reports'
+# Get the absolute path to the project root and construct paths from there
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.dirname(SCRIPT_DIR)
+DATA_DIR = os.path.join(PROJECT_ROOT, 'Single_Results', 'data')
+FIG_DIR = os.path.join(PROJECT_ROOT, 'Single_Results', 'figures')
+MODEL_DIR = os.path.join(PROJECT_ROOT, 'Single_Results', 'models')
+REPORTS_DIR = os.path.join(PROJECT_ROOT, 'Single_Results', 'reports')
 
-data_mix = 'Input_Data-Mix-train.csv'
-data_single = 'Input_Data-Single-train.csv'
+data_mix = os.path.join(PROJECT_ROOT, 'Input_Data-Mix-train.csv')
+data_single = os.path.join(PROJECT_ROOT, 'Input_Data-Single-train.csv')
 
 DATA_FILE = data_single
 
@@ -79,9 +84,19 @@ X_train, X_test, y_train, y_test, train_idx, test_idx = train_test_split(
     random_state=42
 )
 
+# Scale features using StandardScaler
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+print(f"\nClass distribution in training set:")
+print(Counter(y_train))
+print(f"\nFeature scaling applied with StandardScaler")
+
 # Use shared helpers from `helper_functions.py` as `hf`
 
-def train_tabpfn_pipeline(X_train, y_train, X_test, y_test, strategy_name="Original"):
+def train_tabpfn_pipeline(X_train, y_train, X_test, y_test, strategy_name="Original", class_weight=None):
+    # TabPFN doesn't support class_weight parameter directly, so we note it for the strategy name
     clf = TabPFNClassifier()
     clf.fit(X_train, y_train)
     
@@ -90,7 +105,7 @@ def train_tabpfn_pipeline(X_train, y_train, X_test, y_test, strategy_name="Origi
         y_pred_proba = clf.predict_proba(X_test)
     except Exception:
         y_pred_proba = None
-    class_names = [str(c) for c in np.unique(y_test)]
+    class_names = le.classes_
     
     metrics = hf.compute_metrics(y_test, y_pred, y_pred_proba)
     print(f"\n{strategy_name} Metrics:")
@@ -150,17 +165,29 @@ def train_tabpfn_pipeline(X_train, y_train, X_test, y_test, strategy_name="Origi
 
     return clf, assets
 
+# Prepare sampling strategies with scaled data
+# Find majority class for undersampling
+class_counts = Counter(y_train)
+majority_class = max(class_counts, key=class_counts.get)
+print(f"\nMajority class: {le.inverse_transform([majority_class])[0]} with {class_counts[majority_class]} samples")
+
 strategies = {
-    "Original": (X_train, y_train),
-    "SMOTE": SMOTE(random_state=42).fit_resample(X_train, y_train),
-    "RandomOverSampler": RandomOverSampler(random_state=42).fit_resample(X_train, y_train)
+    "Original": (X_train_scaled, y_train),
+    "SMOTE": SMOTE(random_state=42).fit_resample(X_train_scaled, y_train),
+    "RandomUnderSampler": RandomUnderSampler(random_state=42, sampling_strategy='auto').fit_resample(X_train_scaled, y_train),
+    "ClassWeights": (X_train_scaled, y_train)  # Note: TabPFN doesn't natively support class_weight, but we keep balanced data
 }
+
+print("\nStrategy sample counts:")
+for name, (X_tr, y_tr) in strategies.items():
+    print(f"{name}: {Counter(y_tr)}")
 
 models = {}
 assets = {}
 for name, (X_tr, y_tr) in strategies.items():
     print(f"\n==== Running strategy: {name} ====")
-    model, asset = train_tabpfn_pipeline(X_tr, y_tr, X_test, y_test, strategy_name=name)
+    class_weight = 'balanced' if name == "ClassWeights" else None
+    model, asset = train_tabpfn_pipeline(X_tr, y_tr, X_test_scaled, y_test, strategy_name=name, class_weight=class_weight)
     models[name] = model
     assets[name] = asset
 
@@ -171,10 +198,10 @@ def generate_html_report(results, class_names, output_path=None, assets=None):
 
 results = {}
 for name, model in models.items():
-    y_pred = model.predict(X_test)
+    y_pred = model.predict(X_test_scaled)
     y_pred_proba = None
     try:
-        y_pred_proba = model.predict_proba(X_test)
+        y_pred_proba = model.predict_proba(X_test_scaled)
     except Exception:
         y_pred_proba = None
     
@@ -201,7 +228,9 @@ class_names = le.classes_.tolist()
 generate_html_report(results, class_names, assets=assets)
 # Append to combined results JSON and regenerate combined HTML
 try:
-    hf.append_model_results_to_json(MODEL_NAME, results, class_names, assets=assets)
-    hf.generate_combined_html()
+    json_path = os.path.join(REPORTS_DIR, 'combined_results.json')
+    output_path = os.path.join(REPORTS_DIR, 'combined_report_all_models.html')
+    hf.append_model_results_to_json(MODEL_NAME, results, class_names, json_path=json_path, assets=assets)
+    hf.generate_combined_html(json_path=json_path, output_path=output_path)
 except Exception as e:
     print(f"Warning: failed to append/generate combined report: {e}")
