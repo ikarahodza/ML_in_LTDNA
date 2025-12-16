@@ -51,18 +51,24 @@ X_train, X_test, y_train, y_test, train_idx, test_idx = train_test_split(
 )
 
 def train_svm_pipeline(X_train, y_train, X_test, y_test, feature_names, strategy_name="Original"):
+    # Scale features for SVM (distance-based algorithm)
+    scaler = StandardScaler()
+    X_train_scaled = scaler.fit_transform(X_train)
+    X_test_scaled = scaler.transform(X_test)
+    
     model = SVC(
         C=1.0,
         kernel='rbf',
         gamma='scale',
+        class_weight='balanced',  # Optimize class weights
         probability=True,  # Enable probability estimates
         random_state=42
     )
-    model.fit(X_train, y_train)
+    model.fit(X_train_scaled, y_train)
     
-    y_pred = model.predict(X_test)
+    y_pred = model.predict(X_test_scaled)
     try:
-        y_pred_proba = model.predict_proba(X_test)
+        y_pred_proba = model.predict_proba(X_test_scaled)
     except Exception:
         y_pred_proba = None
     class_names = [str(c) for c in np.unique(y_test)]

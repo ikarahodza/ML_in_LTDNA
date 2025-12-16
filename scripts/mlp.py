@@ -53,6 +53,11 @@ X_train, X_test, y_train, y_test, train_idx, test_idx = train_test_split(
 # Use shared helpers from `helper_functions.py` as `hf`
 
 def train_mlp_pipeline(X_train, y_train, X_test, y_test, feature_names, strategy_name="Original"):
+    # Scale features for MLP (distance-based algorithm)
+    scaler = StandardScaler()
+    X_train_scaled = scaler.fit_transform(X_train)
+    X_test_scaled = scaler.transform(X_test)
+    
     model = MLPClassifier(
         hidden_layer_sizes=(100, 50),
         activation='relu',
@@ -62,11 +67,11 @@ def train_mlp_pipeline(X_train, y_train, X_test, y_test, feature_names, strategy
         early_stopping=True,
         validation_fraction=0.1
     )
-    model.fit(X_train, y_train)
+    model.fit(X_train_scaled, y_train)
     
-    y_pred = model.predict(X_test)
+    y_pred = model.predict(X_test_scaled)
     try:
-        y_pred_proba = model.predict_proba(X_test)
+        y_pred_proba = model.predict_proba(X_test_scaled)
     except Exception:
         y_pred_proba = None
     class_names = [str(c) for c in np.unique(y_test)]

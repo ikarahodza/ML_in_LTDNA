@@ -50,4 +50,43 @@ model_xgboost_randomoversampler          0.2500       0.0799       0.1901
 model_xgboost_smote                      0.2500       0.0799       0.1901      
 --------------------------------------------------------------------------------
 
+GENERALIZATION ANALYSIS:
+Model                                    Single->Mix     Performance    
+--------------------------------------------------------------------------------
+extratrees_model_extratrees_original     Drop (-0.7250)  0.2500
+extratrees_model_extratrees_randomoversampler Drop (-0.7250)  0.2500
+extratrees_model_extratrees_smote        Drop (-0.7250)  0.2500
+lgbm_model_lgbm_original                 Drop (-0.7000)  0.2500
+lgbm_model_lgbm_randomoversampler        Drop (-0.7250)  0.2500
+lgbm_model_lgbm_smote                    Drop (-0.7000)  0.2500
+model_gnb_original                       Drop (-0.2993)  0.5205
+model_gnb_randomoversampler              Drop (-0.2448)  0.5334
+model_gnb_smote                          Drop (-0.2571)  0.5211
+model_logistic_regression_original       Drop (-0.2738)  0.7012
+model_logistic_regression_randomoversampler Drop (-0.2485)  0.7038
+model_logistic_regression_smote          Drop (-0.2547)  0.6976
+model_mlp_original                       Drop (-0.2451)  0.5604
+model_mlp_randomoversampler              Drop (-0.3722)  0.5666
+model_mlp_smote                          Drop (-0.2995)  0.5534
+model_randomforest_borderline_smote      Drop (-0.6670)  0.2500
+model_randomforest_class_weights         Drop (-0.6817)  0.2500
+model_randomforest_no_resampling         Drop (-0.6849)  0.2500
+model_randomforest_smote                 Drop (-0.6964)  0.2500
+model_randomforest_svm_smote             Drop (-0.7000)  0.2500
+model_svm_original                       Drop (-0.2867)  0.5331
+model_svm_randomoversampler              Drop (-0.3694)  0.5579
+model_svm_smote                          Drop (-0.3972)  0.5528
+model_tabpfn_classweights                Drop (-0.2042)  0.7708
+model_tabpfn_original                    Drop (-0.2042)  0.7708
+model_tabpfn_randomundersampler          Drop (-0.2103)  0.7647
+model_tabpfn_smote                       Drop (-0.1974)  0.7776
+model_xgboost_original                   Drop (-0.7000)  0.2500
+model_xgboost_randomoversampler          Drop (-0.7000)  0.2500
+model_xgboost_smote                      Drop (-0.7000)  0.2500
+
+INTERPRETATION:
+  - Stable: Performance similar on external data (good generalization)
+  - Drop: Lower performance on external data (possible overfitting)
+  - Improve: Better performance on external data (model generalizes well)
+
 ================================================================================

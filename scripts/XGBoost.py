@@ -49,16 +49,26 @@ X_train, X_test, y_train, y_test, train_idx, test_idx = train_test_split(
 # Use shared helpers from `helper_functions.py` as `hf`
 
 def train_xgb_pipeline(X_train, y_train, X_test, y_test, feature_names, strategy_name="Original"):
+    # Split training data for early stopping validation
+    X_train_split, X_val_split, y_train_split, y_val_split = train_test_split(
+        X_train, y_train, test_size=0.15, random_state=42, stratify=y_train
+    )
+    
     model = XGBClassifier(
-        n_estimators=100,
+        n_estimators=1000,  # Increased for early stopping
         max_depth=6,
-        learning_rate=0.3,
+        learning_rate=0.1,  # Reduced for better convergence
         objective='multi:softprob',
         eval_metric='mlogloss',
         use_label_encoder=False,
         random_state=42
     )
-    model.fit(X_train, y_train)
+    model.fit(
+        X_train_split, y_train_split,
+        eval_set=[(X_val_split, y_val_split)],
+        early_stopping_rounds=50,
+        verbose=False
+    )
     
     y_pred = model.predict(X_test)
     try:

@@ -7,6 +7,7 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import ( accuracy_score, classification_report, confusion_matrix, balanced_accuracy_score, f1_score, log_loss, recall_score, mean_squared_error, mean_absolute_error, precision_recall_fscore_support)
 from imblearn.over_sampling import SMOTE, RandomOverSampler
 from lightgbm import LGBMClassifier
+import lightgbm as lgb
 import joblib
 import os
 import shap
@@ -47,14 +48,25 @@ X_train, X_test, y_train, y_test, train_idx, test_idx = train_test_split(
 # Use shared helpers from `helper_functions.py` as `hf`
 
 def train_eval_plot(X_tr, y_tr, title, strategy_name):
-    model = LGBMClassifier(
-        n_estimators=100,
-        max_depth=6,
-        learning_rate=0.3,
-        objective='multiclass',
-        random_state=42
+    # Split training data for early stopping validation
+    X_tr_split, X_val_split, y_tr_split, y_val_split = train_test_split(
+        X_tr, y_tr, test_size=0.15, random_state=42, stratify=y_tr
     )
-    model.fit(X_tr, y_tr)
+    
+    model = LGBMClassifier(
+        n_estimators=1000,  # Increased for early stopping
+        max_depth=6,
+        learning_rate=0.1,  # Reduced for better convergence
+        objective='multiclass',
+        class_weight='balanced',  # Optimize class weights
+        random_state=42,
+        verbose=-1
+    )
+    model.fit(
+        X_tr_split, y_tr_split,
+        eval_set=[(X_val_split, y_val_split)],
+        callbacks=[lgb.early_stopping(stopping_rounds=50, verbose=False)]
+    )
     y_pred = model.predict(X_test)
     try:
         y_pred_proba = model.predict_proba(X_test)
