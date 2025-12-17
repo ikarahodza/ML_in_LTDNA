@@ -1,0 +1,81 @@
+{
+    "model": "StackingEnsemble",
+    "base_learners": [
+        "RandomForest",
+        "ExtraTrees",
+        "LightGBM",
+        "XGBoost"
+    ],
+    "meta_learner": "LogisticRegression",
+    "accuracy": 0.8488372093023255,
+    "balanced_accuracy": 0.8809523809523809,
+    "f1_weighted": 0.8483396817944312,
+    "matthews_corrcoef": 0.7806981600154422,
+    "cv_balanced_accuracy_mean": 0.8437667887667889,
+    "cv_balanced_accuracy_std": 0.04165181364787683,
+    "confusion_matrix": [
+        [
+            35,
+            3,
+            2,
+            5
+        ],
+        [
+            2,
+            16,
+            0,
+            0
+        ],
+        [
+            1,
+            0,
+            6,
+            0
+        ],
+        [
+            0,
+            0,
+            0,
+            16
+        ]
+    ],
+    "classification_report": {
+        "Allele": {
+            "precision": 0.9210526315789473,
+            "recall": 0.7777777777777778,
+            "f1-score": 0.8433734939759037,
+            "support": 45.0
+        },
+        "Back_Stutter": {
+            "precision": 0.8421052631578947,
+            "recall": 0.8888888888888888,
+            "f1-score": 0.8648648648648649,
+            "support": 18.0
+        },
+        "Forward_Stutter": {
+            "precision": 0.75,
+            "recall": 0.8571428571428571,
+            "f1-score": 0.8,
+            "support": 7.0
+        },
+        "Pull_Up": {
+            "precision": 0.7619047619047619,
+            "recall": 1.0,
+            "f1-score": 0.8648648648648649,
+            "support": 16.0
+        },
+        "accuracy": 0.8488372093023255,
+        "macro avg": {
+            "precision": 0.818765664160401,
+            "recall": 0.8809523809523809,
+            "f1-score": 0.8432758059264084,
+            "support": 86.0
+        },
+        "weighted avg": {
+            "precision": 0.8609969691671037,
+            "recall": 0.8488372093023255,
+            "f1-score": 0.8483396817944312,
+            "support": 86.0
+        }
+    }
+}

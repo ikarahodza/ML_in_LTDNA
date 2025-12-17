@@ -57,15 +57,30 @@ MODEL_NAME = 'tabpfn'
 # Get the absolute path to the project root and construct paths from there
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(SCRIPT_DIR)
-DATA_DIR = os.path.join(PROJECT_ROOT, 'Single_Results', 'data')
-FIG_DIR = os.path.join(PROJECT_ROOT, 'Single_Results', 'figures')
-MODEL_DIR = os.path.join(PROJECT_ROOT, 'Single_Results', 'models')
-REPORTS_DIR = os.path.join(PROJECT_ROOT, 'Single_Results', 'reports')
 
-data_mix = os.path.join(PROJECT_ROOT, 'Input_Data-Mix-train.csv')
-data_single = os.path.join(PROJECT_ROOT, 'Input_Data-Single-train.csv')
+# Auto-detect dataset from command line argument
+# Usage: python TabPFN.py mix  OR  python TabPFN.py single
+if len(sys.argv) > 1 and sys.argv[1].lower() in ['mix', 'single']:
+    dataset_type = sys.argv[1].lower()
+else:
+    # Default to single if no valid argument provided
+    dataset_type = 'single'
+    if len(sys.argv) == 1 or not sys.argv[1].startswith('--'):
+        print(f"No dataset specified. Using default: {dataset_type}")
 
-DATA_FILE = data_single
+# Set paths based on dataset type
+RESULTS_FOLDER = f"{dataset_type.capitalize()}_Results"
+DATA_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, 'data')
+FIG_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, 'figures')
+MODEL_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, 'models')
+REPORTS_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, 'reports')
+DATA_FILE = os.path.join(PROJECT_ROOT, f'Input_Data-{dataset_type.capitalize()}-train.csv')
+
+print(f"\n{'='*60}")
+print(f"Running TabPFN with {dataset_type.upper()} dataset")
+print(f"Results folder: {RESULTS_FOLDER}")
+print(f"Data file: {os.path.basename(DATA_FILE)}")
+print(f"{'='*60}\n")
 
 df_m = pd.read_csv(DATA_FILE) 
 original_data = df_m.copy()

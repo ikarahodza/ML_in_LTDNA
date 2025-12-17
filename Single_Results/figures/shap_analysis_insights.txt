@@ -5,70 +5,72 @@ SHAP ANALYSIS INSIGHTS FOR FEATURE ENGINEERING
 ================================================================================
 1. TOP 20 MOST IMPORTANT FEATURES
 ================================================================================
- 1. DownStream_45                  Mean: 89.246124 | Std: 137.326751 | Models: 8
- 2. UpStream_60                    Mean: 70.918948 | Std: 97.748243 | Models: 5
- 3. UpStream_98                    Mean: 42.131849 | Std: 116.770452 | Models: 8
- 4. UpStream_92                    Mean: 38.266139 | Std: nan | Models: 1
- 5. UpStream_100                   Mean: 34.525420 | Std: 91.289568 | Models: 7
- 6. DownStream_13                  Mean: 31.248733 | Std: 25.299892 | Models: 3
- 7. UpStream_99                    Mean: 29.172596 | Std: 89.027408 | Models: 10
- 8. UpStream_58                    Mean: 25.733722 | Std: 36.815805 | Models: 3
- 9. UpStream_54                    Mean: 22.698442 | Std: nan | Models: 1
-10. UpStream_59                    Mean: 20.164456 | Std: 22.963914 | Models: 5
-11. UpStream_94                    Mean: 19.557037 | Std: 27.759117 | Models: 7
-12. UpStream_56                    Mean: 19.293033 | Std: 24.105173 | Models: 4
-13. DownStream_44                  Mean: 15.026764 | Std: 36.713037 | Models: 6
-14. UpStream_61                    Mean: 14.002905 | Std: 27.972296 | Models: 4
-15. UpStream_52                    Mean: 13.492569 | Std: 1.533378 | Models: 3
-16. DownStream_39                  Mean: 12.585093 | Std: 10.117578 | Models: 2
-17. DownStream_14                  Mean: 10.655836 | Std: 3.197631 | Models: 2
-18. C2_DownStream_5                Mean: 9.497144 | Std: nan | Models: 1
-19. DownStream_3                   Mean: 9.050459 | Std: 18.428201 | Models: 10
-20. C5_UpStream_1                  Mean: 7.786584 | Std: nan | Models: 1
+ 1. UpStream_60                    Mean: 183.171384 | Std: 203.627990 | Models: 6
+ 2. DownStream_45                  Mean: 147.583033 | Std: 216.083606 | Models: 8
+ 3. DownStream_44                  Mean: 92.731958 | Std: 135.937884 | Models: 8
+ 4. DownStream_1                   Mean: 80.311562 | Std: 177.030630 | Models: 6
+ 5. UpStream_97                    Mean: 74.212069 | Std: 209.827468 | Models: 8
+ 6. UpStream_99                    Mean: 68.573312 | Std: 205.648946 | Models: 9
+ 7. DownStream_14                  Mean: 59.962662 | Std: nan | Models: 1
+ 8. UpStream_59                    Mean: 52.236269 | Std: 82.631019 | Models: 4
+ 9. DownStream_13                  Mean: 50.364863 | Std: 1.046961 | Models: 2
+10. UpStream_52                    Mean: 46.713672 | Std: 3.195497 | Models: 3
+11. DownStream_6                   Mean: 45.760218 | Std: 68.977418 | Models: 7
+12. UpStream_94                    Mean: 35.253538 | Std: 44.463211 | Models: 7
+13. DownStream_41                  Mean: 34.154998 | Std: 12.415140 | Models: 2
+14. DownStream_15                  Mean: 27.724332 | Std: 12.430835 | Models: 3
+15. C2_DownStream_8                Mean: 26.053532 | Std: 13.133059 | Models: 2
+16. C2_DownStream_1                Mean: 23.458202 | Std: nan | Models: 1
+17. UpStream_58                    Mean: 22.856753 | Std: 20.933334 | Models: 3
+18. C2_DownStream_9                Mean: 20.369457 | Std: nan | Models: 1
+19. UpStream_48                    Mean: 18.535601 | Std: nan | Models: 1
+20. UpStream_57                    Mean: 17.331129 | Std: 42.402115 | Models: 6
 
 ================================================================================
 2. HIGHLY CONSISTENT FEATURES
 (High importance, low variance - reliable across models)
 ================================================================================
- 1. UpStream_97                    Mean: 0.026857 | Std: 0.005887
+ 1. DownStream_46                  Mean: 0.027555 | Std: 0.003016
  2. DownStream_10                  Mean: 0.024010 | Std: 0.006319
  3. DownStream_2                   Mean: 0.022424 | Std: 0.007021
  4. DownStream_48                  Mean: 0.021069 | Std: 0.008728
- 5. UpStream_57                    Mean: 0.020538 | Std: 0.003382
- 6. DownStream_4                   Mean: 0.020508 | Std: 0.005101
- 7. DownStream_47                  Mean: 0.020072 | Std: 0.004831
- 8. DownStream_42                  Mean: 0.019755 | Std: 0.003692
+ 5. DownStream_3                   Mean: 0.019965 | Std: 0.007036
+ 6. UpStream_63                    Mean: 0.019347 | Std: 0.004899
+ 7. DownStream_5                   Mean: 0.018483 | Std: 0.003169
+ 8. UpStream_96                    Mean: 0.017923 | Std: 0.000976
  9. UpStream_93                    Mean: 0.017142 | Std: 0.005177
 10. DownStream_38                  Mean: 0.016768 | Std: 0.001436
-11. DownStream_36                  Mean: 0.016663 | Std: 0.001888
-12. DownStream_9                   Mean: 0.014903 | Std: 0.000533
-13. DownStream_50                  Mean: 0.013771 | Std: 0.002098
+11. UpStream_61                    Mean: 0.016757 | Std: 0.001844
+12. DownStream_36                  Mean: 0.016663 | Std: 0.001888
+13. UpStream_95                    Mean: 0.015907 | Std: 0.002865
+14. DownStream_49                  Mean: 0.015332 | Std: 0.001100
+15. DownStream_9                   Mean: 0.014903 | Std: 0.000533
 
 ================================================================================
 3. MODEL-SPECIFIC FEATURES
 (High variance - important for specific models)
 ================================================================================
- 1. DownStream_45                  Mean: 89.246124 | Std: 137.326751
- 2. UpStream_60                    Mean: 70.918948 | Std: 97.748243
- 3. UpStream_98                    Mean: 42.131849 | Std: 116.770452
- 4. UpStream_100                   Mean: 34.525420 | Std: 91.289568
- 5. DownStream_13                  Mean: 31.248733 | Std: 25.299892
- 6. UpStream_99                    Mean: 29.172596 | Std: 89.027408
- 7. UpStream_58                    Mean: 25.733722 | Std: 36.815805
- 8. UpStream_59                    Mean: 20.164456 | Std: 22.963914
- 9. UpStream_94                    Mean: 19.557037 | Std: 27.759117
-10. UpStream_56                    Mean: 19.293033 | Std: 24.105173
-11. DownStream_44                  Mean: 15.026764 | Std: 36.713037
-12. UpStream_61                    Mean: 14.002905 | Std: 27.972296
-13. UpStream_52                    Mean: 13.492569 | Std: 1.533378
-14. DownStream_39                  Mean: 12.585093 | Std: 10.117578
-15. DownStream_14                  Mean: 10.655836 | Std: 3.197631
+ 1. UpStream_60                    Mean: 183.171384 | Std: 203.627990
+ 2. DownStream_45                  Mean: 147.583033 | Std: 216.083606
+ 3. DownStream_44                  Mean: 92.731958 | Std: 135.937884
+ 4. DownStream_1                   Mean: 80.311562 | Std: 177.030630
+ 5. UpStream_97                    Mean: 74.212069 | Std: 209.827468
+ 6. UpStream_99                    Mean: 68.573312 | Std: 205.648946
+ 7. UpStream_59                    Mean: 52.236269 | Std: 82.631019
+ 8. DownStream_13                  Mean: 50.364863 | Std: 1.046961
+ 9. UpStream_52                    Mean: 46.713672 | Std: 3.195497
+10. DownStream_6                   Mean: 45.760218 | Std: 68.977418
+11. UpStream_94                    Mean: 35.253538 | Std: 44.463211
+12. DownStream_41                  Mean: 34.154998 | Std: 12.415140
+13. DownStream_15                  Mean: 27.724332 | Std: 12.430835
+14. C2_DownStream_8                Mean: 26.053532 | Std: 13.133059
+15. UpStream_58                    Mean: 22.856753 | Std: 20.933334
 
 ================================================================================
 4. FEATURE CATEGORY ANALYSIS
 ================================================================================
-Upstream        Mean: 13.931890 | Total: 1839.0094 | Count: 132
-Downstream      Mean: 8.293136 | Total: 1202.5047 | Count: 145
+Upstream        Mean: 26.108777 | Total: 3341.9235 | Count: 128
+Downstream      Mean: 22.764112 | Total: 3391.8526 | Count: 149
 Other           Mean: 0.000000 | Total: 0.0000 | Count: 3
 
 ================================================================================
@@ -79,32 +81,32 @@ A. INTERACTION TERMS (Top Feature Pairs)
 --------------------------------------------------------------------------------
 Create multiplicative interactions between top features:
 
-  * DownStream_45 x UpStream_60
-  * DownStream_45 x UpStream_98
-  * UpStream_60 x UpStream_98
-  * UpStream_60 x UpStream_92
-  * UpStream_98 x UpStream_92
-  * UpStream_98 x UpStream_100
-  * UpStream_92 x UpStream_100
-  * UpStream_92 x DownStream_13
-  * UpStream_100 x DownStream_13
-  * UpStream_100 x UpStream_99
+  * UpStream_60 x DownStream_45
+  * UpStream_60 x DownStream_44
+  * DownStream_45 x DownStream_44
+  * DownStream_45 x DownStream_1
+  * DownStream_44 x DownStream_1
+  * DownStream_44 x UpStream_97
+  * DownStream_1 x UpStream_97
+  * DownStream_1 x UpStream_99
+  * UpStream_97 x UpStream_99
+  * UpStream_97 x DownStream_14
 
 
 B. POLYNOMIAL FEATURES
 --------------------------------------------------------------------------------
 Create squared and cubic terms for top non-linear features:
 
-  * DownStream_45^2
-  * DownStream_45^3
   * UpStream_60^2
   * UpStream_60^3
-  * UpStream_98^2
-  * UpStream_98^3
-  * UpStream_92^2
-  * UpStream_92^3
-  * UpStream_100^2
-  * UpStream_100^3
+  * DownStream_45^2
+  * DownStream_45^3
+  * DownStream_44^2
+  * DownStream_44^3
+  * DownStream_1^2
+  * DownStream_1^3
+  * UpStream_97^2
+  * UpStream_97^3
 
 
 C. RATIO FEATURES
@@ -112,8 +114,8 @@ C. RATIO FEATURES
 Create ratio features between related features:
 
   * UpStream_60 / DownStream_45
-  * DownStream_45 / UpStream_60
-  * DownStream_45 / mean(top_5_features)
+  * UpStream_60 / DownStream_45
+  * UpStream_60 / mean(top_5_features)
 
 
 D. AGGREGATION FEATURES
@@ -142,14 +144,14 @@ Create features based on local context:
 ================================================================================
 
 1. PRIORITY INTERACTIONS: Focus on interactions between top 3 features:
-   - DownStream_45
    - UpStream_60
-   - UpStream_98
+   - DownStream_45
+   - DownStream_44
 
-2. CONSISTENT FEATURES: The 13 consistent features should be
+2. CONSISTENT FEATURES: The 16 consistent features should be
    retained in any feature selection process.
 
-3. MODEL-SPECIFIC: Consider ensemble methods that leverage the 28
+3. MODEL-SPECIFIC: Consider ensemble methods that leverage the 27
    model-specific features for different prediction scenarios.
 
 4. CATEGORY FOCUS: Upstream features are most important overall.

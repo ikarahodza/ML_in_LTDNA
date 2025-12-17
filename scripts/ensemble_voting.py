@@ -86,7 +86,7 @@ def train_voting_ensemble(X_train, y_train, X_test, y_test, base_folder):
         ('xgb', XGBClassifier(
             n_estimators=1000, max_depth=6, learning_rate=0.1,
             objective='multi:softprob', eval_metric='mlogloss',
-            use_label_encoder=False, random_state=42
+            random_state=42
         )),
         ('svm', SVC(
             kernel='rbf', C=1.0, gamma='scale',
@@ -219,8 +219,8 @@ if __name__ == '__main__':
         df = pd.read_csv(data_path)
         
         # Separate features and target
-        X = df.drop(columns=['Label'])
-        y = df['Label']
+        X = df.drop(columns=['sample', 'PoI', 'Classification'])
+        y = df['Classification']
         
         # Train-test split (80-20)
         X_train, X_test, y_train, y_test = train_test_split(

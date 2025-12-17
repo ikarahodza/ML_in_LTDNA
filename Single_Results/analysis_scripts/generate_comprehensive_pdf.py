@@ -19,14 +19,31 @@ from matplotlib.gridspec import GridSpec
 import matplotlib.image as mpimg
 from pathlib import Path
 import textwrap
+import seaborn as sns
 
-# Get project root
-SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-ANALYSIS_DIR = os.path.dirname(SCRIPT_DIR)  # Single_Results
-PROJECT_ROOT = os.path.dirname(ANALYSIS_DIR)
+# Set professional color palette
+sns.set_palette("husl")
+plt.rcParams['figure.facecolor'] = 'white'
+plt.rcParams['axes.facecolor'] = '#fafafa'
+plt.rcParams['axes.edgecolor'] = '#cccccc'
+plt.rcParams['grid.color'] = '#e0e0e0'
+plt.rcParams['grid.alpha'] = 0.5
+
+# Professional color scheme (softer, distinct colors)
+COLOR_PRIMARY = '#5e81ac'      # Soft blue
+COLOR_SECONDARY = '#88c0d0'    # Light blue  
+COLOR_SUCCESS = '#a3be8c'      # Soft green
+COLOR_WARNING = '#ebcb8b'      # Soft yellow
+COLOR_DANGER = '#bf616a'       # Soft red
+COLOR_INFO = '#81a1c1'         # Medium blue
+COLOR_PURPLE = '#b48ead'       # Soft purple
+COLOR_ORANGE = '#d08770'       # Soft orange
+
+# Color palette for charts (8 distinct but soft colors)
+CHART_COLORS = ['#5e81ac', '#a3be8c', '#ebcb8b', '#d08770', '#b48ead', '#88c0d0', '#81a1c1', '#bf616a']
 
 # Configuration
-REPORTS_DIR = os.path.join(ANALYSIS_DIR, 'reports')
+REPORTS_DIR = 'Single_Results/reports'
 FIGURES_DIR = 'figures'
 DATA_DIR = 'data'
 OUTPUT_PDF = os.path.join(REPORTS_DIR, f'comprehensive_analysis_{datetime.now().strftime("%Y%m%d_%H%M%S")}.pdf')
@@ -41,7 +58,7 @@ def load_all_results():
     
     # Hyperparameter tuning results
     results['tuning'] = {}
-    tuning_dir = Path(ANALYSIS_DIR) / 'hyperparameter_tuning_results'
+    tuning_dir = Path('Single_Results/hyperparameter_tuning_results')
     if tuning_dir.exists():
         for file in tuning_dir.glob('*_results.json'):
             with open(file, 'r') as f:
@@ -50,14 +67,14 @@ def load_all_results():
     
     # Error analysis
     try:
-        with open(os.path.join(ANALYSIS_DIR, 'figures', 'error_analysis_results.json'), 'r') as f:
+        with open('Single_Results/figures/error_analysis_results.json', 'r') as f:
             results['error_analysis'] = json.load(f)
     except:
         results['error_analysis'] = {}
     
     # SHAP analysis
     try:
-        with open(os.path.join(ANALYSIS_DIR, 'figures', 'shap_analysis_results.json'), 'r') as f:
+        with open('Single_Results/figures/shap_analysis_results.json', 'r') as f:
             data = json.load(f)
             # Handle NaN values in SHAP data
             if 'top_20_features' in data:
@@ -70,7 +87,7 @@ def load_all_results():
     
     # Feature engineering
     try:
-        with open(os.path.join(ANALYSIS_DIR, 'feature_engineering_results.json'), 'r') as f:
+        with open('Single_Results/feature_engineering_results.json', 'r') as f:
             results['feature_engineering'] = json.load(f)
     except:
         results['feature_engineering'] = {}
@@ -101,7 +118,7 @@ def create_title_page(pdf):
     CLASSIFICATION TASK
     ───────────────────────────────────────────────────────────────────
     • Target Classes: Allele, Back_Stutter, Forward_Stutter, Pull_Up
-    • Dataset: Input_Data-Single-train.csv
+    • Dataset: Input_Data-Mix-train.csv (426 samples)
     • Original Features: 307
     • Engineered Features: 56 additional
     
@@ -250,12 +267,12 @@ def create_executive_summary(pdf, results):
     ax1.set_title('Top 10 Model-Strategy Combinations (by Balanced Accuracy)', 
                   fontsize=12, fontweight='bold', pad=10)
     
-    top_10 = df.nlargest(10, 'Balanced Acc')
-    table1 = ax1.table(cellText=[[f"{row['Model']}", f"{row['Strategy']}", 
-                                  f"{row['Balanced Acc']:.4f}", f"{row['F1 (macro)']:.4f}",
-                                  f"{row['Accuracy']:.4f}", f"{row['Log Loss']:.4f}"]
-                                 for _, row in top_10.iterrows()],
-                      colLabels=['Model', 'Strategy', 'Bal. Acc', 'F1', 'Accuracy', 'Log Loss'],
+    top_10 = df.nlargest(10, 'Balanced Acc').reset_index(drop=True)
+    table1 = ax1.table(cellText=[[f"{i+1}", f"{row['Model']}", f"{row['Strategy']}", 
+                                  f"{row['Balanced Acc']:.2f}", f"{row['F1 (macro)']:.2f}",
+                                  f"{row['Accuracy']:.2f}", f"{row['Log Loss']:.2f}"]
+                                 for i, row in top_10.iterrows()],
+                      colLabels=['Rank', 'Model', 'Strategy', 'Bal. Acc', 'F1', 'Accuracy', 'Log Loss'],
                       cellLoc='center',
                       loc='center',
                       bbox=[0, 0, 1, 1])
@@ -263,14 +280,18 @@ def create_executive_summary(pdf, results):
     table1.set_fontsize(8)
     table1.scale(1, 1.8)
     
-    for i in range(6):
-        table1[(0, i)].set_facecolor('#2e7d32')
+    for i in range(7):
+        table1[(0, i)].set_facecolor(COLOR_PRIMARY)
         table1[(0, i)].set_text_props(weight='bold', color='white')
     
     for i in range(1, 11):
-        for j in range(6):
+        for j in range(7):
             if i % 2 == 0:
                 table1[(i, j)].set_facecolor('#f5f5f5')
+            # Highlight top 3
+            if i <= 3 and j == 0:
+                table1[(i, j)].set_facecolor(COLOR_SUCCESS)
+                table1[(i, j)].set_text_props(weight='bold', color='white')
     
     # Best per model
     ax2 = fig.add_subplot(gs[1])
@@ -279,13 +300,13 @@ def create_executive_summary(pdf, results):
     ax2.set_title('Best Strategy per Model', fontsize=12, fontweight='bold', pad=10)
     
     best_per_model = df.loc[df.groupby('Model')['Balanced Acc'].idxmax()]
-    best_per_model = best_per_model.sort_values('Balanced Acc', ascending=False)
+    best_per_model = best_per_model.sort_values('Balanced Acc', ascending=False).reset_index(drop=True)
     
-    table2 = ax2.table(cellText=[[f"{row['Model']}", f"{row['Strategy']}", 
-                                  f"{row['Balanced Acc']:.4f}", f"{row['F1 (macro)']:.4f}",
-                                  f"{row['Accuracy']:.4f}"]
-                                 for _, row in best_per_model.iterrows()],
-                      colLabels=['Model', 'Best Strategy', 'Bal. Acc', 'F1', 'Accuracy'],
+    table2 = ax2.table(cellText=[[f"{i+1}", f"{row['Model']}", f"{row['Strategy']}", 
+                                  f"{row['Balanced Acc']:.2f}", f"{row['F1 (macro)']:.2f}",
+                                  f"{row['Accuracy']:.2f}"]
+                                 for i, row in best_per_model.iterrows()],
+                      colLabels=['Rank', 'Model', 'Best Strategy', 'Bal. Acc', 'F1', 'Accuracy'],
                       cellLoc='center',
                       loc='center',
                       bbox=[0, 0, 1, 1])
@@ -293,14 +314,18 @@ def create_executive_summary(pdf, results):
     table2.set_fontsize(8)
     table2.scale(1, 2)
     
-    for i in range(5):
-        table2[(0, i)].set_facecolor('#1565c0')
+    for i in range(6):
+        table2[(0, i)].set_facecolor(COLOR_SECONDARY)
         table2[(0, i)].set_text_props(weight='bold', color='white')
     
     for i in range(1, len(best_per_model) + 1):
-        for j in range(5):
+        for j in range(6):
             if i % 2 == 0:
                 table2[(i, j)].set_facecolor('#f5f5f5')
+            # Highlight top 3
+            if i <= 3 and j == 0:
+                table2[(i, j)].set_facecolor(COLOR_SUCCESS)
+                table2[(i, j)].set_text_props(weight='bold', color='white')
     
     # Key insights text
     ax3 = fig.add_subplot(gs[2])
@@ -313,9 +338,9 @@ def create_executive_summary(pdf, results):
     ══════════════════════════════════════════════════════════════════
     
     ✓ Best Overall: {top_model['Model']} with {top_model['Strategy']}
-      • Balanced Accuracy: {top_model['Balanced Acc']:.4f}
-      • F1-Score (macro): {top_model['F1 (macro)']:.4f}
-      • Overall Accuracy: {top_model['Accuracy']:.4f}
+      • Balanced Accuracy: {top_model['Balanced Acc']:.2f}%
+      • F1-Score (macro): {top_model['F1 (macro)'] * 100:.2f}%
+      • Overall Accuracy: {top_model['Accuracy'] * 100:.2f}%
     
     ✓ Resampling Impact:
       • RandomOverSampler performs best for ensemble methods
@@ -369,51 +394,68 @@ def create_metrics_comparison(pdf, results):
                 'Log Loss': log_loss
             })
     
-    df = pd.DataFrame(data).sort_values('Balanced Acc', ascending=True)
+    df = pd.DataFrame(data).sort_values('Balanced Acc', ascending=False)
     
     # Balanced Accuracy
     ax1 = fig.add_subplot(gs[0, 0])
-    bars1 = ax1.barh(df['Model'], df['Balanced Acc'], color='#2e7d32')
-    ax1.set_xlabel('Balanced Accuracy', fontsize=10)
-    ax1.set_title('Balanced Accuracy by Model', fontsize=11, fontweight='bold')
-    ax1.grid(axis='x', alpha=0.3)
-    ax1.set_xlim(0, 1)
+    colors1 = sns.light_palette(COLOR_PRIMARY, n_colors=len(df), reverse=True)
+    bars1 = ax1.barh(range(len(df)), df['Balanced Acc'], color=colors1)
+    ax1.set_yticks(range(len(df)))
+    ax1.set_yticklabels(df['Model'], fontsize=9)
+    ax1.set_xlabel('Balanced Accuracy', fontsize=10, fontweight='bold')
+    ax1.set_title('Balanced Accuracy by Model (Best Strategy)', fontsize=11, fontweight='bold')
+    ax1.grid(axis='x', alpha=0.3, linestyle='--')
+    ax1.set_xlim(0, 1.05)
+    ax1.invert_yaxis()  # Best on top
     for i, (val, bar) in enumerate(zip(df['Balanced Acc'], bars1)):
         ax1.text(val + 0.01, bar.get_y() + bar.get_height()/2, 
-                f'{val:.3f}', va='center', fontsize=8)
+                f'{val*100:.1f}%', va='center', fontsize=8, fontweight='bold')
     
     # F1-Score
     ax2 = fig.add_subplot(gs[0, 1])
-    bars2 = ax2.barh(df['Model'], df['F1'], color='#1565c0')
-    ax2.set_xlabel('F1-Score (macro)', fontsize=10)
-    ax2.set_title('F1-Score by Model', fontsize=11, fontweight='bold')
-    ax2.grid(axis='x', alpha=0.3)
-    ax2.set_xlim(0, 1)
+    colors2 = sns.light_palette(COLOR_SUCCESS, n_colors=len(df), reverse=True)
+    bars2 = ax2.barh(range(len(df)), df['F1'], color=colors2)
+    ax2.set_yticks(range(len(df)))
+    ax2.set_yticklabels(df['Model'], fontsize=9)
+    ax2.set_xlabel('F1-Score (macro)', fontsize=10, fontweight='bold')
+    ax2.set_title('F1-Score by Model (Best Strategy)', fontsize=11, fontweight='bold')
+    ax2.grid(axis='x', alpha=0.3, linestyle='--')
+    ax2.set_xlim(0, 1.05)
+    ax2.invert_yaxis()  # Best on top
     for i, (val, bar) in enumerate(zip(df['F1'], bars2)):
         ax2.text(val + 0.01, bar.get_y() + bar.get_height()/2, 
-                f'{val:.3f}', va='center', fontsize=8)
+                f'{val*100:.1f}%', va='center', fontsize=8, fontweight='bold')
     
     # Accuracy
     ax3 = fig.add_subplot(gs[1, 0])
-    bars3 = ax3.barh(df['Model'], df['Accuracy'], color='#f57c00')
-    ax3.set_xlabel('Accuracy', fontsize=10)
-    ax3.set_title('Overall Accuracy by Model', fontsize=11, fontweight='bold')
-    ax3.grid(axis='x', alpha=0.3)
-    ax3.set_xlim(0, 1)
+    colors3 = sns.light_palette(COLOR_ORANGE, n_colors=len(df), reverse=True)
+    bars3 = ax3.barh(range(len(df)), df['Accuracy'], color=colors3)
+    ax3.set_yticks(range(len(df)))
+    ax3.set_yticklabels(df['Model'], fontsize=9)
+    ax3.set_xlabel('Overall Accuracy', fontsize=10, fontweight='bold')
+    ax3.set_title('Accuracy by Model (Best Strategy)', fontsize=11, fontweight='bold')
+    ax3.grid(axis='x', alpha=0.3, linestyle='--')
+    ax3.set_xlim(0, 1.05)
+    ax3.invert_yaxis()  # Best on top
     for i, (val, bar) in enumerate(zip(df['Accuracy'], bars3)):
         ax3.text(val + 0.01, bar.get_y() + bar.get_height()/2, 
-                f'{val:.3f}', va='center', fontsize=8)
+                f'{val*100:.1f}%', va='center', fontsize=8, fontweight='bold')
     
-    # Log Loss (lower is better)
+    # Log Loss (lower is better) - sort by log loss ascending
     ax4 = fig.add_subplot(gs[1, 1])
-    bars4 = ax4.barh(df['Model'], df['Log Loss'], color='#c62828')
-    ax4.set_xlabel('Log Loss (lower is better)', fontsize=10)
-    ax4.set_title('Log Loss by Model', fontsize=11, fontweight='bold')
-    ax4.grid(axis='x', alpha=0.3)
-    for i, (val, bar) in enumerate(zip(df['Log Loss'], bars4)):
+    df_logloss = df[df['Log Loss'] > 0].sort_values('Log Loss', ascending=True)
+    colors4 = sns.light_palette(COLOR_DANGER, n_colors=len(df_logloss), reverse=False)  # Light colors for low loss
+    bars4 = ax4.barh(range(len(df_logloss)), df_logloss['Log Loss'], color=colors4)
+    ax4.set_yticks(range(len(df_logloss)))
+    ax4.set_yticklabels(df_logloss['Model'], fontsize=9)
+    ax4.set_xlabel('Log Loss (lower is better)', fontsize=10, fontweight='bold')
+    ax4.set_title('Log Loss by Model (Best Strategy)', fontsize=11, fontweight='bold')
+    ax4.grid(axis='x', alpha=0.3, linestyle='--')
+    ax4.invert_yaxis()  # Best (lowest) on top
+    for i, (val, bar) in enumerate(zip(df_logloss['Log Loss'], bars4)):
         if val > 0:
-            ax4.text(val + 0.05, bar.get_y() + bar.get_height()/2, 
-                    f'{val:.3f}', va='center', fontsize=8)
+            ax4.text(val + 0.02, bar.get_y() + bar.get_height()/2, 
+                    f'{val:.2f}', va='center', fontsize=8, fontweight='bold')
     
     plt.tight_layout()
     pdf.savefig(fig, bbox_inches='tight')
@@ -461,7 +503,7 @@ def create_hyperparameter_tuning_summary(pdf, results):
         param_text = []
         for key, val in best_params.items():
             if isinstance(val, float):
-                param_text.append([key, f'{val:.4f}'])
+                param_text.append([key, f'{val:.2f}'])
             else:
                 param_text.append([key, str(val)])
         
@@ -475,10 +517,16 @@ def create_hyperparameter_tuning_summary(pdf, results):
             table.set_fontsize(9)
             table.scale(1, 1.5)
             
-            table[(0, 0)].set_facecolor('#1565c0')
-            table[(0, 1)].set_facecolor('#1565c0')
+            table[(0, 0)].set_facecolor(COLOR_INFO)
+            table[(0, 1)].set_facecolor(COLOR_INFO)
             table[(0, 0)].set_text_props(weight='bold', color='white')
             table[(0, 1)].set_text_props(weight='bold', color='white')
+            
+            # Zebra striping for better readability
+            for row in range(1, len(param_text) + 1):
+                if row % 2 == 0:
+                    table[(row, 0)].set_facecolor('#f5f5f5')
+                    table[(row, 1)].set_facecolor('#f5f5f5')
     
     plt.tight_layout()
     pdf.savefig(fig, bbox_inches='tight')
@@ -602,7 +650,7 @@ def add_shap_analysis_pages(pdf, results):
             if importance is None or (isinstance(importance, float) and np.isnan(importance)):
                 importance = 0.0
             shap_text += f"\n        {i:2d}. {feature_name:30s} "
-            shap_text += f"Importance: {importance:7.2f}"
+            shap_text += f"Importance: {importance:6.2f}"
         
         shap_text += """
         
@@ -692,7 +740,7 @@ def add_feature_engineering_summary(pdf, results):
         for i, feat in enumerate(top_new[:10], 1):
             feat_name = feat.get('feature', 'Unknown')
             importance = feat.get('importance', 0.0)
-            fe_text += f"\n        {i:2d}. {feat_name:35s} {importance:.4f}"
+            fe_text += f"\n        {i:2d}. {feat_name:35s} {importance:5.2f}"
         
         baseline = fe_data.get('baseline', {})
         engineered = fe_data.get('engineered', {})
@@ -706,16 +754,16 @@ def add_feature_engineering_summary(pdf, results):
         ──────────────────────────────────────────────────────────────────
         
         Baseline (Original Features):
-        • Balanced Accuracy: {baseline.get('balanced_accuracy', 0.0):.4f}
-        • F1-Score (macro):  {baseline.get('f1_macro', 0.0):.4f}
-        • CV Score (mean):   {baseline.get('cv_balanced_accuracy_mean', 0.0):.4f}
-        • CV Score (std):    {baseline.get('cv_balanced_accuracy_std', 0.0):.4f}
+        • Balanced Accuracy: {baseline.get('balanced_accuracy', 0.0)*100:.2f}%
+        • F1-Score (macro):  {baseline.get('f1_macro', 0.0)*100:.2f}%
+        • CV Score (mean):   {baseline.get('cv_balanced_accuracy_mean', 0.0)*100:.2f}%
+        • CV Score (std):    {baseline.get('cv_balanced_accuracy_std', 0.0):.2f}
         
         With Engineered Features:
-        • Balanced Accuracy: {engineered.get('balanced_accuracy', 0.0):.4f}
-        • F1-Score (macro):  {engineered.get('f1_macro', 0.0):.4f}
-        • CV Score (mean):   {engineered.get('cv_balanced_accuracy_mean', 0.0):.4f}
-        • CV Score (std):    {engineered.get('cv_balanced_accuracy_std', 0.0):.4f}
+        • Balanced Accuracy: {engineered.get('balanced_accuracy', 0.0)*100:.2f}%
+        • F1-Score (macro):  {engineered.get('f1_macro', 0.0)*100:.2f}%
+        • CV Score (mean):   {engineered.get('cv_balanced_accuracy_mean', 0.0)*100:.2f}%
+        • CV Score (std):    {engineered.get('cv_balanced_accuracy_std', 0.0):.2f}
         
         Improvements:
         • Balanced Accuracy: {improvement.get('balanced_accuracy_pct', 0.0):+.2f}%
@@ -779,7 +827,7 @@ def create_conclusions_page(pdf, results):
     1. MODEL SELECTION
     ──────────────────────────────────────────────────────────────────
     Recommended Model: {best_model}
-    • Balanced Accuracy: {best_score:.4f}
+    • Balanced Accuracy: {best_score*100:.2f}%
     • Provides best balance of performance across all classes
     • Robust to class imbalance with RandomOverSampler
     • Suitable for production deployment

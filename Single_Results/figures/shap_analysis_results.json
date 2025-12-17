@@ -1,131 +1,131 @@
 {
   "top_20_features": [
     {
-      "feature": "DownStream_45",
-      "mean_importance": 89.24612380777955,
-      "std_importance": 137.32675054848787,
-      "model_count": 8
-    },
-    {
       "feature": "UpStream_60",
-      "mean_importance": 70.91894758076464,
-      "std_importance": 97.74824262664343,
-      "model_count": 5
+      "mean_importance": 183.17138370481896,
+      "std_importance": 203.6279897337469,
+      "model_count": 6
     },
     {
-      "feature": "UpStream_98",
-      "mean_importance": 42.13184915657609,
-      "std_importance": 116.77045211141821,
+      "feature": "DownStream_45",
+      "mean_importance": 147.58303340886468,
+      "std_importance": 216.0836064589618,
       "model_count": 8
     },
     {
-      "feature": "UpStream_92",
-      "mean_importance": 38.26613914119662,
-      "std_importance": NaN,
-      "model_count": 1
+      "feature": "DownStream_44",
+      "mean_importance": 92.73195831645248,
+      "std_importance": 135.93788407417455,
+      "model_count": 8
     },
     {
-      "feature": "UpStream_100",
-      "mean_importance": 34.525419706159155,
-      "std_importance": 91.28956762439371,
-      "model_count": 7
+      "feature": "DownStream_1",
+      "mean_importance": 80.3115624022532,
+      "std_importance": 177.03062974251873,
+      "model_count": 6
     },
     {
-      "feature": "DownStream_13",
-      "mean_importance": 31.248733244077204,
-      "std_importance": 25.29989192169641,
-      "model_count": 3
+      "feature": "UpStream_97",
+      "mean_importance": 74.21206927798423,
+      "std_importance": 209.8274679697389,
+      "model_count": 8
     },
     {
       "feature": "UpStream_99",
-      "mean_importance": 29.172596254307155,
-      "std_importance": 89.02740800884789,
-      "model_count": 10
+      "mean_importance": 68.57331159453638,
+      "std_importance": 205.64894565217935,
+      "model_count": 9
     },
     {
-      "feature": "UpStream_58",
-      "mean_importance": 25.733722341859146,
-      "std_importance": 36.81580497816336,
-      "model_count": 3
-    },
-    {
-      "feature": "UpStream_54",
-      "mean_importance": 22.69844191334641,
+      "feature": "DownStream_14",
+      "mean_importance": 59.96266198329977,
       "std_importance": NaN,
       "model_count": 1
     },
     {
       "feature": "UpStream_59",
-      "mean_importance": 20.16445641489553,
-      "std_importance": 22.963913975412563,
-      "model_count": 5
-    },
-    {
-      "feature": "UpStream_94",
-      "mean_importance": 19.55703672270749,
-      "std_importance": 27.75911690329239,
-      "model_count": 7
-    },
-    {
-      "feature": "UpStream_56",
-      "mean_importance": 19.293033198479108,
-      "std_importance": 24.105173493663923,
+      "mean_importance": 52.23626935451947,
+      "std_importance": 82.63101887355033,
       "model_count": 4
     },
     {
-      "feature": "DownStream_44",
-      "mean_importance": 15.026763950658028,
-      "std_importance": 36.71303659651373,
-      "model_count": 6
-    },
-    {
-      "feature": "UpStream_61",
-      "mean_importance": 14.002905331281601,
-      "std_importance": 27.972295988485833,
-      "model_count": 4
+      "feature": "DownStream_13",
+      "mean_importance": 50.36486259978815,
+      "std_importance": 1.0469607410013428,
+      "model_count": 2
     },
     {
       "feature": "UpStream_52",
-      "mean_importance": 13.492568502000132,
-      "std_importance": 1.5333776634953844,
+      "mean_importance": 46.713671866831646,
+      "std_importance": 3.1954972039986203,
       "model_count": 3
     },
     {
-      "feature": "DownStream_39",
-      "mean_importance": 12.58509296685421,
-      "std_importance": 10.117577940831978,
+      "feature": "DownStream_6",
+      "mean_importance": 45.76021807459467,
+      "std_importance": 68.97741819732813,
+      "model_count": 7
+    },
+    {
+      "feature": "UpStream_94",
+      "mean_importance": 35.253538243519365,
+      "std_importance": 44.46321072652116,
+      "model_count": 7
+    },
+    {
+      "feature": "DownStream_41",
+      "mean_importance": 34.15499808600968,
+      "std_importance": 12.415139703448581,
       "model_count": 2
     },
     {
-      "feature": "DownStream_14",
-      "mean_importance": 10.655836391656832,
-      "std_importance": 3.197630766568475,
+      "feature": "DownStream_15",
+      "mean_importance": 27.724332270524553,
+      "std_importance": 12.430834519811075,
+      "model_count": 3
+    },
+    {
+      "feature": "C2_DownStream_8",
+      "mean_importance": 26.053531924751123,
+      "std_importance": 13.133058574470033,
       "model_count": 2
     },
     {
-      "feature": "C2_DownStream_5",
-      "mean_importance": 9.49714418349322,
+      "feature": "C2_DownStream_1",
+      "mean_importance": 23.45820201717788,
       "std_importance": NaN,
       "model_count": 1
     },
     {
-      "feature": "DownStream_3",
-      "mean_importance": 9.05045861375227,
-      "std_importance": 18.428201327842142,
-      "model_count": 10
+      "feature": "UpStream_58",
+      "mean_importance": 22.856753287839652,
+      "std_importance": 20.933333849122615,
+      "model_count": 3
     },
     {
-      "feature": "C5_UpStream_1",
-      "mean_importance": 7.786584046375452,
+      "feature": "C2_DownStream_9",
+      "mean_importance": 20.36945740506053,
       "std_importance": NaN,
       "model_count": 1
+    },
+    {
+      "feature": "UpStream_48",
+      "mean_importance": 18.53560089234705,
+      "std_importance": NaN,
+      "model_count": 1
+    },
+    {
+      "feature": "UpStream_57",
+      "mean_importance": 17.33112914223833,
+      "std_importance": 42.4021148037519,
+      "model_count": 6
     }
   ],
   "consistent_features": [
     {
-      "feature": "UpStream_97",
-      "mean_importance": 0.026856562712445887,
-      "std_importance": 0.005887496845440823
+      "feature": "DownStream_46",
+      "mean_importance": 0.027554727726015475,
+      "std_importance": 0.003015885685344596
     },
     {
       "feature": "DownStream_10",
@@ -143,24 +143,24 @@
       "std_importance": 0.008728138917046617
     },
     {
-      "feature": "UpStream_57",
-      "mean_importance": 0.02053830560093272,
-      "std_importance": 0.0033818835515652037
+      "feature": "DownStream_3",
+      "mean_importance": 0.019965104234486015,
+      "std_importance": 0.007036248954171105
     },
     {
-      "feature": "DownStream_4",
-      "mean_importance": 0.020508338067975515,
-      "std_importance": 0.005101135695564115
+      "feature": "UpStream_63",
+      "mean_importance": 0.019347178355118167,
+      "std_importance": 0.004898953156225828
     },
     {
-      "feature": "DownStream_47",
-      "mean_importance": 0.020072051549845715,
-      "std_importance": 0.004831292493302207
+      "feature": "DownStream_5",
+      "mean_importance": 0.0184828169892097,
+      "std_importance": 0.0031693446086595613
     },
     {
-      "feature": "DownStream_42",
-      "mean_importance": 0.01975544865810672,
-      "std_importance": 0.0036917172895598134
+      "feature": "UpStream_96",
+      "mean_importance": 0.01792331772988474,
+      "std_importance": 0.0009758006227420391
     },
     {
       "feature": "UpStream_93",
@@ -173,108 +173,118 @@
       "std_importance": 0.001436076702832653
     },
     {
+      "feature": "UpStream_61",
+      "mean_importance": 0.016757357306642934,
+      "std_importance": 0.0018443556258241425
+    },
+    {
       "feature": "DownStream_36",
       "mean_importance": 0.01666278739098365,
       "std_importance": 0.001888340193939372
     },
     {
+      "feature": "UpStream_95",
+      "mean_importance": 0.0159067551890061,
+      "std_importance": 0.0028645916536999684
+    },
+    {
+      "feature": "DownStream_49",
+      "mean_importance": 0.01533159282971972,
+      "std_importance": 0.0011001358340177784
+    },
+    {
       "feature": "DownStream_9",
       "mean_importance": 0.0149026889803013,
       "std_importance": 0.0005332950756123711
-    },
-    {
-      "feature": "DownStream_50",
-      "mean_importance": 0.01377098856951385,
-      "std_importance": 0.0020980634604882433
     }
   ],
   "variable_features": [
     {
-      "feature": "DownStream_45",
-      "mean_importance": 89.24612380777955,
-      "std_importance": 137.32675054848787
-    },
-    {
       "feature": "UpStream_60",
-      "mean_importance": 70.91894758076464,
-      "std_importance": 97.74824262664343
+      "mean_importance": 183.17138370481896,
+      "std_importance": 203.6279897337469
     },
     {
-      "feature": "UpStream_98",
-      "mean_importance": 42.13184915657609,
-      "std_importance": 116.77045211141821
-    },
-    {
-      "feature": "UpStream_100",
-      "mean_importance": 34.525419706159155,
-      "std_importance": 91.28956762439371
-    },
-    {
-      "feature": "DownStream_13",
-      "mean_importance": 31.248733244077204,
-      "std_importance": 25.29989192169641
-    },
-    {
-      "feature": "UpStream_99",
-      "mean_importance": 29.172596254307155,
-      "std_importance": 89.02740800884789
-    },
-    {
-      "feature": "UpStream_58",
-      "mean_importance": 25.733722341859146,
-      "std_importance": 36.81580497816336
-    },
-    {
-      "feature": "UpStream_59",
-      "mean_importance": 20.16445641489553,
-      "std_importance": 22.963913975412563
-    },
-    {
-      "feature": "UpStream_94",
-      "mean_importance": 19.55703672270749,
-      "std_importance": 27.75911690329239
-    },
-    {
-      "feature": "UpStream_56",
-      "mean_importance": 19.293033198479108,
-      "std_importance": 24.105173493663923
+      "feature": "DownStream_45",
+      "mean_importance": 147.58303340886468,
+      "std_importance": 216.0836064589618
     },
     {
       "feature": "DownStream_44",
-      "mean_importance": 15.026763950658028,
-      "std_importance": 36.71303659651373
+      "mean_importance": 92.73195831645248,
+      "std_importance": 135.93788407417455
     },
     {
-      "feature": "UpStream_61",
-      "mean_importance": 14.002905331281601,
-      "std_importance": 27.972295988485833
+      "feature": "DownStream_1",
+      "mean_importance": 80.3115624022532,
+      "std_importance": 177.03062974251873
+    },
+    {
+      "feature": "UpStream_97",
+      "mean_importance": 74.21206927798423,
+      "std_importance": 209.8274679697389
+    },
+    {
+      "feature": "UpStream_99",
+      "mean_importance": 68.57331159453638,
+      "std_importance": 205.64894565217935
+    },
+    {
+      "feature": "UpStream_59",
+      "mean_importance": 52.23626935451947,
+      "std_importance": 82.63101887355033
+    },
+    {
+      "feature": "DownStream_13",
+      "mean_importance": 50.36486259978815,
+      "std_importance": 1.0469607410013428
     },
     {
       "feature": "UpStream_52",
-      "mean_importance": 13.492568502000132,
-      "std_importance": 1.5333776634953844
+      "mean_importance": 46.713671866831646,
+      "std_importance": 3.1954972039986203
     },
     {
-      "feature": "DownStream_39",
-      "mean_importance": 12.58509296685421,
-      "std_importance": 10.117577940831978
+      "feature": "DownStream_6",
+      "mean_importance": 45.76021807459467,
+      "std_importance": 68.97741819732813
     },
     {
-      "feature": "DownStream_14",
-      "mean_importance": 10.655836391656832,
-      "std_importance": 3.197630766568475
+      "feature": "UpStream_94",
+      "mean_importance": 35.253538243519365,
+      "std_importance": 44.46321072652116
+    },
+    {
+      "feature": "DownStream_41",
+      "mean_importance": 34.15499808600968,
+      "std_importance": 12.415139703448581
+    },
+    {
+      "feature": "DownStream_15",
+      "mean_importance": 27.724332270524553,
+      "std_importance": 12.430834519811075
+    },
+    {
+      "feature": "C2_DownStream_8",
+      "mean_importance": 26.053531924751123,
+      "std_importance": 13.133058574470033
+    },
+    {
+      "feature": "UpStream_58",
+      "mean_importance": 22.856753287839652,
+      "std_importance": 20.933333849122615
     }
   ],
   "category_analysis": {
     "Upstream": {
-      "mean": 13.931889640536525,
-      "sum": 1839.0094325508214,
-      "count": 132
+      "mean": 26.108777304133852,
+      "sum": 3341.923494929133,
+      "count": 128
     },
     "Downstream": {
-      "mean": 8.293136180061321,
-      "sum": 1202.5047461088916,
-      "count": 145
+      "mean": 22.764111531938013,
+      "sum": 3391.852618258764,
+      "count": 149
     },
     "Other": {
       "mean": 0.0,
@@ -285,65 +295,65 @@
   "feature_engineering_suggestions": {
     "interaction_pairs": [
       [
-        "DownStream_45",
-        "UpStream_60"
-      ],
-      [
-        "DownStream_45",
-        "UpStream_98"
+        "UpStream_60",
+        "DownStream_45"
       ],
       [
         "UpStream_60",
-        "UpStream_98"
+        "DownStream_44"
       ],
       [
-        "UpStream_60",
-        "UpStream_92"
+        "DownStream_45",
+        "DownStream_44"
       ],
       [
-        "UpStream_98",
-        "UpStream_92"
+        "DownStream_45",
+        "DownStream_1"
       ],
       [
-        "UpStream_98",
-        "UpStream_100"
+        "DownStream_44",
+        "DownStream_1"
       ],
       [
-        "UpStream_92",
-        "UpStream_100"
+        "DownStream_44",
+        "UpStream_97"
       ],
       [
-        "UpStream_92",
-        "DownStream_13"
+        "DownStream_1",
+        "UpStream_97"
       ],
       [
-        "UpStream_100",
-        "DownStream_13"
-      ],
-      [
-        "UpStream_100",
+        "DownStream_1",
         "UpStream_99"
+      ],
+      [
+        "UpStream_97",
+        "UpStream_99"
+      ],
+      [
+        "UpStream_97",
+        "DownStream_14"
       ]
     ],
     "polynomial_features": [
-      "DownStream_45",
       "UpStream_60",
-      "UpStream_98",
-      "UpStream_92",
-      "UpStream_100"
+      "DownStream_45",
+      "DownStream_44",
+      "DownStream_1",
+      "UpStream_97"
     ],
     "ratio_features": [
       [
-        "DownStream_45",
-        "UpStream_60"
-      ],
-      [
-        "DownStream_45",
-        "UpStream_98"
+        "UpStream_60",
+        "DownStream_45"
       ],
       [
         "UpStream_60",
-        "UpStream_98"
+        "DownStream_44"
+      ],
+      [
+        "DownStream_45",
+        "DownStream_44"
       ]
     ]
   }

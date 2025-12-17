@@ -18,14 +18,28 @@ import shap
 import helper_functions as hf
 
 warnings.filterwarnings("ignore", category=UserWarning)
+import sys
 
 # Get the project root directory (parent of scripts/)
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(SCRIPT_DIR)
 
-data_mix = os.path.join(PROJECT_ROOT, 'Input_Data-Mix-train.csv')
-data_single = os.path.join(PROJECT_ROOT, 'Input_Data-Single-train.csv')
-CSV_FILE_PATH = data_single  
+# Auto-detect dataset from command line argument
+# Usage: python randomForest.py mix  OR  python randomForest.py single
+if len(sys.argv) > 1:
+    dataset_type = sys.argv[1].lower()
+    if dataset_type not in ['mix', 'single']:
+        print(f"Error: Invalid dataset type '{dataset_type}'. Use 'mix' or 'single'.")
+        print("Usage: python randomForest.py [mix|single]")
+        sys.exit(1)
+else:
+    # Default to single if no argument provided
+    dataset_type = 'single'
+    print(f"No dataset specified. Using default: {dataset_type}")
+
+# Set paths based on dataset type
+RESULTS_FOLDER = f"{dataset_type.capitalize()}_Results"
+CSV_FILE_PATH = os.path.join(PROJECT_ROOT, f'Input_Data-{dataset_type.capitalize()}-train.csv')
 TARGET_COLUMN = "Classification"  
 OUTPUT_MODEL_PATH = "trained_rf_model.pkl"  
 
@@ -50,10 +64,16 @@ HYPERPARAMETERS = {
 }
 
 MODEL_NAME = 'randomforest'
-DATA_DIR = os.path.join(PROJECT_ROOT, 'Single_Results', 'data')
-FIG_DIR = os.path.join(PROJECT_ROOT, 'Single_Results', 'figures')
-MODEL_DIR = os.path.join(PROJECT_ROOT, 'Single_Results', 'models')
-REPORTS_DIR = os.path.join(PROJECT_ROOT, 'Single_Results', 'reports')
+DATA_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, 'data')
+FIG_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, 'figures')
+MODEL_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, 'models')
+REPORTS_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, 'reports')
+
+print(f"\n{'='*60}")
+print(f"Running RandomForest with {dataset_type.upper()} dataset")
+print(f"Results folder: {RESULTS_FOLDER}")
+print(f"Data file: {os.path.basename(CSV_FILE_PATH)}")
+print(f"{'='*60}\n")
 
 def load_and_prepare_data(csv_path, target_col, feature_cols=None):
     """Load CSV and prepare features and target."""

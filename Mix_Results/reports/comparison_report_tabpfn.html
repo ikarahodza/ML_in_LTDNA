@@ -22,9 +22,9 @@
     </head>
     <body>
       <h1>Comparison Report - tabpfn</h1>
-      <div class="meta">Generated: 2025-12-01 23:21:21</div>
-      <div class="meta">Dataset: Input_Data-Mix-train.csv</div>
-      <div class="small">Strategies: Original, SMOTE, RandomOverSampler</div>
+      <div class="meta">Generated: 2025-12-17 12:05:03</div>
+      <div class="meta">Dataset: C:\Users\DT User\Documents\GitHub\ML_in_LTDNA\Input_Data-Mix-train.csv</div>
+      <div class="small">Strategies: Original, SMOTE, RandomUnderSampler, ClassWeights</div>
       <h2>Summary by Strategy</h2>
       <table>
         <thead>
@@ -46,25 +46,34 @@
             <td>0.8508</td>
             <td>0.3023</td>
             <td>0.1628</td>
-            <td>0.2779</td>
+            <td>0.2753</td>
           </tr>
           <tr>
             <td class="strategy-name">SMOTE</td>
             <td>0.8721</td>
-            <td>0.7464</td>
-            <td>0.7763</td>
-            <td>0.3256</td>
-            <td>0.1860</td>
-            <td>0.3843</td>
+            <td>0.7246</td>
+            <td>0.7367</td>
+            <td>0.3605</td>
+            <td>0.1977</td>
+            <td>0.3574</td>
           </tr>
           <tr>
-            <td class="strategy-name">RandomOverSampler</td>
-            <td>0.8488</td>
-            <td>0.6968</td>
-            <td>0.7185</td>
-            <td>0.4186</td>
-            <td>0.2326</td>
-            <td>0.4285</td>
+            <td class="strategy-name">RandomUnderSampler</td>
+            <td>0.8256</td>
+            <td>0.8698</td>
+            <td>0.8225</td>
+            <td>0.8953</td>
+            <td>0.3605</td>
+            <td>0.5275</td>
+          </tr>
+          <tr>
+            <td class="strategy-name">ClassWeights</td>
+            <td>0.8953</td>
+            <td>0.8345</td>
+            <td>0.8508</td>
+            <td>0.3023</td>
+            <td>0.1628</td>
+            <td>0.2753</td>
           </tr>
         </tbody>
       </table>
@@ -131,16 +140,16 @@
           </tr>
           <tr>
             <td class="strategy-name">Back_Stutter</td>
-            <td>0.9286</td>
-            <td>0.7222</td>
-            <td>0.8125</td>
+            <td>0.9333</td>
+            <td>0.7778</td>
+            <td>0.8485</td>
             <td>18</td>
           </tr>
           <tr>
             <td class="strategy-name">Forward_Stutter</td>
             <td>1.0000</td>
-            <td>0.2857</td>
-            <td>0.4444</td>
+            <td>0.1429</td>
+            <td>0.2500</td>
             <td>7</td>
           </tr>
           <tr>
@@ -152,7 +161,7 @@
           </tr>
         </tbody>
       </table>
-      <h3>Per-class Metrics - RandomOverSampler</h3>
+      <h3>Per-class Metrics - RandomUnderSampler</h3>
       <table>
         <thead>
           <tr>
@@ -166,30 +175,72 @@
         <tbody>
           <tr>
             <td class="strategy-name">Allele</td>
-            <td>0.8000</td>
-            <td>0.9778</td>
-            <td>0.8800</td>
+            <td>0.9429</td>
+            <td>0.7333</td>
+            <td>0.8250</td>
             <td>45</td>
           </tr>
           <tr>
             <td class="strategy-name">Back_Stutter</td>
-            <td>0.9231</td>
-            <td>0.6667</td>
-            <td>0.7742</td>
+            <td>0.8421</td>
+            <td>0.8889</td>
+            <td>0.8649</td>
             <td>18</td>
           </tr>
           <tr>
             <td class="strategy-name">Forward_Stutter</td>
-            <td>1.0000</td>
-            <td>0.1429</td>
-            <td>0.2500</td>
+            <td>0.7500</td>
+            <td>0.8571</td>
+            <td>0.8000</td>
             <td>7</td>
           </tr>
           <tr>
             <td class="strategy-name">Pull_Up</td>
-            <td>0.9412</td>
+            <td>0.6667</td>
             <td>1.0000</td>
-            <td>0.9697</td>
+            <td>0.8000</td>
+            <td>16</td>
+          </tr>
+        </tbody>
+      </table>
+      <h3>Per-class Metrics - ClassWeights</h3>
+      <table>
+        <thead>
+          <tr>
+            <th class="strategy-name">Class</th>
+            <th>Precision</th>
+            <th>Recall</th>
+            <th>F1-Score</th>
+            <th>Support</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="strategy-name">Allele</td>
+            <td>0.8936</td>
+            <td>0.9333</td>
+            <td>0.9130</td>
+            <td>45</td>
+          </tr>
+          <tr>
+            <td class="strategy-name">Back_Stutter</td>
+            <td>0.9375</td>
+            <td>0.8333</td>
+            <td>0.8824</td>
+            <td>18</td>
+          </tr>
+          <tr>
+            <td class="strategy-name">Forward_Stutter</td>
+            <td>0.8000</td>
+            <td>0.5714</td>
+            <td>0.6667</td>
+            <td>7</td>
+          </tr>
+          <tr>
+            <td class="strategy-name">Pull_Up</td>
+            <td>0.8889</td>
+            <td>1.0000</td>
+            <td>0.9412</td>
             <td>16</td>
           </tr>
         </tbody>
@@ -205,10 +256,15 @@
         <h4>Confusion Matrix</h4>
         <img src="..\figures\confusion_matrix_tabpfn_smote.png" alt="Confusion Matrix - SMOTE" style="max-width: 600px; border: 1px solid #ddd; padding: 10px; background: white;">
       </div>
-      <h3>RandomOverSampler</h3>
+      <h3>RandomUnderSampler</h3>
       <div style="margin: 20px 0;">
         <h4>Confusion Matrix</h4>
-        <img src="..\figures\confusion_matrix_tabpfn_randomoversampler.png" alt="Confusion Matrix - RandomOverSampler" style="max-width: 600px; border: 1px solid #ddd; padding: 10px; background: white;">
+        <img src="..\figures\confusion_matrix_tabpfn_randomundersampler.png" alt="Confusion Matrix - RandomUnderSampler" style="max-width: 600px; border: 1px solid #ddd; padding: 10px; background: white;">
+      </div>
+      <h3>ClassWeights</h3>
+      <div style="margin: 20px 0;">
+        <h4>Confusion Matrix</h4>
+        <img src="..\figures\confusion_matrix_tabpfn_classweights.png" alt="Confusion Matrix - ClassWeights" style="max-width: 600px; border: 1px solid #ddd; padding: 10px; background: white;">
       </div>
       <footer>Report generated by ML_in_LTDNA pipeline</footer>
     </body>

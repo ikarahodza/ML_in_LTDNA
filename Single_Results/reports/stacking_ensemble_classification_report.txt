@@ -1,0 +1,27 @@
+Stacking Ensemble Classification Report
+================================================================================
+
+                 precision    recall  f1-score   support
+
+         Allele       1.00      1.00      1.00        13
+   Back_Stutter       1.00      0.80      0.89        10
+Forward_Stutter       1.00      1.00      1.00         6
+        Pull_Up       0.85      1.00      0.92        11
+
+       accuracy                           0.95        40
+      macro avg       0.96      0.95      0.95        40
+   weighted avg       0.96      0.95      0.95        40
+
+
+Cross-Validation Scores:
+Mean Balanced Accuracy: 0.9692
+Std Deviation: 0.0282
+
+
+Base Learner Details:
+- RandomForest: n_estimators=200, max_depth=10
+- ExtraTrees: n_estimators=200, max_depth=10
+- LightGBM: n_estimators=1000, learning_rate=0.1, early_stopping
+- XGBoost: n_estimators=1000, learning_rate=0.1, early_stopping
+
+Meta-Learner: LogisticRegression with class_weight='balanced'

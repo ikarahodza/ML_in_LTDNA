@@ -12,6 +12,7 @@ from sklearn.metrics import (
 from imblearn.over_sampling import SMOTE, RandomOverSampler
 import joblib
 import os
+import sys
 import helper_functions as hf
 
 # Get the project root directory (parent of scripts/)
@@ -19,14 +20,33 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(SCRIPT_DIR)
 
 MODEL_NAME = 'mlp'
-DATA_DIR = os.path.join(PROJECT_ROOT, 'Single_Results', 'data')
-FIG_DIR = os.path.join(PROJECT_ROOT, 'Single_Results', 'figures')
-MODEL_DIR = os.path.join(PROJECT_ROOT, 'Single_Results', 'models')
-REPORTS_DIR = os.path.join(PROJECT_ROOT, 'Single_Results', 'reports')
 
-data_mix = os.path.join(PROJECT_ROOT, 'Input_Data-Mix-train.csv')
-data_single = os.path.join(PROJECT_ROOT, 'Input_Data-Single-train.csv')
-DATA_FILE = data_single
+# Auto-detect dataset from command line argument
+# Usage: python mlp.py mix  OR  python mlp.py single
+if len(sys.argv) > 1:
+    dataset_type = sys.argv[1].lower()
+    if dataset_type not in ['mix', 'single']:
+        print(f"Error: Invalid dataset type '{dataset_type}'. Use 'mix' or 'single'.")
+        print("Usage: python mlp.py [mix|single]")
+        sys.exit(1)
+else:
+    # Default to single if no argument provided
+    dataset_type = 'single'
+    print(f"No dataset specified. Using default: {dataset_type}")
+
+# Set paths based on dataset type
+RESULTS_FOLDER = f"{dataset_type.capitalize()}_Results"
+DATA_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, 'data')
+FIG_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, 'figures')
+MODEL_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, 'models')
+REPORTS_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, 'reports')
+DATA_FILE = os.path.join(PROJECT_ROOT, f'Input_Data-{dataset_type.capitalize()}-train.csv')
+
+print(f"\n{'='*60}")
+print(f"Running MLP with {dataset_type.upper()} dataset")
+print(f"Results folder: {RESULTS_FOLDER}")
+print(f"Data file: {os.path.basename(DATA_FILE)}")
+print(f"{'='*60}\n")
 
 df_m = pd.read_csv(DATA_FILE)
 original_data = df_m.copy()
