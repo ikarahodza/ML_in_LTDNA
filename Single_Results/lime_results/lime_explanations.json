@@ -1,0 +1,152 @@
+[
+  {
+    "sample_id": 34,
+    "true_class": "Forward_Stutter",
+    "predicted_class": "Forward_Stutter",
+    "confidence": 1.0,
+    "is_correct": true,
+    "feature_contributions": {
+      "UpStream_57 > 474.78": 0.09918119070038148,
+      "UpStream_55 > 415.69": 0.09208002702184682,
+      "UpStream_53 > 366.11": 0.08746060044037295,
+      "UpStream_54 > 413.81": 0.08124208596199323,
+      "UpStream_56 > 447.02": 0.07479545718893209,
+      "UpStream_58 > 486.71": 0.07440973804429714,
+      "UpStream_59 > 425.27": 0.07436172856471514,
+      "88.66 < UpStream_99 <= 407.15": 0.07102532470642797,
+      "UpStream_52 > 286.29": 0.06352031557806116,
+      "UpStream_64 > 211.70": 0.05215859535386475
+    },
+    "all_probabilities": {
+      "Allele": 0.0,
+      "Back_Stutter": 0.0,
+      "Forward_Stutter": 1.0,
+      "Pull_Up": 0.0
+    }
+  },
+  {
+    "sample_id": 37,
+    "true_class": "Back_Stutter",
+    "predicted_class": "Back_Stutter",
+    "confidence": 1.0,
+    "is_correct": true,
+    "feature_contributions": {
+      "DownStream_44 > 614.67": 0.10288439246883854,
+      "DownStream_43 > 519.90": 0.09840270617626627,
+      "DownStream_45 > 563.42": 0.09511940372894813,
+      "DownStream_42 > 476.13": 0.08980002609747094,
+      "DownStream_41 > 391.42": 0.06509572479519826,
+      "DownStream_47 > 387.47": 0.05810162866995354,
+      "DownStream_49 > 325.63": 0.0537002536584747,
+      "DownStream_46 > 461.97": 0.05077018833325061,
+      "DownStream_40 > 311.75": 0.049213716802668776,
+      "DownStream_39 > 266.55": 0.045554840559200685
+    },
+    "all_probabilities": {
+      "Allele": 0.0,
+      "Back_Stutter": 1.0,
+      "Forward_Stutter": 0.0,
+      "Pull_Up": 0.0
+    }
+  },
+  {
+    "sample_id": 4,
+    "true_class": "Back_Stutter",
+    "predicted_class": "Back_Stutter",
+    "confidence": 1.0,
+    "is_correct": true,
+    "feature_contributions": {
+      "DownStream_46 > 461.97": 0.0839309915215261,
+      "DownStream_44 > 614.67": 0.0727725787806328,
+      "DownStream_45 > 563.42": 0.0719407966621512,
+      "103.40 < DownStream_1 <= 438.47": 0.04660494480425381,
+      "56.54 < DownStream_43 <= 519.90": -0.04375532982497305,
+      "56.76 < DownStream_42 <= 476.13": -0.03854139162140052,
+      "94.98 < DownStream_2 <= 398.36": 0.03584805968381717,
+      "DownStream_47 > 387.47": 0.032631820758510274,
+      "88.42 < DownStream_3 <= 344.00": 0.032389679807601754,
+      "67.06 < UpStream_97 <= 254.14": 0.03192109521706461
+    },
+    "all_probabilities": {
+      "Allele": 0.0,
+      "Back_Stutter": 1.0,
+      "Forward_Stutter": 0.0,
+      "Pull_Up": 0.0
+    }
+  },
+  {
+    "sample_id": 13,
+    "true_class": "Pull_Up",
+    "predicted_class": "Pull_Up",
+    "confidence": 1.0,
+    "is_correct": true,
+    "feature_contributions": {
+      "82.66 < UpStream_98 <= 324.59": 0.023910748430482756,
+      "C2_UpStream_4 > 103.13": 0.023859352894603017,
+      "C2_UpStream_1 > 79.64": 0.018042927087133245,
+      "C2_UpStream_6 > 116.21": 0.017381721712384536,
+      "101.57 < UpStream_100 <= 448.48": 0.017225384454402987,
+      "24.69 < DownStream_48 <= 52.89": 0.015819968910079748,
+      "11.65 < DownStream_77 <= 33.19": 0.014082521989916916,
+      "10.54 < DownStream_90 <= 30.34": -0.01382137622985752,
+      "C2 > 111.74": 0.01370143392994331,
+      "28.71 < DownStream_92 <= 54.75": -0.01219450761090769
+    },
+    "all_probabilities": {
+      "Allele": 0.0,
+      "Back_Stutter": 0.0,
+      "Forward_Stutter": 0.0,
+      "Pull_Up": 1.0
+    }
+  },
+  {
+    "sample_id": 31,
+    "true_class": "Forward_Stutter",
+    "predicted_class": "Forward_Stutter",
+    "confidence": 1.0,
+    "is_correct": true,
+    "feature_contributions": {
+      "UpStream_58 > 486.71": 0.06818372075783079,
+      "UpStream_54 > 413.81": 0.06762871016456094,
+      "UpStream_63 > 249.06": 0.06662596801192476,
+      "UpStream_53 > 366.11": 0.06347028911591396,
+      "UpStream_56 > 447.02": 0.06311480244984015,
+      "UpStream_60 > 365.93": 0.06304567352607522,
+      "UpStream_55 > 415.69": 0.06286300484505992,
+      "103.40 < DownStream_1 <= 438.47": 0.051486402105804505,
+      "UpStream_52 > 286.29": 0.05067984092289316,
+      "101.57 < UpStream_100 <= 448.48": 0.04908908064086934
+    },
+    "all_probabilities": {
+      "Allele": 0.0,
+      "Back_Stutter": 0.0,
+      "Forward_Stutter": 1.0,
+      "Pull_Up": 0.0
+    }
+  },
+  {
+    "sample_id": 19,
+    "true_class": "Back_Stutter",
+    "predicted_class": "Pull_Up",
+    "confidence": 0.9999999998784996,
+    "is_correct": false,
+    "feature_contributions": {
+      "UpStream_100 <= 101.57": 0.02650861733978285,
+      "C2 > 111.74": 0.018900298605768615,
+      "10.76 < DownStream_98 <= 28.24": 0.017718109008891963,
+      "UpStream_26 <= 16.10": 0.017126710468269624,
+      "UpStream_53 <= 29.58": 0.01656465761765941,
+      "19.92 < UpStream_90 <= 56.74": 0.015807595615106935,
+      "UpStream_44 <= 21.40": 0.014058858101700827,
+      "5.11 < C1_DownStream_2 <= 30.04": -0.013780685072432786,
+      "DownStream_7 <= 50.66": 0.012584919526912675,
+      "6.81 < C1_UpStream_5 <= 31.10": -0.012369143414542384
+    },
+    "all_probabilities": {
+      "Allele": 1.2150026809841515e-10,
+      "Back_Stutter": 0.0,
+      "Forward_Stutter": 0.0,
+      "Pull_Up": 0.9999999998784996
+    }
+  }
+]

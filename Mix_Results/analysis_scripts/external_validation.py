@@ -21,12 +21,15 @@ from sklearn.metrics import (
 import warnings
 warnings.filterwarnings('ignore')
 
-# Configuration
-TRAIN_DATA = 'Input_Data-Mix-train.csv'  # Original training data
-EXTERNAL_DATA = 'Input_Data-Single-train.csv'  # External validation data
-MODEL_DIRS = ['models', 'hyperparameter_tuning_results']
-RESULTS_DIR = 'external_validation_results'
-REPORTS_DIR = 'reports'
+# Configuration - paths relative to Mix_Results directory
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # Mix_Results
+ROOT_DIR = os.path.dirname(BASE_DIR)  # ML_in_LTDNA root
+
+TRAIN_DATA = os.path.join(ROOT_DIR, 'Input_Data-Mix-train.csv')  # Original training data
+EXTERNAL_DATA = os.path.join(ROOT_DIR, 'Input_Data-Single-train.csv')  # External validation data
+MODEL_DIRS = [os.path.join(BASE_DIR, 'models'), os.path.join(BASE_DIR, 'hyperparameter_tuning_results')]
+RESULTS_DIR = os.path.join(BASE_DIR, 'external_validation_results')
+REPORTS_DIR = os.path.join(BASE_DIR, 'reports')
 
 # Create results directory
 os.makedirs(RESULTS_DIR, exist_ok=True)
@@ -193,12 +196,21 @@ for model_name, model_info in models_to_test.items():
 # Save results
 print("\n[5/6] Saving results...")
 results_file = os.path.join(RESULTS_DIR, 'external_validation_results.json')
-with open(results_file, 'w') as f:
+with open(results_file, 'w', encoding='utf-8') as f:
     json.dump(external_results, f, indent=2)
 print(f"   ✓ Results saved to: {results_file}")
 
 # Create comparison visualizations
 print("\n[6/6] Creating visualizations...")
+
+# Debug: Check what's in external_results
+print(f"\n   Debug: external_results has {len(external_results)} entries")
+successful_models = [k for k, v in external_results.items() if 'error' not in v]
+failed_models = [k for k, v in external_results.items() if 'error' in v]
+print(f"   - Successful: {len(successful_models)}")
+print(f"   - Failed: {len(failed_models)}")
+if failed_models:
+    print(f"   - Failed models: {failed_models[:5]}")  # Show first 5
 
 # Prepare comparison data
 comparison_data = []
@@ -236,6 +248,25 @@ for model_name, ext_results in external_results.items():
         comparison_data.append(row)
 
 df_comparison = pd.DataFrame(comparison_data)
+
+# Check if we have any data to plot
+if df_comparison.empty:
+    print("\n[WARNING] No external validation results available for visualization.")
+    print("External validation requires a separate test dataset.")
+    print("Skipping visualization generation.")
+    
+    # Create a summary file indicating no external data
+    summary_path = os.path.join(RESULTS_DIR, 'external_validation_summary.txt')
+    with open(summary_path, 'w', encoding='utf-8') as f:
+        f.write("EXTERNAL VALIDATION SUMMARY\n")
+        f.write("="*80 + "\n\n")
+        f.write("No external validation data available.\n")
+        f.write("To run external validation, provide a separate test dataset.\n")
+    
+    print(f"\nSummary saved to: {summary_path}")
+    print("\n✓ EXTERNAL VALIDATION CHECK COMPLETE")
+    print("="*80)
+    exit(0)
 
 # Plot 1: External validation performance
 fig, ax = plt.subplots(figsize=(12, 6))
@@ -376,7 +407,7 @@ print(summary_text)
 
 # Save summary
 summary_file = os.path.join(RESULTS_DIR, 'external_validation_summary.txt')
-with open(summary_file, 'w') as f:
+with open(summary_file, 'w', encoding='utf-8') as f:
     f.write(summary_text)
 print(f"\n✓ Summary saved to: {summary_file}")
 

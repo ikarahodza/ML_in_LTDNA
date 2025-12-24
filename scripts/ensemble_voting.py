@@ -182,6 +182,11 @@ def train_voting_ensemble(X_train, y_train, X_test, y_test, base_folder):
         'classification_report': report
     }
     
+    # Add binary classification metrics if applicable
+    from helper_functions import compute_binary_classification_metrics
+    binary_metrics = compute_binary_classification_metrics(y_test, y_pred)
+    metrics.update(binary_metrics)
+    
     metrics_path = os.path.join(dirs['reports'], 'voting_ensemble_metrics.json')
     with open(metrics_path, 'w') as f:
         json.dump(metrics, f, indent=4)

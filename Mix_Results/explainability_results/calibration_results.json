@@ -1,0 +1,42 @@
+{
+  "Allele": {
+    "calibration_error": 0.10415560316680769,
+    "mean_predicted": [
+      0.386593500426808,
+      0.40651574778503113
+    ],
+    "fraction_positive": [
+      0.45454545454545453,
+      0.546875
+    ]
+  },
+  "Back_Stutter": {
+    "calibration_error": 0.10079674177238113,
+    "mean_predicted": [
+      0.10850558380901423
+    ],
+    "fraction_positive": [
+      0.20930232558139536
+    ]
+  },
+  "Forward_Stutter": {
+    "calibration_error": 0.05005823790266947,
+    "mean_predicted": [
+      0.13145358673987878
+    ],
+    "fraction_positive": [
+      0.08139534883720931
+    ]
+  },
+  "Pull_Up": {
+    "calibration_error": 0.2888908963904109,
+    "mean_predicted": [
+      0.35804082593172554,
+      0.4079762609667432
+    ],
+    "fraction_positive": [
+      0.18823529411764706,
+      0.0
+    ]
+  }
+}

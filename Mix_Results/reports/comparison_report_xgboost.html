@@ -22,7 +22,7 @@
     </head>
     <body>
       <h1>Comparison Report - xgboost</h1>
-      <div class="meta">Generated: 2025-12-16 20:05:06</div>
+      <div class="meta">Generated: 2025-12-23 18:17:43</div>
       <div class="meta">Dataset: C:\Users\DT User\Documents\GitHub\ML_in_LTDNA\Input_Data-Mix-train.csv</div>
       <div class="small">Strategies: Original, SMOTE, RandomOverSampler</div>
       <h2>Summary by Strategy</h2>
@@ -33,9 +33,11 @@
             <th>Accuracy</th>
             <th>Balanced Accuracy</th>
             <th>F1 (macro)</th>
-            <th>MSE</th>
-            <th>MAE</th>
             <th>Log Loss</th>
+            <th>Focal Loss</th>
+            <th>Weighted Log Loss</th>
+            <th>Informedness</th>
+            <th>Markedness</th>
           </tr>
         </thead>
         <tbody>
@@ -44,27 +46,33 @@
             <td>0.8372</td>
             <td>0.7883</td>
             <td>0.8050</td>
-            <td>0.7674</td>
-            <td>0.3256</td>
             <td>0.4737</td>
+            <td>0.2644</td>
+            <td>0.5843</td>
+            <td>0.7184</td>
+            <td>0.7726</td>
           </tr>
           <tr>
             <td class="strategy-name">SMOTE</td>
             <td>0.8605</td>
             <td>0.8480</td>
             <td>0.8382</td>
-            <td>0.5233</td>
-            <td>0.2442</td>
             <td>0.4825</td>
+            <td>0.3639</td>
+            <td>0.4532</td>
+            <td>0.7976</td>
+            <td>0.7811</td>
           </tr>
           <tr>
             <td class="strategy-name">RandomOverSampler</td>
             <td>0.8140</td>
             <td>0.7956</td>
             <td>0.7833</td>
-            <td>0.8140</td>
-            <td>0.3488</td>
             <td>0.5184</td>
+            <td>0.3927</td>
+            <td>0.5766</td>
+            <td>0.7285</td>
+            <td>0.7259</td>
           </tr>
         </tbody>
       </table>

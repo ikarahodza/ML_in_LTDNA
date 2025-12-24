@@ -7,10 +7,125 @@ from sklearn.metrics import (
     mean_squared_error,
     roc_curve, roc_auc_score
 )
+from sklearn.calibration import CalibratedClassifierCV
 import joblib
 import seaborn as sns
 import json
 import os
+
+
+def focal_loss(y_true, y_pred_proba, gamma=2.0, alpha=None):
+    """
+    Calculate Focal Loss for multi-class classification.
+    
+    Focal Loss = -alpha * (1 - p_t)^gamma * log(p_t)
+    
+    Args:
+        y_true: True labels (1D array of class indices)
+        y_pred_proba: Predicted probabilities (2D array, shape: [n_samples, n_classes])
+        gamma: Focusing parameter (higher = more focus on hard examples). Default=2.0
+        alpha: Class weights (1D array or None). If None, no class weighting.
+    
+    Returns:
+        float: Average focal loss
+    """
+    n_samples = len(y_true)
+    n_classes = y_pred_proba.shape[1]
+    
+    # Clip probabilities to prevent log(0)
+    y_pred_proba = np.clip(y_pred_proba, 1e-7, 1 - 1e-7)
+    
+    # Convert y_true to one-hot encoding
+    y_true_one_hot = np.zeros((n_samples, n_classes))
+    y_true_one_hot[np.arange(n_samples), y_true] = 1
+    
+    # Calculate p_t (probability of the true class)
+    p_t = np.sum(y_pred_proba * y_true_one_hot, axis=1)
+    
+    # Calculate focal loss
+    focal_weight = (1 - p_t) ** gamma
+    cross_entropy = -np.log(p_t)
+    
+    if alpha is not None:
+        # Apply class weights
+        alpha_t = alpha[y_true]
+        loss = alpha_t * focal_weight * cross_entropy
+    else:
+        loss = focal_weight * cross_entropy
+    
+    return np.mean(loss)
+
+
+def class_weighted_log_loss(y_true, y_pred_proba, class_weights=None):
+    """
+    Calculate class-weighted log loss.
+    
+    Args:
+        y_true: True labels
+        y_pred_proba: Predicted probabilities
+        class_weights: Dict or array of class weights
+    
+    Returns:
+        float: Weighted log loss
+    """
+    from sklearn.utils.class_weight import compute_class_weight
+    
+    # Compute class weights if not provided
+    if class_weights is None:
+        classes = np.unique(y_true)
+        class_weights = compute_class_weight('balanced', classes=classes, y=y_true)
+        class_weights = dict(zip(classes, class_weights))
+    
+    # Convert to dict if array
+    if isinstance(class_weights, np.ndarray):
+        classes = np.unique(y_true)
+        class_weights = dict(zip(classes, class_weights))
+    
+    # Calculate sample weights
+    sample_weights = np.array([class_weights[y] for y in y_true])
+    
+    # Calculate weighted log loss
+    return log_loss(y_true, y_pred_proba, sample_weight=sample_weights)
+
+
+def apply_label_smoothing(y_pred_proba, epsilon=0.1):
+    """
+    Apply label smoothing to predicted probabilities to prevent overconfidence.
+    
+    Args:
+        y_pred_proba: Predicted probabilities (2D array)
+        epsilon: Smoothing parameter (0 = no smoothing, 1 = uniform distribution)
+    
+    Returns:
+        Smoothed probabilities
+    """
+    n_classes = y_pred_proba.shape[1]
+    smoothed = y_pred_proba * (1 - epsilon) + epsilon / n_classes
+    return smoothed
+
+
+def calibrate_classifier(model, X_train, y_train, method='sigmoid', cv=5):
+    """
+    Calibrate a classifier to improve probability estimates.
+    
+    Args:
+        model: Trained classifier
+        X_train: Training features
+        y_train: Training labels
+        method: 'sigmoid' (Platt scaling) or 'isotonic'
+        cv: Number of cross-validation folds
+    
+    Returns:
+        Calibrated classifier
+    """
+    calibrated_model = CalibratedClassifierCV(
+        model, 
+        method=method, 
+        cv=cv,
+        ensemble=True
+    )
+    calibrated_model.fit(X_train, y_train)
+    return calibrated_model
 
 def plot_confusion_matrix(cm, class_names, save_path='confusion_matrix.png', cmap=plt.cm.Blues):
     """Plot and save a confusion matrix. Returns the saved file path.
@@ -94,6 +209,15 @@ def compute_metrics(y_true, y_pred, y_prob):
         "mse": float(mean_squared_error(y_true, y_pred)),
         "Mean Squared Error": float(mean_squared_error(y_true, y_pred))
     }
+    
+    # Add enhanced loss metrics
+    try:
+        metrics["Focal Loss"] = focal_loss(y_true, y_prob, gamma=2.0)
+        metrics["Weighted Log Loss"] = class_weighted_log_loss(y_true, y_prob)
+    except Exception as e:
+        # If enhanced metrics fail, use standard log loss
+        metrics["Focal Loss"] = metrics["Log Loss"]
+        metrics["Weighted Log Loss"] = metrics["Log Loss"]
 
     if cm.shape == (2, 2):
         TN, FP, FN, TP = cm.ravel()
@@ -101,15 +225,88 @@ def compute_metrics(y_true, y_pred, y_prob):
         specificity = TN / (TN + FP) if (TN + FP) > 0 else 0
         precision_pos = TP / (TP + FP) if (TP + FP) > 0 else 0
         npv = TN / (TN + FN) if (TN + FN) > 0 else 0
+        
+        # Calculate Informedness and Markedness
+        informedness = sensitivity + specificity - 1  # Bookmaker Informedness (BM)
+        markedness = precision_pos + npv - 1  # DeltaP
 
         metrics.update({
             "Sensitivity (TPR)": sensitivity,
             "Specificity (TNR)": specificity,
             "Precision (positive)": precision_pos,
             "NPV": npv,
+            "Informedness": informedness,
+            "Markedness": markedness,
         })
 
     return metrics
+
+
+def compute_binary_classification_metrics(y_true, y_pred):
+    """
+    Compute additional classification metrics: Sensitivity, Specificity, 
+    Precision, NPV, Informedness, and Markedness.
+    
+    For binary classification: returns standard binary metrics.
+    For multi-class: returns macro-averaged metrics using one-vs-rest approach.
+    """
+    cm = confusion_matrix(y_true, y_pred)
+    
+    if cm.shape == (2, 2):
+        # Binary classification
+        TN, FP, FN, TP = cm.ravel()
+        sensitivity = TP / (TP + FN) if (TP + FN) > 0 else 0
+        specificity = TN / (TN + FP) if (TN + FP) > 0 else 0
+        precision_pos = TP / (TP + FP) if (TP + FP) > 0 else 0
+        npv = TN / (TN + FN) if (TN + FN) > 0 else 0
+        
+        # Calculate Informedness and Markedness
+        informedness = sensitivity + specificity - 1  # Bookmaker Informedness (BM)
+        markedness = precision_pos + npv - 1  # DeltaP
+        
+        return {
+            'sensitivity': float(sensitivity),
+            'specificity': float(specificity),
+            'precision_positive': float(precision_pos),
+            'npv': float(npv),
+            'informedness': float(informedness),
+            'markedness': float(markedness),
+        }
+    
+    elif cm.shape[0] > 2:
+        # Multi-class classification: use one-vs-rest macro-averaging
+        n_classes = cm.shape[0]
+        informedness_scores = []
+        markedness_scores = []
+        
+        for class_idx in range(n_classes):
+            # Create binary confusion matrix for this class (one-vs-rest)
+            TP = cm[class_idx, class_idx]
+            FN = cm[class_idx, :].sum() - TP
+            FP = cm[:, class_idx].sum() - TP
+            TN = cm.sum() - TP - FN - FP
+            
+            # Calculate metrics for this class
+            sensitivity = TP / (TP + FN) if (TP + FN) > 0 else 0
+            specificity = TN / (TN + FP) if (TN + FP) > 0 else 0
+            precision = TP / (TP + FP) if (TP + FP) > 0 else 0
+            npv = TN / (TN + FN) if (TN + FN) > 0 else 0
+            
+            # Calculate Informedness and Markedness for this class
+            class_informedness = sensitivity + specificity - 1
+            class_markedness = precision + npv - 1
+            
+            informedness_scores.append(class_informedness)
+            markedness_scores.append(class_markedness)
+        
+        # Macro-average across all classes
+        return {
+            'informedness': float(np.mean(informedness_scores)),
+            'markedness': float(np.mean(markedness_scores)),
+        }
+    
+    return {}
+
 
 def save_predictions(data, y_test, y_pred, y_pred_proba, test_indices, class_names, save_path='predictions.csv'):
     """Save predictions for test indices to CSV and return the saved path.
@@ -488,7 +685,7 @@ def generate_combined_html(json_path='reports/combined_results.json', output_pat
 
         # Summary table per strategy
         html.append('<table border="1" cellpadding="6" cellspacing="0">')
-        html.append('<tr><th>Strategy</th><th>Accuracy</th><th>Balanced Accuracy</th><th>F1 (macro)</th><th>MSE</th><th>Log Loss</th></tr>')
+        html.append('<tr><th>Strategy</th><th>Accuracy</th><th>Balanced Accuracy</th><th>F1 (macro)</th><th>MSE</th><th>Log Loss</th><th>Informedness</th><th>Markedness</th></tr>')
         for strat, r in results.items():
             acc = r.get('accuracy', 'N/A')
             bacc = r.get('balanced_accuracy', 'N/A')
@@ -500,7 +697,9 @@ def generate_combined_html(json_path='reports/combined_results.json', output_pat
             ll = r.get('log_loss', 'N/A')
             if isinstance(ll, list):
                 ll = ll[0] if ll else 'N/A'
-            html.append(f'<tr><td>{strat}</td><td>{acc}</td><td>{bacc}</td><td>{f1}</td><td>{mse_val}</td><td>{ll}</td></tr>')
+            informedness = r.get('informedness', 'N/A')
+            markedness = r.get('markedness', 'N/A')
+            html.append(f'<tr><td>{strat}</td><td>{acc}</td><td>{bacc}</td><td>{f1}</td><td>{mse_val}</td><td>{ll}</td><td>{informedness}</td><td>{markedness}</td></tr>')
         html.append('</table>')
 
         # Per-class recall
@@ -582,25 +781,18 @@ def generate_model_html_report(model_name, results, class_names, output_path=Non
     html.append('        <th>Accuracy</th>')
     html.append('        <th>Balanced Accuracy</th>')
     html.append('        <th>F1 (macro)</th>')
-    html.append('        <th>MSE</th>')
-    html.append('        <th>MAE</th>')
     html.append('        <th>Log Loss</th>')
+    html.append('        <th>Focal Loss</th>')
+    html.append('        <th>Weighted Log Loss</th>')
+    html.append('        <th>Informedness</th>')
+    html.append('        <th>Markedness</th>')
     html.append('      </tr>')
     html.append('    </thead>')
     html.append('    <tbody>')
 
     strategy_list = list(results.keys())
     for name, r in results.items():
-        # Format log loss
-        logloss_val = r.get('log_loss')
-        if logloss_val is not None:
-            try:
-                logloss_display = f"{float(logloss_val):.4f}" if logloss_val != 'N/A' else 'N/A'
-            except Exception:
-                logloss_display = str(logloss_val)
-        else:
-            logloss_display = 'N/A'
-            
+        # Format basic metrics
         try:
             acc = f"{r['accuracy']:.4f}"
         except Exception:
@@ -613,35 +805,67 @@ def generate_model_html_report(model_name, results, class_names, output_path=Non
             f1m = f"{r['f1_macro']:.4f}"
         except Exception:
             f1m = r.get('f1_macro', 'N/A')
-
-        # MSE formatting
-        mse_val = r.get('mse')
-        if mse_val is not None:
+        
+        # Format log loss
+        logloss_val = r.get('log_loss')
+        if logloss_val is not None:
             try:
-                mse_display = f"{float(mse_val):.4f}"
+                logloss_display = f"{float(logloss_val):.4f}" if logloss_val != 'N/A' else 'N/A'
             except Exception:
-                mse_display = str(mse_val)
+                logloss_display = str(logloss_val)
         else:
-            mse_display = 'N/A'
-
-        # MAE formatting
-        mae_val = r.get('mae')
-        if mae_val is not None:
+            logloss_display = 'N/A'
+        
+        # Format focal loss
+        focal_val = r.get('focal_loss')
+        if focal_val is not None:
             try:
-                mae_display = f"{float(mae_val):.4f}"
+                focal_display = f"{float(focal_val):.4f}"
             except Exception:
-                mae_display = str(mae_val)
+                focal_display = str(focal_val)
         else:
-            mae_display = 'N/A'
+            focal_display = 'N/A'
+        
+        # Format weighted log loss
+        weighted_ll_val = r.get('weighted_log_loss')
+        if weighted_ll_val is not None:
+            try:
+                weighted_ll_display = f"{float(weighted_ll_val):.4f}"
+            except Exception:
+                weighted_ll_display = str(weighted_ll_val)
+        else:
+            weighted_ll_display = 'N/A'
 
         html.append(f'      <tr>')
         html.append(f'        <td class="strategy-name">{name}</td>')
         html.append(f'        <td>{acc}</td>')
         html.append(f'        <td>{bacc}</td>')
         html.append(f'        <td>{f1m}</td>')
-        html.append(f'        <td>{mse_display}</td>')
-        html.append(f'        <td>{mae_display}</td>')
         html.append(f'        <td>{logloss_display}</td>')
+        html.append(f'        <td>{focal_display}</td>')
+        html.append(f'        <td>{weighted_ll_display}</td>')
+        
+        # Format informedness and markedness
+        informedness_val = r.get('informedness')
+        if informedness_val is not None:
+            try:
+                informedness_display = f"{float(informedness_val):.4f}"
+            except Exception:
+                informedness_display = str(informedness_val)
+        else:
+            informedness_display = 'N/A'
+        
+        markedness_val = r.get('markedness')
+        if markedness_val is not None:
+            try:
+                markedness_display = f"{float(markedness_val):.4f}"
+            except Exception:
+                markedness_display = str(markedness_val)
+        else:
+            markedness_display = 'N/A'
+        
+        html.append(f'        <td>{informedness_display}</td>')
+        html.append(f'        <td>{markedness_display}</td>')
         html.append(f'      </tr>')
 
     html.append('    </tbody>')

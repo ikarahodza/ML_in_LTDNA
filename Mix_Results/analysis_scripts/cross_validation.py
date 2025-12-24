@@ -21,6 +21,10 @@ from sklearn.metrics import (
 from lightgbm import LGBMClassifier
 from xgboost import XGBClassifier
 from sklearn.ensemble import RandomForestClassifier, ExtraTreesClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.svm import SVC
+from sklearn.naive_bayes import GaussianNB
+from sklearn.neural_network import MLPClassifier
 from imblearn.over_sampling import SMOTE, RandomOverSampler
 import warnings
 warnings.filterwarnings('ignore')
@@ -29,7 +33,7 @@ warnings.filterwarnings('ignore')
 DATA_FILE = 'Input_Data-Mix-train.csv'
 RESULTS_DIR = 'cross_validation_results'
 TUNING_DIR = 'hyperparameter_tuning_results'
-CV_FOLDS = 10  # 10-fold cross-validation for robust estimates
+CV_FOLDS = 30  # 30-fold cross-validation for robust estimates
 RANDOM_STATE = 42
 
 # Create results directory
@@ -98,6 +102,22 @@ baseline_models = {
     },
     'extratrees_baseline': {
         'model': ExtraTreesClassifier(n_estimators=100, random_state=RANDOM_STATE),
+        'resampling': 'smote'
+    },
+    'logre_baseline': {
+        'model': LogisticRegression(max_iter=1000, random_state=RANDOM_STATE, class_weight='balanced'),
+        'resampling': 'smote'
+    },
+    'svm_baseline': {
+        'model': SVC(kernel='rbf', probability=True, random_state=RANDOM_STATE, class_weight='balanced'),
+        'resampling': 'smote'
+    },
+    'gnb_baseline': {
+        'model': GaussianNB(),
+        'resampling': 'smote'
+    },
+    'mlp_baseline': {
+        'model': MLPClassifier(hidden_layer_sizes=(100, 50), max_iter=500, random_state=RANDOM_STATE, early_stopping=True),
         'resampling': 'smote'
     }
 }

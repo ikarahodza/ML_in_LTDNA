@@ -22,7 +22,7 @@
     </head>
     <body>
       <h1>Comparison Report - randomforest</h1>
-      <div class="meta">Generated: 2025-12-15 17:05:44</div>
+      <div class="meta">Generated: 2025-12-24 11:13:00</div>
       <div class="meta">Dataset: C:\Users\DT User\Documents\GitHub\ML_in_LTDNA\Input_Data-Single-train.csv</div>
       <div class="small">Strategies: No Resampling, Class Weights, SMOTE, Borderline SMOTE, SVM SMOTE</div>
       <h2>Summary by Strategy</h2>
@@ -33,56 +33,68 @@
             <th>Accuracy</th>
             <th>Balanced Accuracy</th>
             <th>F1 (macro)</th>
-            <th>MSE</th>
-            <th>MAE</th>
             <th>Log Loss</th>
+            <th>Focal Loss</th>
+            <th>Weighted Log Loss</th>
+            <th>Informedness</th>
+            <th>Markedness</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td class="strategy-name">No Resampling</td>
-            <td>0.9333</td>
-            <td>0.9349</td>
-            <td>0.9312</td>
-            <td>0.1667</td>
-            <td>0.1000</td>
-            <td>0.2802</td>
+            <td>0.9500</td>
+            <td>0.9527</td>
+            <td>0.9521</td>
+            <td>0.1611</td>
+            <td>0.0308</td>
+            <td>0.1522</td>
+            <td>0.9358</td>
+            <td>0.9375</td>
           </tr>
           <tr>
             <td class="strategy-name">Class Weights</td>
-            <td>0.9333</td>
-            <td>0.9317</td>
-            <td>0.9337</td>
-            <td>0.2167</td>
-            <td>0.1167</td>
-            <td>0.1850</td>
+            <td>0.9500</td>
+            <td>0.9527</td>
+            <td>0.9521</td>
+            <td>0.1986</td>
+            <td>0.0365</td>
+            <td>0.2031</td>
+            <td>0.9358</td>
+            <td>0.9375</td>
           </tr>
           <tr>
             <td class="strategy-name">SMOTE</td>
-            <td>0.9500</td>
-            <td>0.9464</td>
-            <td>0.9497</td>
-            <td>0.1500</td>
-            <td>0.0833</td>
-            <td>0.2101</td>
+            <td>0.9667</td>
+            <td>0.9674</td>
+            <td>0.9648</td>
+            <td>0.2169</td>
+            <td>0.0330</td>
+            <td>0.2218</td>
+            <td>0.9563</td>
+            <td>0.9538</td>
           </tr>
           <tr>
             <td class="strategy-name">Borderline SMOTE</td>
-            <td>0.9167</td>
-            <td>0.9170</td>
-            <td>0.9138</td>
-            <td>0.2333</td>
-            <td>0.1333</td>
-            <td>0.2913</td>
+            <td>0.9833</td>
+            <td>0.9853</td>
+            <td>0.9838</td>
+            <td>0.2363</td>
+            <td>0.0317</td>
+            <td>0.2253</td>
+            <td>0.9799</td>
+            <td>0.9777</td>
           </tr>
           <tr>
             <td class="strategy-name">SVM SMOTE</td>
-            <td>0.9500</td>
-            <td>0.9496</td>
-            <td>0.9511</td>
-            <td>0.1500</td>
-            <td>0.0833</td>
-            <td>0.2414</td>
+            <td>0.9667</td>
+            <td>0.9706</td>
+            <td>0.9677</td>
+            <td>0.1785</td>
+            <td>0.0264</td>
+            <td>0.1666</td>
+            <td>0.9597</td>
+            <td>0.9576</td>
           </tr>
         </tbody>
       </table>
@@ -107,23 +119,23 @@
           </tr>
           <tr>
             <td class="strategy-name">Back_Stutter</td>
-            <td>0.9231</td>
-            <td>0.8571</td>
-            <td>0.8889</td>
+            <td>0.8667</td>
+            <td>0.9286</td>
+            <td>0.8966</td>
             <td>14</td>
           </tr>
           <tr>
             <td class="strategy-name">Forward_Stutter</td>
-            <td>0.9091</td>
             <td>1.0000</td>
-            <td>0.9524</td>
+            <td>1.0000</td>
+            <td>1.0000</td>
             <td>10</td>
           </tr>
           <tr>
             <td class="strategy-name">Pull_Up</td>
-            <td>0.9375</td>
+            <td>1.0000</td>
             <td>0.8824</td>
-            <td>0.9091</td>
+            <td>0.9375</td>
             <td>17</td>
           </tr>
         </tbody>
@@ -149,9 +161,9 @@
           </tr>
           <tr>
             <td class="strategy-name">Back_Stutter</td>
-            <td>0.9167</td>
-            <td>0.7857</td>
-            <td>0.8462</td>
+            <td>0.8667</td>
+            <td>0.9286</td>
+            <td>0.8966</td>
             <td>14</td>
           </tr>
           <tr>
@@ -163,9 +175,9 @@
           </tr>
           <tr>
             <td class="strategy-name">Pull_Up</td>
-            <td>0.8889</td>
-            <td>0.9412</td>
-            <td>0.9143</td>
+            <td>1.0000</td>
+            <td>0.8824</td>
+            <td>0.9375</td>
             <td>17</td>
           </tr>
         </tbody>
@@ -192,22 +204,22 @@
           <tr>
             <td class="strategy-name">Back_Stutter</td>
             <td>1.0000</td>
-            <td>0.7857</td>
-            <td>0.8800</td>
+            <td>0.9286</td>
+            <td>0.9630</td>
             <td>14</td>
           </tr>
           <tr>
             <td class="strategy-name">Forward_Stutter</td>
+            <td>0.9091</td>
             <td>1.0000</td>
-            <td>1.0000</td>
-            <td>1.0000</td>
+            <td>0.9524</td>
             <td>10</td>
           </tr>
           <tr>
             <td class="strategy-name">Pull_Up</td>
-            <td>0.8947</td>
             <td>1.0000</td>
-            <td>0.9444</td>
+            <td>0.9412</td>
+            <td>0.9697</td>
             <td>17</td>
           </tr>
         </tbody>
@@ -226,30 +238,30 @@
         <tbody>
           <tr>
             <td class="strategy-name">Allele</td>
-            <td>0.9500</td>
             <td>1.0000</td>
-            <td>0.9744</td>
+            <td>1.0000</td>
+            <td>1.0000</td>
             <td>19</td>
           </tr>
           <tr>
             <td class="strategy-name">Back_Stutter</td>
-            <td>0.9167</td>
-            <td>0.7857</td>
-            <td>0.8462</td>
+            <td>0.9333</td>
+            <td>1.0000</td>
+            <td>0.9655</td>
             <td>14</td>
           </tr>
           <tr>
             <td class="strategy-name">Forward_Stutter</td>
-            <td>0.9091</td>
             <td>1.0000</td>
-            <td>0.9524</td>
+            <td>1.0000</td>
+            <td>1.0000</td>
             <td>10</td>
           </tr>
           <tr>
             <td class="strategy-name">Pull_Up</td>
-            <td>0.8824</td>
-            <td>0.8824</td>
-            <td>0.8824</td>
+            <td>1.0000</td>
+            <td>0.9412</td>
+            <td>0.9697</td>
             <td>17</td>
           </tr>
         </tbody>
@@ -268,16 +280,16 @@
         <tbody>
           <tr>
             <td class="strategy-name">Allele</td>
-            <td>0.9500</td>
             <td>1.0000</td>
-            <td>0.9744</td>
+            <td>1.0000</td>
+            <td>1.0000</td>
             <td>19</td>
           </tr>
           <tr>
             <td class="strategy-name">Back_Stutter</td>
-            <td>0.9231</td>
-            <td>0.8571</td>
-            <td>0.8889</td>
+            <td>0.8750</td>
+            <td>1.0000</td>
+            <td>0.9333</td>
             <td>14</td>
           </tr>
           <tr>
@@ -289,9 +301,9 @@
           </tr>
           <tr>
             <td class="strategy-name">Pull_Up</td>
-            <td>0.9412</td>
-            <td>0.9412</td>
-            <td>0.9412</td>
+            <td>1.0000</td>
+            <td>0.8824</td>
+            <td>0.9375</td>
             <td>17</td>
           </tr>
         </tbody>

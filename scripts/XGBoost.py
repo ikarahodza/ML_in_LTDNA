@@ -12,6 +12,7 @@ from xgboost import XGBClassifier
 from imblearn.over_sampling import SMOTE, RandomOverSampler
 import joblib
 import os
+import argparse
 import sys
 import shap
 import helper_functions as hf
@@ -22,29 +23,38 @@ PROJECT_ROOT = os.path.dirname(SCRIPT_DIR)
 
 MODEL_NAME = 'xgboost'
 
-# Auto-detect dataset from command line argument
-# Usage: python XGBoost.py mix  OR  python XGBoost.py single
-if len(sys.argv) > 1:
-    dataset_type = sys.argv[1].lower()
-    if dataset_type not in ['mix', 'single']:
-        print(f"Error: Invalid dataset type '{dataset_type}'. Use 'mix' or 'single'.")
-        print("Usage: python XGBoost.py [mix|single]")
-        sys.exit(1)
-else:
-    # Default to single if no argument provided
-    dataset_type = 'single'
-    print(f"No dataset specified. Using default: {dataset_type}")
+# Parse command line arguments
+parser = argparse.ArgumentParser(description='Train model')
+parser.add_argument('dataset', nargs='?', default='single', choices=['mix', 'single'],
+                    help='Dataset type: mix or single (default: single)')
+parser.add_argument('--seed', type=int, default=42,
+                    help='Random seed for reproducibility (default: 42)')
+args = parser.parse_args()
 
-# Set paths based on dataset type
+dataset_type = args.dataset.lower()
+RANDOM_SEED = args.seed
+
+
+# Set paths based on dataset type and seed
 RESULTS_FOLDER = f"{dataset_type.capitalize()}_Results"
-DATA_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, 'data')
-FIG_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, 'figures')
-MODEL_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, 'models')
-REPORTS_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, 'reports')
+if RANDOM_SEED != 42:
+    # Store in seed-specific subfolder
+    SEED_FOLDER = f"seed_{RANDOM_SEED}"
+    DATA_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, SEED_FOLDER, 'data')
+    FIG_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, SEED_FOLDER, 'figures')
+    MODEL_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, SEED_FOLDER, 'models')
+    REPORTS_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, SEED_FOLDER, 'reports')
+else:
+    # Use default folders for seed 42
+    DATA_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, 'data')
+    FIG_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, 'figures')
+    MODEL_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, 'models')
+    REPORTS_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, 'reports')
 DATA_FILE = os.path.join(PROJECT_ROOT, f'Input_Data-{dataset_type.capitalize()}-train.csv')
 
 print(f"\n{'='*60}")
 print(f"Running XGBoost with {dataset_type.upper()} dataset")
+print(f"Random Seed: {RANDOM_SEED}")
 print(f"Results folder: {RESULTS_FOLDER}")
 print(f"Data file: {os.path.basename(DATA_FILE)}")
 print(f"{'='*60}\n")
@@ -63,7 +73,7 @@ X_train, X_test, y_train, y_test, train_idx, test_idx = train_test_split(
     X, y, indices,
     test_size=0.2,
     stratify=y,
-    random_state=42
+    random_state=RANDOM_SEED
 )
 
 # Use shared helpers from `helper_functions.py` as `hf`
@@ -71,7 +81,7 @@ X_train, X_test, y_train, y_test, train_idx, test_idx = train_test_split(
 def train_xgb_pipeline(X_train, y_train, X_test, y_test, feature_names, strategy_name="Original"):
     # Split training data for early stopping validation
     X_train_split, X_val_split, y_train_split, y_val_split = train_test_split(
-        X_train, y_train, test_size=0.15, random_state=42, stratify=y_train
+        X_train, y_train, test_size=0.15, random_state=RANDOM_SEED, stratify=y_train
     )
     
     model = XGBClassifier(
@@ -81,7 +91,7 @@ def train_xgb_pipeline(X_train, y_train, X_test, y_test, feature_names, strategy
         objective='multi:softprob',
         eval_metric='mlogloss',
         early_stopping_rounds=50,  # Early stopping parameter in constructor
-        random_state=42
+        random_state=RANDOM_SEED
     )
     model.fit(
         X_train_split, y_train_split,
@@ -193,8 +203,8 @@ def train_xgb_pipeline(X_train, y_train, X_test, y_test, feature_names, strategy
 
 strategies = {
     "Original": (X_train, y_train),
-    "SMOTE": SMOTE(random_state=42).fit_resample(X_train, y_train),
-    "RandomOverSampler": RandomOverSampler(random_state=42).fit_resample(X_train, y_train)
+    "SMOTE": SMOTE(random_state=RANDOM_SEED).fit_resample(X_train, y_train),
+    "RandomOverSampler": RandomOverSampler(random_state=RANDOM_SEED).fit_resample(X_train, y_train)
 }
 
 models = {}
@@ -237,6 +247,19 @@ for name, model in models.items():
         'y_pred_proba': y_pred_proba,
         'confusion_matrix': confusion_matrix(y_test, y_pred)
     }
+    
+    # Add enhanced loss metrics
+    if y_pred_proba is not None:
+        try:
+            results[name]['focal_loss'] = hf.focal_loss(y_test, y_pred_proba, gamma=2.0)
+            results[name]['weighted_log_loss'] = hf.class_weighted_log_loss(y_test, y_pred_proba)
+        except Exception:
+            results[name]['focal_loss'] = results[name]['log_loss']
+            results[name]['weighted_log_loss'] = results[name]['log_loss']
+    
+    # Add binary classification metrics if applicable
+    binary_metrics = hf.compute_binary_classification_metrics(y_test, y_pred)
+    results[name].update(binary_metrics)
 
 class_names = le.classes_.tolist()
 generate_html_report(results, class_names, assets=assets)

@@ -1,0 +1,330 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Seed Aggregated Results - Top 3 Performers</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            padding: 40px;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 1.2em;
+            margin-bottom: 40px;
+        }
+        .info-box {
+            background: #ecf0f1;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border-left: 5px solid #3498db;
+        }
+        .info-box h3 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        .dataset-section {
+            margin-bottom: 50px;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border: 2px solid #e9ecef;
+        }
+        .dataset-title {
+            color: #16a085;
+            font-size: 2em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #16a085;
+        }
+        .chart-container {
+            margin: 30px 0;
+            text-align: center;
+        }
+        .chart-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .chart-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #34495e;
+            margin-bottom: 15px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        th {
+            background: #34495e;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: bold;
+        }
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ecf0f1;
+        }
+        tr:hover {
+            background: #f8f9fa;
+        }
+        .rank {
+            font-weight: bold;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 50%;
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+        }
+        .rank-1 { background: #e74c3c; }
+        .rank-2 { background: #3498db; }
+        .rank-3 { background: #2ecc71; }
+        .metric {
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏆 Multi-Seed Aggregated Results</h1>
+        <div class="subtitle">Top 3 Performing Models Across 10 Random Seeds</div>
+        
+        <div class="info-box">
+            <h3>📊 About This Report</h3>
+            <p><strong>Seeds:</strong> 42, 123, 456, 789, 1011, 1213, 1415, 1617, 1819, 2021</p>
+            <p><strong>Metrics:</strong> Mean ± Standard Deviation across all seeds</p>
+            <p><strong>Generated:</strong> 2025-12-24 12:03:31</p>
+        </div>
+
+        <!-- MIX DATASET -->
+        <div class="dataset-section">
+            <h2 class="dataset-title">Mix Dataset Results</h2>
+            
+            <div class="chart-container">
+                <div class="chart-title">Top 3 Model-Strategy Combinations</div>
+                <img src="mix_top3_strategies.png" alt="Mix Top 3 Strategies">
+            </div>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Model</th>
+                        <th>Strategy</th>
+                        <th>Balanced Accuracy</th>
+                        <th>F1-Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <td><span class="rank rank-1">1</span></td>
+                        <td><strong>Tabpfn</strong></td>
+                        <td>ClassWeights</td>
+                        <td class="metric">0.8473 ± 0.0451</td>
+                        <td class="metric">0.8483 ± 0.0381</td>
+                    </tr>
+
+                    <tr>
+                        <td><span class="rank rank-2">2</span></td>
+                        <td><strong>Tabpfn</strong></td>
+                        <td>Original</td>
+                        <td class="metric">0.8473 ± 0.0451</td>
+                        <td class="metric">0.8483 ± 0.0381</td>
+                    </tr>
+
+                    <tr>
+                        <td><span class="rank rank-3">3</span></td>
+                        <td><strong>Tabpfn</strong></td>
+                        <td>RandomUnderSampler</td>
+                        <td class="metric">0.8360 ± 0.0471</td>
+                        <td class="metric">0.7905 ± 0.0457</td>
+                    </tr>
+
+                </tbody>
+            </table>
+            
+            <div class="chart-container">
+                <div class="chart-title">Top 3 Models Overall (Best Strategy)</div>
+                <img src="mix_top3_models.png" alt="Mix Top 3 Models">
+            </div>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Model</th>
+                        <th>Best Strategy</th>
+                        <th>Balanced Accuracy</th>
+                        <th>F1-Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <td><span class="rank rank-1">1</span></td>
+                        <td><strong>Tabpfn</strong></td>
+                        <td>ClassWeights</td>
+                        <td class="metric">0.8473 ± 0.0451</td>
+                        <td class="metric">0.8483 ± 0.0381</td>
+                    </tr>
+
+                    <tr>
+                        <td><span class="rank rank-2">2</span></td>
+                        <td><strong>Extratrees</strong></td>
+                        <td>SMOTE</td>
+                        <td class="metric">0.8172 ± 0.0239</td>
+                        <td class="metric">0.8155 ± 0.0324</td>
+                    </tr>
+
+                    <tr>
+                        <td><span class="rank rank-3">3</span></td>
+                        <td><strong>Lgbm</strong></td>
+                        <td>SMOTE</td>
+                        <td class="metric">0.8020 ± 0.0526</td>
+                        <td class="metric">0.7861 ± 0.0619</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+        <!-- SINGLE DATASET -->
+        <div class="dataset-section">
+            <h2 class="dataset-title">Single Dataset Results</h2>
+            
+            <div class="chart-container">
+                <div class="chart-title">Top 3 Model-Strategy Combinations</div>
+                <img src="single_top3_strategies.png" alt="Single Top 3 Strategies">
+            </div>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Model</th>
+                        <th>Strategy</th>
+                        <th>Balanced Accuracy</th>
+                        <th>F1-Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <td><span class="rank rank-1">1</span></td>
+                        <td><strong>Extratrees</strong></td>
+                        <td>SMOTE</td>
+                        <td class="metric">0.9861 ± 0.0192</td>
+                        <td class="metric">0.9872 ± 0.0177</td>
+                    </tr>
+
+                    <tr>
+                        <td><span class="rank rank-2">2</span></td>
+                        <td><strong>Randomforest</strong></td>
+                        <td>Borderline SMOTE</td>
+                        <td class="metric">0.9853 ± 0.0000</td>
+                        <td class="metric">0.9838 ± 0.0000</td>
+                    </tr>
+
+                    <tr>
+                        <td><span class="rank rank-3">3</span></td>
+                        <td><strong>Extratrees</strong></td>
+                        <td>RandomOverSampler</td>
+                        <td class="metric">0.9841 ± 0.0186</td>
+                        <td class="metric">0.9849 ± 0.0175</td>
+                    </tr>
+
+                </tbody>
+            </table>
+            
+            <div class="chart-container">
+                <div class="chart-title">Top 3 Models Overall (Best Strategy)</div>
+                <img src="single_top3_models.png" alt="Single Top 3 Models">
+            </div>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Model</th>
+                        <th>Best Strategy</th>
+                        <th>Balanced Accuracy</th>
+                        <th>F1-Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <td><span class="rank rank-1">1</span></td>
+                        <td><strong>Extratrees</strong></td>
+                        <td>SMOTE</td>
+                        <td class="metric">0.9861 ± 0.0192</td>
+                        <td class="metric">0.9872 ± 0.0177</td>
+                    </tr>
+
+                    <tr>
+                        <td><span class="rank rank-2">2</span></td>
+                        <td><strong>Randomforest</strong></td>
+                        <td>Borderline SMOTE</td>
+                        <td class="metric">0.9853 ± 0.0000</td>
+                        <td class="metric">0.9838 ± 0.0000</td>
+                    </tr>
+
+                    <tr>
+                        <td><span class="rank rank-3">3</span></td>
+                        <td><strong>Tabpfn</strong></td>
+                        <td>ClassWeights</td>
+                        <td class="metric">0.9811 ± 0.0236</td>
+                        <td class="metric">0.9807 ± 0.0244</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="footer">
+            <p>Generated from multi-seed aggregated results | ML in LT-DNA Project</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -12,6 +12,7 @@ from sklearn.metrics import (
 from imblearn.over_sampling import SMOTE, RandomOverSampler
 import joblib
 import os
+import argparse
 import sys
 import helper_functions as hf
 
@@ -21,29 +22,38 @@ PROJECT_ROOT = os.path.dirname(SCRIPT_DIR)
 
 MODEL_NAME = 'svm'
 
-# Auto-detect dataset from command line argument
-# Usage: python svm.py mix  OR  python svm.py single
-if len(sys.argv) > 1:
-    dataset_type = sys.argv[1].lower()
-    if dataset_type not in ['mix', 'single']:
-        print(f"Error: Invalid dataset type '{dataset_type}'. Use 'mix' or 'single'.")
-        print("Usage: python svm.py [mix|single]")
-        sys.exit(1)
-else:
-    # Default to single if no argument provided
-    dataset_type = 'single'
-    print(f"No dataset specified. Using default: {dataset_type}")
+# Parse command line arguments
+parser = argparse.ArgumentParser(description='Train model')
+parser.add_argument('dataset', nargs='?', default='single', choices=['mix', 'single'],
+                    help='Dataset type: mix or single (default: single)')
+parser.add_argument('--seed', type=int, default=42,
+                    help='Random seed for reproducibility (default: 42)')
+args = parser.parse_args()
 
-# Set paths based on dataset type
+dataset_type = args.dataset.lower()
+RANDOM_SEED = args.seed
+
+
+# Set paths based on dataset type and seed
 RESULTS_FOLDER = f"{dataset_type.capitalize()}_Results"
-DATA_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, 'data')
-FIG_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, 'figures')
-MODEL_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, 'models')
-REPORTS_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, 'reports')
+if RANDOM_SEED != 42:
+    # Store in seed-specific subfolder
+    SEED_FOLDER = f"seed_{RANDOM_SEED}"
+    DATA_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, SEED_FOLDER, 'data')
+    FIG_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, SEED_FOLDER, 'figures')
+    MODEL_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, SEED_FOLDER, 'models')
+    REPORTS_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, SEED_FOLDER, 'reports')
+else:
+    # Use default folders for seed 42
+    DATA_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, 'data')
+    FIG_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, 'figures')
+    MODEL_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, 'models')
+    REPORTS_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, 'reports')
 DATA_FILE = os.path.join(PROJECT_ROOT, f'Input_Data-{dataset_type.capitalize()}-train.csv')
 
 print(f"\n{'='*60}")
 print(f"Running SVM with {dataset_type.upper()} dataset")
+print(f"Random Seed: {RANDOM_SEED}")
 print(f"Results folder: {RESULTS_FOLDER}")
 print(f"Data file: {os.path.basename(DATA_FILE)}")
 print(f"{'='*60}\n")
@@ -67,7 +77,7 @@ X_train, X_test, y_train, y_test, train_idx, test_idx = train_test_split(
     X_scaled, y, indices,
     test_size=0.2,
     stratify=y,
-    random_state=42
+    random_state=RANDOM_SEED
 )
 
 def train_svm_pipeline(X_train, y_train, X_test, y_test, feature_names, strategy_name="Original"):
@@ -82,7 +92,7 @@ def train_svm_pipeline(X_train, y_train, X_test, y_test, feature_names, strategy
         gamma='scale',
         class_weight='balanced',  # Optimize class weights
         probability=True,  # Enable probability estimates
-        random_state=42
+        random_state=RANDOM_SEED
     )
     model.fit(X_train_scaled, y_train)
     
@@ -155,8 +165,8 @@ def train_svm_pipeline(X_train, y_train, X_test, y_test, feature_names, strategy
 
 strategies = {
     "Original": (X_train, y_train),
-    "SMOTE": SMOTE(random_state=42).fit_resample(X_train, y_train),
-    "RandomOverSampler": RandomOverSampler(random_state=42).fit_resample(X_train, y_train)
+    "SMOTE": SMOTE(random_state=RANDOM_SEED).fit_resample(X_train, y_train),
+    "RandomOverSampler": RandomOverSampler(random_state=RANDOM_SEED).fit_resample(X_train, y_train)
 }
 
 models = {}
@@ -199,6 +209,19 @@ for name, model in models.items():
         'y_pred_proba': y_pred_proba,
         'confusion_matrix': confusion_matrix(y_test, y_pred)
     }
+    
+    # Add enhanced loss metrics
+    if y_pred_proba is not None:
+        try:
+            results[name]['focal_loss'] = hf.focal_loss(y_test, y_pred_proba, gamma=2.0)
+            results[name]['weighted_log_loss'] = hf.class_weighted_log_loss(y_test, y_pred_proba)
+        except Exception:
+            results[name]['focal_loss'] = results[name]['log_loss']
+            results[name]['weighted_log_loss'] = results[name]['log_loss']
+    
+    # Add binary classification metrics if applicable
+    binary_metrics = hf.compute_binary_classification_metrics(y_test, y_pred)
+    results[name].update(binary_metrics)
 
 class_names = le.classes_.tolist()
 generate_html_report(results, class_names, assets=assets)

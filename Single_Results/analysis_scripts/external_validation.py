@@ -210,12 +210,21 @@ for model_name, model_info in models_to_test.items():
 # Save results
 print("\n[5/6] Saving results...")
 results_file = os.path.join(RESULTS_DIR, 'external_validation_results.json')
-with open(results_file, 'w') as f:
+with open(results_file, 'w', encoding='utf-8') as f:
     json.dump(external_results, f, indent=2)
 print(f"   ✓ Results saved to: {results_file}")
 
 # Create comparison visualizations
 print("\n[6/6] Creating visualizations...")
+
+# Debug: Check what's in external_results
+print(f"\n   Debug: external_results has {len(external_results)} entries")
+successful_models = [k for k, v in external_results.items() if 'error' not in v]
+failed_models = [k for k, v in external_results.items() if 'error' in v]
+print(f"   - Successful: {len(successful_models)}")
+print(f"   - Failed: {len(failed_models)}")
+if failed_models:
+    print(f"   - Failed models: {failed_models[:5]}")  # Show first 5
 
 # Prepare comparison data
 comparison_data = []
@@ -253,6 +262,12 @@ for model_name, ext_results in external_results.items():
         comparison_data.append(row)
 
 df_comparison = pd.DataFrame(comparison_data)
+
+# Check if we have any data to visualize
+if df_comparison.empty:
+    print("   ⚠ No external validation data available to visualize.")
+    print("   ✓ External validation complete (no models processed successfully)")
+    exit(0)
 
 # Plot 1: External validation performance
 fig, ax = plt.subplots(figsize=(14, 7))

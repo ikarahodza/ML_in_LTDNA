@@ -22,7 +22,7 @@
     </head>
     <body>
       <h1>Comparison Report - tabpfn</h1>
-      <div class="meta">Generated: 2025-12-15 16:42:13</div>
+      <div class="meta">Generated: 2025-12-24 11:03:13</div>
       <div class="meta">Dataset: C:\Users\DT User\Documents\GitHub\ML_in_LTDNA\Input_Data-Single-train.csv</div>
       <div class="small">Strategies: Original, SMOTE, RandomUnderSampler, ClassWeights</div>
       <h2>Summary by Strategy</h2>
@@ -33,9 +33,11 @@
             <th>Accuracy</th>
             <th>Balanced Accuracy</th>
             <th>F1 (macro)</th>
-            <th>MSE</th>
-            <th>MAE</th>
             <th>Log Loss</th>
+            <th>Focal Loss</th>
+            <th>Weighted Log Loss</th>
+            <th>Informedness</th>
+            <th>Markedness</th>
           </tr>
         </thead>
         <tbody>
@@ -44,36 +46,44 @@
             <td>0.9750</td>
             <td>0.9750</td>
             <td>0.9760</td>
-            <td>0.1000</td>
-            <td>0.0500</td>
             <td>0.1030</td>
+            <td>0.0744</td>
+            <td>0.1002</td>
+            <td>0.9664</td>
+            <td>0.9711</td>
           </tr>
           <tr>
             <td class="strategy-name">SMOTE</td>
             <td>0.9750</td>
             <td>0.9750</td>
             <td>0.9760</td>
-            <td>0.1000</td>
-            <td>0.0500</td>
             <td>0.0915</td>
+            <td>0.0641</td>
+            <td>0.0895</td>
+            <td>0.9664</td>
+            <td>0.9711</td>
           </tr>
           <tr>
             <td class="strategy-name">RandomUnderSampler</td>
             <td>0.9750</td>
             <td>0.9750</td>
             <td>0.9760</td>
-            <td>0.1000</td>
-            <td>0.0500</td>
             <td>0.0944</td>
+            <td>0.0667</td>
+            <td>0.0915</td>
+            <td>0.9664</td>
+            <td>0.9711</td>
           </tr>
           <tr>
             <td class="strategy-name">ClassWeights</td>
             <td>0.9750</td>
             <td>0.9750</td>
             <td>0.9760</td>
-            <td>0.1000</td>
-            <td>0.0500</td>
             <td>0.1030</td>
+            <td>0.0744</td>
+            <td>0.1002</td>
+            <td>0.9664</td>
+            <td>0.9711</td>
           </tr>
         </tbody>
       </table>

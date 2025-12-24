@@ -1,0 +1,235 @@
+
+<!doctype html>
+    <html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Comparison Report - logistic_regression</title>
+      <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial; margin: 24px; color: #222; }
+        h1 { margin: 0 0 8px 0; }
+        h2 { margin-top: 24px; margin-bottom: 12px; }
+        h3 { margin-top: 20px; margin-bottom: 10px; }
+        .meta { color: #666; margin-bottom: 16px; }
+        table { border-collapse: collapse; width: 100%; margin-top: 8px; margin-bottom: 12px; }
+        table, th, td { border: 1px solid #dcdcdc; }
+        th, td { padding: 8px 10px; text-align: left; }
+        th { background: #f6f8fa; font-weight: 600; }
+        .strategy-name { width: 220px; }
+        .small { font-size: 0.9em; color: #555; margin-bottom: 8px; }
+        footer { margin-top: 32px; padding-top: 16px; border-top: 1px solid #e1e4e8; color: #666; font-size: 0.9em; text-align: center; }
+      </style>
+    </head>
+    <body>
+      <h1>Comparison Report - logistic_regression</h1>
+      <div class="meta">Generated: 2025-12-23 20:49:44</div>
+      <div class="meta">Dataset: C:\Users\DT User\Documents\GitHub\ML_in_LTDNA\Input_Data-Mix-train.csv</div>
+      <div class="small">Strategies: Original, SMOTE, RandomOverSampler</div>
+      <h2>Summary by Strategy</h2>
+      <table>
+        <thead>
+          <tr>
+            <th class="strategy-name">Strategy</th>
+            <th>Accuracy</th>
+            <th>Balanced Accuracy</th>
+            <th>F1 (macro)</th>
+            <th>Log Loss</th>
+            <th>Focal Loss</th>
+            <th>Weighted Log Loss</th>
+            <th>Informedness</th>
+            <th>Markedness</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="strategy-name">Original</td>
+            <td>0.8256</td>
+            <td>0.7360</td>
+            <td>0.7336</td>
+            <td>1.5083</td>
+            <td>1.2786</td>
+            <td>2.5926</td>
+            <td>0.6734</td>
+            <td>0.6696</td>
+          </tr>
+          <tr>
+            <td class="strategy-name">SMOTE</td>
+            <td>0.7674</td>
+            <td>0.6864</td>
+            <td>0.6633</td>
+            <td>2.3645</td>
+            <td>1.6180</td>
+            <td>4.2221</td>
+            <td>0.6111</td>
+            <td>0.5648</td>
+          </tr>
+          <tr>
+            <td class="strategy-name">RandomOverSampler</td>
+            <td>0.8023</td>
+            <td>0.7030</td>
+            <td>0.6960</td>
+            <td>2.1311</td>
+            <td>1.4913</td>
+            <td>3.7708</td>
+            <td>0.6336</td>
+            <td>0.6168</td>
+          </tr>
+        </tbody>
+      </table>
+      <h3>Per-class Metrics - Original</h3>
+      <table>
+        <thead>
+          <tr>
+            <th class="strategy-name">Class</th>
+            <th>Precision</th>
+            <th>Recall</th>
+            <th>F1-Score</th>
+            <th>Support</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="strategy-name">Allele</td>
+            <td>0.9111</td>
+            <td>0.9111</td>
+            <td>0.9111</td>
+            <td>45</td>
+          </tr>
+          <tr>
+            <td class="strategy-name">Back_Stutter</td>
+            <td>0.7059</td>
+            <td>0.6667</td>
+            <td>0.6857</td>
+            <td>18</td>
+          </tr>
+          <tr>
+            <td class="strategy-name">Forward_Stutter</td>
+            <td>0.4286</td>
+            <td>0.4286</td>
+            <td>0.4286</td>
+            <td>7</td>
+          </tr>
+          <tr>
+            <td class="strategy-name">Pull_Up</td>
+            <td>0.8824</td>
+            <td>0.9375</td>
+            <td>0.9091</td>
+            <td>16</td>
+          </tr>
+        </tbody>
+      </table>
+      <h3>Per-class Metrics - SMOTE</h3>
+      <table>
+        <thead>
+          <tr>
+            <th class="strategy-name">Class</th>
+            <th>Precision</th>
+            <th>Recall</th>
+            <th>F1-Score</th>
+            <th>Support</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="strategy-name">Allele</td>
+            <td>0.9474</td>
+            <td>0.8000</td>
+            <td>0.8675</td>
+            <td>45</td>
+          </tr>
+          <tr>
+            <td class="strategy-name">Back_Stutter</td>
+            <td>0.6190</td>
+            <td>0.7222</td>
+            <td>0.6667</td>
+            <td>18</td>
+          </tr>
+          <tr>
+            <td class="strategy-name">Forward_Stutter</td>
+            <td>0.2857</td>
+            <td>0.2857</td>
+            <td>0.2857</td>
+            <td>7</td>
+          </tr>
+          <tr>
+            <td class="strategy-name">Pull_Up</td>
+            <td>0.7500</td>
+            <td>0.9375</td>
+            <td>0.8333</td>
+            <td>16</td>
+          </tr>
+        </tbody>
+      </table>
+      <h3>Per-class Metrics - RandomOverSampler</h3>
+      <table>
+        <thead>
+          <tr>
+            <th class="strategy-name">Class</th>
+            <th>Precision</th>
+            <th>Recall</th>
+            <th>F1-Score</th>
+            <th>Support</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="strategy-name">Allele</td>
+            <td>0.9070</td>
+            <td>0.8667</td>
+            <td>0.8864</td>
+            <td>45</td>
+          </tr>
+          <tr>
+            <td class="strategy-name">Back_Stutter</td>
+            <td>0.6842</td>
+            <td>0.7222</td>
+            <td>0.7027</td>
+            <td>18</td>
+          </tr>
+          <tr>
+            <td class="strategy-name">Forward_Stutter</td>
+            <td>0.2857</td>
+            <td>0.2857</td>
+            <td>0.2857</td>
+            <td>7</td>
+          </tr>
+          <tr>
+            <td class="strategy-name">Pull_Up</td>
+            <td>0.8824</td>
+            <td>0.9375</td>
+            <td>0.9091</td>
+            <td>16</td>
+          </tr>
+        </tbody>
+      </table>
+      <h2>Visualizations</h2>
+      <h3>Original</h3>
+      <div style="margin: 20px 0;">
+        <h4>Confusion Matrix</h4>
+        <img src="..\figures\confusion_matrix_logistic_regression_original.png" alt="Confusion Matrix - Original" style="max-width: 600px; border: 1px solid #ddd; padding: 10px; background: white;">
+      </div>
+      <div style="margin: 20px 0;">
+        <h4>Feature Importance</h4>
+        <img src="..\figures\feature_importance_logistic_regression_original.png" alt="Feature Importance - Original" style="max-width: 800px; border: 1px solid #ddd; padding: 10px; background: white;">
+      </div>
+      <h3>SMOTE</h3>
+      <div style="margin: 20px 0;">
+        <h4>Confusion Matrix</h4>
+        <img src="..\figures\confusion_matrix_logistic_regression_smote.png" alt="Confusion Matrix - SMOTE" style="max-width: 600px; border: 1px solid #ddd; padding: 10px; background: white;">
+      </div>
+      <div style="margin: 20px 0;">
+        <h4>Feature Importance</h4>
+        <img src="..\figures\feature_importance_logistic_regression_smote.png" alt="Feature Importance - SMOTE" style="max-width: 800px; border: 1px solid #ddd; padding: 10px; background: white;">
+      </div>
+      <h3>RandomOverSampler</h3>
+      <div style="margin: 20px 0;">
+        <h4>Confusion Matrix</h4>
+        <img src="..\figures\confusion_matrix_logistic_regression_randomoversampler.png" alt="Confusion Matrix - RandomOverSampler" style="max-width: 600px; border: 1px solid #ddd; padding: 10px; background: white;">
+      </div>
+      <div style="margin: 20px 0;">
+        <h4>Feature Importance</h4>
+        <img src="..\figures\feature_importance_logistic_regression_randomoversampler.png" alt="Feature Importance - RandomOverSampler" style="max-width: 800px; border: 1px solid #ddd; padding: 10px; background: white;">
+      </div>
+      <footer>Report generated by ML_in_LTDNA pipeline</footer>
+    </body>
+    </html>

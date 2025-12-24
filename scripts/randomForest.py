@@ -14,6 +14,7 @@ from sklearn.metrics import roc_curve, auc, precision_recall_curve, average_prec
 import joblib
 import warnings
 import os
+import argparse
 import shap
 import helper_functions as hf
 
@@ -24,18 +25,17 @@ import sys
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(SCRIPT_DIR)
 
-# Auto-detect dataset from command line argument
-# Usage: python randomForest.py mix  OR  python randomForest.py single
-if len(sys.argv) > 1:
-    dataset_type = sys.argv[1].lower()
-    if dataset_type not in ['mix', 'single']:
-        print(f"Error: Invalid dataset type '{dataset_type}'. Use 'mix' or 'single'.")
-        print("Usage: python randomForest.py [mix|single]")
-        sys.exit(1)
-else:
-    # Default to single if no argument provided
-    dataset_type = 'single'
-    print(f"No dataset specified. Using default: {dataset_type}")
+# Parse command line arguments
+parser = argparse.ArgumentParser(description='Train model')
+parser.add_argument('dataset', nargs='?', default='single', choices=['mix', 'single'],
+                    help='Dataset type: mix or single (default: single)')
+parser.add_argument('--seed', type=int, default=42,
+                    help='Random seed for reproducibility (default: 42)')
+args = parser.parse_args()
+
+dataset_type = args.dataset.lower()
+RANDOM_SEED = args.seed
+
 
 # Set paths based on dataset type
 RESULTS_FOLDER = f"{dataset_type.capitalize()}_Results"
@@ -49,7 +49,7 @@ DROP_COLUMNS = ['sample', 'PoI']
 
 # Train/test split ratio
 TEST_SIZE = 0.3
-RANDOM_STATE = 42
+RANDOM_STATE = RANDOM_SEED
 
 RESAMPLING_STRATEGY = 'compare_all'   # Options: None, 'smote', 'class_weights', 'smote_svm'
 SMOTE_SAMPLING_STRATEGY = 'auto'  # Options: 'auto', 'minority', 'not majority', etc.
@@ -71,6 +71,7 @@ REPORTS_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, 'reports')
 
 print(f"\n{'='*60}")
 print(f"Running RandomForest with {dataset_type.upper()} dataset")
+print(f"Random Seed: {RANDOM_SEED}")
 print(f"Results folder: {RESULTS_FOLDER}")
 print(f"Data file: {os.path.basename(CSV_FILE_PATH)}")
 print(f"{'='*60}\n")
@@ -348,6 +349,19 @@ if __name__ == "__main__":
             'y_pred_proba': y_pred_proba,
             'confusion_matrix': confusion_matrix(y_test, y_pred)
         }
+        
+        # Add enhanced loss metrics
+        try:
+            results[strategy_name]['focal_loss'] = hf.focal_loss(y_test, y_pred_proba, gamma=2.0)
+            results[strategy_name]['weighted_log_loss'] = hf.class_weighted_log_loss(y_test, y_pred_proba)
+        except Exception:
+            results[strategy_name]['focal_loss'] = results[strategy_name]['log_loss']
+            results[strategy_name]['weighted_log_loss'] = results[strategy_name]['log_loss']
+        
+        # Add binary classification metrics if applicable
+        binary_metrics = hf.compute_binary_classification_metrics(y_test, y_pred)
+        results[strategy_name].update(binary_metrics)
+        
         models[strategy_name] = model
 
         # Print quick summary

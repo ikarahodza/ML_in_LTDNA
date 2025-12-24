@@ -91,7 +91,7 @@ def create_title_page(pdf, best_models):
     
     Classification Task:
     • 4 Classes: Allele, Back_Stutter, Forward_Stutter, Pull_Up
-    • 200 training samples with class imbalance
+    • 426 training samples with class imbalance
     • 307 original features + 56 engineered features
     
     
@@ -326,6 +326,22 @@ def add_feature_importance(pdf):
         pdf.savefig(fig, bbox_inches='tight')
         plt.close()
 
+def add_lime_summary(pdf):
+    """Add LIME explainability summary."""
+    lime_summary_path = f'{DATASET_TYPE}_Results/lime_results/lime_summary.png'
+    
+    if os.path.exists(lime_summary_path):
+        fig = plt.figure(figsize=(8.27, 11.69))
+        
+        ax = fig.add_subplot(111)
+        img = mpimg.imread(lime_summary_path)
+        ax.imshow(img)
+        ax.axis('off')
+        
+        plt.tight_layout()
+        pdf.savefig(fig, bbox_inches='tight')
+        plt.close()
+
 def create_external_validation_page(pdf, best_models, results):
     """Create external validation page showing generalization performance."""
     ext_val = load_external_validation()
@@ -524,7 +540,7 @@ def create_key_insights_page(pdf, best_models):
     ───────────────────────────────────────────────────────────────────
     
     Limitations:
-    • Dataset size: 426 samples (moderate for ML)
+    • Dataset size: 200 samples (moderate for ML)
     • Class imbalance: Some artifact types underrepresented
     • Domain-specific: Tuned for LTDNA profiles
     
@@ -604,16 +620,19 @@ def generate_executive_summary():
         print("\n[8/9] Adding Precision-Recall curves...")
         add_pr_curves(pdf, best_models)
         
-        print("\n[9/11] Adding feature importance...")
+        print("\n[9/13] Adding feature importance (SHAP)...")
         add_feature_importance(pdf)
         
-        print("\n[10/11] Adding external validation analysis...")
+        print("\n[10/13] Adding LIME explainability summary...")
+        add_lime_summary(pdf)
+        
+        print("\n[11/13] Adding external validation analysis...")
         create_external_validation_page(pdf, best_models, results)
         
-        print("\n[11/11] Creating key insights page...")
+        print("\n[12/13] Creating key insights page...")
         create_key_insights_page(pdf, best_models)
         
-        print("\n[12/12] Finalizing PDF...")
+        print("\n[13/13] Finalizing PDF...")
         
         # Add metadata
         d = pdf.infodict()
@@ -632,4 +651,3 @@ def generate_executive_summary():
 
 if __name__ == '__main__':
     generate_executive_summary()
-

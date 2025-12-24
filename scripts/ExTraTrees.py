@@ -1,8 +1,11 @@
 import numpy as np
 import pandas as pd
+import matplotlib
+matplotlib.use('Agg')  # Use non-interactive backend to avoid tkinter threading issues
 import matplotlib.pyplot as plt
 import seaborn as sns
 import os
+import argparse
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix, balanced_accuracy_score, f1_score, log_loss, recall_score, mean_squared_error, mean_absolute_error, precision_recall_fscore_support
@@ -18,29 +21,38 @@ PROJECT_ROOT = os.path.dirname(SCRIPT_DIR)
 
 MODEL_NAME = 'extratrees'
 
-# Auto-detect dataset from command line argument
-# Usage: python ExTraTrees.py mix  OR  python ExTraTrees.py single
-if len(sys.argv) > 1:
-    dataset_type = sys.argv[1].lower()
-    if dataset_type not in ['mix', 'single']:
-        print(f"Error: Invalid dataset type '{dataset_type}'. Use 'mix' or 'single'.")
-        print("Usage: python ExTraTrees.py [mix|single]")
-        sys.exit(1)
-else:
-    # Default to single if no argument provided
-    dataset_type = 'single'
-    print(f"No dataset specified. Using default: {dataset_type}")
+# Parse command line arguments
+parser = argparse.ArgumentParser(description='Train ExtraTrees model')
+parser.add_argument('dataset', nargs='?', default='single', choices=['mix', 'single'],
+                    help='Dataset type: mix or single (default: single)')
+parser.add_argument('--seed', type=int, default=42,
+                    help='Random seed for reproducibility (default: 42)')
+args = parser.parse_args()
 
-# Set paths based on dataset type
+dataset_type = args.dataset.lower()
+RANDOM_SEED = args.seed
+
+# Set paths based on dataset type and seed
 RESULTS_FOLDER = f"{dataset_type.capitalize()}_Results"
-DATA_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, 'data')
-FIG_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, 'figures')
-MODEL_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, 'models')
-REPORTS_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, 'reports')
+if RANDOM_SEED != 42:
+    # Store in seed-specific subfolder
+    SEED_FOLDER = f"seed_{RANDOM_SEED}"
+    DATA_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, SEED_FOLDER, 'data')
+    FIG_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, SEED_FOLDER, 'figures')
+    MODEL_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, SEED_FOLDER, 'models')
+    REPORTS_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, SEED_FOLDER, 'reports')
+else:
+    # Use default folders for seed 42
+    DATA_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, 'data')
+    FIG_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, 'figures')
+    MODEL_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, 'models')
+    REPORTS_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, 'reports')
+
 DATA_FILE = os.path.join(PROJECT_ROOT, f'Input_Data-{dataset_type.capitalize()}-train.csv')
 
 print(f"\n{'='*60}")
 print(f"Running ExtraTrees with {dataset_type.upper()} dataset")
+print(f"Random Seed: {RANDOM_SEED}")
 print(f"Results folder: {RESULTS_FOLDER}")
 print(f"Data file: {os.path.basename(DATA_FILE)}")
 print(f"{'='*60}\n")
@@ -59,18 +71,23 @@ X_train, X_test, y_train, y_test, train_idx, test_idx = train_test_split(
     X, y, indices,
     test_size=0.2,
     stratify=y,
-    random_state=42
+    random_state=RANDOM_SEED
 )
 
 # Use shared helpers from `helper_functions.py` as `hf`
 
-def train_eval_plot(X_tr, y_tr, title, strategy_name):
+def train_eval_plot(X_tr, y_tr, title, strategy_name, n_estimators=100):
+    """
+    Train and evaluate ExtraTrees model
+    n_estimators is reduced for resampling strategies to avoid memory issues
+    """
     model = ExtraTreesClassifier(
-        n_estimators=100,
+        n_estimators=n_estimators,
         max_depth=None,
-        random_state=42,
+        random_state=RANDOM_SEED,
         n_jobs=-1
     )
+    print(f"Training ExtraTrees with {n_estimators} estimators...")
     model.fit(X_tr, y_tr)
     y_pred = model.predict(X_test)
     try:
@@ -132,17 +149,18 @@ def train_eval_plot(X_tr, y_tr, title, strategy_name):
     return model, assets
 
 strategies = {
-    "Original": (X_train, y_train),
-    "SMOTE": SMOTE(random_state=42).fit_resample(X_train, y_train),
-    "RandomOverSampler": RandomOverSampler(random_state=42).fit_resample(X_train, y_train)
+    "Original": (X_train, y_train, 100),  # Full model for original data
+    "SMOTE": (SMOTE(random_state=RANDOM_SEED).fit_resample(X_train, y_train) + (50,)),  # Reduced for memory
+    "RandomOverSampler": (RandomOverSampler(random_state=RANDOM_SEED).fit_resample(X_train, y_train) + (50,))  # Reduced for memory
 }
 
 models = {}
 assets = {}
-for name, (X_tr, y_tr) in strategies.items():
+for name, strategy_data in strategies.items():
+    X_tr, y_tr, n_estimators = strategy_data
     safe_name = f"{MODEL_NAME}_{name.replace(' ', '_').lower()}"
-    print(f"\n==== Running strategy: {name} ====")
-    model, asset = train_eval_plot(X_tr, y_tr, title=name, strategy_name=safe_name)
+    print(f"\n==== Running strategy: {name} (n_estimators={n_estimators}) ====")
+    model, asset = train_eval_plot(X_tr, y_tr, title=name, strategy_name=safe_name, n_estimators=n_estimators)
     models[name] = model
     assets[name] = asset
 
@@ -176,6 +194,19 @@ for name, model in models.items():
         'y_pred_proba': y_pred_proba,
         'confusion_matrix': confusion_matrix(y_test, y_pred)
     }
+    
+    # Add enhanced loss metrics
+    if y_pred_proba is not None:
+        try:
+            results[name]['focal_loss'] = hf.focal_loss(y_test, y_pred_proba, gamma=2.0)
+            results[name]['weighted_log_loss'] = hf.class_weighted_log_loss(y_test, y_pred_proba)
+        except Exception:
+            results[name]['focal_loss'] = results[name]['log_loss']
+            results[name]['weighted_log_loss'] = results[name]['log_loss']
+    
+    # Add binary classification metrics if applicable
+    binary_metrics = hf.compute_binary_classification_metrics(y_test, y_pred)
+    results[name].update(binary_metrics)
 
 class_names = le.classes_.tolist()
 generate_html_report(results, class_names, assets=assets)

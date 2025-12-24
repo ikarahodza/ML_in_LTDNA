@@ -1,0 +1,101 @@
+================================================================================
+COMPREHENSIVE ERROR ANALYSIS SUMMARY
+================================================================================
+
+Total models analyzed: 31
+Total errors across all models: 663
+
+================================================================================
+1. TOP 10 CONFUSION PAIRS
+================================================================================
+0 -> 3: 143 errors
+0 -> 1: 139 errors
+1 -> 0: 108 errors
+0 -> 2: 66 errors
+2 -> 0: 60 errors
+3 -> 0: 39 errors
+2 -> 3: 34 errors
+3 -> 2: 23 errors
+1 -> 2: 21 errors
+2 -> 1: 20 errors
+
+================================================================================
+2. ERRORS BY ACTUAL CLASS
+================================================================================
+Class 0: 348 errors
+Class 1: 135 errors
+Class 2: 114 errors
+Class 3: 66 errors
+
+================================================================================
+3. ERRORS BY MODEL
+================================================================================
+gnb_randomoversampler: 43 errors
+gnb_original: 42 errors
+gnb_smote: 42 errors
+randomforest_class_weights: 41 errors
+randomforest_borderline_smote: 33 errors
+randomforest_svm_smote: 28 errors
+randomforest_no_resampling: 27 errors
+svm_original: 27 errors
+svm_randomoversampler: 26 errors
+svm_smote: 25 errors
+randomforest_smote: 25 errors
+logistic_regression_smote: 22 errors
+mlp_smote: 20 errors
+logistic_regression_original: 20 errors
+mlp_original: 20 errors
+mlp_randomoversampler: 19 errors
+logistic_regression_randomoversampler: 19 errors
+xgboost_randomoversampler: 16 errors
+lgbm_original: 16 errors
+lgbm_randomoversampler: 15 errors
+tabpfn_randomundersampler: 15 errors
+extratrees_original: 14 errors
+extratrees_randomoversampler: 14 errors
+xgboost_original: 14 errors
+extratrees_smote: 14 errors
+tabpfn_randomoversampler: 13 errors
+lgbm_smote: 12 errors
+xgboost_smote: 12 errors
+tabpfn_smote: 11 errors
+tabpfn_classweights: 9 errors
+tabpfn_original: 9 errors
+
+================================================================================
+4. ERRORS BY RESAMPLING STRATEGY
+================================================================================
+Unknown: 24 errors
+No Resampling: 27 errors
+Class Weights: 41 errors
+Original: 162 errors
+RandomOverSampler: 165 errors
+SMOTE: 244 errors
+
+================================================================================
+5. PREDICTION BIAS
+================================================================================
+Over-predictions: 409
+Under-predictions: 254
+Mean bias: 0.5596
+
+================================================================================
+KEY INSIGHTS
+================================================================================
+
+* Most common confusion: Class 0 -> Class 3 (143 errors)
+* Model with most errors: gnb_randomoversampler (43 errors)
+* Model with fewest errors: tabpfn_classweights (9 errors)
+* Most frequently misclassified class: Class 0 (348 errors)
+* Best resampling strategy (fewest errors): Unknown
+* Worst resampling strategy (most errors): SMOTE
+
+================================================================================
+RECOMMENDATIONS
+================================================================================
+
+1. Focus model improvement on reducing 0 -> 3 confusion
+2. Investigate why gnb_randomoversampler has significantly more errors
+3. Consider using Unknown resampling for future models
+4. Pay special attention to Class 0 predictions
+5. Review feature engineering opportunities based on error patterns
