@@ -4,11 +4,15 @@
 
 This project implements and compares nine machine learning algorithms for classifying DNA artifacts in low template DNA (LTDNA) analysis. The goal is to accurately distinguish between true alleles and various artifacts (back stutter, forward stutter, and pull-up) to improve forensic DNA interpretation.
 
-**Status:** ✅ Production-ready with comprehensive optimization, ensemble methods, and deployment archive.
+**Status:** ✅ Production-ready with comprehensive optimization, multi-seed validation, cross-validation, and deployment archive.
 
-**Best Models:**
-- **Mix Dataset**: Stacking Ensemble - **88.10% Balanced Accuracy** (+3.29% improvement)
-- **Single Dataset**: LogisticRegression/ExtraTrees - **97.50% Balanced Accuracy** (publication-quality)
+**Best Models (Multi-Seed Validation - 10 Seeds):**
+- **Mix Dataset**: TabPFN (ClassWeights) - **84.73% ± 4.51%** | ExtraTrees (SMOTE) - **81.72% ± 2.39%**
+- **Single Dataset**: ExtraTrees (SMOTE) - **98.61% ± 1.92%** | RandomForest (Borderline SMOTE) - **98.53%**
+
+**Best Models (30-Fold Cross-Validation - Seed 42):**
+- **Mix Dataset**: ExtraTrees (Baseline) - **86.53% ± 12.90%**
+- **Single Dataset**: ExtraTrees (Baseline) - **98.75% ± 4.95%**
 
 ## Classification Categories
 
@@ -61,23 +65,36 @@ ML_in_LTDNA/
 │   ├── compare_optimizations.py     # Compare all model performances
 │   ├── run_ensemble_analysis_pipeline.py  # Full analysis pipeline
 │   ├── archive_best_models.py # Archive deployment-ready models
+│   ├── aggregate_multi_seed_results.py  # Aggregate results across 10 seeds
+│   ├── generate_aggregated_report.py    # HTML report for multi-seed top 3
+│   ├── generate_cv_executive_summary.py # Executive summary PDFs from CV
+│   ├── visualize_cv_top_models.py       # Top 3 CV models bar charts
 │   └── helper_functions.py     # Shared utility functions
 ├── Mix_Results/                # Complete Mix training results
 │   ├── analysis_scripts/       # Advanced analysis scripts
-│   │   ├── hyperparameter_tuning.py
-│   │   ├── error_analysis.py
-│   │   ├── shap_analysis.py
-│   │   ├── feature_engineering.py
-│   │   ├── cross_validation.py
+│   │   ├── hyperparameter_tuni         # 30-fold stratified CV
 │   │   ├── external_validation.py
 │   │   ├── generate_comprehensive_pdf.py
 │   │   └── generate_executive_summary_pdf.py
 │   ├── data/                   # Predictions & error analysis CSVs (all models)
 │   ├── figures/                # All visualizations (200+ images)
+│   │   └── top3_cv_models.png  # Top 3 CV models bar charts
 │   ├── models/                 # Trained models (35+ variations incl. ensembles)
 │   ├── reports/                # HTML & PDF reports
 │   │   ├── comprehensive_analysis_*.pdf  # 21-page comprehensive reports
 │   │   ├── executive_summary_*.pdf       # 12-page presentation PDFs
+│   │   ├── executive_summary_cv_*.pdf    # CV executive summaries (30-fold)
+│   │   └── combined_report_all_models.html
+│   ├── hyperparameter_tuning_results/  # Best parameters found
+│   ├── cross_validation_results/       # 30-fold CV scores & visualizations
+│   │   ├── cv_results.json             # Full CV metrics
+│   │   ├── cv_summary.txt              # Text summary
+│   │   └── cv_boxplots.png             # Performance distributions
+│   ├── external_validation_results/    # Test on Single dataset as Mix)
+│   ├── multi_seed_aggregated/  # Aggregated results across 10 seeds
+│   └── cross_validation_results/  # 30-fold CV results
+│   └── multi_seed_aggregated/          # Aggregated results across 10 seeds
+│       └── aggregated_results.json     # Mean ± std across all seeds PDFs
 │   │   └── combined_report_all_models.html
 │   ├── hyperparameter_tuning_results/  # Best parameters found
 │   ├── cross_validation_results/       # CV scores
@@ -94,8 +111,12 @@ ML_in_LTDNA/
 │       ├── logistic_regression_original.pkl  # Best Single model (97.50%)
 │       ├── extratrees_original.pkl          # Co-best Single model (97.50%)
 │       └── README.md                        # Deployment instructions
-├── Input_Data-Mix-train.csv    # Training dataset (426 samples, 307 features)
-├── Input_Data-Single-train.csv # Validation dataset (200 samples, 307 features)
+├── aggregated_top3_report.html # Multi-seed top 3 models (HTML report)
+├── check_overfitting.py        # Overfitting analysis script
+├── view_cv_std.py              # View cross-validation standard deviations
+├── view_external_validation.py # View external validation results
+├── OPTIMIZATION_FINAL_SUMMARY.md  # Complete Phase 1 optimization documentation
+├── PIPELINE_OPTIMIZATION_REPORT.md # Pipeline optimization details
 ├── check_overfitting.py        # Overfitting analysis script
 ├── OPTIMIZATION_FINAL_SUMMARY.md  # Complete Phase 1 optimization documentation
 └── README.md                   # This file
@@ -251,6 +272,18 @@ python Mix_Results\analysis_scripts\generate_comprehensive_pdf.py
 python Single_Results\analysis_scripts\generate_comprehensive_pdf.py
 
 # Generate executive summary PDF - Mix (12 pages, visualizations only)
+
+# Multi-seed validation (10 seeds: 42, 123, 456, 789, 1011, 1213, 1415, 1617, 1819, 2021)
+python scripts\aggregate_multi_seed_results.py          # Aggregate results across seeds
+python scripts\generate_aggregated_report.py            # Generate HTML report with top 3
+
+# Cross-validation executive summaries (30-fold)
+python scripts\generate_cv_executive_summary.py mix     # Mix CV summary PDF
+python scripts\generate_cv_executive_summary.py single  # Single CV summary PDF
+
+# Visualize top 3 CV models
+python scripts\visualize_cv_top_models.py mix           # Mix top 3 bar charts
+python scripts\visualize_cv_top_models.py single        # Single top 3 bar charts
 python Mix_Results\analysis_scripts\generate_executive_summary_pdf.py
 
 # Generate executive summary PDF - Single (12 pages, visualizations only)
@@ -343,10 +376,16 @@ Each model generates:
 ### Feature Engineering
 - **Original Features**: 307
 - **New Features Created**: 56
-  - 8 interaction terms
-  - 18 polynomial features (degree 2)
-  - 7 ratio features
-  - 12 aggregation features
+  - 8 interaction te (30-Fold Stratified)
+- **Method**: 30-fold StratifiedKFold
+- **Purpose**: Assess model stability and generalization with robust estimates
+- **Seed**: 42 (baseline seed)
+- **Results**: Mean and std deviation in `Mix_Results/cross_validation_results/`
+- **Key Findings**:
+  - **Mix Dataset**: ExtraTrees (86.53% ± 12.90% balanced accuracy)
+  - **Single Dataset**: ExtraTrees (98.75% ± 4.95% balanced accuracy)
+  - Higher std on Mix reflects harder classification task
+  - Executive summary PDFs available: `executive_summary_cv_*.pdf
   - 6 context window features
   - 5 statistical features
 - **Total Features**: 363
@@ -385,30 +424,51 @@ Each model generates:
 ### Why Phase 2 Was Not Needed
 Phase 1 results achieved **publication-quality performance**:
 - Mix: 88.10% (excellent for complex 4-class problem)
-- Single: 97.50% (near-optimal classification)
-- Further optimization would yield diminishing returns (<1-2%)
-- Current models are deployment-ready
+- SiValidation Approaches
 
-## Results Summary
+**Three complementary validation strategies were performed:**
 
-### Top 10 Model-Strategy Combinations - Mix Dataset
+1. **Train-Test Split (Seed 42)**: Initial model evaluation
+2. **Multi-Seed Validation (10 Seeds)**: Assesses robustness to random initialization
+3. **30-Fold Cross-Validation (Seed 42)**: Rigorous stability assessment
 
-| Rank | Model | Strategy | Balanced Accuracy | F1-Macro | Accuracy | Type |
-|------|-------|----------|------------------|----------|----------|------|
-| 1 | **Stacking Ensemble** | N/A | **0.8810** | 0.8768 | 0.8837 | Ensemble |
-| 2 | **Voting Ensemble** | N/A | **0.8750** | 0.8762 | 0.8837 | Ensemble |
-| 3 | LightGBM | RandomOverSampler | 0.8508 | 0.8368 | 0.8488 | Optimized |
-| 4 | TabPFN | Original | 0.8345 | 0.8508 | 0.8953 | Individual |
-| 5 | XGBoost | SMOTE | 0.8341 | 0.8159 | 0.8488 | Optimized |
-| 6 | XGBoost | RandomOverSampler | 0.8252 | 0.8218 | 0.8605 | Optimized |
-| 7 | Random Forest | SMOTE | 0.8232 | 0.7724 | 0.8047 | Individual |
-| 8 | LightGBM | SMOTE | 0.8112 | 0.7854 | 0.8256 | Optimized |
-| 9 | SVM | Original | 0.7974 | 0.7953 | 0.8488 | Optimized |
-| 10 | Extra Trees | SMOTE | 0.7849 | 0.7729 | 0.8372 | Individual |
+### Top 3 Model-Strategy Combinations - Mix Dataset (Multi-Seed Validation)
 
-### Top 5 Model-Strategy Combinations - Single Dataset
+| Rank | Model | Strategy | Balanced Accuracy | Std Dev |
+|------|-------|----------|-------------------|---------|
+| 1 | **TabPFN** | ClassWeights | **0.8473** | ±0.0451 |
+| 2 | **TabPFN** | RandomUnderSampler | **0.8360** | ±0.0471 |
+| 3 | **ExtraTrees** | SMOTE | **0.8172** | ±0.0239 |
 
-| Rank | Model | Strategy | Balanced Accuracy | F1-Macro | Accuracy | Type |
+### Top 3 Model-Strategy Combinations - Single Dataset (Multi-Seed Validation)
+
+| Rank | Model | Strategy | Balanced Accuracy | Std Dev |
+|------|-------|----------|-------------------|---------|
+| 1 | **ExtraTrees** | SMOTE | **0.9861** | ±0.0192 |
+| 2 | **RandomForest** | Borderline SMOTE | **0.9853** | ±0.0000 |
+| 3 | **ExtraTrees** | RandomOverSampler | **0.9841** | ±0.0186 |
+
+### Top 3 Models - Mix Dataset (30-Fold Cross-Validation, Seed 42)
+
+| Rank | Model | Balanced Accuracy | Std Dev |
+|------|-------|--- (Multi-Seed Validation):**
+- **TabPFN** dominates Mix dataset (84.73% ± 4.51%) with low variance
+- **ExtraTrees** dominates Single dataset (98.61% ± 1.92%) - near perfect classification
+- **Low standard deviations** (< 5%) indicate robust models across random seeds
+- TabPFN not included in CV (sample size limitations, computational cost)
+
+**Cross-Validation Insights (30-Fold):**
+- **ExtraTrees** consistently top performer across both datasets
+- **Higher variance on Mix** (12.90% std) vs Single (4.95% std) reflects task difficulty
+- **30-fold CV** provides rigorous stability estimates vs 10-fold
+- Confirms multi-seed findings: ExtraTrees highly stable
+
+**Optimization Impact:**
+- **StandardScaler**: Critical for SVM and MLP performance on scaled features
+- **Class Weighting**: Effective for handling imbalanced classes in boosting models
+- **Early Stopping**: Prevents overfitting, reduces training time by 30-40%
+- **Multi-Seed Validation**: Reveals TabPFN superiority for Mix dataset
+| 3 | **ExtraTrees SMOTE** | **0.9708** | ±0.0619y | Type |
 |------|-------|----------|------------------|----------|----------|------|
 | 1 | **LogisticRegression** | Original | **0.9750** | 0.9667 | 0.9750 | Individual |
 | 1 | **ExtraTrees** | Original | **0.9750** | 0.9667 | 0.9750 | Individual |
@@ -418,14 +478,14 @@ Phase 1 results achieved **publication-quality performance**:
 
 ### Key Findings
 
-**Model Performance:**
-- **Ensemble methods** provide +3.29% improvement for Mix dataset (88.10% vs 85.08%)
-- **Stacking Ensemble** outperforms Voting Ensemble (+0.60% for Mix)
-- **Simple models optimal** for Single dataset (LogReg/ExtraTrees 97.50%)
-- Gradient boosting methods (LightGBM, XGBoost) strong baselines
+**MxtraTrees shows most stable error patterns across seeds
 
-**Optimization Impact:**
-- **StandardScaler**: Critical for SVM and MLP performance on scaled features
+**Validation Robustness:**
+- **Multi-seed validation** (10 seeds) confirms model stability
+- **30-fold CV** provides comprehensive performance estimates
+- **Low variance models** (TabPFN, ExtraTrees) preferred for deployment
+- External validation: 70.12% on Mix dataset (expected drop, confirms generalization)
+- TabPFN shows remarkable consistency: 84.73% ± 4.51% across 10 seedsperformance on scaled features
 - **Class Weighting**: Effective for handling imbalanced classes in boosting models
 - **Early Stopping**: Prevents overfitting, reduces training time by 30-40%
 - **Ensemble Methods**: Best overall performance, robust to overfitting
@@ -444,46 +504,40 @@ Phase 1 results achieved **publication-quality performance**:
 **Overfitting Assessment:**
 - Single dataset: 97.50% on 40 test samples (only 1 error)
 - Small test set creates high variance, but external validation confirms reliability
-- LogisticRegression (simple linear model) less prone to overfitting than complex models
-- External validation: 70.12% on Mix dataset (expected drop, confirms generalization)
-- Analysis documented in `check_overfitting.py`
-
-## Deployment
-
-### Pre-trained Models Available
+- LoRecommended Models (Based on Multi-Seed & CV Validation)
 
 **Mix Dataset (Complex Mixture Profiles)**
-- Model: `deployment/mix/stacking_ensemble.pkl`
-- Scaler: `deployment/mix/stacking_ensemble_scaler.pkl`
-- Performance: **88.10% Balanced Accuracy**
+- **Recommended**: TabPFN with ClassWeights
+- **Performance (Multi-Seed)**: 84.73% ± 4.51% Balanced Accuracy
+- **Alternative**: ExtraTrees SMOTE (81.72% ± 2.39%, more stable)
+- **CV Performance**: ExtraTrees Baseline (86.53% ± 12.90%)
 - Use Case: DNA mixture interpretation with 4 artifact classes
 
 **Single Dataset (Single-source Profiles)**
-- Model: `deployment/single/logistic_regression_original.pkl` OR `deployment/single/extratrees_original.pkl`
-- Performance: **97.50% Balanced Accuracy**
-- Use Case: Single-source profile analysis (simpler classification)
+- **Recommended**: ExtraTrees SMOTE
+- **Performance (Multi-Seed)**: 98.61% ± 1.92% Balanced Accuracy
+- **CV Performance**: ExtraTrees Baseline (98.75% ± 4.95%)
+- Use Case: Single-source profile analysis (near-perfect classification)
 
-### Loading and Using Models
+### Pre-trained Models Available
 
-```python
-import joblib
-import pandas as pd
-import numpy as np
+**Mix Dataset Archive**
+from tabpfn import TabPFNClassifier
 
-# Load Mix dataset model (Stacking Ensemble)
-model = joblib.load('deployment/mix/stacking_ensemble.pkl')
-scaler = joblib.load('deployment/mix/stacking_ensemble_scaler.pkl')
+# For TabPFN (Mix Dataset - Best Model)
+model = TabPFNClassifier()  # Configure with your API key
+# Train on your data with class_weight='balanced'
+
+# For ExtraTrees (Single Dataset - Best Model)
+model = joblib.load('Single_Results/models/extratrees_smote_best_model.pkl')
 
 # Load your data (307 features expected)
 X_new = pd.read_csv('your_data.csv')
 X_new = X_new.drop(['sample', 'PoI', 'Classification'], axis=1, errors='ignore')
 
-# Scale features (for models with scalers)
-X_scaled = scaler.transform(X_new)
-
 # Make predictions
-y_pred = model.predict(X_scaled)
-y_proba = model.predict_proba(X_scaled)
+y_pred = model.predict(X_new)
+y_proba = model.predict_proba(X_new)
 
 # Decode predictions
 classes = ['Allele', 'Back_Stutter', 'Forward_Stutter', 'Pull_Up']
@@ -492,27 +546,67 @@ predictions = [classes[pred] for pred in y_pred]
 
 ### Model Specifications
 
-**Stacking Ensemble Architecture (Mix)**
-- Base Models: RandomForest, ExtraTrees, LightGBM, XGBoost, SVM
-- Meta-Learner: LogisticRegression with 5-fold CV
-- Input: 307 features (scaled)
+**TabPFN ClassWeights (Mix) - Best Multi-Seed Model**
+- Type: Transformer-based prior-fitted network
+- Resampling: ClassWeights (balanced)
+- Input: 307 features
 - Output: 4 classes (Allele, Back_Stutter, Forward_Stutter, Pull_Up)
+- **Performance (Multi-Seed)**: 84.73% ± 4.51%
 
-**Performance Metrics**
-- Balanced Accuracy: 88.10%
-- Macro F1-Score: 87.68%
-- Overall Accuracy: 88.37%
+**ExtraTrees SMOTE (Single) - Best Multi-Seed Model**
+- Type: Extremely Randomized Trees ensemble
+- Resampling: SMOTE (Synthetic Minority Over-sampling)
+- Input: 307 features
+- Output: 4 classes
+- **Performance (Multi-Seed)**: 98.61% ± 1.92
+y_pred = model.predict(X_scaled)
+y_proba = model.predict_proba(X_scaled)
 
-## Key Features
-
-✅ **11 machine learning models** (9 individual + 2 ensembles)  
-✅ **Phase 1 optimizations** (StandardScaler, class weights, early stopping, ensembles)  
+# Decode predictions
+classes = ['Allele', 'Back_Stutter', 'Forward_Stutter', 'Pull_Up']
+predictions = [classes[pred] for pred in y_pred]
+```
+Multi-seed validation** (10 random seeds: 42, 123, 456, ..., 2021)  
+✅ **30-fold stratified cross-validation** for rigorous stability assessment  
 ✅ **3 resampling strategies** per model (35+ configurations)  
+✅ **Aggregated results** (mean ± std across seeds) with HTML reports  
 ✅ **Hyperparameter tuning** with 5-fold CV  
 ✅ **Error analysis** on 643 misclassifications  
 ✅ **SHAP-based feature importance** analysis  
 ✅ **Feature engineering** (+56 features, +1.85% F1)  
 ✅ **Comprehensive PDF reports** (21-page technical analysis)  
+✅ **Executive summary PDFs** (presentation-ready with soft colors)  
+✅ **CV executive summary PDFs** (30-fold results with stability analysis)  
+✅ **Top 3 visualizations** (bar charts with error bars)  
+✅ **External validation** on independent dataset  
+✅ **Production deployment** archive with documentation  
+✅ **CLI dataset selection** (Mix or Single)  
+✅ **Publication-quality results** (TabPFN: 84.73% ± 4.51% Mix, ExtraTrees: 98.61% ± 1.92
+## Key Features
+### Core Documentation
+- **OPTIMIZATION_FINAL_SUMMARY.md**: Complete Phase 1 optimization journey
+- **PIPELINE_OPTIMIZATION_REPORT.md**: Pipeline optimization details
+- **deployment/mix/README.md**: Mix model deployment guide
+- **deployment/single/README.md**: Single model deployment guide
+
+### Reports & Visualizations
+- **aggregated_top3_report.html**: Multi-seed top 3 models (interactive HTML)
+- **Mix_Results/reports/comprehensive_analysis_*.pdf**: 21-page technical report
+- **Mix_Results/reports/executive_summary_*.pdf**: Presentation PDFs (train-test)
+- **Mix_Results/reports/executive_summary_cv_*.pdf**: CV executive summaries (30-fold)
+- **Mix_Results/figures/top3_cv_models.png**: Top 3 CV models bar charts
+- **Single_Results/reports/executive_summary_cv_*.pdf**: Single CV summaries
+- **Single_Results/figures/top3_cv_models.png**: Single top 3 visualizations
+
+### Analysis Results
+- **Mix_Results/multi_seed_aggregated/aggregated_results.json**: Mean ± std across 10 seeds
+- **Mix_Results/cross_validation_results/cv_results.json**: 30-fold CV detailed results
+- **Single_Results/multi_seed_aggregated/aggregated_results.json**: Single aggregated results
+
+### Utility Scripts
+- **view_cv_std.py**: View cross-validation standard deviations
+- **view_external_validation.py**: View external validation results
+- **check_overfitting.py**: Overfitting analysi
 ✅ **Executive summary PDFs** (12-page presentation-ready reports with soft colors)  
 ✅ **Cross-validation** for stability assessment  
 ✅ **External validation** on independent dataset (visualized in PDFs)  
