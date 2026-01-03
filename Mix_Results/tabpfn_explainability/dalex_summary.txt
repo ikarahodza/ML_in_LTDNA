@@ -1,0 +1,57 @@
+================================================================================
+TABPFN DALEX EXPLAINABILITY - MIX DATASET
+================================================================================
+
+DALEX (Descriptive mAchine Learning EXplanations)
+Fast, model-agnostic explanations for machine learning models
+
+================================================================================
+METHODS USED
+================================================================================
+
+1. VARIABLE IMPORTANCE (Permutation-based)
+   - Measures feature impact by permuting values
+   - Higher values = more important features
+   - Global explanation across all predictions
+
+2. SHAP VALUES (Fast Local Explanations)
+   - Shows how each feature contributes to a single prediction
+   - Based on game theory (Shapley values)
+   - MUCH faster than traditional SHAP or LIME for TabPFN
+   - Green bars = positive contribution (increases prediction)
+   - Red bars = negative contribution (decreases prediction)
+
+================================================================================
+ADVANTAGES OVER LIME/SHAP FOR TABPFN
+================================================================================
+
+Speed:
+  - LIME: Requires 500-5000 model predictions per sample
+  - Traditional SHAP: Requires 2^n model predictions
+  - DALEX SHAP: Uses sampling - only 10-50 predictions
+  - Result: DALEX is 10-100x FASTER!
+
+Quality:
+  - Break Down plots are deterministic (no randomness)
+  - Clear interpretation of feature contributions
+  - Works well with high-dimensional data
+
+================================================================================
+INTERPRETATION GUIDELINES
+================================================================================
+
+Variable Importance:
+  - Top features have the largest impact on predictions
+  - Use this to identify key predictive features
+
+Break Down Plots:
+  - Starts with baseline (average prediction)
+  - Each bar shows one feature's contribution
+  - Final prediction = baseline + all contributions
+  - Green = pushes prediction up, Red = pushes down
+
+SHAP Values:
+  - Fair allocation of prediction credit to each feature
+  - Top features (by absolute value) are most important
+  - Positive = increases prediction, Negative = decreases
+  - More theoretically grounded than Break Down

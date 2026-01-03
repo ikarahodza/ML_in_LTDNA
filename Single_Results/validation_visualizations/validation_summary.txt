@@ -1,0 +1,67 @@
+================================================================================
+VALIDATION RESULTS SUMMARY - SINGLE DATASET
+================================================================================
+
+================================================================================
+1. CROSS-VALIDATION RESULTS (30-Fold)
+================================================================================
+
+Top 10 Models:
+--------------------------------------------------------------------------------
+ 4. extratrees_baseline                      0.9875 ± 0.0495
+ 5. logre_baseline                           0.9792 ± 0.0567
+ 9. extratrees_smote                         0.9708 ± 0.0619
+ 3. randomforest_baseline                    0.9625 ± 0.0732
+10. lgbm_randomoversampler                   0.9625 ± 0.0732
+11. randomforest_smote                       0.9625 ± 0.0732
+ 6. svm_baseline                             0.9417 ± 0.1152
+ 1. lgbm_baseline                            0.9417 ± 0.0898
+ 2. xgboost_baseline                         0.9375 ± 0.0898
+12. xgboost_smote                            0.9333 ± 0.1152
+
+================================================================================
+2. MULTI-SEED VALIDATION RESULTS (10 Seeds)
+================================================================================
+
+Top 10 Model-Strategy Combinations:
+--------------------------------------------------------------------------------
+ 3. extratrees_SMOTE                                   0.9861 ± 0.0192
+16. randomforest_Borderline SMOTE                      0.9853 ± 0.0000
+ 2. extratrees_RandomOverSampler                       0.9841 ± 0.0186
+ 1. extratrees_Original                                0.9816 ± 0.0179
+24. tabpfn_ClassWeights                                0.9811 ± 0.0236
+25. tabpfn_Original                                    0.9811 ± 0.0236
+27. tabpfn_SMOTE                                       0.9786 ± 0.0227
+20. randomforest_SVM SMOTE                             0.9706 ± 0.0000
+10. logistic_regression_Original                       0.9691 ± 0.0232
+19. randomforest_SMOTE                                 0.9674 ± 0.0000
+
+================================================================================
+3. STATISTICS
+================================================================================
+
+Cross-Validation:
+  Total models tested: 12
+  Best performance: extratrees_baseline (0.9875)
+  Most stable (lowest std): extratrees_baseline (0.0495)
+
+Multi-Seed:
+  Total combinations tested: 30
+  Best performance: extratrees_SMOTE (0.9861)
+  Most stable (lowest std): randomforest_Borderline SMOTE (0.0000)
+
+================================================================================
+4. RECOMMENDATIONS
+================================================================================
+
+Best CV Model: extratrees_baseline
+  Performance: 0.9875 ± 0.0495
+  Stability: High
+
+Best Multi-Seed Combination: extratrees_SMOTE
+  Performance: 0.9861 ± 0.0192
+  Stability: High
+
+Deployment Recommendation:
+  Use extratrees with SMOTE strategy
+  Expected performance: 98.61% ± 1.92%

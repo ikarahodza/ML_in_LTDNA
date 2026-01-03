@@ -1,0 +1,65 @@
+================================================================================
+VALIDATION RESULTS SUMMARY - MIX DATASET
+================================================================================
+
+================================================================================
+1. CROSS-VALIDATION RESULTS (30-Fold)
+================================================================================
+
+Top 10 Models:
+--------------------------------------------------------------------------------
+ 4. extratrees_baseline                      0.8653 ± 0.1290
+ 2. xgboost_baseline                         0.8085 ± 0.1451
+ 1. lgbm_baseline                            0.7985 ± 0.1483
+ 3. randomforest_baseline                    0.7941 ± 0.1306
+ 8. mlp_baseline                             0.7416 ± 0.1462
+ 6. svm_baseline                             0.7326 ± 0.1697
+ 5. logre_baseline                           0.7219 ± 0.1402
+ 7. gnb_baseline                             0.5522 ± 0.1611
+
+================================================================================
+2. MULTI-SEED VALIDATION RESULTS (10 Seeds)
+================================================================================
+
+Top 10 Model-Strategy Combinations:
+--------------------------------------------------------------------------------
+24. tabpfn_ClassWeights                                0.8473 ± 0.0451
+25. tabpfn_Original                                    0.8473 ± 0.0451
+26. tabpfn_RandomUnderSampler                          0.8360 ± 0.0471
+ 3. extratrees_SMOTE                                   0.8172 ± 0.0239
+ 9. lgbm_SMOTE                                         0.8020 ± 0.0526
+19. randomforest_SMOTE                                 0.7997 ± 0.0000
+ 1. extratrees_Original                                0.7939 ± 0.0464
+30. xgboost_SMOTE                                      0.7895 ± 0.0571
+ 2. extratrees_RandomOverSampler                       0.7850 ± 0.0295
+29. xgboost_RandomOverSampler                          0.7838 ± 0.0325
+
+================================================================================
+3. STATISTICS
+================================================================================
+
+Cross-Validation:
+  Total models tested: 8
+  Best performance: extratrees_baseline (0.8653)
+  Most stable (lowest std): extratrees_baseline (0.1290)
+
+Multi-Seed:
+  Total combinations tested: 30
+  Best performance: tabpfn_ClassWeights (0.8473)
+  Most stable (lowest std): randomforest_SMOTE (0.0000)
+
+================================================================================
+4. RECOMMENDATIONS
+================================================================================
+
+Best CV Model: extratrees_baseline
+  Performance: 0.8653 ± 0.1290
+  Stability: Low
+
+Best Multi-Seed Combination: tabpfn_ClassWeights
+  Performance: 0.8473 ± 0.0451
+  Stability: Moderate
+
+Deployment Recommendation:
+  Use tabpfn with ClassWeights strategy
+  Expected performance: 84.73% ± 4.51%
