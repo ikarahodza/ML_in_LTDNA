@@ -1,0 +1,286 @@
+[
+  {
+    "model_name": "model_tabpfn_classweights",
+    "total_samples": 40,
+    "correct_predictions": 4,
+    "incorrect_predictions": 36,
+    "accuracy": 0.1,
+    "analyzed_count": 5,
+    "error_details": [
+      {
+        "sample_index": 1,
+        "actual_class": "Forward_Stutter",
+        "predicted_class": "Allele",
+        "probabilities": {
+          "0": 0.5649746656417847,
+          "1": 0.10816146433353424,
+          "2": 0.1878802627325058,
+          "3": 0.13898365199565887
+        },
+        "confidence": 0.5649746656417847
+      },
+      {
+        "sample_index": 2,
+        "actual_class": "Forward_Stutter",
+        "predicted_class": "Allele",
+        "probabilities": {
+          "0": 0.6408803462982178,
+          "1": 0.18199869990348816,
+          "2": 0.0925251916050911,
+          "3": 0.08459579199552536
+        },
+        "confidence": 0.6408803462982178
+      },
+      {
+        "sample_index": 3,
+        "actual_class": "Forward_Stutter",
+        "predicted_class": "Allele",
+        "probabilities": {
+          "0": 0.6325324177742004,
+          "1": 0.18705765902996063,
+          "2": 0.09361237287521362,
+          "3": 0.08679762482643127
+        },
+        "confidence": 0.6325324177742004
+      },
+      {
+        "sample_index": 4,
+        "actual_class": "Forward_Stutter",
+        "predicted_class": "Allele",
+        "probabilities": {
+          "0": 0.633539080619812,
+          "1": 0.18689143657684326,
+          "2": 0.09277445077896118,
+          "3": 0.08679500222206116
+        },
+        "confidence": 0.633539080619812
+      },
+      {
+        "sample_index": 5,
+        "actual_class": "Forward_Stutter",
+        "predicted_class": "Allele",
+        "probabilities": {
+          "0": 0.6165034174919128,
+          "1": 0.19012397527694702,
+          "2": 0.10316424071788788,
+          "3": 0.09020829945802689
+        },
+        "confidence": 0.6165034174919128
+      }
+    ],
+    "visualization_dir": "Single_Results\\incorrect_predictions_analysis\\model_tabpfn_classweights"
+  },
+  {
+    "model_name": "model_tabpfn_original",
+    "total_samples": 40,
+    "correct_predictions": 4,
+    "incorrect_predictions": 36,
+    "accuracy": 0.1,
+    "analyzed_count": 5,
+    "error_details": [
+      {
+        "sample_index": 1,
+        "actual_class": "Forward_Stutter",
+        "predicted_class": "Allele",
+        "probabilities": {
+          "0": 0.5649746656417847,
+          "1": 0.10816146433353424,
+          "2": 0.1878802627325058,
+          "3": 0.13898365199565887
+        },
+        "confidence": 0.5649746656417847
+      },
+      {
+        "sample_index": 2,
+        "actual_class": "Forward_Stutter",
+        "predicted_class": "Allele",
+        "probabilities": {
+          "0": 0.6408803462982178,
+          "1": 0.18199869990348816,
+          "2": 0.0925251916050911,
+          "3": 0.08459579199552536
+        },
+        "confidence": 0.6408803462982178
+      },
+      {
+        "sample_index": 3,
+        "actual_class": "Forward_Stutter",
+        "predicted_class": "Allele",
+        "probabilities": {
+          "0": 0.6325324177742004,
+          "1": 0.18705765902996063,
+          "2": 0.09361237287521362,
+          "3": 0.08679762482643127
+        },
+        "confidence": 0.6325324177742004
+      },
+      {
+        "sample_index": 4,
+        "actual_class": "Forward_Stutter",
+        "predicted_class": "Allele",
+        "probabilities": {
+          "0": 0.633539080619812,
+          "1": 0.18689143657684326,
+          "2": 0.09277445077896118,
+          "3": 0.08679500222206116
+        },
+        "confidence": 0.633539080619812
+      },
+      {
+        "sample_index": 5,
+        "actual_class": "Forward_Stutter",
+        "predicted_class": "Allele",
+        "probabilities": {
+          "0": 0.6165034174919128,
+          "1": 0.19012397527694702,
+          "2": 0.10316424071788788,
+          "3": 0.09020829945802689
+        },
+        "confidence": 0.6165034174919128
+      }
+    ],
+    "visualization_dir": "Single_Results\\incorrect_predictions_analysis\\model_tabpfn_original"
+  },
+  {
+    "model_name": "model_tabpfn_randomundersampler",
+    "total_samples": 40,
+    "correct_predictions": 4,
+    "incorrect_predictions": 36,
+    "accuracy": 0.1,
+    "analyzed_count": 5,
+    "error_details": [
+      {
+        "sample_index": 1,
+        "actual_class": "Forward_Stutter",
+        "predicted_class": "Allele",
+        "probabilities": {
+          "0": 0.5343832969665527,
+          "1": 0.12730467319488525,
+          "2": 0.21576082706451416,
+          "3": 0.12255119532346725
+        },
+        "confidence": 0.5343832969665527
+      },
+      {
+        "sample_index": 2,
+        "actual_class": "Forward_Stutter",
+        "predicted_class": "Allele",
+        "probabilities": {
+          "0": 0.5019167065620422,
+          "1": 0.28475937247276306,
+          "2": 0.13166522979736328,
+          "3": 0.08165866136550903
+        },
+        "confidence": 0.5019167065620422
+      },
+      {
+        "sample_index": 3,
+        "actual_class": "Forward_Stutter",
+        "predicted_class": "Allele",
+        "probabilities": {
+          "0": 0.4821135699748993,
+          "1": 0.30261388421058655,
+          "2": 0.1336425095796585,
+          "3": 0.08163004368543625
+        },
+        "confidence": 0.4821135699748993
+      },
+      {
+        "sample_index": 4,
+        "actual_class": "Forward_Stutter",
+        "predicted_class": "Allele",
+        "probabilities": {
+          "0": 0.46945878863334656,
+          "1": 0.31667765974998474,
+          "2": 0.13289159536361694,
+          "3": 0.08097194135189056
+        },
+        "confidence": 0.46945878863334656
+      },
+      {
+        "sample_index": 5,
+        "actual_class": "Forward_Stutter",
+        "predicted_class": "Allele",
+        "probabilities": {
+          "0": 0.5138347148895264,
+          "1": 0.2634704113006592,
+          "2": 0.14077253639698029,
+          "3": 0.08192232996225357
+        },
+        "confidence": 0.5138347148895264
+      }
+    ],
+    "visualization_dir": "Single_Results\\incorrect_predictions_analysis\\model_tabpfn_randomundersampler"
+  },
+  {
+    "model_name": "model_tabpfn_smote",
+    "total_samples": 40,
+    "correct_predictions": 4,
+    "incorrect_predictions": 36,
+    "accuracy": 0.1,
+    "analyzed_count": 5,
+    "error_details": [
+      {
+        "sample_index": 1,
+        "actual_class": "Forward_Stutter",
+        "predicted_class": "Allele",
+        "probabilities": {
+          "0": 0.5638673901557922,
+          "1": 0.11188800632953644,
+          "2": 0.19195035099983215,
+          "3": 0.1322941929101944
+        },
+        "confidence": 0.5638673901557922
+      },
+      {
+        "sample_index": 2,
+        "actual_class": "Forward_Stutter",
+        "predicted_class": "Allele",
+        "probabilities": {
+          "0": 0.6273230910301208,
+          "1": 0.18479211628437042,
+          "2": 0.11017719656229019,
+          "3": 0.07770761102437973
+        },
+        "confidence": 0.6273230910301208
+      },
+      {
+        "sample_index": 3,
+        "actual_class": "Forward_Stutter",
+        "predicted_class": "Allele",
+        "probabilities": {
+          "0": 0.6185502409934998,
+          "1": 0.19188256561756134,
+          "2": 0.11048105359077454,
+          "3": 0.079086072742939
+        },
+        "confidence": 0.6185502409934998
+      },
+      {
+        "sample_index": 4,
+        "actual_class": "Forward_Stutter",
+        "predicted_class": "Allele",
+        "probabilities": {
+          "0": 0.61256343126297,
+          "1": 0.196633443236351,
+          "2": 0.11019114404916763,
+          "3": 0.08061203360557556
+        },
+        "confidence": 0.61256343126297
+      },
+      {
+        "sample_index": 5,
+        "actual_class": "Forward_Stutter",
+        "predicted_class": "Allele",
+        "probabilities": {
+          "0": 0.5824194550514221,
+          "1": 0.20957733690738678,
+          "2": 0.12534865736961365,
+          "3": 0.08265449851751328
+        },
+        "confidence": 0.5824194550514221
+      }
+    ],
+    "visualization_dir": "Single_Results\\incorrect_predictions_analysis\\model_tabpfn_smote"
+  }
+]

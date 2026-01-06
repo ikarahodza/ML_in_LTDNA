@@ -1,0 +1,3992 @@
+INCORRECT PREDICTIONS ANALYSIS REPORT
+Dataset: SINGLE
+Date: 2026-01-05 20:53:50.560190
+Max incorrect predictions analyzed per model: 10
+
+================================================================================
+MODEL: seed_1011_model_gnb_original
+================================================================================
+Total Test Samples: 40
+Correct Predictions: 37
+Incorrect Predictions: 3
+Accuracy: 0.9250
+
+Showing 3 incorrect prediction(s):
+--------------------------------------------------------------------------------
+
+Incorrect Prediction #1:
+  Sample Index: 0
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 1.0000)
+  Probability Distribution:
+    1: 1.0000 (100.00%)
+    0: 0.0000 (0.00%)
+    2: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+Incorrect Prediction #2:
+  Sample Index: 6
+  Actual Class: Forward_Stutter
+  Predicted Class: Allele (Confidence: 1.0000)
+  Probability Distribution:
+    0: 1.0000 (100.00%)
+    1: 0.0000 (0.00%)
+    2: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+Incorrect Prediction #3:
+  Sample Index: 29
+  Actual Class: Pull_Up
+  Predicted Class: Back_Stutter (Confidence: 1.0000)
+  Probability Distribution:
+    1: 1.0000 (100.00%)
+    0: 0.0000 (0.00%)
+    2: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+================================================================================
+MODEL: seed_1011_model_gnb_randomoversampler
+================================================================================
+Total Test Samples: 40
+Correct Predictions: 38
+Incorrect Predictions: 2
+Accuracy: 0.9500
+
+Showing 2 incorrect prediction(s):
+--------------------------------------------------------------------------------
+
+Incorrect Prediction #1:
+  Sample Index: 6
+  Actual Class: Forward_Stutter
+  Predicted Class: Allele (Confidence: 1.0000)
+  Probability Distribution:
+    0: 1.0000 (100.00%)
+    1: 0.0000 (0.00%)
+    2: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+Incorrect Prediction #2:
+  Sample Index: 29
+  Actual Class: Pull_Up
+  Predicted Class: Back_Stutter (Confidence: 1.0000)
+  Probability Distribution:
+    1: 1.0000 (100.00%)
+    0: 0.0000 (0.00%)
+    2: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+================================================================================
+MODEL: seed_1011_model_gnb_smote
+================================================================================
+Total Test Samples: 40
+Correct Predictions: 37
+Incorrect Predictions: 3
+Accuracy: 0.9250
+
+Showing 3 incorrect prediction(s):
+--------------------------------------------------------------------------------
+
+Incorrect Prediction #1:
+  Sample Index: 0
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 1.0000)
+  Probability Distribution:
+    1: 1.0000 (100.00%)
+    0: 0.0000 (0.00%)
+    2: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+Incorrect Prediction #2:
+  Sample Index: 6
+  Actual Class: Forward_Stutter
+  Predicted Class: Allele (Confidence: 1.0000)
+  Probability Distribution:
+    0: 1.0000 (100.00%)
+    1: 0.0000 (0.00%)
+    2: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+Incorrect Prediction #3:
+  Sample Index: 29
+  Actual Class: Pull_Up
+  Predicted Class: Allele (Confidence: 1.0000)
+  Probability Distribution:
+    0: 1.0000 (100.00%)
+    1: 0.0000 (0.00%)
+    2: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+================================================================================
+MODEL: seed_1011_model_logistic_regression_original
+================================================================================
+Total Test Samples: 40
+Correct Predictions: 39
+Incorrect Predictions: 1
+Accuracy: 0.9750
+
+Showing 1 incorrect prediction(s):
+--------------------------------------------------------------------------------
+
+Incorrect Prediction #1:
+  Sample Index: 29
+  Actual Class: Pull_Up
+  Predicted Class: Forward_Stutter (Confidence: 1.0000)
+  Probability Distribution:
+    2: 1.0000 (100.00%)
+    0: 0.0000 (0.00%)
+    1: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+================================================================================
+MODEL: seed_1011_model_logistic_regression_randomoversampler
+================================================================================
+Total Test Samples: 40
+Correct Predictions: 39
+Incorrect Predictions: 1
+Accuracy: 0.9750
+
+Showing 1 incorrect prediction(s):
+--------------------------------------------------------------------------------
+
+Incorrect Prediction #1:
+  Sample Index: 29
+  Actual Class: Pull_Up
+  Predicted Class: Forward_Stutter (Confidence: 1.0000)
+  Probability Distribution:
+    2: 1.0000 (100.00%)
+    0: 0.0000 (0.00%)
+    1: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+================================================================================
+MODEL: seed_1011_model_logistic_regression_smote
+================================================================================
+Total Test Samples: 40
+Correct Predictions: 39
+Incorrect Predictions: 1
+Accuracy: 0.9750
+
+Showing 1 incorrect prediction(s):
+--------------------------------------------------------------------------------
+
+Incorrect Prediction #1:
+  Sample Index: 29
+  Actual Class: Pull_Up
+  Predicted Class: Forward_Stutter (Confidence: 1.0000)
+  Probability Distribution:
+    2: 1.0000 (100.00%)
+    0: 0.0000 (0.00%)
+    1: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+================================================================================
+MODEL: seed_1011_model_svm_original
+================================================================================
+Total Test Samples: 40
+Correct Predictions: 1
+Incorrect Predictions: 39
+Accuracy: 0.0250
+
+Showing 10 incorrect prediction(s):
+--------------------------------------------------------------------------------
+
+Incorrect Prediction #1:
+  Sample Index: 0
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.3348)
+  Probability Distribution:
+    1: 0.3348 (33.48%)
+    0: 0.3054 (30.54%)
+    2: 0.2387 (23.87%)
+    3: 0.1211 (12.11%)
+
+Incorrect Prediction #2:
+  Sample Index: 1
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.3348)
+  Probability Distribution:
+    1: 0.3348 (33.48%)
+    0: 0.3054 (30.54%)
+    2: 0.2387 (23.87%)
+    3: 0.1211 (12.11%)
+
+Incorrect Prediction #3:
+  Sample Index: 2
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.3348)
+  Probability Distribution:
+    1: 0.3348 (33.48%)
+    0: 0.3054 (30.54%)
+    2: 0.2387 (23.87%)
+    3: 0.1211 (12.11%)
+
+Incorrect Prediction #4:
+  Sample Index: 3
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.3348)
+  Probability Distribution:
+    1: 0.3348 (33.48%)
+    0: 0.3054 (30.54%)
+    2: 0.2387 (23.87%)
+    3: 0.1211 (12.11%)
+
+Incorrect Prediction #5:
+  Sample Index: 4
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.3348)
+  Probability Distribution:
+    1: 0.3348 (33.48%)
+    0: 0.3054 (30.54%)
+    2: 0.2387 (23.87%)
+    3: 0.1211 (12.11%)
+
+Incorrect Prediction #6:
+  Sample Index: 5
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.3348)
+  Probability Distribution:
+    1: 0.3348 (33.48%)
+    0: 0.3054 (30.54%)
+    2: 0.2387 (23.87%)
+    3: 0.1211 (12.11%)
+
+Incorrect Prediction #7:
+  Sample Index: 6
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.3348)
+  Probability Distribution:
+    1: 0.3348 (33.48%)
+    0: 0.3054 (30.54%)
+    2: 0.2387 (23.87%)
+    3: 0.1211 (12.11%)
+
+Incorrect Prediction #8:
+  Sample Index: 7
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.3348)
+  Probability Distribution:
+    1: 0.3348 (33.48%)
+    0: 0.3054 (30.54%)
+    2: 0.2387 (23.87%)
+    3: 0.1211 (12.11%)
+
+Incorrect Prediction #9:
+  Sample Index: 8
+  Actual Class: Pull_Up
+  Predicted Class: Back_Stutter (Confidence: 0.3348)
+  Probability Distribution:
+    1: 0.3348 (33.48%)
+    0: 0.3054 (30.54%)
+    2: 0.2387 (23.87%)
+    3: 0.1211 (12.11%)
+
+Incorrect Prediction #10:
+  Sample Index: 9
+  Actual Class: Pull_Up
+  Predicted Class: Back_Stutter (Confidence: 0.3348)
+  Probability Distribution:
+    1: 0.3348 (33.48%)
+    0: 0.3054 (30.54%)
+    2: 0.2387 (23.87%)
+    3: 0.1211 (12.11%)
+
+================================================================================
+MODEL: seed_1011_model_svm_randomoversampler
+================================================================================
+Total Test Samples: 40
+Correct Predictions: 3
+Incorrect Predictions: 37
+Accuracy: 0.0750
+
+Showing 10 incorrect prediction(s):
+--------------------------------------------------------------------------------
+
+Incorrect Prediction #1:
+  Sample Index: 0
+  Actual Class: Forward_Stutter
+  Predicted Class: Allele (Confidence: 0.4073)
+  Probability Distribution:
+    0: 0.4073 (40.73%)
+    3: 0.2638 (26.38%)
+    1: 0.2219 (22.19%)
+    2: 0.1070 (10.70%)
+
+Incorrect Prediction #2:
+  Sample Index: 1
+  Actual Class: Forward_Stutter
+  Predicted Class: Allele (Confidence: 0.4073)
+  Probability Distribution:
+    0: 0.4073 (40.73%)
+    3: 0.2638 (26.38%)
+    1: 0.2219 (22.19%)
+    2: 0.1070 (10.70%)
+
+Incorrect Prediction #3:
+  Sample Index: 2
+  Actual Class: Forward_Stutter
+  Predicted Class: Allele (Confidence: 0.4073)
+  Probability Distribution:
+    0: 0.4073 (40.73%)
+    3: 0.2638 (26.38%)
+    1: 0.2219 (22.19%)
+    2: 0.1070 (10.70%)
+
+Incorrect Prediction #4:
+  Sample Index: 3
+  Actual Class: Forward_Stutter
+  Predicted Class: Allele (Confidence: 0.4073)
+  Probability Distribution:
+    0: 0.4073 (40.73%)
+    3: 0.2638 (26.38%)
+    1: 0.2219 (22.19%)
+    2: 0.1070 (10.70%)
+
+Incorrect Prediction #5:
+  Sample Index: 4
+  Actual Class: Forward_Stutter
+  Predicted Class: Allele (Confidence: 0.4073)
+  Probability Distribution:
+    0: 0.4073 (40.73%)
+    3: 0.2638 (26.38%)
+    1: 0.2219 (22.19%)
+    2: 0.1070 (10.70%)
+
+Incorrect Prediction #6:
+  Sample Index: 5
+  Actual Class: Forward_Stutter
+  Predicted Class: Allele (Confidence: 0.4073)
+  Probability Distribution:
+    0: 0.4073 (40.73%)
+    3: 0.2638 (26.38%)
+    1: 0.2219 (22.19%)
+    2: 0.1070 (10.70%)
+
+Incorrect Prediction #7:
+  Sample Index: 6
+  Actual Class: Forward_Stutter
+  Predicted Class: Allele (Confidence: 0.4073)
+  Probability Distribution:
+    0: 0.4073 (40.73%)
+    3: 0.2638 (26.38%)
+    1: 0.2219 (22.19%)
+    2: 0.1070 (10.70%)
+
+Incorrect Prediction #8:
+  Sample Index: 7
+  Actual Class: Forward_Stutter
+  Predicted Class: Allele (Confidence: 0.4073)
+  Probability Distribution:
+    0: 0.4073 (40.73%)
+    3: 0.2638 (26.38%)
+    1: 0.2219 (22.19%)
+    2: 0.1070 (10.70%)
+
+Incorrect Prediction #9:
+  Sample Index: 8
+  Actual Class: Pull_Up
+  Predicted Class: Allele (Confidence: 0.4073)
+  Probability Distribution:
+    0: 0.4073 (40.73%)
+    3: 0.2638 (26.38%)
+    1: 0.2219 (22.19%)
+    2: 0.1070 (10.70%)
+
+Incorrect Prediction #10:
+  Sample Index: 9
+  Actual Class: Pull_Up
+  Predicted Class: Allele (Confidence: 0.4073)
+  Probability Distribution:
+    0: 0.4073 (40.73%)
+    3: 0.2638 (26.38%)
+    1: 0.2219 (22.19%)
+    2: 0.1070 (10.70%)
+
+================================================================================
+MODEL: seed_1011_model_svm_smote
+================================================================================
+Total Test Samples: 40
+Correct Predictions: 3
+Incorrect Predictions: 37
+Accuracy: 0.0750
+
+Showing 10 incorrect prediction(s):
+--------------------------------------------------------------------------------
+
+Incorrect Prediction #1:
+  Sample Index: 0
+  Actual Class: Forward_Stutter
+  Predicted Class: Allele (Confidence: 0.4244)
+  Probability Distribution:
+    0: 0.4244 (42.44%)
+    1: 0.2654 (26.54%)
+    3: 0.2023 (20.23%)
+    2: 0.1079 (10.79%)
+
+Incorrect Prediction #2:
+  Sample Index: 1
+  Actual Class: Forward_Stutter
+  Predicted Class: Allele (Confidence: 0.4244)
+  Probability Distribution:
+    0: 0.4244 (42.44%)
+    1: 0.2654 (26.54%)
+    3: 0.2023 (20.23%)
+    2: 0.1079 (10.79%)
+
+Incorrect Prediction #3:
+  Sample Index: 2
+  Actual Class: Forward_Stutter
+  Predicted Class: Allele (Confidence: 0.4244)
+  Probability Distribution:
+    0: 0.4244 (42.44%)
+    1: 0.2654 (26.54%)
+    3: 0.2023 (20.23%)
+    2: 0.1079 (10.79%)
+
+Incorrect Prediction #4:
+  Sample Index: 3
+  Actual Class: Forward_Stutter
+  Predicted Class: Allele (Confidence: 0.4244)
+  Probability Distribution:
+    0: 0.4244 (42.44%)
+    1: 0.2654 (26.54%)
+    3: 0.2023 (20.23%)
+    2: 0.1079 (10.79%)
+
+Incorrect Prediction #5:
+  Sample Index: 4
+  Actual Class: Forward_Stutter
+  Predicted Class: Allele (Confidence: 0.4244)
+  Probability Distribution:
+    0: 0.4244 (42.44%)
+    1: 0.2654 (26.54%)
+    3: 0.2023 (20.23%)
+    2: 0.1079 (10.79%)
+
+Incorrect Prediction #6:
+  Sample Index: 5
+  Actual Class: Forward_Stutter
+  Predicted Class: Allele (Confidence: 0.4244)
+  Probability Distribution:
+    0: 0.4244 (42.44%)
+    1: 0.2654 (26.54%)
+    3: 0.2023 (20.23%)
+    2: 0.1079 (10.79%)
+
+Incorrect Prediction #7:
+  Sample Index: 6
+  Actual Class: Forward_Stutter
+  Predicted Class: Allele (Confidence: 0.4244)
+  Probability Distribution:
+    0: 0.4244 (42.44%)
+    1: 0.2654 (26.54%)
+    3: 0.2023 (20.23%)
+    2: 0.1079 (10.79%)
+
+Incorrect Prediction #8:
+  Sample Index: 7
+  Actual Class: Forward_Stutter
+  Predicted Class: Allele (Confidence: 0.4244)
+  Probability Distribution:
+    0: 0.4244 (42.44%)
+    1: 0.2654 (26.54%)
+    3: 0.2023 (20.23%)
+    2: 0.1079 (10.79%)
+
+Incorrect Prediction #9:
+  Sample Index: 8
+  Actual Class: Pull_Up
+  Predicted Class: Allele (Confidence: 0.4244)
+  Probability Distribution:
+    0: 0.4244 (42.44%)
+    1: 0.2654 (26.54%)
+    3: 0.2023 (20.23%)
+    2: 0.1079 (10.79%)
+
+Incorrect Prediction #10:
+  Sample Index: 9
+  Actual Class: Pull_Up
+  Predicted Class: Allele (Confidence: 0.4244)
+  Probability Distribution:
+    0: 0.4244 (42.44%)
+    1: 0.2654 (26.54%)
+    3: 0.2023 (20.23%)
+    2: 0.1079 (10.79%)
+
+================================================================================
+MODEL: seed_1213_model_gnb_original
+================================================================================
+Total Test Samples: 40
+Correct Predictions: 37
+Incorrect Predictions: 3
+Accuracy: 0.9250
+
+Showing 3 incorrect prediction(s):
+--------------------------------------------------------------------------------
+
+Incorrect Prediction #1:
+  Sample Index: 0
+  Actual Class: Forward_Stutter
+  Predicted Class: Allele (Confidence: 1.0000)
+  Probability Distribution:
+    0: 1.0000 (100.00%)
+    1: 0.0000 (0.00%)
+    2: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+Incorrect Prediction #2:
+  Sample Index: 6
+  Actual Class: Forward_Stutter
+  Predicted Class: Allele (Confidence: 1.0000)
+  Probability Distribution:
+    0: 1.0000 (100.00%)
+    1: 0.0000 (0.00%)
+    2: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+Incorrect Prediction #3:
+  Sample Index: 34
+  Actual Class: Pull_Up
+  Predicted Class: Back_Stutter (Confidence: 1.0000)
+  Probability Distribution:
+    1: 1.0000 (100.00%)
+    0: 0.0000 (0.00%)
+    2: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+================================================================================
+MODEL: seed_1213_model_gnb_randomoversampler
+================================================================================
+Total Test Samples: 40
+Correct Predictions: 38
+Incorrect Predictions: 2
+Accuracy: 0.9500
+
+Showing 2 incorrect prediction(s):
+--------------------------------------------------------------------------------
+
+Incorrect Prediction #1:
+  Sample Index: 0
+  Actual Class: Forward_Stutter
+  Predicted Class: Allele (Confidence: 1.0000)
+  Probability Distribution:
+    0: 1.0000 (100.00%)
+    1: 0.0000 (0.00%)
+    2: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+Incorrect Prediction #2:
+  Sample Index: 34
+  Actual Class: Pull_Up
+  Predicted Class: Forward_Stutter (Confidence: 1.0000)
+  Probability Distribution:
+    2: 1.0000 (100.00%)
+    0: 0.0000 (0.00%)
+    1: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+================================================================================
+MODEL: seed_1213_model_gnb_smote
+================================================================================
+Total Test Samples: 40
+Correct Predictions: 37
+Incorrect Predictions: 3
+Accuracy: 0.9250
+
+Showing 3 incorrect prediction(s):
+--------------------------------------------------------------------------------
+
+Incorrect Prediction #1:
+  Sample Index: 0
+  Actual Class: Forward_Stutter
+  Predicted Class: Allele (Confidence: 1.0000)
+  Probability Distribution:
+    0: 1.0000 (100.00%)
+    1: 0.0000 (0.00%)
+    2: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+Incorrect Prediction #2:
+  Sample Index: 6
+  Actual Class: Forward_Stutter
+  Predicted Class: Allele (Confidence: 1.0000)
+  Probability Distribution:
+    0: 1.0000 (100.00%)
+    1: 0.0000 (0.00%)
+    2: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+Incorrect Prediction #3:
+  Sample Index: 34
+  Actual Class: Pull_Up
+  Predicted Class: Back_Stutter (Confidence: 1.0000)
+  Probability Distribution:
+    1: 1.0000 (100.00%)
+    0: 0.0000 (0.00%)
+    2: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+================================================================================
+MODEL: seed_1213_model_svm_original
+================================================================================
+Total Test Samples: 40
+Correct Predictions: 1
+Incorrect Predictions: 39
+Accuracy: 0.0250
+
+Showing 10 incorrect prediction(s):
+--------------------------------------------------------------------------------
+
+Incorrect Prediction #1:
+  Sample Index: 0
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.4366)
+  Probability Distribution:
+    1: 0.4366 (43.66%)
+    2: 0.2288 (22.88%)
+    0: 0.2016 (20.16%)
+    3: 0.1330 (13.30%)
+
+Incorrect Prediction #2:
+  Sample Index: 1
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.4366)
+  Probability Distribution:
+    1: 0.4366 (43.66%)
+    2: 0.2288 (22.88%)
+    0: 0.2016 (20.16%)
+    3: 0.1330 (13.30%)
+
+Incorrect Prediction #3:
+  Sample Index: 2
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.4366)
+  Probability Distribution:
+    1: 0.4366 (43.66%)
+    2: 0.2288 (22.88%)
+    0: 0.2016 (20.16%)
+    3: 0.1330 (13.30%)
+
+Incorrect Prediction #4:
+  Sample Index: 3
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.4366)
+  Probability Distribution:
+    1: 0.4366 (43.66%)
+    2: 0.2288 (22.88%)
+    0: 0.2016 (20.16%)
+    3: 0.1330 (13.30%)
+
+Incorrect Prediction #5:
+  Sample Index: 4
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.4366)
+  Probability Distribution:
+    1: 0.4366 (43.66%)
+    2: 0.2288 (22.88%)
+    0: 0.2016 (20.16%)
+    3: 0.1330 (13.30%)
+
+Incorrect Prediction #6:
+  Sample Index: 5
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.4366)
+  Probability Distribution:
+    1: 0.4366 (43.66%)
+    2: 0.2288 (22.88%)
+    0: 0.2016 (20.16%)
+    3: 0.1330 (13.30%)
+
+Incorrect Prediction #7:
+  Sample Index: 6
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.4366)
+  Probability Distribution:
+    1: 0.4366 (43.66%)
+    2: 0.2288 (22.88%)
+    0: 0.2016 (20.16%)
+    3: 0.1330 (13.30%)
+
+Incorrect Prediction #8:
+  Sample Index: 7
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.4366)
+  Probability Distribution:
+    1: 0.4366 (43.66%)
+    2: 0.2288 (22.88%)
+    0: 0.2016 (20.16%)
+    3: 0.1330 (13.30%)
+
+Incorrect Prediction #9:
+  Sample Index: 8
+  Actual Class: Pull_Up
+  Predicted Class: Back_Stutter (Confidence: 0.4366)
+  Probability Distribution:
+    1: 0.4366 (43.66%)
+    2: 0.2288 (22.88%)
+    0: 0.2016 (20.16%)
+    3: 0.1330 (13.30%)
+
+Incorrect Prediction #10:
+  Sample Index: 9
+  Actual Class: Pull_Up
+  Predicted Class: Back_Stutter (Confidence: 0.4366)
+  Probability Distribution:
+    1: 0.4366 (43.66%)
+    2: 0.2288 (22.88%)
+    0: 0.2016 (20.16%)
+    3: 0.1330 (13.30%)
+
+================================================================================
+MODEL: seed_1213_model_svm_randomoversampler
+================================================================================
+Total Test Samples: 40
+Correct Predictions: 1
+Incorrect Predictions: 39
+Accuracy: 0.0250
+
+Showing 10 incorrect prediction(s):
+--------------------------------------------------------------------------------
+
+Incorrect Prediction #1:
+  Sample Index: 0
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.4018)
+  Probability Distribution:
+    1: 0.4018 (40.18%)
+    0: 0.3070 (30.70%)
+    3: 0.1790 (17.90%)
+    2: 0.1122 (11.22%)
+
+Incorrect Prediction #2:
+  Sample Index: 1
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.4018)
+  Probability Distribution:
+    1: 0.4018 (40.18%)
+    0: 0.3070 (30.70%)
+    3: 0.1790 (17.90%)
+    2: 0.1122 (11.22%)
+
+Incorrect Prediction #3:
+  Sample Index: 2
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.4018)
+  Probability Distribution:
+    1: 0.4018 (40.18%)
+    0: 0.3070 (30.70%)
+    3: 0.1790 (17.90%)
+    2: 0.1122 (11.22%)
+
+Incorrect Prediction #4:
+  Sample Index: 3
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.4018)
+  Probability Distribution:
+    1: 0.4018 (40.18%)
+    0: 0.3070 (30.70%)
+    3: 0.1790 (17.90%)
+    2: 0.1122 (11.22%)
+
+Incorrect Prediction #5:
+  Sample Index: 4
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.4018)
+  Probability Distribution:
+    1: 0.4018 (40.18%)
+    0: 0.3070 (30.70%)
+    3: 0.1790 (17.90%)
+    2: 0.1122 (11.22%)
+
+Incorrect Prediction #6:
+  Sample Index: 5
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.4018)
+  Probability Distribution:
+    1: 0.4018 (40.18%)
+    0: 0.3070 (30.70%)
+    3: 0.1790 (17.90%)
+    2: 0.1122 (11.22%)
+
+Incorrect Prediction #7:
+  Sample Index: 6
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.4018)
+  Probability Distribution:
+    1: 0.4018 (40.18%)
+    0: 0.3070 (30.70%)
+    3: 0.1790 (17.90%)
+    2: 0.1122 (11.22%)
+
+Incorrect Prediction #8:
+  Sample Index: 7
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.4018)
+  Probability Distribution:
+    1: 0.4018 (40.18%)
+    0: 0.3070 (30.70%)
+    3: 0.1790 (17.90%)
+    2: 0.1122 (11.22%)
+
+Incorrect Prediction #9:
+  Sample Index: 8
+  Actual Class: Pull_Up
+  Predicted Class: Back_Stutter (Confidence: 0.4018)
+  Probability Distribution:
+    1: 0.4018 (40.18%)
+    0: 0.3070 (30.70%)
+    3: 0.1790 (17.90%)
+    2: 0.1122 (11.22%)
+
+Incorrect Prediction #10:
+  Sample Index: 9
+  Actual Class: Pull_Up
+  Predicted Class: Back_Stutter (Confidence: 0.4018)
+  Probability Distribution:
+    1: 0.4018 (40.18%)
+    0: 0.3070 (30.70%)
+    3: 0.1790 (17.90%)
+    2: 0.1122 (11.22%)
+
+================================================================================
+MODEL: seed_1213_model_svm_smote
+================================================================================
+Total Test Samples: 40
+Correct Predictions: 1
+Incorrect Predictions: 39
+Accuracy: 0.0250
+
+Showing 10 incorrect prediction(s):
+--------------------------------------------------------------------------------
+
+Incorrect Prediction #1:
+  Sample Index: 0
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.3878)
+  Probability Distribution:
+    1: 0.3878 (38.78%)
+    0: 0.2757 (27.57%)
+    3: 0.1698 (16.98%)
+    2: 0.1667 (16.67%)
+
+Incorrect Prediction #2:
+  Sample Index: 1
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.3878)
+  Probability Distribution:
+    1: 0.3878 (38.78%)
+    0: 0.2757 (27.57%)
+    3: 0.1698 (16.98%)
+    2: 0.1667 (16.67%)
+
+Incorrect Prediction #3:
+  Sample Index: 2
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.3878)
+  Probability Distribution:
+    1: 0.3878 (38.78%)
+    0: 0.2757 (27.57%)
+    3: 0.1698 (16.98%)
+    2: 0.1667 (16.67%)
+
+Incorrect Prediction #4:
+  Sample Index: 3
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.3878)
+  Probability Distribution:
+    1: 0.3878 (38.78%)
+    0: 0.2757 (27.57%)
+    3: 0.1698 (16.98%)
+    2: 0.1667 (16.67%)
+
+Incorrect Prediction #5:
+  Sample Index: 4
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.3878)
+  Probability Distribution:
+    1: 0.3878 (38.78%)
+    0: 0.2757 (27.57%)
+    3: 0.1698 (16.98%)
+    2: 0.1667 (16.67%)
+
+Incorrect Prediction #6:
+  Sample Index: 5
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.3878)
+  Probability Distribution:
+    1: 0.3878 (38.78%)
+    0: 0.2757 (27.57%)
+    3: 0.1698 (16.98%)
+    2: 0.1667 (16.67%)
+
+Incorrect Prediction #7:
+  Sample Index: 6
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.3878)
+  Probability Distribution:
+    1: 0.3878 (38.78%)
+    0: 0.2757 (27.57%)
+    3: 0.1698 (16.98%)
+    2: 0.1667 (16.67%)
+
+Incorrect Prediction #8:
+  Sample Index: 7
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.3878)
+  Probability Distribution:
+    1: 0.3878 (38.78%)
+    0: 0.2757 (27.57%)
+    3: 0.1698 (16.98%)
+    2: 0.1667 (16.67%)
+
+Incorrect Prediction #9:
+  Sample Index: 8
+  Actual Class: Pull_Up
+  Predicted Class: Back_Stutter (Confidence: 0.3878)
+  Probability Distribution:
+    1: 0.3878 (38.78%)
+    0: 0.2757 (27.57%)
+    3: 0.1698 (16.98%)
+    2: 0.1667 (16.67%)
+
+Incorrect Prediction #10:
+  Sample Index: 9
+  Actual Class: Pull_Up
+  Predicted Class: Back_Stutter (Confidence: 0.3878)
+  Probability Distribution:
+    1: 0.3878 (38.78%)
+    0: 0.2757 (27.57%)
+    3: 0.1698 (16.98%)
+    2: 0.1667 (16.67%)
+
+================================================================================
+MODEL: seed_123_lgbm_lgbm_randomoversampler
+================================================================================
+Total Test Samples: 40
+Correct Predictions: 38
+Incorrect Predictions: 2
+Accuracy: 0.9500
+
+Showing 2 incorrect prediction(s):
+--------------------------------------------------------------------------------
+
+Incorrect Prediction #1:
+  Sample Index: 7
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.4801)
+  Probability Distribution:
+    3: 0.4801 (48.01%)
+    2: 0.4285 (42.85%)
+    0: 0.0473 (4.73%)
+    1: 0.0441 (4.41%)
+
+Incorrect Prediction #2:
+  Sample Index: 22
+  Actual Class: Allele
+  Predicted Class: Back_Stutter (Confidence: 0.5352)
+  Probability Distribution:
+    1: 0.5352 (53.52%)
+    0: 0.4642 (46.42%)
+    3: 0.0003 (0.03%)
+    2: 0.0002 (0.02%)
+
+================================================================================
+MODEL: seed_123_model_gnb_original
+================================================================================
+Total Test Samples: 40
+Correct Predictions: 37
+Incorrect Predictions: 3
+Accuracy: 0.9250
+
+Showing 3 incorrect prediction(s):
+--------------------------------------------------------------------------------
+
+Incorrect Prediction #1:
+  Sample Index: 0
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 1.0000)
+  Probability Distribution:
+    1: 1.0000 (100.00%)
+    0: 0.0000 (0.00%)
+    2: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+Incorrect Prediction #2:
+  Sample Index: 6
+  Actual Class: Forward_Stutter
+  Predicted Class: Allele (Confidence: 1.0000)
+  Probability Distribution:
+    0: 1.0000 (100.00%)
+    1: 0.0000 (0.00%)
+    2: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+Incorrect Prediction #3:
+  Sample Index: 34
+  Actual Class: Pull_Up
+  Predicted Class: Back_Stutter (Confidence: 1.0000)
+  Probability Distribution:
+    1: 1.0000 (100.00%)
+    0: 0.0000 (0.00%)
+    2: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+================================================================================
+MODEL: seed_123_model_gnb_randomoversampler
+================================================================================
+Total Test Samples: 40
+Correct Predictions: 37
+Incorrect Predictions: 3
+Accuracy: 0.9250
+
+Showing 3 incorrect prediction(s):
+--------------------------------------------------------------------------------
+
+Incorrect Prediction #1:
+  Sample Index: 0
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 1.0000)
+  Probability Distribution:
+    1: 1.0000 (100.00%)
+    0: 0.0000 (0.00%)
+    2: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+Incorrect Prediction #2:
+  Sample Index: 6
+  Actual Class: Forward_Stutter
+  Predicted Class: Allele (Confidence: 1.0000)
+  Probability Distribution:
+    0: 1.0000 (100.00%)
+    1: 0.0000 (0.00%)
+    2: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+Incorrect Prediction #3:
+  Sample Index: 34
+  Actual Class: Pull_Up
+  Predicted Class: Forward_Stutter (Confidence: 1.0000)
+  Probability Distribution:
+    2: 1.0000 (100.00%)
+    0: 0.0000 (0.00%)
+    1: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+================================================================================
+MODEL: seed_123_model_gnb_smote
+================================================================================
+Total Test Samples: 40
+Correct Predictions: 38
+Incorrect Predictions: 2
+Accuracy: 0.9500
+
+Showing 2 incorrect prediction(s):
+--------------------------------------------------------------------------------
+
+Incorrect Prediction #1:
+  Sample Index: 0
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 1.0000)
+  Probability Distribution:
+    1: 1.0000 (100.00%)
+    0: 0.0000 (0.00%)
+    2: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+Incorrect Prediction #2:
+  Sample Index: 6
+  Actual Class: Forward_Stutter
+  Predicted Class: Allele (Confidence: 1.0000)
+  Probability Distribution:
+    0: 1.0000 (100.00%)
+    1: 0.0000 (0.00%)
+    2: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+================================================================================
+MODEL: seed_123_model_svm_original
+================================================================================
+Total Test Samples: 40
+Correct Predictions: 26
+Incorrect Predictions: 14
+Accuracy: 0.6500
+
+Showing 10 incorrect prediction(s):
+--------------------------------------------------------------------------------
+
+Incorrect Prediction #1:
+  Sample Index: 0
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2474)
+  Probability Distribution:
+    1: 0.2917 (29.17%)
+    0: 0.2689 (26.89%)
+    3: 0.2474 (24.74%)
+    2: 0.1921 (19.21%)
+
+Incorrect Prediction #2:
+  Sample Index: 1
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2474)
+  Probability Distribution:
+    1: 0.2917 (29.17%)
+    0: 0.2689 (26.89%)
+    3: 0.2474 (24.74%)
+    2: 0.1921 (19.21%)
+
+Incorrect Prediction #3:
+  Sample Index: 2
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2474)
+  Probability Distribution:
+    1: 0.2917 (29.17%)
+    0: 0.2689 (26.89%)
+    3: 0.2474 (24.74%)
+    2: 0.1921 (19.21%)
+
+Incorrect Prediction #4:
+  Sample Index: 3
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2474)
+  Probability Distribution:
+    1: 0.2917 (29.17%)
+    0: 0.2689 (26.89%)
+    3: 0.2474 (24.74%)
+    2: 0.1921 (19.21%)
+
+Incorrect Prediction #5:
+  Sample Index: 4
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2474)
+  Probability Distribution:
+    1: 0.2917 (29.17%)
+    0: 0.2689 (26.89%)
+    3: 0.2474 (24.74%)
+    2: 0.1921 (19.21%)
+
+Incorrect Prediction #6:
+  Sample Index: 5
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2474)
+  Probability Distribution:
+    1: 0.2917 (29.17%)
+    0: 0.2689 (26.89%)
+    3: 0.2474 (24.74%)
+    2: 0.1921 (19.21%)
+
+Incorrect Prediction #7:
+  Sample Index: 6
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2474)
+  Probability Distribution:
+    1: 0.2917 (29.17%)
+    0: 0.2689 (26.89%)
+    3: 0.2474 (24.74%)
+    2: 0.1921 (19.21%)
+
+Incorrect Prediction #8:
+  Sample Index: 7
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2474)
+  Probability Distribution:
+    1: 0.2917 (29.17%)
+    0: 0.2689 (26.89%)
+    3: 0.2474 (24.74%)
+    2: 0.1921 (19.21%)
+
+Incorrect Prediction #9:
+  Sample Index: 21
+  Actual Class: Allele
+  Predicted Class: Pull_Up (Confidence: 0.2474)
+  Probability Distribution:
+    1: 0.2917 (29.17%)
+    0: 0.2689 (26.89%)
+    3: 0.2474 (24.74%)
+    2: 0.1921 (19.21%)
+
+Incorrect Prediction #10:
+  Sample Index: 22
+  Actual Class: Allele
+  Predicted Class: Pull_Up (Confidence: 0.2474)
+  Probability Distribution:
+    1: 0.2917 (29.17%)
+    0: 0.2689 (26.89%)
+    3: 0.2474 (24.74%)
+    2: 0.1921 (19.21%)
+
+================================================================================
+MODEL: seed_123_model_svm_randomoversampler
+================================================================================
+Total Test Samples: 40
+Correct Predictions: 26
+Incorrect Predictions: 14
+Accuracy: 0.6500
+
+Showing 10 incorrect prediction(s):
+--------------------------------------------------------------------------------
+
+Incorrect Prediction #1:
+  Sample Index: 0
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.3242)
+  Probability Distribution:
+    0: 0.3394 (33.94%)
+    3: 0.3242 (32.42%)
+    1: 0.2316 (23.16%)
+    2: 0.1048 (10.48%)
+
+Incorrect Prediction #2:
+  Sample Index: 1
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.3242)
+  Probability Distribution:
+    0: 0.3394 (33.94%)
+    3: 0.3242 (32.42%)
+    1: 0.2316 (23.16%)
+    2: 0.1048 (10.48%)
+
+Incorrect Prediction #3:
+  Sample Index: 2
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.3242)
+  Probability Distribution:
+    0: 0.3394 (33.94%)
+    3: 0.3242 (32.42%)
+    1: 0.2316 (23.16%)
+    2: 0.1048 (10.48%)
+
+Incorrect Prediction #4:
+  Sample Index: 3
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.3242)
+  Probability Distribution:
+    0: 0.3394 (33.94%)
+    3: 0.3242 (32.42%)
+    1: 0.2316 (23.16%)
+    2: 0.1048 (10.48%)
+
+Incorrect Prediction #5:
+  Sample Index: 4
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.3242)
+  Probability Distribution:
+    0: 0.3394 (33.94%)
+    3: 0.3242 (32.42%)
+    1: 0.2316 (23.16%)
+    2: 0.1048 (10.48%)
+
+Incorrect Prediction #6:
+  Sample Index: 5
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.3242)
+  Probability Distribution:
+    0: 0.3394 (33.94%)
+    3: 0.3242 (32.42%)
+    1: 0.2316 (23.16%)
+    2: 0.1048 (10.48%)
+
+Incorrect Prediction #7:
+  Sample Index: 6
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.3242)
+  Probability Distribution:
+    0: 0.3394 (33.94%)
+    3: 0.3242 (32.42%)
+    1: 0.2316 (23.16%)
+    2: 0.1048 (10.48%)
+
+Incorrect Prediction #8:
+  Sample Index: 7
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.3242)
+  Probability Distribution:
+    0: 0.3394 (33.94%)
+    3: 0.3242 (32.42%)
+    1: 0.2316 (23.16%)
+    2: 0.1048 (10.48%)
+
+Incorrect Prediction #9:
+  Sample Index: 21
+  Actual Class: Allele
+  Predicted Class: Pull_Up (Confidence: 0.3242)
+  Probability Distribution:
+    0: 0.3394 (33.94%)
+    3: 0.3242 (32.42%)
+    1: 0.2316 (23.16%)
+    2: 0.1048 (10.48%)
+
+Incorrect Prediction #10:
+  Sample Index: 22
+  Actual Class: Allele
+  Predicted Class: Pull_Up (Confidence: 0.3242)
+  Probability Distribution:
+    0: 0.3394 (33.94%)
+    3: 0.3242 (32.42%)
+    1: 0.2316 (23.16%)
+    2: 0.1048 (10.48%)
+
+================================================================================
+MODEL: seed_123_model_svm_smote
+================================================================================
+Total Test Samples: 40
+Correct Predictions: 26
+Incorrect Predictions: 14
+Accuracy: 0.6500
+
+Showing 10 incorrect prediction(s):
+--------------------------------------------------------------------------------
+
+Incorrect Prediction #1:
+  Sample Index: 0
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2544)
+  Probability Distribution:
+    0: 0.3407 (34.07%)
+    1: 0.2589 (25.89%)
+    3: 0.2544 (25.44%)
+    2: 0.1460 (14.60%)
+
+Incorrect Prediction #2:
+  Sample Index: 1
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2544)
+  Probability Distribution:
+    0: 0.3407 (34.07%)
+    1: 0.2589 (25.89%)
+    3: 0.2544 (25.44%)
+    2: 0.1460 (14.60%)
+
+Incorrect Prediction #3:
+  Sample Index: 2
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2544)
+  Probability Distribution:
+    0: 0.3407 (34.07%)
+    1: 0.2589 (25.89%)
+    3: 0.2544 (25.44%)
+    2: 0.1460 (14.60%)
+
+Incorrect Prediction #4:
+  Sample Index: 3
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2544)
+  Probability Distribution:
+    0: 0.3407 (34.07%)
+    1: 0.2589 (25.89%)
+    3: 0.2544 (25.44%)
+    2: 0.1460 (14.60%)
+
+Incorrect Prediction #5:
+  Sample Index: 4
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2544)
+  Probability Distribution:
+    0: 0.3407 (34.07%)
+    1: 0.2589 (25.89%)
+    3: 0.2544 (25.44%)
+    2: 0.1460 (14.60%)
+
+Incorrect Prediction #6:
+  Sample Index: 5
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2544)
+  Probability Distribution:
+    0: 0.3407 (34.07%)
+    1: 0.2589 (25.89%)
+    3: 0.2544 (25.44%)
+    2: 0.1460 (14.60%)
+
+Incorrect Prediction #7:
+  Sample Index: 6
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2544)
+  Probability Distribution:
+    0: 0.3407 (34.07%)
+    1: 0.2589 (25.89%)
+    3: 0.2544 (25.44%)
+    2: 0.1460 (14.60%)
+
+Incorrect Prediction #8:
+  Sample Index: 7
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2544)
+  Probability Distribution:
+    0: 0.3407 (34.07%)
+    1: 0.2589 (25.89%)
+    3: 0.2544 (25.44%)
+    2: 0.1460 (14.60%)
+
+Incorrect Prediction #9:
+  Sample Index: 21
+  Actual Class: Allele
+  Predicted Class: Pull_Up (Confidence: 0.2544)
+  Probability Distribution:
+    0: 0.3407 (34.07%)
+    1: 0.2589 (25.89%)
+    3: 0.2544 (25.44%)
+    2: 0.1460 (14.60%)
+
+Incorrect Prediction #10:
+  Sample Index: 22
+  Actual Class: Allele
+  Predicted Class: Pull_Up (Confidence: 0.2544)
+  Probability Distribution:
+    0: 0.3407 (34.07%)
+    1: 0.2589 (25.89%)
+    3: 0.2544 (25.44%)
+    2: 0.1460 (14.60%)
+
+================================================================================
+MODEL: seed_123_model_xgboost_original
+================================================================================
+Total Test Samples: 40
+Correct Predictions: 39
+Incorrect Predictions: 1
+Accuracy: 0.9750
+
+Showing 1 incorrect prediction(s):
+--------------------------------------------------------------------------------
+
+Incorrect Prediction #1:
+  Sample Index: 7
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.3981)
+  Probability Distribution:
+    3: 0.3981 (39.81%)
+    0: 0.2138 (21.38%)
+    2: 0.2083 (20.83%)
+    1: 0.1798 (17.98%)
+
+================================================================================
+MODEL: seed_123_model_xgboost_randomoversampler
+================================================================================
+Total Test Samples: 40
+Correct Predictions: 39
+Incorrect Predictions: 1
+Accuracy: 0.9750
+
+Showing 1 incorrect prediction(s):
+--------------------------------------------------------------------------------
+
+Incorrect Prediction #1:
+  Sample Index: 7
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.4993)
+  Probability Distribution:
+    3: 0.4993 (49.93%)
+    2: 0.1970 (19.70%)
+    1: 0.1524 (15.24%)
+    0: 0.1513 (15.13%)
+
+================================================================================
+MODEL: seed_1415_model_gnb_original
+================================================================================
+Total Test Samples: 40
+Correct Predictions: 39
+Incorrect Predictions: 1
+Accuracy: 0.9750
+
+Showing 1 incorrect prediction(s):
+--------------------------------------------------------------------------------
+
+Incorrect Prediction #1:
+  Sample Index: 0
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 1.0000)
+  Probability Distribution:
+    1: 1.0000 (100.00%)
+    0: 0.0000 (0.00%)
+    2: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+================================================================================
+MODEL: seed_1415_model_gnb_randomoversampler
+================================================================================
+Total Test Samples: 40
+Correct Predictions: 37
+Incorrect Predictions: 3
+Accuracy: 0.9250
+
+Showing 3 incorrect prediction(s):
+--------------------------------------------------------------------------------
+
+Incorrect Prediction #1:
+  Sample Index: 0
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 1.0000)
+  Probability Distribution:
+    1: 1.0000 (100.00%)
+    0: 0.0000 (0.00%)
+    2: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+Incorrect Prediction #2:
+  Sample Index: 6
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 1.0000)
+  Probability Distribution:
+    1: 1.0000 (100.00%)
+    0: 0.0000 (0.00%)
+    2: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+Incorrect Prediction #3:
+  Sample Index: 34
+  Actual Class: Pull_Up
+  Predicted Class: Back_Stutter (Confidence: 1.0000)
+  Probability Distribution:
+    1: 1.0000 (100.00%)
+    0: 0.0000 (0.00%)
+    2: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+================================================================================
+MODEL: seed_1415_model_gnb_smote
+================================================================================
+Total Test Samples: 40
+Correct Predictions: 38
+Incorrect Predictions: 2
+Accuracy: 0.9500
+
+Showing 2 incorrect prediction(s):
+--------------------------------------------------------------------------------
+
+Incorrect Prediction #1:
+  Sample Index: 0
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 1.0000)
+  Probability Distribution:
+    1: 1.0000 (100.00%)
+    0: 0.0000 (0.00%)
+    2: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+Incorrect Prediction #2:
+  Sample Index: 3
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 1.0000)
+  Probability Distribution:
+    1: 1.0000 (100.00%)
+    0: 0.0000 (0.00%)
+    2: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+================================================================================
+MODEL: seed_1415_model_svm_original
+================================================================================
+Total Test Samples: 40
+Correct Predictions: 1
+Incorrect Predictions: 39
+Accuracy: 0.0250
+
+Showing 10 incorrect prediction(s):
+--------------------------------------------------------------------------------
+
+Incorrect Prediction #1:
+  Sample Index: 0
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.3944)
+  Probability Distribution:
+    1: 0.3944 (39.44%)
+    2: 0.2538 (25.38%)
+    0: 0.2072 (20.72%)
+    3: 0.1446 (14.46%)
+
+Incorrect Prediction #2:
+  Sample Index: 1
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.3944)
+  Probability Distribution:
+    1: 0.3944 (39.44%)
+    2: 0.2538 (25.38%)
+    0: 0.2072 (20.72%)
+    3: 0.1446 (14.46%)
+
+Incorrect Prediction #3:
+  Sample Index: 2
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.3944)
+  Probability Distribution:
+    1: 0.3944 (39.44%)
+    2: 0.2538 (25.38%)
+    0: 0.2072 (20.72%)
+    3: 0.1446 (14.46%)
+
+Incorrect Prediction #4:
+  Sample Index: 3
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.3944)
+  Probability Distribution:
+    1: 0.3944 (39.44%)
+    2: 0.2538 (25.38%)
+    0: 0.2072 (20.72%)
+    3: 0.1446 (14.46%)
+
+Incorrect Prediction #5:
+  Sample Index: 4
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.3944)
+  Probability Distribution:
+    1: 0.3944 (39.44%)
+    2: 0.2538 (25.38%)
+    0: 0.2072 (20.72%)
+    3: 0.1446 (14.46%)
+
+Incorrect Prediction #6:
+  Sample Index: 5
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.3944)
+  Probability Distribution:
+    1: 0.3944 (39.44%)
+    2: 0.2538 (25.38%)
+    0: 0.2072 (20.72%)
+    3: 0.1446 (14.46%)
+
+Incorrect Prediction #7:
+  Sample Index: 6
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.3944)
+  Probability Distribution:
+    1: 0.3944 (39.44%)
+    2: 0.2538 (25.38%)
+    0: 0.2072 (20.72%)
+    3: 0.1446 (14.46%)
+
+Incorrect Prediction #8:
+  Sample Index: 7
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.3944)
+  Probability Distribution:
+    1: 0.3944 (39.44%)
+    2: 0.2538 (25.38%)
+    0: 0.2072 (20.72%)
+    3: 0.1446 (14.46%)
+
+Incorrect Prediction #9:
+  Sample Index: 8
+  Actual Class: Pull_Up
+  Predicted Class: Back_Stutter (Confidence: 0.3944)
+  Probability Distribution:
+    1: 0.3944 (39.44%)
+    2: 0.2538 (25.38%)
+    0: 0.2072 (20.72%)
+    3: 0.1446 (14.46%)
+
+Incorrect Prediction #10:
+  Sample Index: 9
+  Actual Class: Pull_Up
+  Predicted Class: Back_Stutter (Confidence: 0.3944)
+  Probability Distribution:
+    1: 0.3944 (39.44%)
+    2: 0.2538 (25.38%)
+    0: 0.2072 (20.72%)
+    3: 0.1446 (14.46%)
+
+================================================================================
+MODEL: seed_1415_model_svm_randomoversampler
+================================================================================
+Total Test Samples: 40
+Correct Predictions: 26
+Incorrect Predictions: 14
+Accuracy: 0.6500
+
+Showing 10 incorrect prediction(s):
+--------------------------------------------------------------------------------
+
+Incorrect Prediction #1:
+  Sample Index: 0
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2101)
+  Probability Distribution:
+    0: 0.3703 (37.03%)
+    1: 0.3219 (32.19%)
+    3: 0.2101 (21.01%)
+    2: 0.0977 (9.77%)
+
+Incorrect Prediction #2:
+  Sample Index: 1
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2101)
+  Probability Distribution:
+    0: 0.3703 (37.03%)
+    1: 0.3219 (32.19%)
+    3: 0.2101 (21.01%)
+    2: 0.0977 (9.77%)
+
+Incorrect Prediction #3:
+  Sample Index: 2
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2101)
+  Probability Distribution:
+    0: 0.3703 (37.03%)
+    1: 0.3219 (32.19%)
+    3: 0.2101 (21.01%)
+    2: 0.0977 (9.77%)
+
+Incorrect Prediction #4:
+  Sample Index: 3
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2101)
+  Probability Distribution:
+    0: 0.3703 (37.03%)
+    1: 0.3219 (32.19%)
+    3: 0.2101 (21.01%)
+    2: 0.0977 (9.77%)
+
+Incorrect Prediction #5:
+  Sample Index: 4
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2101)
+  Probability Distribution:
+    0: 0.3703 (37.03%)
+    1: 0.3219 (32.19%)
+    3: 0.2101 (21.01%)
+    2: 0.0977 (9.77%)
+
+Incorrect Prediction #6:
+  Sample Index: 5
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2101)
+  Probability Distribution:
+    0: 0.3703 (37.03%)
+    1: 0.3219 (32.19%)
+    3: 0.2101 (21.01%)
+    2: 0.0977 (9.77%)
+
+Incorrect Prediction #7:
+  Sample Index: 6
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2101)
+  Probability Distribution:
+    0: 0.3703 (37.03%)
+    1: 0.3219 (32.19%)
+    3: 0.2101 (21.01%)
+    2: 0.0977 (9.77%)
+
+Incorrect Prediction #8:
+  Sample Index: 7
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2101)
+  Probability Distribution:
+    0: 0.3703 (37.03%)
+    1: 0.3219 (32.19%)
+    3: 0.2101 (21.01%)
+    2: 0.0977 (9.77%)
+
+Incorrect Prediction #9:
+  Sample Index: 21
+  Actual Class: Allele
+  Predicted Class: Pull_Up (Confidence: 0.2101)
+  Probability Distribution:
+    0: 0.3703 (37.03%)
+    1: 0.3219 (32.19%)
+    3: 0.2101 (21.01%)
+    2: 0.0977 (9.77%)
+
+Incorrect Prediction #10:
+  Sample Index: 22
+  Actual Class: Allele
+  Predicted Class: Pull_Up (Confidence: 0.2101)
+  Probability Distribution:
+    0: 0.3703 (37.03%)
+    1: 0.3219 (32.19%)
+    3: 0.2101 (21.01%)
+    2: 0.0977 (9.77%)
+
+================================================================================
+MODEL: seed_1415_model_svm_smote
+================================================================================
+Total Test Samples: 40
+Correct Predictions: 1
+Incorrect Predictions: 39
+Accuracy: 0.0250
+
+Showing 10 incorrect prediction(s):
+--------------------------------------------------------------------------------
+
+Incorrect Prediction #1:
+  Sample Index: 0
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.3457)
+  Probability Distribution:
+    1: 0.3457 (34.57%)
+    0: 0.2811 (28.11%)
+    2: 0.2053 (20.53%)
+    3: 0.1678 (16.78%)
+
+Incorrect Prediction #2:
+  Sample Index: 1
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.3457)
+  Probability Distribution:
+    1: 0.3457 (34.57%)
+    0: 0.2811 (28.11%)
+    2: 0.2053 (20.53%)
+    3: 0.1678 (16.78%)
+
+Incorrect Prediction #3:
+  Sample Index: 2
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.3457)
+  Probability Distribution:
+    1: 0.3457 (34.57%)
+    0: 0.2811 (28.11%)
+    2: 0.2053 (20.53%)
+    3: 0.1678 (16.78%)
+
+Incorrect Prediction #4:
+  Sample Index: 3
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.3457)
+  Probability Distribution:
+    1: 0.3457 (34.57%)
+    0: 0.2811 (28.11%)
+    2: 0.2053 (20.53%)
+    3: 0.1678 (16.78%)
+
+Incorrect Prediction #5:
+  Sample Index: 4
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.3457)
+  Probability Distribution:
+    1: 0.3457 (34.57%)
+    0: 0.2811 (28.11%)
+    2: 0.2053 (20.53%)
+    3: 0.1678 (16.78%)
+
+Incorrect Prediction #6:
+  Sample Index: 5
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.3457)
+  Probability Distribution:
+    1: 0.3457 (34.57%)
+    0: 0.2811 (28.11%)
+    2: 0.2053 (20.53%)
+    3: 0.1678 (16.78%)
+
+Incorrect Prediction #7:
+  Sample Index: 6
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.3457)
+  Probability Distribution:
+    1: 0.3457 (34.57%)
+    0: 0.2811 (28.11%)
+    2: 0.2053 (20.53%)
+    3: 0.1678 (16.78%)
+
+Incorrect Prediction #8:
+  Sample Index: 7
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.3457)
+  Probability Distribution:
+    1: 0.3457 (34.57%)
+    0: 0.2811 (28.11%)
+    2: 0.2053 (20.53%)
+    3: 0.1678 (16.78%)
+
+Incorrect Prediction #9:
+  Sample Index: 8
+  Actual Class: Pull_Up
+  Predicted Class: Back_Stutter (Confidence: 0.3457)
+  Probability Distribution:
+    1: 0.3457 (34.57%)
+    0: 0.2811 (28.11%)
+    2: 0.2053 (20.53%)
+    3: 0.1678 (16.78%)
+
+Incorrect Prediction #10:
+  Sample Index: 9
+  Actual Class: Pull_Up
+  Predicted Class: Back_Stutter (Confidence: 0.3457)
+  Probability Distribution:
+    1: 0.3457 (34.57%)
+    0: 0.2811 (28.11%)
+    2: 0.2053 (20.53%)
+    3: 0.1678 (16.78%)
+
+================================================================================
+MODEL: seed_1617_model_gnb_original
+================================================================================
+Total Test Samples: 40
+Correct Predictions: 39
+Incorrect Predictions: 1
+Accuracy: 0.9750
+
+Showing 1 incorrect prediction(s):
+--------------------------------------------------------------------------------
+
+Incorrect Prediction #1:
+  Sample Index: 0
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 1.0000)
+  Probability Distribution:
+    1: 1.0000 (100.00%)
+    0: 0.0000 (0.00%)
+    2: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+================================================================================
+MODEL: seed_1617_model_gnb_smote
+================================================================================
+Total Test Samples: 40
+Correct Predictions: 36
+Incorrect Predictions: 4
+Accuracy: 0.9000
+
+Showing 4 incorrect prediction(s):
+--------------------------------------------------------------------------------
+
+Incorrect Prediction #1:
+  Sample Index: 0
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 1.0000)
+  Probability Distribution:
+    1: 1.0000 (100.00%)
+    0: 0.0000 (0.00%)
+    2: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+Incorrect Prediction #2:
+  Sample Index: 2
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 1.0000)
+  Probability Distribution:
+    1: 1.0000 (100.00%)
+    0: 0.0000 (0.00%)
+    2: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+Incorrect Prediction #3:
+  Sample Index: 3
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 1.0000)
+  Probability Distribution:
+    1: 1.0000 (100.00%)
+    0: 0.0000 (0.00%)
+    2: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+Incorrect Prediction #4:
+  Sample Index: 4
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 1.0000)
+  Probability Distribution:
+    1: 1.0000 (100.00%)
+    0: 0.0000 (0.00%)
+    2: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+================================================================================
+MODEL: seed_1617_model_svm_original
+================================================================================
+Total Test Samples: 40
+Correct Predictions: 1
+Incorrect Predictions: 39
+Accuracy: 0.0250
+
+Showing 10 incorrect prediction(s):
+--------------------------------------------------------------------------------
+
+Incorrect Prediction #1:
+  Sample Index: 0
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.3713)
+  Probability Distribution:
+    1: 0.3713 (37.13%)
+    0: 0.2281 (22.81%)
+    3: 0.2171 (21.71%)
+    2: 0.1835 (18.35%)
+
+Incorrect Prediction #2:
+  Sample Index: 1
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.3713)
+  Probability Distribution:
+    1: 0.3713 (37.13%)
+    0: 0.2281 (22.81%)
+    3: 0.2171 (21.71%)
+    2: 0.1835 (18.35%)
+
+Incorrect Prediction #3:
+  Sample Index: 2
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.3713)
+  Probability Distribution:
+    1: 0.3713 (37.13%)
+    0: 0.2281 (22.81%)
+    3: 0.2171 (21.71%)
+    2: 0.1835 (18.35%)
+
+Incorrect Prediction #4:
+  Sample Index: 3
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.3713)
+  Probability Distribution:
+    1: 0.3713 (37.13%)
+    0: 0.2281 (22.81%)
+    3: 0.2171 (21.71%)
+    2: 0.1835 (18.35%)
+
+Incorrect Prediction #5:
+  Sample Index: 4
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.3713)
+  Probability Distribution:
+    1: 0.3713 (37.13%)
+    0: 0.2281 (22.81%)
+    3: 0.2171 (21.71%)
+    2: 0.1835 (18.35%)
+
+Incorrect Prediction #6:
+  Sample Index: 5
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.3713)
+  Probability Distribution:
+    1: 0.3713 (37.13%)
+    0: 0.2281 (22.81%)
+    3: 0.2171 (21.71%)
+    2: 0.1835 (18.35%)
+
+Incorrect Prediction #7:
+  Sample Index: 6
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.3713)
+  Probability Distribution:
+    1: 0.3713 (37.13%)
+    0: 0.2281 (22.81%)
+    3: 0.2171 (21.71%)
+    2: 0.1835 (18.35%)
+
+Incorrect Prediction #8:
+  Sample Index: 7
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.3713)
+  Probability Distribution:
+    1: 0.3713 (37.13%)
+    0: 0.2281 (22.81%)
+    3: 0.2171 (21.71%)
+    2: 0.1835 (18.35%)
+
+Incorrect Prediction #9:
+  Sample Index: 8
+  Actual Class: Pull_Up
+  Predicted Class: Back_Stutter (Confidence: 0.3713)
+  Probability Distribution:
+    1: 0.3713 (37.13%)
+    0: 0.2281 (22.81%)
+    3: 0.2171 (21.71%)
+    2: 0.1835 (18.35%)
+
+Incorrect Prediction #10:
+  Sample Index: 9
+  Actual Class: Pull_Up
+  Predicted Class: Back_Stutter (Confidence: 0.3713)
+  Probability Distribution:
+    1: 0.3713 (37.13%)
+    0: 0.2281 (22.81%)
+    3: 0.2171 (21.71%)
+    2: 0.1835 (18.35%)
+
+================================================================================
+MODEL: seed_1617_model_svm_randomoversampler
+================================================================================
+Total Test Samples: 40
+Correct Predictions: 26
+Incorrect Predictions: 14
+Accuracy: 0.6500
+
+Showing 10 incorrect prediction(s):
+--------------------------------------------------------------------------------
+
+Incorrect Prediction #1:
+  Sample Index: 0
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.3793)
+  Probability Distribution:
+    3: 0.3793 (37.93%)
+    1: 0.2890 (28.90%)
+    0: 0.2374 (23.74%)
+    2: 0.0943 (9.43%)
+
+Incorrect Prediction #2:
+  Sample Index: 1
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.3793)
+  Probability Distribution:
+    3: 0.3793 (37.93%)
+    1: 0.2890 (28.90%)
+    0: 0.2374 (23.74%)
+    2: 0.0943 (9.43%)
+
+Incorrect Prediction #3:
+  Sample Index: 2
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.3793)
+  Probability Distribution:
+    3: 0.3793 (37.93%)
+    1: 0.2890 (28.90%)
+    0: 0.2374 (23.74%)
+    2: 0.0943 (9.43%)
+
+Incorrect Prediction #4:
+  Sample Index: 3
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.3793)
+  Probability Distribution:
+    3: 0.3793 (37.93%)
+    1: 0.2890 (28.90%)
+    0: 0.2374 (23.74%)
+    2: 0.0943 (9.43%)
+
+Incorrect Prediction #5:
+  Sample Index: 4
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.3793)
+  Probability Distribution:
+    3: 0.3793 (37.93%)
+    1: 0.2890 (28.90%)
+    0: 0.2374 (23.74%)
+    2: 0.0943 (9.43%)
+
+Incorrect Prediction #6:
+  Sample Index: 5
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.3793)
+  Probability Distribution:
+    3: 0.3793 (37.93%)
+    1: 0.2890 (28.90%)
+    0: 0.2374 (23.74%)
+    2: 0.0943 (9.43%)
+
+Incorrect Prediction #7:
+  Sample Index: 6
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.3793)
+  Probability Distribution:
+    3: 0.3793 (37.93%)
+    1: 0.2890 (28.90%)
+    0: 0.2374 (23.74%)
+    2: 0.0943 (9.43%)
+
+Incorrect Prediction #8:
+  Sample Index: 7
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.3793)
+  Probability Distribution:
+    3: 0.3793 (37.93%)
+    1: 0.2890 (28.90%)
+    0: 0.2374 (23.74%)
+    2: 0.0943 (9.43%)
+
+Incorrect Prediction #9:
+  Sample Index: 21
+  Actual Class: Allele
+  Predicted Class: Pull_Up (Confidence: 0.3793)
+  Probability Distribution:
+    3: 0.3793 (37.93%)
+    1: 0.2890 (28.90%)
+    0: 0.2374 (23.74%)
+    2: 0.0943 (9.43%)
+
+Incorrect Prediction #10:
+  Sample Index: 22
+  Actual Class: Allele
+  Predicted Class: Pull_Up (Confidence: 0.3793)
+  Probability Distribution:
+    3: 0.3793 (37.93%)
+    1: 0.2890 (28.90%)
+    0: 0.2374 (23.74%)
+    2: 0.0943 (9.43%)
+
+================================================================================
+MODEL: seed_1617_model_svm_smote
+================================================================================
+Total Test Samples: 40
+Correct Predictions: 26
+Incorrect Predictions: 14
+Accuracy: 0.6500
+
+Showing 10 incorrect prediction(s):
+--------------------------------------------------------------------------------
+
+Incorrect Prediction #1:
+  Sample Index: 0
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2554)
+  Probability Distribution:
+    1: 0.3497 (34.97%)
+    0: 0.2832 (28.32%)
+    3: 0.2554 (25.54%)
+    2: 0.1117 (11.17%)
+
+Incorrect Prediction #2:
+  Sample Index: 1
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2554)
+  Probability Distribution:
+    1: 0.3497 (34.97%)
+    0: 0.2832 (28.32%)
+    3: 0.2554 (25.54%)
+    2: 0.1117 (11.17%)
+
+Incorrect Prediction #3:
+  Sample Index: 2
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2554)
+  Probability Distribution:
+    1: 0.3497 (34.97%)
+    0: 0.2832 (28.32%)
+    3: 0.2554 (25.54%)
+    2: 0.1117 (11.17%)
+
+Incorrect Prediction #4:
+  Sample Index: 3
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2554)
+  Probability Distribution:
+    1: 0.3497 (34.97%)
+    0: 0.2832 (28.32%)
+    3: 0.2554 (25.54%)
+    2: 0.1117 (11.17%)
+
+Incorrect Prediction #5:
+  Sample Index: 4
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2554)
+  Probability Distribution:
+    1: 0.3497 (34.97%)
+    0: 0.2832 (28.32%)
+    3: 0.2554 (25.54%)
+    2: 0.1117 (11.17%)
+
+Incorrect Prediction #6:
+  Sample Index: 5
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2554)
+  Probability Distribution:
+    1: 0.3497 (34.97%)
+    0: 0.2832 (28.32%)
+    3: 0.2554 (25.54%)
+    2: 0.1117 (11.17%)
+
+Incorrect Prediction #7:
+  Sample Index: 6
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2554)
+  Probability Distribution:
+    1: 0.3497 (34.97%)
+    0: 0.2832 (28.32%)
+    3: 0.2554 (25.54%)
+    2: 0.1117 (11.17%)
+
+Incorrect Prediction #8:
+  Sample Index: 7
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2554)
+  Probability Distribution:
+    1: 0.3497 (34.97%)
+    0: 0.2832 (28.32%)
+    3: 0.2554 (25.54%)
+    2: 0.1117 (11.17%)
+
+Incorrect Prediction #9:
+  Sample Index: 21
+  Actual Class: Allele
+  Predicted Class: Pull_Up (Confidence: 0.2554)
+  Probability Distribution:
+    1: 0.3497 (34.97%)
+    0: 0.2832 (28.32%)
+    3: 0.2554 (25.54%)
+    2: 0.1117 (11.17%)
+
+Incorrect Prediction #10:
+  Sample Index: 22
+  Actual Class: Allele
+  Predicted Class: Pull_Up (Confidence: 0.2554)
+  Probability Distribution:
+    1: 0.3497 (34.97%)
+    0: 0.2832 (28.32%)
+    3: 0.2554 (25.54%)
+    2: 0.1117 (11.17%)
+
+================================================================================
+MODEL: seed_1819_model_gnb_original
+================================================================================
+Total Test Samples: 40
+Correct Predictions: 39
+Incorrect Predictions: 1
+Accuracy: 0.9750
+
+Showing 1 incorrect prediction(s):
+--------------------------------------------------------------------------------
+
+Incorrect Prediction #1:
+  Sample Index: 0
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 1.0000)
+  Probability Distribution:
+    1: 1.0000 (100.00%)
+    0: 0.0000 (0.00%)
+    2: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+================================================================================
+MODEL: seed_1819_model_gnb_randomoversampler
+================================================================================
+Total Test Samples: 40
+Correct Predictions: 39
+Incorrect Predictions: 1
+Accuracy: 0.9750
+
+Showing 1 incorrect prediction(s):
+--------------------------------------------------------------------------------
+
+Incorrect Prediction #1:
+  Sample Index: 0
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 1.0000)
+  Probability Distribution:
+    1: 1.0000 (100.00%)
+    0: 0.0000 (0.00%)
+    2: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+================================================================================
+MODEL: seed_1819_model_gnb_smote
+================================================================================
+Total Test Samples: 40
+Correct Predictions: 38
+Incorrect Predictions: 2
+Accuracy: 0.9500
+
+Showing 2 incorrect prediction(s):
+--------------------------------------------------------------------------------
+
+Incorrect Prediction #1:
+  Sample Index: 0
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 1.0000)
+  Probability Distribution:
+    1: 1.0000 (100.00%)
+    0: 0.0000 (0.00%)
+    2: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+Incorrect Prediction #2:
+  Sample Index: 6
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 1.0000)
+  Probability Distribution:
+    1: 1.0000 (100.00%)
+    0: 0.0000 (0.00%)
+    2: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+================================================================================
+MODEL: seed_1819_model_svm_original
+================================================================================
+Total Test Samples: 40
+Correct Predictions: 26
+Incorrect Predictions: 14
+Accuracy: 0.6500
+
+Showing 10 incorrect prediction(s):
+--------------------------------------------------------------------------------
+
+Incorrect Prediction #1:
+  Sample Index: 0
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2287)
+  Probability Distribution:
+    2: 0.2986 (29.86%)
+    1: 0.2789 (27.89%)
+    3: 0.2287 (22.87%)
+    0: 0.1939 (19.39%)
+
+Incorrect Prediction #2:
+  Sample Index: 1
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2287)
+  Probability Distribution:
+    2: 0.2986 (29.86%)
+    1: 0.2789 (27.89%)
+    3: 0.2287 (22.87%)
+    0: 0.1939 (19.39%)
+
+Incorrect Prediction #3:
+  Sample Index: 2
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2287)
+  Probability Distribution:
+    2: 0.2986 (29.86%)
+    1: 0.2789 (27.89%)
+    3: 0.2287 (22.87%)
+    0: 0.1939 (19.39%)
+
+Incorrect Prediction #4:
+  Sample Index: 3
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2287)
+  Probability Distribution:
+    2: 0.2986 (29.86%)
+    1: 0.2789 (27.89%)
+    3: 0.2287 (22.87%)
+    0: 0.1939 (19.39%)
+
+Incorrect Prediction #5:
+  Sample Index: 4
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2287)
+  Probability Distribution:
+    2: 0.2986 (29.86%)
+    1: 0.2789 (27.89%)
+    3: 0.2287 (22.87%)
+    0: 0.1939 (19.39%)
+
+Incorrect Prediction #6:
+  Sample Index: 5
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2287)
+  Probability Distribution:
+    2: 0.2986 (29.86%)
+    1: 0.2789 (27.89%)
+    3: 0.2287 (22.87%)
+    0: 0.1939 (19.39%)
+
+Incorrect Prediction #7:
+  Sample Index: 6
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2287)
+  Probability Distribution:
+    2: 0.2986 (29.86%)
+    1: 0.2789 (27.89%)
+    3: 0.2287 (22.87%)
+    0: 0.1939 (19.39%)
+
+Incorrect Prediction #8:
+  Sample Index: 7
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2287)
+  Probability Distribution:
+    2: 0.2986 (29.86%)
+    1: 0.2789 (27.89%)
+    3: 0.2287 (22.87%)
+    0: 0.1939 (19.39%)
+
+Incorrect Prediction #9:
+  Sample Index: 21
+  Actual Class: Allele
+  Predicted Class: Pull_Up (Confidence: 0.2287)
+  Probability Distribution:
+    2: 0.2986 (29.86%)
+    1: 0.2789 (27.89%)
+    3: 0.2287 (22.87%)
+    0: 0.1939 (19.39%)
+
+Incorrect Prediction #10:
+  Sample Index: 22
+  Actual Class: Allele
+  Predicted Class: Pull_Up (Confidence: 0.2287)
+  Probability Distribution:
+    2: 0.2986 (29.86%)
+    1: 0.2789 (27.89%)
+    3: 0.2287 (22.87%)
+    0: 0.1939 (19.39%)
+
+================================================================================
+MODEL: seed_1819_model_svm_randomoversampler
+================================================================================
+Total Test Samples: 40
+Correct Predictions: 26
+Incorrect Predictions: 14
+Accuracy: 0.6500
+
+Showing 10 incorrect prediction(s):
+--------------------------------------------------------------------------------
+
+Incorrect Prediction #1:
+  Sample Index: 0
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.3461)
+  Probability Distribution:
+    3: 0.3461 (34.61%)
+    0: 0.2841 (28.41%)
+    1: 0.2121 (21.21%)
+    2: 0.1577 (15.77%)
+
+Incorrect Prediction #2:
+  Sample Index: 1
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.3461)
+  Probability Distribution:
+    3: 0.3461 (34.61%)
+    0: 0.2841 (28.41%)
+    1: 0.2121 (21.21%)
+    2: 0.1577 (15.77%)
+
+Incorrect Prediction #3:
+  Sample Index: 2
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.3461)
+  Probability Distribution:
+    3: 0.3461 (34.61%)
+    0: 0.2841 (28.41%)
+    1: 0.2121 (21.21%)
+    2: 0.1577 (15.77%)
+
+Incorrect Prediction #4:
+  Sample Index: 3
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.3461)
+  Probability Distribution:
+    3: 0.3461 (34.61%)
+    0: 0.2841 (28.41%)
+    1: 0.2121 (21.21%)
+    2: 0.1577 (15.77%)
+
+Incorrect Prediction #5:
+  Sample Index: 4
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.3461)
+  Probability Distribution:
+    3: 0.3461 (34.61%)
+    0: 0.2841 (28.41%)
+    1: 0.2121 (21.21%)
+    2: 0.1577 (15.77%)
+
+Incorrect Prediction #6:
+  Sample Index: 5
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.3461)
+  Probability Distribution:
+    3: 0.3461 (34.61%)
+    0: 0.2841 (28.41%)
+    1: 0.2121 (21.21%)
+    2: 0.1577 (15.77%)
+
+Incorrect Prediction #7:
+  Sample Index: 6
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.3461)
+  Probability Distribution:
+    3: 0.3461 (34.61%)
+    0: 0.2841 (28.41%)
+    1: 0.2121 (21.21%)
+    2: 0.1577 (15.77%)
+
+Incorrect Prediction #8:
+  Sample Index: 7
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.3461)
+  Probability Distribution:
+    3: 0.3461 (34.61%)
+    0: 0.2841 (28.41%)
+    1: 0.2121 (21.21%)
+    2: 0.1577 (15.77%)
+
+Incorrect Prediction #9:
+  Sample Index: 21
+  Actual Class: Allele
+  Predicted Class: Pull_Up (Confidence: 0.3461)
+  Probability Distribution:
+    3: 0.3461 (34.61%)
+    0: 0.2841 (28.41%)
+    1: 0.2121 (21.21%)
+    2: 0.1577 (15.77%)
+
+Incorrect Prediction #10:
+  Sample Index: 22
+  Actual Class: Allele
+  Predicted Class: Pull_Up (Confidence: 0.3461)
+  Probability Distribution:
+    3: 0.3461 (34.61%)
+    0: 0.2841 (28.41%)
+    1: 0.2121 (21.21%)
+    2: 0.1577 (15.77%)
+
+================================================================================
+MODEL: seed_1819_model_svm_smote
+================================================================================
+Total Test Samples: 40
+Correct Predictions: 26
+Incorrect Predictions: 14
+Accuracy: 0.6500
+
+Showing 10 incorrect prediction(s):
+--------------------------------------------------------------------------------
+
+Incorrect Prediction #1:
+  Sample Index: 0
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2761)
+  Probability Distribution:
+    3: 0.2761 (27.61%)
+    0: 0.2758 (27.58%)
+    2: 0.2399 (23.99%)
+    1: 0.2082 (20.82%)
+
+Incorrect Prediction #2:
+  Sample Index: 1
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2761)
+  Probability Distribution:
+    3: 0.2761 (27.61%)
+    0: 0.2758 (27.58%)
+    2: 0.2399 (23.99%)
+    1: 0.2082 (20.82%)
+
+Incorrect Prediction #3:
+  Sample Index: 2
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2761)
+  Probability Distribution:
+    3: 0.2761 (27.61%)
+    0: 0.2758 (27.58%)
+    2: 0.2399 (23.99%)
+    1: 0.2082 (20.82%)
+
+Incorrect Prediction #4:
+  Sample Index: 3
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2761)
+  Probability Distribution:
+    3: 0.2761 (27.61%)
+    0: 0.2758 (27.58%)
+    2: 0.2399 (23.99%)
+    1: 0.2082 (20.82%)
+
+Incorrect Prediction #5:
+  Sample Index: 4
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2761)
+  Probability Distribution:
+    3: 0.2761 (27.61%)
+    0: 0.2758 (27.58%)
+    2: 0.2399 (23.99%)
+    1: 0.2082 (20.82%)
+
+Incorrect Prediction #6:
+  Sample Index: 5
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2761)
+  Probability Distribution:
+    3: 0.2761 (27.61%)
+    0: 0.2758 (27.58%)
+    2: 0.2399 (23.99%)
+    1: 0.2082 (20.82%)
+
+Incorrect Prediction #7:
+  Sample Index: 6
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2761)
+  Probability Distribution:
+    3: 0.2761 (27.61%)
+    0: 0.2758 (27.58%)
+    2: 0.2399 (23.99%)
+    1: 0.2082 (20.82%)
+
+Incorrect Prediction #8:
+  Sample Index: 7
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2761)
+  Probability Distribution:
+    3: 0.2761 (27.61%)
+    0: 0.2758 (27.58%)
+    2: 0.2399 (23.99%)
+    1: 0.2082 (20.82%)
+
+Incorrect Prediction #9:
+  Sample Index: 21
+  Actual Class: Allele
+  Predicted Class: Pull_Up (Confidence: 0.2761)
+  Probability Distribution:
+    3: 0.2761 (27.61%)
+    0: 0.2758 (27.58%)
+    2: 0.2399 (23.99%)
+    1: 0.2082 (20.82%)
+
+Incorrect Prediction #10:
+  Sample Index: 22
+  Actual Class: Allele
+  Predicted Class: Pull_Up (Confidence: 0.2761)
+  Probability Distribution:
+    3: 0.2761 (27.61%)
+    0: 0.2758 (27.58%)
+    2: 0.2399 (23.99%)
+    1: 0.2082 (20.82%)
+
+================================================================================
+MODEL: seed_2021_model_gnb_original
+================================================================================
+Total Test Samples: 40
+Correct Predictions: 39
+Incorrect Predictions: 1
+Accuracy: 0.9750
+
+Showing 1 incorrect prediction(s):
+--------------------------------------------------------------------------------
+
+Incorrect Prediction #1:
+  Sample Index: 0
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 1.0000)
+  Probability Distribution:
+    1: 1.0000 (100.00%)
+    0: 0.0000 (0.00%)
+    2: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+================================================================================
+MODEL: seed_2021_model_gnb_randomoversampler
+================================================================================
+Total Test Samples: 40
+Correct Predictions: 39
+Incorrect Predictions: 1
+Accuracy: 0.9750
+
+Showing 1 incorrect prediction(s):
+--------------------------------------------------------------------------------
+
+Incorrect Prediction #1:
+  Sample Index: 6
+  Actual Class: Forward_Stutter
+  Predicted Class: Allele (Confidence: 1.0000)
+  Probability Distribution:
+    0: 1.0000 (100.00%)
+    1: 0.0000 (0.00%)
+    2: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+================================================================================
+MODEL: seed_2021_model_gnb_smote
+================================================================================
+Total Test Samples: 40
+Correct Predictions: 38
+Incorrect Predictions: 2
+Accuracy: 0.9500
+
+Showing 2 incorrect prediction(s):
+--------------------------------------------------------------------------------
+
+Incorrect Prediction #1:
+  Sample Index: 0
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 1.0000)
+  Probability Distribution:
+    1: 1.0000 (100.00%)
+    0: 0.0000 (0.00%)
+    2: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+Incorrect Prediction #2:
+  Sample Index: 6
+  Actual Class: Forward_Stutter
+  Predicted Class: Allele (Confidence: 1.0000)
+  Probability Distribution:
+    0: 1.0000 (100.00%)
+    1: 0.0000 (0.00%)
+    2: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+================================================================================
+MODEL: seed_2021_model_svm_original
+================================================================================
+Total Test Samples: 40
+Correct Predictions: 26
+Incorrect Predictions: 14
+Accuracy: 0.6500
+
+Showing 10 incorrect prediction(s):
+--------------------------------------------------------------------------------
+
+Incorrect Prediction #1:
+  Sample Index: 0
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2524)
+  Probability Distribution:
+    2: 0.2934 (29.34%)
+    3: 0.2524 (25.24%)
+    1: 0.2397 (23.97%)
+    0: 0.2145 (21.45%)
+
+Incorrect Prediction #2:
+  Sample Index: 1
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2524)
+  Probability Distribution:
+    2: 0.2934 (29.34%)
+    3: 0.2524 (25.24%)
+    1: 0.2397 (23.97%)
+    0: 0.2145 (21.45%)
+
+Incorrect Prediction #3:
+  Sample Index: 2
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2524)
+  Probability Distribution:
+    2: 0.2934 (29.34%)
+    3: 0.2524 (25.24%)
+    1: 0.2397 (23.97%)
+    0: 0.2145 (21.45%)
+
+Incorrect Prediction #4:
+  Sample Index: 3
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2524)
+  Probability Distribution:
+    2: 0.2934 (29.34%)
+    3: 0.2524 (25.24%)
+    1: 0.2397 (23.97%)
+    0: 0.2145 (21.45%)
+
+Incorrect Prediction #5:
+  Sample Index: 4
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2524)
+  Probability Distribution:
+    2: 0.2934 (29.34%)
+    3: 0.2524 (25.24%)
+    1: 0.2397 (23.97%)
+    0: 0.2145 (21.45%)
+
+Incorrect Prediction #6:
+  Sample Index: 5
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2524)
+  Probability Distribution:
+    2: 0.2934 (29.34%)
+    3: 0.2524 (25.24%)
+    1: 0.2397 (23.97%)
+    0: 0.2145 (21.45%)
+
+Incorrect Prediction #7:
+  Sample Index: 6
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2524)
+  Probability Distribution:
+    2: 0.2934 (29.34%)
+    3: 0.2524 (25.24%)
+    1: 0.2397 (23.97%)
+    0: 0.2145 (21.45%)
+
+Incorrect Prediction #8:
+  Sample Index: 7
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2524)
+  Probability Distribution:
+    2: 0.2934 (29.34%)
+    3: 0.2524 (25.24%)
+    1: 0.2397 (23.97%)
+    0: 0.2145 (21.45%)
+
+Incorrect Prediction #9:
+  Sample Index: 21
+  Actual Class: Allele
+  Predicted Class: Pull_Up (Confidence: 0.2524)
+  Probability Distribution:
+    2: 0.2934 (29.34%)
+    3: 0.2524 (25.24%)
+    1: 0.2397 (23.97%)
+    0: 0.2145 (21.45%)
+
+Incorrect Prediction #10:
+  Sample Index: 22
+  Actual Class: Allele
+  Predicted Class: Pull_Up (Confidence: 0.2524)
+  Probability Distribution:
+    2: 0.2934 (29.34%)
+    3: 0.2524 (25.24%)
+    1: 0.2397 (23.97%)
+    0: 0.2145 (21.45%)
+
+================================================================================
+MODEL: seed_2021_model_svm_randomoversampler
+================================================================================
+Total Test Samples: 40
+Correct Predictions: 26
+Incorrect Predictions: 14
+Accuracy: 0.6500
+
+Showing 10 incorrect prediction(s):
+--------------------------------------------------------------------------------
+
+Incorrect Prediction #1:
+  Sample Index: 0
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2489)
+  Probability Distribution:
+    0: 0.3384 (33.84%)
+    1: 0.2604 (26.04%)
+    3: 0.2489 (24.89%)
+    2: 0.1523 (15.23%)
+
+Incorrect Prediction #2:
+  Sample Index: 1
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2489)
+  Probability Distribution:
+    0: 0.3384 (33.84%)
+    1: 0.2604 (26.04%)
+    3: 0.2489 (24.89%)
+    2: 0.1523 (15.23%)
+
+Incorrect Prediction #3:
+  Sample Index: 2
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2489)
+  Probability Distribution:
+    0: 0.3384 (33.84%)
+    1: 0.2604 (26.04%)
+    3: 0.2489 (24.89%)
+    2: 0.1523 (15.23%)
+
+Incorrect Prediction #4:
+  Sample Index: 3
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2489)
+  Probability Distribution:
+    0: 0.3384 (33.84%)
+    1: 0.2604 (26.04%)
+    3: 0.2489 (24.89%)
+    2: 0.1523 (15.23%)
+
+Incorrect Prediction #5:
+  Sample Index: 4
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2489)
+  Probability Distribution:
+    0: 0.3384 (33.84%)
+    1: 0.2604 (26.04%)
+    3: 0.2489 (24.89%)
+    2: 0.1523 (15.23%)
+
+Incorrect Prediction #6:
+  Sample Index: 5
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2489)
+  Probability Distribution:
+    0: 0.3384 (33.84%)
+    1: 0.2604 (26.04%)
+    3: 0.2489 (24.89%)
+    2: 0.1523 (15.23%)
+
+Incorrect Prediction #7:
+  Sample Index: 6
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2489)
+  Probability Distribution:
+    0: 0.3384 (33.84%)
+    1: 0.2604 (26.04%)
+    3: 0.2489 (24.89%)
+    2: 0.1523 (15.23%)
+
+Incorrect Prediction #8:
+  Sample Index: 7
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2489)
+  Probability Distribution:
+    0: 0.3384 (33.84%)
+    1: 0.2604 (26.04%)
+    3: 0.2489 (24.89%)
+    2: 0.1523 (15.23%)
+
+Incorrect Prediction #9:
+  Sample Index: 21
+  Actual Class: Allele
+  Predicted Class: Pull_Up (Confidence: 0.2489)
+  Probability Distribution:
+    0: 0.3384 (33.84%)
+    1: 0.2604 (26.04%)
+    3: 0.2489 (24.89%)
+    2: 0.1523 (15.23%)
+
+Incorrect Prediction #10:
+  Sample Index: 22
+  Actual Class: Allele
+  Predicted Class: Pull_Up (Confidence: 0.2489)
+  Probability Distribution:
+    0: 0.3384 (33.84%)
+    1: 0.2604 (26.04%)
+    3: 0.2489 (24.89%)
+    2: 0.1523 (15.23%)
+
+================================================================================
+MODEL: seed_2021_model_svm_smote
+================================================================================
+Total Test Samples: 40
+Correct Predictions: 26
+Incorrect Predictions: 14
+Accuracy: 0.6500
+
+Showing 10 incorrect prediction(s):
+--------------------------------------------------------------------------------
+
+Incorrect Prediction #1:
+  Sample Index: 0
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2714)
+  Probability Distribution:
+    0: 0.2788 (27.88%)
+    3: 0.2714 (27.14%)
+    2: 0.2432 (24.32%)
+    1: 0.2066 (20.66%)
+
+Incorrect Prediction #2:
+  Sample Index: 1
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2714)
+  Probability Distribution:
+    0: 0.2788 (27.88%)
+    3: 0.2714 (27.14%)
+    2: 0.2432 (24.32%)
+    1: 0.2066 (20.66%)
+
+Incorrect Prediction #3:
+  Sample Index: 2
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2714)
+  Probability Distribution:
+    0: 0.2788 (27.88%)
+    3: 0.2714 (27.14%)
+    2: 0.2432 (24.32%)
+    1: 0.2066 (20.66%)
+
+Incorrect Prediction #4:
+  Sample Index: 3
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2714)
+  Probability Distribution:
+    0: 0.2788 (27.88%)
+    3: 0.2714 (27.14%)
+    2: 0.2432 (24.32%)
+    1: 0.2066 (20.66%)
+
+Incorrect Prediction #5:
+  Sample Index: 4
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2714)
+  Probability Distribution:
+    0: 0.2788 (27.88%)
+    3: 0.2714 (27.14%)
+    2: 0.2432 (24.32%)
+    1: 0.2066 (20.66%)
+
+Incorrect Prediction #6:
+  Sample Index: 5
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2714)
+  Probability Distribution:
+    0: 0.2788 (27.88%)
+    3: 0.2714 (27.14%)
+    2: 0.2432 (24.32%)
+    1: 0.2066 (20.66%)
+
+Incorrect Prediction #7:
+  Sample Index: 6
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2714)
+  Probability Distribution:
+    0: 0.2788 (27.88%)
+    3: 0.2714 (27.14%)
+    2: 0.2432 (24.32%)
+    1: 0.2066 (20.66%)
+
+Incorrect Prediction #8:
+  Sample Index: 7
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2714)
+  Probability Distribution:
+    0: 0.2788 (27.88%)
+    3: 0.2714 (27.14%)
+    2: 0.2432 (24.32%)
+    1: 0.2066 (20.66%)
+
+Incorrect Prediction #9:
+  Sample Index: 21
+  Actual Class: Allele
+  Predicted Class: Pull_Up (Confidence: 0.2714)
+  Probability Distribution:
+    0: 0.2788 (27.88%)
+    3: 0.2714 (27.14%)
+    2: 0.2432 (24.32%)
+    1: 0.2066 (20.66%)
+
+Incorrect Prediction #10:
+  Sample Index: 22
+  Actual Class: Allele
+  Predicted Class: Pull_Up (Confidence: 0.2714)
+  Probability Distribution:
+    0: 0.2788 (27.88%)
+    3: 0.2714 (27.14%)
+    2: 0.2432 (24.32%)
+    1: 0.2066 (20.66%)
+
+================================================================================
+MODEL: seed_456_model_gnb_original
+================================================================================
+Total Test Samples: 40
+Correct Predictions: 37
+Incorrect Predictions: 3
+Accuracy: 0.9250
+
+Showing 3 incorrect prediction(s):
+--------------------------------------------------------------------------------
+
+Incorrect Prediction #1:
+  Sample Index: 0
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 1.0000)
+  Probability Distribution:
+    1: 1.0000 (100.00%)
+    0: 0.0000 (0.00%)
+    2: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+Incorrect Prediction #2:
+  Sample Index: 3
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 1.0000)
+  Probability Distribution:
+    1: 1.0000 (100.00%)
+    0: 0.0000 (0.00%)
+    2: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+Incorrect Prediction #3:
+  Sample Index: 6
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 1.0000)
+  Probability Distribution:
+    1: 1.0000 (100.00%)
+    0: 0.0000 (0.00%)
+    2: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+================================================================================
+MODEL: seed_456_model_gnb_randomoversampler
+================================================================================
+Total Test Samples: 40
+Correct Predictions: 34
+Incorrect Predictions: 6
+Accuracy: 0.8500
+
+Showing 6 incorrect prediction(s):
+--------------------------------------------------------------------------------
+
+Incorrect Prediction #1:
+  Sample Index: 0
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 1.0000)
+  Probability Distribution:
+    1: 1.0000 (100.00%)
+    0: 0.0000 (0.00%)
+    2: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+Incorrect Prediction #2:
+  Sample Index: 2
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 1.0000)
+  Probability Distribution:
+    1: 1.0000 (100.00%)
+    0: 0.0000 (0.00%)
+    2: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+Incorrect Prediction #3:
+  Sample Index: 3
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 1.0000)
+  Probability Distribution:
+    1: 1.0000 (100.00%)
+    0: 0.0000 (0.00%)
+    2: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+Incorrect Prediction #4:
+  Sample Index: 4
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 1.0000)
+  Probability Distribution:
+    1: 1.0000 (100.00%)
+    0: 0.0000 (0.00%)
+    2: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+Incorrect Prediction #5:
+  Sample Index: 6
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 1.0000)
+  Probability Distribution:
+    1: 1.0000 (100.00%)
+    0: 0.0000 (0.00%)
+    2: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+Incorrect Prediction #6:
+  Sample Index: 34
+  Actual Class: Pull_Up
+  Predicted Class: Back_Stutter (Confidence: 1.0000)
+  Probability Distribution:
+    1: 1.0000 (100.00%)
+    0: 0.0000 (0.00%)
+    2: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+================================================================================
+MODEL: seed_456_model_gnb_smote
+================================================================================
+Total Test Samples: 40
+Correct Predictions: 34
+Incorrect Predictions: 6
+Accuracy: 0.8500
+
+Showing 6 incorrect prediction(s):
+--------------------------------------------------------------------------------
+
+Incorrect Prediction #1:
+  Sample Index: 0
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 1.0000)
+  Probability Distribution:
+    1: 1.0000 (100.00%)
+    0: 0.0000 (0.00%)
+    2: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+Incorrect Prediction #2:
+  Sample Index: 2
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 1.0000)
+  Probability Distribution:
+    1: 1.0000 (100.00%)
+    0: 0.0000 (0.00%)
+    2: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+Incorrect Prediction #3:
+  Sample Index: 3
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 1.0000)
+  Probability Distribution:
+    1: 1.0000 (100.00%)
+    0: 0.0000 (0.00%)
+    2: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+Incorrect Prediction #4:
+  Sample Index: 4
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 1.0000)
+  Probability Distribution:
+    1: 1.0000 (100.00%)
+    0: 0.0000 (0.00%)
+    2: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+Incorrect Prediction #5:
+  Sample Index: 6
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 1.0000)
+  Probability Distribution:
+    1: 1.0000 (100.00%)
+    0: 0.0000 (0.00%)
+    2: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+Incorrect Prediction #6:
+  Sample Index: 34
+  Actual Class: Pull_Up
+  Predicted Class: Back_Stutter (Confidence: 1.0000)
+  Probability Distribution:
+    1: 1.0000 (100.00%)
+    0: 0.0000 (0.00%)
+    2: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+================================================================================
+MODEL: seed_456_model_logistic_regression_smote
+================================================================================
+Total Test Samples: 40
+Correct Predictions: 39
+Incorrect Predictions: 1
+Accuracy: 0.9750
+
+Showing 1 incorrect prediction(s):
+--------------------------------------------------------------------------------
+
+Incorrect Prediction #1:
+  Sample Index: 22
+  Actual Class: Allele
+  Predicted Class: Back_Stutter (Confidence: 1.0000)
+  Probability Distribution:
+    1: 1.0000 (100.00%)
+    0: 0.0000 (0.00%)
+    2: 0.0000 (0.00%)
+    3: 0.0000 (0.00%)
+
+================================================================================
+MODEL: seed_456_model_svm_original
+================================================================================
+Total Test Samples: 40
+Correct Predictions: 1
+Incorrect Predictions: 39
+Accuracy: 0.0250
+
+Showing 10 incorrect prediction(s):
+--------------------------------------------------------------------------------
+
+Incorrect Prediction #1:
+  Sample Index: 0
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.4017)
+  Probability Distribution:
+    1: 0.4017 (40.17%)
+    2: 0.2096 (20.96%)
+    3: 0.2042 (20.42%)
+    0: 0.1845 (18.45%)
+
+Incorrect Prediction #2:
+  Sample Index: 1
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.4017)
+  Probability Distribution:
+    1: 0.4017 (40.17%)
+    2: 0.2096 (20.96%)
+    3: 0.2042 (20.42%)
+    0: 0.1845 (18.45%)
+
+Incorrect Prediction #3:
+  Sample Index: 2
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.4017)
+  Probability Distribution:
+    1: 0.4017 (40.17%)
+    2: 0.2096 (20.96%)
+    3: 0.2042 (20.42%)
+    0: 0.1845 (18.45%)
+
+Incorrect Prediction #4:
+  Sample Index: 3
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.4017)
+  Probability Distribution:
+    1: 0.4017 (40.17%)
+    2: 0.2096 (20.96%)
+    3: 0.2042 (20.42%)
+    0: 0.1845 (18.45%)
+
+Incorrect Prediction #5:
+  Sample Index: 4
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.4017)
+  Probability Distribution:
+    1: 0.4017 (40.17%)
+    2: 0.2096 (20.96%)
+    3: 0.2042 (20.42%)
+    0: 0.1845 (18.45%)
+
+Incorrect Prediction #6:
+  Sample Index: 5
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.4017)
+  Probability Distribution:
+    1: 0.4017 (40.17%)
+    2: 0.2096 (20.96%)
+    3: 0.2042 (20.42%)
+    0: 0.1845 (18.45%)
+
+Incorrect Prediction #7:
+  Sample Index: 6
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.4017)
+  Probability Distribution:
+    1: 0.4017 (40.17%)
+    2: 0.2096 (20.96%)
+    3: 0.2042 (20.42%)
+    0: 0.1845 (18.45%)
+
+Incorrect Prediction #8:
+  Sample Index: 7
+  Actual Class: Forward_Stutter
+  Predicted Class: Back_Stutter (Confidence: 0.4017)
+  Probability Distribution:
+    1: 0.4017 (40.17%)
+    2: 0.2096 (20.96%)
+    3: 0.2042 (20.42%)
+    0: 0.1845 (18.45%)
+
+Incorrect Prediction #9:
+  Sample Index: 8
+  Actual Class: Pull_Up
+  Predicted Class: Back_Stutter (Confidence: 0.4017)
+  Probability Distribution:
+    1: 0.4017 (40.17%)
+    2: 0.2096 (20.96%)
+    3: 0.2042 (20.42%)
+    0: 0.1845 (18.45%)
+
+Incorrect Prediction #10:
+  Sample Index: 9
+  Actual Class: Pull_Up
+  Predicted Class: Back_Stutter (Confidence: 0.4017)
+  Probability Distribution:
+    1: 0.4017 (40.17%)
+    2: 0.2096 (20.96%)
+    3: 0.2042 (20.42%)
+    0: 0.1845 (18.45%)
+
+================================================================================
+MODEL: seed_456_model_svm_randomoversampler
+================================================================================
+Total Test Samples: 40
+Correct Predictions: 26
+Incorrect Predictions: 14
+Accuracy: 0.6500
+
+Showing 10 incorrect prediction(s):
+--------------------------------------------------------------------------------
+
+Incorrect Prediction #1:
+  Sample Index: 0
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2549)
+  Probability Distribution:
+    1: 0.3878 (38.78%)
+    0: 0.2578 (25.78%)
+    3: 0.2549 (25.49%)
+    2: 0.0994 (9.94%)
+
+Incorrect Prediction #2:
+  Sample Index: 1
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2549)
+  Probability Distribution:
+    1: 0.3878 (38.78%)
+    0: 0.2578 (25.78%)
+    3: 0.2549 (25.49%)
+    2: 0.0994 (9.94%)
+
+Incorrect Prediction #3:
+  Sample Index: 2
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2549)
+  Probability Distribution:
+    1: 0.3878 (38.78%)
+    0: 0.2578 (25.78%)
+    3: 0.2549 (25.49%)
+    2: 0.0994 (9.94%)
+
+Incorrect Prediction #4:
+  Sample Index: 3
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2549)
+  Probability Distribution:
+    1: 0.3878 (38.78%)
+    0: 0.2578 (25.78%)
+    3: 0.2549 (25.49%)
+    2: 0.0994 (9.94%)
+
+Incorrect Prediction #5:
+  Sample Index: 4
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2549)
+  Probability Distribution:
+    1: 0.3878 (38.78%)
+    0: 0.2578 (25.78%)
+    3: 0.2549 (25.49%)
+    2: 0.0994 (9.94%)
+
+Incorrect Prediction #6:
+  Sample Index: 5
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2549)
+  Probability Distribution:
+    1: 0.3878 (38.78%)
+    0: 0.2578 (25.78%)
+    3: 0.2549 (25.49%)
+    2: 0.0994 (9.94%)
+
+Incorrect Prediction #7:
+  Sample Index: 6
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2549)
+  Probability Distribution:
+    1: 0.3878 (38.78%)
+    0: 0.2578 (25.78%)
+    3: 0.2549 (25.49%)
+    2: 0.0994 (9.94%)
+
+Incorrect Prediction #8:
+  Sample Index: 7
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2549)
+  Probability Distribution:
+    1: 0.3878 (38.78%)
+    0: 0.2578 (25.78%)
+    3: 0.2549 (25.49%)
+    2: 0.0994 (9.94%)
+
+Incorrect Prediction #9:
+  Sample Index: 21
+  Actual Class: Allele
+  Predicted Class: Pull_Up (Confidence: 0.2549)
+  Probability Distribution:
+    1: 0.3878 (38.78%)
+    0: 0.2578 (25.78%)
+    3: 0.2549 (25.49%)
+    2: 0.0994 (9.94%)
+
+Incorrect Prediction #10:
+  Sample Index: 22
+  Actual Class: Allele
+  Predicted Class: Pull_Up (Confidence: 0.2549)
+  Probability Distribution:
+    1: 0.3878 (38.78%)
+    0: 0.2578 (25.78%)
+    3: 0.2549 (25.49%)
+    2: 0.0994 (9.94%)
+
+================================================================================
+MODEL: seed_456_model_svm_smote
+================================================================================
+Total Test Samples: 40
+Correct Predictions: 26
+Incorrect Predictions: 14
+Accuracy: 0.6500
+
+Showing 10 incorrect prediction(s):
+--------------------------------------------------------------------------------
+
+Incorrect Prediction #1:
+  Sample Index: 0
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2268)
+  Probability Distribution:
+    1: 0.3329 (33.29%)
+    0: 0.2752 (27.52%)
+    3: 0.2268 (22.68%)
+    2: 0.1651 (16.51%)
+
+Incorrect Prediction #2:
+  Sample Index: 1
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2268)
+  Probability Distribution:
+    1: 0.3329 (33.29%)
+    0: 0.2752 (27.52%)
+    3: 0.2268 (22.68%)
+    2: 0.1651 (16.51%)
+
+Incorrect Prediction #3:
+  Sample Index: 2
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2268)
+  Probability Distribution:
+    1: 0.3329 (33.29%)
+    0: 0.2752 (27.52%)
+    3: 0.2268 (22.68%)
+    2: 0.1651 (16.51%)
+
+Incorrect Prediction #4:
+  Sample Index: 3
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2268)
+  Probability Distribution:
+    1: 0.3329 (33.29%)
+    0: 0.2752 (27.52%)
+    3: 0.2268 (22.68%)
+    2: 0.1651 (16.51%)
+
+Incorrect Prediction #5:
+  Sample Index: 4
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2268)
+  Probability Distribution:
+    1: 0.3329 (33.29%)
+    0: 0.2752 (27.52%)
+    3: 0.2268 (22.68%)
+    2: 0.1651 (16.51%)
+
+Incorrect Prediction #6:
+  Sample Index: 5
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2268)
+  Probability Distribution:
+    1: 0.3329 (33.29%)
+    0: 0.2752 (27.52%)
+    3: 0.2268 (22.68%)
+    2: 0.1651 (16.51%)
+
+Incorrect Prediction #7:
+  Sample Index: 6
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2268)
+  Probability Distribution:
+    1: 0.3329 (33.29%)
+    0: 0.2752 (27.52%)
+    3: 0.2268 (22.68%)
+    2: 0.1651 (16.51%)
+
+Incorrect Prediction #8:
+  Sample Index: 7
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2268)
+  Probability Distribution:
+    1: 0.3329 (33.29%)
+    0: 0.2752 (27.52%)
+    3: 0.2268 (22.68%)
+    2: 0.1651 (16.51%)
+
+Incorrect Prediction #9:
+  Sample Index: 21
+  Actual Class: Allele
+  Predicted Class: Pull_Up (Confidence: 0.2268)
+  Probability Distribution:
+    1: 0.3329 (33.29%)
+    0: 0.2752 (27.52%)
+    3: 0.2268 (22.68%)
+    2: 0.1651 (16.51%)
+
+Incorrect Prediction #10:
+  Sample Index: 22
+  Actual Class: Allele
+  Predicted Class: Pull_Up (Confidence: 0.2268)
+  Probability Distribution:
+    1: 0.3329 (33.29%)
+    0: 0.2752 (27.52%)
+    3: 0.2268 (22.68%)
+    2: 0.1651 (16.51%)
+
+================================================================================
+MODEL: seed_789_model_svm_original
+================================================================================
+Total Test Samples: 40
+Correct Predictions: 26
+Incorrect Predictions: 14
+Accuracy: 0.6500
+
+Showing 10 incorrect prediction(s):
+--------------------------------------------------------------------------------
+
+Incorrect Prediction #1:
+  Sample Index: 0
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2015)
+  Probability Distribution:
+    1: 0.3301 (33.01%)
+    2: 0.2388 (23.88%)
+    0: 0.2295 (22.95%)
+    3: 0.2015 (20.15%)
+
+Incorrect Prediction #2:
+  Sample Index: 1
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2015)
+  Probability Distribution:
+    1: 0.3301 (33.01%)
+    2: 0.2388 (23.88%)
+    0: 0.2295 (22.95%)
+    3: 0.2015 (20.15%)
+
+Incorrect Prediction #3:
+  Sample Index: 2
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2015)
+  Probability Distribution:
+    1: 0.3301 (33.01%)
+    2: 0.2388 (23.88%)
+    0: 0.2295 (22.95%)
+    3: 0.2015 (20.15%)
+
+Incorrect Prediction #4:
+  Sample Index: 3
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2015)
+  Probability Distribution:
+    1: 0.3301 (33.01%)
+    2: 0.2388 (23.88%)
+    0: 0.2295 (22.95%)
+    3: 0.2015 (20.15%)
+
+Incorrect Prediction #5:
+  Sample Index: 4
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2015)
+  Probability Distribution:
+    1: 0.3301 (33.01%)
+    2: 0.2388 (23.88%)
+    0: 0.2295 (22.95%)
+    3: 0.2015 (20.15%)
+
+Incorrect Prediction #6:
+  Sample Index: 5
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2015)
+  Probability Distribution:
+    1: 0.3301 (33.01%)
+    2: 0.2388 (23.88%)
+    0: 0.2295 (22.95%)
+    3: 0.2015 (20.15%)
+
+Incorrect Prediction #7:
+  Sample Index: 6
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2015)
+  Probability Distribution:
+    1: 0.3301 (33.01%)
+    2: 0.2388 (23.88%)
+    0: 0.2295 (22.95%)
+    3: 0.2015 (20.15%)
+
+Incorrect Prediction #8:
+  Sample Index: 7
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2015)
+  Probability Distribution:
+    1: 0.3301 (33.01%)
+    2: 0.2388 (23.88%)
+    0: 0.2295 (22.95%)
+    3: 0.2015 (20.15%)
+
+Incorrect Prediction #9:
+  Sample Index: 21
+  Actual Class: Allele
+  Predicted Class: Pull_Up (Confidence: 0.2015)
+  Probability Distribution:
+    1: 0.3301 (33.01%)
+    2: 0.2388 (23.88%)
+    0: 0.2295 (22.95%)
+    3: 0.2015 (20.15%)
+
+Incorrect Prediction #10:
+  Sample Index: 22
+  Actual Class: Allele
+  Predicted Class: Pull_Up (Confidence: 0.2015)
+  Probability Distribution:
+    1: 0.3301 (33.01%)
+    2: 0.2388 (23.88%)
+    0: 0.2295 (22.95%)
+    3: 0.2015 (20.15%)
+
+================================================================================
+MODEL: seed_789_model_svm_randomoversampler
+================================================================================
+Total Test Samples: 40
+Correct Predictions: 26
+Incorrect Predictions: 14
+Accuracy: 0.6500
+
+Showing 10 incorrect prediction(s):
+--------------------------------------------------------------------------------
+
+Incorrect Prediction #1:
+  Sample Index: 0
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2635)
+  Probability Distribution:
+    0: 0.3372 (33.72%)
+    3: 0.2635 (26.35%)
+    1: 0.2537 (25.37%)
+    2: 0.1456 (14.56%)
+
+Incorrect Prediction #2:
+  Sample Index: 1
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2635)
+  Probability Distribution:
+    0: 0.3372 (33.72%)
+    3: 0.2635 (26.35%)
+    1: 0.2537 (25.37%)
+    2: 0.1456 (14.56%)
+
+Incorrect Prediction #3:
+  Sample Index: 2
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2635)
+  Probability Distribution:
+    0: 0.3372 (33.72%)
+    3: 0.2635 (26.35%)
+    1: 0.2537 (25.37%)
+    2: 0.1456 (14.56%)
+
+Incorrect Prediction #4:
+  Sample Index: 3
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2635)
+  Probability Distribution:
+    0: 0.3372 (33.72%)
+    3: 0.2635 (26.35%)
+    1: 0.2537 (25.37%)
+    2: 0.1456 (14.56%)
+
+Incorrect Prediction #5:
+  Sample Index: 4
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2635)
+  Probability Distribution:
+    0: 0.3372 (33.72%)
+    3: 0.2635 (26.35%)
+    1: 0.2537 (25.37%)
+    2: 0.1456 (14.56%)
+
+Incorrect Prediction #6:
+  Sample Index: 5
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2635)
+  Probability Distribution:
+    0: 0.3372 (33.72%)
+    3: 0.2635 (26.35%)
+    1: 0.2537 (25.37%)
+    2: 0.1456 (14.56%)
+
+Incorrect Prediction #7:
+  Sample Index: 6
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2635)
+  Probability Distribution:
+    0: 0.3372 (33.72%)
+    3: 0.2635 (26.35%)
+    1: 0.2537 (25.37%)
+    2: 0.1456 (14.56%)
+
+Incorrect Prediction #8:
+  Sample Index: 7
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2635)
+  Probability Distribution:
+    0: 0.3372 (33.72%)
+    3: 0.2635 (26.35%)
+    1: 0.2537 (25.37%)
+    2: 0.1456 (14.56%)
+
+Incorrect Prediction #9:
+  Sample Index: 21
+  Actual Class: Allele
+  Predicted Class: Pull_Up (Confidence: 0.2635)
+  Probability Distribution:
+    0: 0.3372 (33.72%)
+    3: 0.2635 (26.35%)
+    1: 0.2537 (25.37%)
+    2: 0.1456 (14.56%)
+
+Incorrect Prediction #10:
+  Sample Index: 22
+  Actual Class: Allele
+  Predicted Class: Pull_Up (Confidence: 0.2635)
+  Probability Distribution:
+    0: 0.3372 (33.72%)
+    3: 0.2635 (26.35%)
+    1: 0.2537 (25.37%)
+    2: 0.1456 (14.56%)
+
+================================================================================
+MODEL: seed_789_model_svm_smote
+================================================================================
+Total Test Samples: 40
+Correct Predictions: 26
+Incorrect Predictions: 14
+Accuracy: 0.6500
+
+Showing 10 incorrect prediction(s):
+--------------------------------------------------------------------------------
+
+Incorrect Prediction #1:
+  Sample Index: 0
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2303)
+  Probability Distribution:
+    0: 0.3165 (31.65%)
+    1: 0.2471 (24.71%)
+    3: 0.2303 (23.03%)
+    2: 0.2061 (20.61%)
+
+Incorrect Prediction #2:
+  Sample Index: 1
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2303)
+  Probability Distribution:
+    0: 0.3165 (31.65%)
+    1: 0.2471 (24.71%)
+    3: 0.2303 (23.03%)
+    2: 0.2061 (20.61%)
+
+Incorrect Prediction #3:
+  Sample Index: 2
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2303)
+  Probability Distribution:
+    0: 0.3165 (31.65%)
+    1: 0.2471 (24.71%)
+    3: 0.2303 (23.03%)
+    2: 0.2061 (20.61%)
+
+Incorrect Prediction #4:
+  Sample Index: 3
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2303)
+  Probability Distribution:
+    0: 0.3165 (31.65%)
+    1: 0.2471 (24.71%)
+    3: 0.2303 (23.03%)
+    2: 0.2061 (20.61%)
+
+Incorrect Prediction #5:
+  Sample Index: 4
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2303)
+  Probability Distribution:
+    0: 0.3165 (31.65%)
+    1: 0.2471 (24.71%)
+    3: 0.2303 (23.03%)
+    2: 0.2061 (20.61%)
+
+Incorrect Prediction #6:
+  Sample Index: 5
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2303)
+  Probability Distribution:
+    0: 0.3165 (31.65%)
+    1: 0.2471 (24.71%)
+    3: 0.2303 (23.03%)
+    2: 0.2061 (20.61%)
+
+Incorrect Prediction #7:
+  Sample Index: 6
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2303)
+  Probability Distribution:
+    0: 0.3165 (31.65%)
+    1: 0.2471 (24.71%)
+    3: 0.2303 (23.03%)
+    2: 0.2061 (20.61%)
+
+Incorrect Prediction #8:
+  Sample Index: 7
+  Actual Class: Forward_Stutter
+  Predicted Class: Pull_Up (Confidence: 0.2303)
+  Probability Distribution:
+    0: 0.3165 (31.65%)
+    1: 0.2471 (24.71%)
+    3: 0.2303 (23.03%)
+    2: 0.2061 (20.61%)
+
+Incorrect Prediction #9:
+  Sample Index: 21
+  Actual Class: Allele
+  Predicted Class: Pull_Up (Confidence: 0.2303)
+  Probability Distribution:
+    0: 0.3165 (31.65%)
+    1: 0.2471 (24.71%)
+    3: 0.2303 (23.03%)
+    2: 0.2061 (20.61%)
+
+Incorrect Prediction #10:
+  Sample Index: 22
+  Actual Class: Allele
+  Predicted Class: Pull_Up (Confidence: 0.2303)
+  Probability Distribution:
+    0: 0.3165 (31.65%)
+    1: 0.2471 (24.71%)
+    3: 0.2303 (23.03%)
+    2: 0.2061 (20.61%)
+
