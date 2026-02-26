@@ -58,6 +58,7 @@ else:
 from tabpfn import TabPFNClassifier
 
 MODEL_NAME = 'tabpfn'
+VERSION_SUFFIX = '_v2'  # Add version suffix to distinguish new results from old ones
 # Get the absolute path to the project root and construct paths from there
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(SCRIPT_DIR)
@@ -77,18 +78,18 @@ RANDOM_SEED = args.seed
 # Set paths based on dataset type and seed
 RESULTS_FOLDER = f"{dataset_type.capitalize()}_Results"
 if RANDOM_SEED != 42:
-    # Store in seed-specific subfolder
-    SEED_FOLDER = f"seed_{RANDOM_SEED}"
+    # Store in seed-specific subfolder with version suffix
+    SEED_FOLDER = f"seed_{RANDOM_SEED}{VERSION_SUFFIX}"
     DATA_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, SEED_FOLDER, 'data')
     FIG_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, SEED_FOLDER, 'figures')
     MODEL_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, SEED_FOLDER, 'models')
     REPORTS_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, SEED_FOLDER, 'reports')
 else:
-    # Use default folders for seed 42
-    DATA_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, 'data')
-    FIG_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, 'figures')
-    MODEL_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, 'models')
-    REPORTS_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, 'reports')
+    # Use default folders for seed 42 with version suffix
+    DATA_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, f'data{VERSION_SUFFIX}')
+    FIG_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, f'figures{VERSION_SUFFIX}')
+    MODEL_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, f'models{VERSION_SUFFIX}')
+    REPORTS_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, f'reports{VERSION_SUFFIX}')
 DATA_FILE = os.path.join(PROJECT_ROOT, f'Input_Data-{dataset_type.capitalize()}-train.csv')
 
 print(f"{'='*60}")
@@ -152,7 +153,7 @@ def train_tabpfn_pipeline(X_train, y_train, X_test, y_test, strategy_name="Origi
         if mask.sum() > 0:
             print(f"{class_name}: {accuracy_score(y_test[mask], y_pred[mask]):.4f}")
     
-    safe_name = f"{MODEL_NAME}_{strategy_name.replace(' ', '_').lower()}"
+    safe_name = f"{MODEL_NAME}_{strategy_name.replace(' ', '_').lower()}{VERSION_SUFFIX}"
     cm_path = os.path.join(FIG_DIR, f'confusion_matrix_{safe_name}.png')
     cm_path = hf.plot_confusion_matrix(confusion_matrix(y_test, y_pred), class_names, save_path=cm_path)
 
@@ -224,7 +225,7 @@ for name, (X_tr, y_tr) in strategies.items():
 
 def generate_html_report(results, class_names, output_path=None, assets=None):
     if output_path is None:
-        output_path = os.path.join(REPORTS_DIR, f'comparison_report_{MODEL_NAME}.html')
+        output_path = os.path.join(REPORTS_DIR, f'comparison_report_{MODEL_NAME}{VERSION_SUFFIX}.html')
     hf.generate_model_html_report(MODEL_NAME, results, class_names, output_path=output_path, dataset=DATA_FILE, fig_dir=FIG_DIR, reports_dir=REPORTS_DIR, assets=assets)
 
 results = {}
@@ -272,8 +273,8 @@ class_names = le.classes_.tolist()
 generate_html_report(results, class_names, assets=assets)
 # Append to combined results JSON and regenerate combined HTML
 try:
-    json_path = os.path.join(REPORTS_DIR, 'combined_results.json')
-    output_path = os.path.join(REPORTS_DIR, 'combined_report_all_models.html')
+    json_path = os.path.join(REPORTS_DIR, f'combined_results{VERSION_SUFFIX}.json')
+    output_path = os.path.join(REPORTS_DIR, f'combined_report_all_models{VERSION_SUFFIX}.html')
     hf.append_model_results_to_json(MODEL_NAME, results, class_names, json_path=json_path, assets=assets)
     hf.generate_combined_html(json_path=json_path, output_path=output_path)
 except Exception as e:

@@ -1,0 +1,47 @@
+<html>
+<head><meta charset="utf-8"><title>Combined Comparison Report</title></head>
+<body>
+<h1>Combined Comparison Report</h1>
+<div>Generated: 2026-02-06 00:31:20</div>
+<h2>Model: tabpfn</h2>
+<table border="1" cellpadding="6" cellspacing="0">
+<tr><th>Strategy</th><th>Accuracy</th><th>Balanced Accuracy</th><th>F1 (macro)</th><th>MSE</th><th>Log Loss</th><th>Informedness</th><th>Markedness</th></tr>
+<tr><td>Original</td><td>0.9069767441860465</td><td>0.8685019841269841</td><td>0.8677489177489178</td><td>0.2558139534883721</td><td>0.25747515261032344</td><td>0.8330608595450119</td><td>0.8322957527776672</td></tr>
+<tr><td>SMOTE</td><td>0.8372093023255814</td><td>0.7280257936507937</td><td>0.7372993670548018</td><td>0.26744186046511625</td><td>0.3586217720311504</td><td>0.6631575323604795</td><td>0.7022889029129612</td></tr>
+<tr><td>RandomUnderSampler</td><td>0.8604651162790697</td><td>0.826140873015873</td><td>0.8266872863647058</td><td>0.4883720930232558</td><td>0.4487271250426853</td><td>0.7711516853062106</td><td>0.7731436475988374</td></tr>
+<tr><td>ClassWeights</td><td>0.9069767441860465</td><td>0.8685019841269841</td><td>0.8677489177489178</td><td>0.2558139534883721</td><td>0.25747515261032344</td><td>0.8330608595450119</td><td>0.8322957527776672</td></tr>
+</table>
+<h3>Per-class Recall</h3>
+<table border="1" cellpadding="6" cellspacing="0">
+<tr><th>Strategy</th>
+<th>Allele</th>
+<th>Back_Stutter</th>
+<th>Forward_Stutter</th>
+<th>Pull_Up</th>
+</tr>
+<tr><td>Original</td>
+<td>0.9333333333333333</td>
+<td>0.8888888888888888</td>
+<td>0.7142857142857143</td>
+<td>0.9375</td>
+</tr>
+<tr><td>SMOTE</td>
+<td>0.9111111111111111</td>
+<td>0.7777777777777778</td>
+<td>0.2857142857142857</td>
+<td>0.9375</td>
+</tr>
+<tr><td>RandomUnderSampler</td>
+<td>0.8888888888888888</td>
+<td>0.8888888888888888</td>
+<td>0.7142857142857143</td>
+<td>0.8125</td>
+</tr>
+<tr><td>ClassWeights</td>
+<td>0.9333333333333333</td>
+<td>0.8888888888888888</td>
+<td>0.7142857142857143</td>
+<td>0.9375</td>
+</tr>
+</table>
+</body></html>

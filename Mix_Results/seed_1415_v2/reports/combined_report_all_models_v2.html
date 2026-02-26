@@ -1,0 +1,47 @@
+<html>
+<head><meta charset="utf-8"><title>Combined Comparison Report</title></head>
+<body>
+<h1>Combined Comparison Report</h1>
+<div>Generated: 2026-02-06 04:28:34</div>
+<h2>Model: tabpfn</h2>
+<table border="1" cellpadding="6" cellspacing="0">
+<tr><th>Strategy</th><th>Accuracy</th><th>Balanced Accuracy</th><th>F1 (macro)</th><th>MSE</th><th>Log Loss</th><th>Informedness</th><th>Markedness</th></tr>
+<tr><td>Original</td><td>0.872093023255814</td><td>0.8150793650793651</td><td>0.8368314691844103</td><td>0.32558139534883723</td><td>0.29964036989559784</td><td>0.762742820705518</td><td>0.8406405298068326</td></tr>
+<tr><td>SMOTE</td><td>0.9069767441860465</td><td>0.7998511904761905</td><td>0.8444824820516833</td><td>0.29069767441860467</td><td>0.34763040255343</td><td>0.7534917930586869</td><td>0.9244375486002204</td></tr>
+<tr><td>RandomUnderSampler</td><td>0.8488372093023255</td><td>0.884375</td><td>0.8288982259570495</td><td>0.6976744186046512</td><td>0.5277064721889435</td><td>0.8343115661670657</td><td>0.7418936117074414</td></tr>
+<tr><td>ClassWeights</td><td>0.872093023255814</td><td>0.8150793650793651</td><td>0.8368314691844103</td><td>0.32558139534883723</td><td>0.29964036989559784</td><td>0.762742820705518</td><td>0.8406405298068326</td></tr>
+</table>
+<h3>Per-class Recall</h3>
+<table border="1" cellpadding="6" cellspacing="0">
+<tr><th>Strategy</th>
+<th>Allele</th>
+<th>Back_Stutter</th>
+<th>Forward_Stutter</th>
+<th>Pull_Up</th>
+</tr>
+<tr><td>Original</td>
+<td>0.9111111111111111</td>
+<td>0.7777777777777778</td>
+<td>0.5714285714285714</td>
+<td>1.0</td>
+</tr>
+<tr><td>SMOTE</td>
+<td>1.0</td>
+<td>0.8333333333333334</td>
+<td>0.42857142857142855</td>
+<td>0.9375</td>
+</tr>
+<tr><td>RandomUnderSampler</td>
+<td>0.8222222222222222</td>
+<td>0.7777777777777778</td>
+<td>1.0</td>
+<td>0.9375</td>
+</tr>
+<tr><td>ClassWeights</td>
+<td>0.9111111111111111</td>
+<td>0.7777777777777778</td>
+<td>0.5714285714285714</td>
+<td>1.0</td>
+</tr>
+</table>
+</body></html>
