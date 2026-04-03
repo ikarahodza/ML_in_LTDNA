@@ -707,30 +707,30 @@
     ],
     "source": "C:\\Users\\DT User\\Documents\\GitHub\\ML_in_LTDNA\\Mix_Results\\models"
   },
-  "model_mlp_original": {
-    "accuracy": 0.85,
-    "balanced_accuracy": 0.7780917553191489,
-    "f1_macro": 0.7770088835427299,
-    "mse": 0.555,
-    "mae": 0.285,
-    "log_loss": 5.406548008367572,
+  "model_randomforest_borderline_smote": {
+    "accuracy": 0.885,
+    "balanced_accuracy": 0.8803666413373861,
+    "f1_macro": 0.8932550478411342,
+    "mse": 0.52,
+    "mae": 0.22,
+    "log_loss": 0.3222249359285246,
     "per_class_precision": [
-      0.6989247311827957,
+      0.7647058823529411,
+      0.9722222222222222,
       1.0,
-      1.0,
-      0.9655172413793104
+      0.9591836734693877
     ],
     "per_class_recall": [
       1.0,
-      0.8936170212765957,
-      0.21875,
-      1.0
+      0.7446808510638298,
+      0.9375,
+      0.8392857142857143
     ],
     "per_class_f1": [
-      0.8227848101265823,
-      0.9438202247191011,
-      0.358974358974359,
-      0.9824561403508771
+      0.8666666666666667,
+      0.8433734939759037,
+      0.967741935483871,
+      0.8952380952380953
     ],
     "per_class_support": [
       65,
@@ -746,168 +746,50 @@
         0
       ],
       [
-        3,
-        42,
+        10,
+        35,
         0,
         2
       ],
       [
-        25,
-        0,
-        7,
-        0
-      ],
-      [
-        0,
-        0,
-        0,
-        56
-      ]
-    ],
-    "source": "C:\\Users\\DT User\\Documents\\GitHub\\ML_in_LTDNA\\Mix_Results\\models"
-  },
-  "model_mlp_randomoversampler": {
-    "accuracy": 0.915,
-    "balanced_accuracy": 0.8830024696048632,
-    "f1_macro": 0.8984031748434482,
-    "mse": 0.28,
-    "mae": 0.15,
-    "log_loss": 2.9136041984754217,
-    "per_class_precision": [
-      0.8441558441558441,
-      1.0,
-      0.9545454545454546,
-      0.9322033898305084
-    ],
-    "per_class_recall": [
-      1.0,
-      0.8936170212765957,
-      0.65625,
-      0.9821428571428571
-    ],
-    "per_class_f1": [
-      0.9154929577464789,
-      0.9438202247191011,
-      0.7777777777777778,
-      0.9565217391304348
-    ],
-    "per_class_support": [
-      65,
-      47,
-      32,
-      56
-    ],
-    "confusion_matrix": [
-      [
-        65,
-        0,
-        0,
-        0
-      ],
-      [
-        2,
-        42,
-        0,
-        3
-      ],
-      [
-        10,
-        0,
-        21,
-        1
-      ],
-      [
-        0,
-        0,
         1,
-        55
-      ]
-    ],
-    "source": "C:\\Users\\DT User\\Documents\\GitHub\\ML_in_LTDNA\\Mix_Results\\models"
-  },
-  "model_mlp_smote": {
-    "accuracy": 0.91,
-    "balanced_accuracy": 0.8693484042553191,
-    "f1_macro": 0.8819369074861066,
-    "mse": 0.27,
-    "mae": 0.15,
-    "log_loss": 3.2439288050205435,
-    "per_class_precision": [
-      0.8666666666666667,
-      0.8958333333333334,
-      1.0,
-      0.9491525423728814
-    ],
-    "per_class_recall": [
-      1.0,
-      0.9148936170212766,
-      0.5625,
-      1.0
-    ],
-    "per_class_f1": [
-      0.9285714285714286,
-      0.9052631578947369,
-      0.72,
-      0.9739130434782609
-    ],
-    "per_class_support": [
-      65,
-      47,
-      32,
-      56
-    ],
-    "confusion_matrix": [
-      [
-        65,
-        0,
-        0,
-        0
-      ],
-      [
         1,
-        43,
-        0,
-        3
+        30,
+        0
       ],
       [
         9,
-        5,
-        18,
-        0
-      ],
-      [
         0,
         0,
-        0,
-        56
+        47
       ]
     ],
     "source": "C:\\Users\\DT User\\Documents\\GitHub\\ML_in_LTDNA\\Mix_Results\\models"
   },
-  "model_randomforest_borderline_smote": {
-    "accuracy": 0.885,
-    "balanced_accuracy": 0.882076367781155,
-    "f1_macro": 0.8946958113029114,
-    "mse": 0.6,
-    "mae": 0.24,
-    "log_loss": 0.3169266282197451,
+  "model_randomforest_class_weights": {
+    "accuracy": 0.895,
+    "balanced_accuracy": 0.8776120820668692,
+    "f1_macro": 0.8909224859612634,
+    "mse": 0.31,
+    "mae": 0.16,
+    "log_loss": 0.4532422286903817,
     "per_class_precision": [
-      0.7647058823529411,
+      0.8333333333333334,
       0.9736842105263158,
-      1.0,
-      0.9574468085106383
+      0.9629629629629629,
+      0.8947368421052632
     ],
     "per_class_recall": [
       1.0,
       0.7872340425531915,
-      0.9375,
-      0.8035714285714286
+      0.8125,
+      0.9107142857142857
     ],
     "per_class_f1": [
-      0.8666666666666667,
+      0.9090909090909091,
       0.8705882352941177,
-      0.967741935483871,
-      0.8737864077669902
+      0.8813559322033898,
+      0.9026548672566371
     ],
     "per_class_support": [
       65,
@@ -931,159 +813,41 @@
       [
         1,
         1,
-        30,
-        0
+        26,
+        4
       ],
       [
-        11,
+        4,
         0,
-        0,
-        45
-      ]
-    ],
-    "source": "C:\\Users\\DT User\\Documents\\GitHub\\ML_in_LTDNA\\Mix_Results\\models"
-  },
-  "model_randomforest_class_weights": {
-    "accuracy": 0.865,
-    "balanced_accuracy": 0.8583064209726443,
-    "f1_macro": 0.8733890977365629,
-    "mse": 0.62,
-    "mae": 0.26,
-    "log_loss": 0.5327615495893535,
-    "per_class_precision": [
-      0.7386363636363636,
-      0.9444444444444444,
-      1.0,
-      0.9574468085106383
-    ],
-    "per_class_recall": [
-      1.0,
-      0.723404255319149,
-      0.90625,
-      0.8035714285714286
-    ],
-    "per_class_f1": [
-      0.8496732026143791,
-      0.8192771084337349,
-      0.9508196721311475,
-      0.8737864077669902
-    ],
-    "per_class_support": [
-      65,
-      47,
-      32,
-      56
-    ],
-    "confusion_matrix": [
-      [
-        65,
-        0,
-        0,
-        0
-      ],
-      [
-        11,
-        34,
-        0,
-        2
-      ],
-      [
         1,
-        2,
-        29,
-        0
-      ],
-      [
-        11,
-        0,
-        0,
-        45
+        51
       ]
     ],
     "source": "C:\\Users\\DT User\\Documents\\GitHub\\ML_in_LTDNA\\Mix_Results\\models"
   },
   "model_randomforest_no_resampling": {
-    "accuracy": 0.885,
-    "balanced_accuracy": 0.8770896656534954,
-    "f1_macro": 0.8930903398926654,
-    "mse": 0.6,
-    "mae": 0.24,
-    "log_loss": 0.44376901753857906,
+    "accuracy": 0.895,
+    "balanced_accuracy": 0.8692771656534954,
+    "f1_macro": 0.8898817555862625,
+    "mse": 0.37,
+    "mae": 0.18,
+    "log_loss": 0.37740776109729324,
     "per_class_precision": [
-      0.7647058823529411,
+      0.7738095238095238,
+      0.975,
       1.0,
-      1.0,
-      0.9375
-    ],
-    "per_class_recall": [
-      1.0,
-      0.8297872340425532,
-      0.875,
-      0.8035714285714286
-    ],
-    "per_class_f1": [
-      0.8666666666666667,
-      0.9069767441860465,
-      0.9333333333333333,
-      0.8653846153846154
-    ],
-    "per_class_support": [
-      65,
-      47,
-      32,
-      56
-    ],
-    "confusion_matrix": [
-      [
-        65,
-        0,
-        0,
-        0
-      ],
-      [
-        7,
-        39,
-        0,
-        1
-      ],
-      [
-        2,
-        0,
-        28,
-        2
-      ],
-      [
-        11,
-        0,
-        0,
-        45
-      ]
-    ],
-    "source": "C:\\Users\\DT User\\Documents\\GitHub\\ML_in_LTDNA\\Mix_Results\\models"
-  },
-  "model_randomforest_smote": {
-    "accuracy": 0.925,
-    "balanced_accuracy": 0.9161521656534954,
-    "f1_macro": 0.9243082657336046,
-    "mse": 0.185,
-    "mae": 0.105,
-    "log_loss": 0.3028694297979403,
-    "per_class_precision": [
-      0.8441558441558441,
-      1.0,
-      0.9354838709677419,
       0.9811320754716981
     ],
     "per_class_recall": [
       1.0,
       0.8297872340425532,
-      0.90625,
+      0.71875,
       0.9285714285714286
     ],
     "per_class_f1": [
-      0.9154929577464789,
-      0.9069767441860465,
-      0.9206349206349206,
+      0.87248322147651,
+      0.896551724137931,
+      0.8363636363636363,
       0.9541284403669725
     ],
     "per_class_support": [
@@ -1106,44 +870,44 @@
         0
       ],
       [
-        2,
-        0,
-        29,
+        7,
+        1,
+        23,
         1
       ],
       [
-        2,
+        4,
         0,
-        2,
+        0,
         52
       ]
     ],
     "source": "C:\\Users\\DT User\\Documents\\GitHub\\ML_in_LTDNA\\Mix_Results\\models"
   },
-  "model_randomforest_svm_smote": {
-    "accuracy": 0.93,
-    "balanced_accuracy": 0.9223261778115501,
-    "f1_macro": 0.9320030356455112,
-    "mse": 0.315,
-    "mae": 0.135,
-    "log_loss": 0.2990485036042929,
+  "model_randomforest_smote": {
+    "accuracy": 0.925,
+    "balanced_accuracy": 0.9178618920972644,
+    "f1_macro": 0.9278962487503191,
+    "mse": 0.36,
+    "mae": 0.15,
+    "log_loss": 0.31652097132276735,
     "per_class_precision": [
-      0.8666666666666667,
+      0.8552631578947368,
       0.9761904761904762,
       1.0,
-      0.9444444444444444
+      0.9433962264150944
     ],
     "per_class_recall": [
       1.0,
       0.8723404255319149,
       0.90625,
-      0.9107142857142857
+      0.8928571428571429
     ],
     "per_class_f1": [
-      0.9285714285714286,
+      0.9219858156028369,
       0.9213483146067416,
       0.9508196721311475,
-      0.9272727272727272
+      0.9174311926605505
     ],
     "per_class_support": [
       65,
@@ -1169,6 +933,65 @@
         1,
         29,
         1
+      ],
+      [
+        6,
+        0,
+        0,
+        50
+      ]
+    ],
+    "source": "C:\\Users\\DT User\\Documents\\GitHub\\ML_in_LTDNA\\Mix_Results\\models"
+  },
+  "model_randomforest_svm_smote": {
+    "accuracy": 0.93,
+    "balanced_accuracy": 0.9198328267477203,
+    "f1_macro": 0.9306277056277056,
+    "mse": 0.3,
+    "mae": 0.13,
+    "log_loss": 0.30680167029453265,
+    "per_class_precision": [
+      0.8666666666666667,
+      0.9767441860465116,
+      1.0,
+      0.9444444444444444
+    ],
+    "per_class_recall": [
+      1.0,
+      0.8936170212765957,
+      0.875,
+      0.9107142857142857
+    ],
+    "per_class_f1": [
+      0.9285714285714286,
+      0.9333333333333333,
+      0.9333333333333333,
+      0.9272727272727272
+    ],
+    "per_class_support": [
+      65,
+      47,
+      32,
+      56
+    ],
+    "confusion_matrix": [
+      [
+        65,
+        0,
+        0,
+        0
+      ],
+      [
+        4,
+        42,
+        0,
+        1
+      ],
+      [
+        1,
+        1,
+        28,
+        2
       ],
       [
         5,
@@ -1356,13 +1179,13 @@
     ],
     "source": "C:\\Users\\DT User\\Documents\\GitHub\\ML_in_LTDNA\\Mix_Results\\models"
   },
-  "model_tabpfn_classweights": {
+  "model_tabpfn_classweights_v2": {
     "accuracy": 0.355,
     "balanced_accuracy": 0.28075206043956047,
     "f1_macro": 0.18728418144760556,
     "mse": 3.15,
     "mae": 1.31,
-    "log_loss": 1.4277085536721024,
+    "log_loss": 1.4275691166467026,
     "per_class_precision": [
       0.3333333333333333,
       0.0,
@@ -1415,13 +1238,13 @@
     ],
     "source": "C:\\Users\\DT User\\Documents\\GitHub\\ML_in_LTDNA\\Mix_Results\\models"
   },
-  "model_tabpfn_original": {
+  "model_tabpfn_original_v2": {
     "accuracy": 0.355,
     "balanced_accuracy": 0.28075206043956047,
     "f1_macro": 0.18728418144760556,
     "mse": 3.15,
     "mae": 1.31,
-    "log_loss": 1.4277085536721024,
+    "log_loss": 1.4275691166467026,
     "per_class_precision": [
       0.3333333333333333,
       0.0,
@@ -1474,72 +1297,13 @@
     ],
     "source": "C:\\Users\\DT User\\Documents\\GitHub\\ML_in_LTDNA\\Mix_Results\\models"
   },
-  "model_tabpfn_randomoversampler": {
-    "accuracy": 0.83,
-    "balanced_accuracy": 0.7794690349544073,
-    "f1_macro": 0.7963810931648939,
-    "mse": 0.725,
-    "mae": 0.325,
-    "log_loss": 0.3833658796186522,
-    "per_class_precision": [
-      0.6989247311827957,
-      0.8723404255319149,
-      1.0,
-      1.0
-    ],
-    "per_class_recall": [
-      1.0,
-      0.8723404255319149,
-      0.40625,
-      0.8392857142857143
-    ],
-    "per_class_f1": [
-      0.8227848101265823,
-      0.8723404255319149,
-      0.5777777777777777,
-      0.912621359223301
-    ],
-    "per_class_support": [
-      65,
-      47,
-      32,
-      56
-    ],
-    "confusion_matrix": [
-      [
-        65,
-        0,
-        0,
-        0
-      ],
-      [
-        6,
-        41,
-        0,
-        0
-      ],
-      [
-        13,
-        6,
-        13,
-        0
-      ],
-      [
-        9,
-        0,
-        0,
-        47
-      ]
-    ],
-    "source": "C:\\Users\\DT User\\Documents\\GitHub\\ML_in_LTDNA\\Mix_Results\\models"
-  },
-  "model_tabpfn_randomundersampler": {
+  "model_tabpfn_randomundersampler_v2": {
     "accuracy": 0.33,
     "balanced_accuracy": 0.2578125,
     "f1_macro": 0.13825757575757575,
     "mse": 3.375,
     "mae": 1.385,
-    "log_loss": 1.3973188427910044,
+    "log_loss": 1.397029612899481,
     "per_class_precision": [
       0.32663316582914576,
       0.0,
@@ -1592,13 +1356,13 @@
     ],
     "source": "C:\\Users\\DT User\\Documents\\GitHub\\ML_in_LTDNA\\Mix_Results\\models"
   },
-  "model_tabpfn_smote": {
+  "model_tabpfn_smote_v2": {
     "accuracy": 0.36,
     "balanced_accuracy": 0.2901614010989011,
     "f1_macro": 0.22063329928498465,
     "mse": 3.09,
     "mae": 1.29,
-    "log_loss": 1.4031879576686888,
+    "log_loss": 1.4029793110813953,
     "per_class_precision": [
       0.3373493975903614,
       0.0,

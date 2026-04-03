@@ -1,0 +1,152 @@
+{
+  "settings": {
+    "min_seeds": 10,
+    "ranking": "lcb",
+    "allow_fallback": false,
+    "recommended_default": "mean",
+    "ranking_explanation": {
+      "mean": "Ranks by average balanced accuracy across seeds; best default for general model selection.",
+      "lcb": "Ranks by mean-std to penalize unstable models; useful when robustness is priority."
+    }
+  },
+  "mix_top3": [
+    {
+      "model": "tabpfn",
+      "strategy": "ClassWeights",
+      "label": "TabPFN",
+      "ba_mean": 0.8473015873015871,
+      "ba_std": 0.04514581221010759,
+      "f1_mean": 0.8483165341182355,
+      "f1_std": 0.03809846129192208,
+      "acc_mean": 0.8895348837209303,
+      "acc_std": 0.03160757060135676,
+      "n_seeds": 10
+    },
+    {
+      "model": "xgboost",
+      "strategy": "RandomOverSampler",
+      "label": "XGBoost",
+      "ba_mean": 0.7837500000000001,
+      "ba_std": 0.032453849268022535,
+      "f1_mean": 0.7742346991592972,
+      "f1_std": 0.03358593479704551,
+      "acc_mean": 0.8255813953488371,
+      "acc_std": 0.02628810070978787,
+      "n_seeds": 10
+    },
+    {
+      "model": "lgbm",
+      "strategy": "SMOTE",
+      "label": "LightGBM",
+      "ba_mean": 0.8019940476190477,
+      "ba_std": 0.05259134230992056,
+      "f1_mean": 0.7860840514774258,
+      "f1_std": 0.06193108041362589,
+      "acc_mean": 0.8290697674418606,
+      "acc_std": 0.05172639998590151,
+      "n_seeds": 10
+    }
+  ],
+  "single_top3": [
+    {
+      "model": "extratrees",
+      "strategy": "SMOTE",
+      "label": "Extra Trees",
+      "ba_mean": 0.9860606060606061,
+      "ba_std": 0.01920918946499437,
+      "f1_mean": 0.9872231275377729,
+      "f1_std": 0.017711213507120595,
+      "acc_mean": 0.9875,
+      "acc_std": 0.017677669529663705,
+      "n_seeds": 10
+    },
+    {
+      "model": "tabpfn",
+      "strategy": "ClassWeights",
+      "label": "TabPFN",
+      "ba_mean": 0.9810606060606061,
+      "ba_std": 0.023594562882420355,
+      "f1_mean": 0.9807107556821515,
+      "f1_std": 0.02441468543101266,
+      "acc_mean": 0.9824999999999999,
+      "acc_std": 0.020581815058714134,
+      "n_seeds": 10
+    },
+    {
+      "model": "logistic_regression",
+      "strategy": "Original",
+      "label": "Logistic Regression",
+      "ba_mean": 0.969137529137529,
+      "ba_std": 0.023235282273428366,
+      "f1_mean": 0.9657848917396299,
+      "f1_std": 0.02756031327322032,
+      "acc_mean": 0.97,
+      "acc_std": 0.022973414586817033,
+      "n_seeds": 10
+    }
+  ],
+  "seed_coverage": {
+    "mix": {
+      "extratrees": [
+        4
+      ],
+      "gnb": [
+        10
+      ],
+      "lgbm": [
+        10
+      ],
+      "logistic_regression": [
+        10
+      ],
+      "mlp": [
+        10
+      ],
+      "randomforest": [
+        1
+      ],
+      "svm": [
+        10
+      ],
+      "tabpfn": [
+        10
+      ],
+      "xgboost": [
+        10
+      ]
+    },
+    "single": {
+      "extratrees": [
+        10
+      ],
+      "gnb": [
+        10
+      ],
+      "lgbm": [
+        10
+      ],
+      "logistic_regression": [
+        10
+      ],
+      "mlp": [
+        10
+      ],
+      "randomforest": [
+        1
+      ],
+      "svm": [
+        10
+      ],
+      "tabpfn": [
+        10
+      ],
+      "xgboost": [
+        10
+      ]
+    }
+  },
+  "outputs": {
+    "mix_plot": "c:\\Users\\DT User\\Documents\\GitHub\\ML_in_LTDNA\\top_models_report_seed_average\\top3_seedavg_lcb_mix.png",
+    "single_plot": "c:\\Users\\DT User\\Documents\\GitHub\\ML_in_LTDNA\\top_models_report_seed_average\\top3_seedavg_lcb_single.png"
+  }
+}

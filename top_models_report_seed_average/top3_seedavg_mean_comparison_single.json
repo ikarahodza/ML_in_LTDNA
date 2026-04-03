@@ -1,0 +1,130 @@
+{
+  "dataset": "Single",
+  "top3_models": [
+    {
+      "rank": 1,
+      "label": "Extra Trees",
+      "model": "extratrees",
+      "strategy": "SMOTE",
+      "ba_mean": 0.9860606060606061,
+      "ba_std": 0.01920918946499437,
+      "n_seeds": 10
+    },
+    {
+      "rank": 2,
+      "label": "TabPFN",
+      "model": "tabpfn",
+      "strategy": "ClassWeights",
+      "ba_mean": 0.9810606060606061,
+      "ba_std": 0.023594562882420355,
+      "n_seeds": 10
+    },
+    {
+      "rank": 3,
+      "label": "Logistic Regression",
+      "model": "logistic_regression",
+      "strategy": "Original",
+      "ba_mean": 0.969137529137529,
+      "ba_std": 0.023235282273428366,
+      "n_seeds": 10
+    }
+  ],
+  "pairwise_comparisons": [
+    {
+      "model_a": "Extra Trees",
+      "model_a_id": "extratrees",
+      "model_a_strategy": "SMOTE",
+      "model_a_ba_mean": 0.9860606060606061,
+      "model_b": "TabPFN",
+      "model_b_id": "tabpfn",
+      "model_b_strategy": "ClassWeights",
+      "model_b_ba_mean": 0.9810606060606061,
+      "n_paired_seeds": 9,
+      "mean_difference": 0.00555555555555556,
+      "std_difference": 0.01102396379610247,
+      "paired_t_test": {
+        "t_statistic": 1.5118578920369088,
+        "p_value": 0.16902020301917,
+        "valid": true
+      },
+      "wilcoxon_test": {
+        "statistic": 0.0,
+        "p_value": 0.5,
+        "valid": true
+      },
+      "cohens_d": 0.2460867046548653,
+      "ci_95_lower": -0.0029182131444955434,
+      "ci_95_upper": 0.014029324255606664,
+      "significantly_different_ttest": false,
+      "significantly_different_wilcoxon": false,
+      "valid": true
+    },
+    {
+      "model_a": "Extra Trees",
+      "model_a_id": "extratrees",
+      "model_a_strategy": "SMOTE",
+      "model_a_ba_mean": 0.9860606060606061,
+      "model_b": "Logistic Regression",
+      "model_b_id": "logistic_regression",
+      "model_b_strategy": "Original",
+      "model_b_ba_mean": 0.969137529137529,
+      "n_paired_seeds": 9,
+      "mean_difference": 0.0188034188034188,
+      "std_difference": 0.015451244606658905,
+      "paired_t_test": {
+        "t_statistic": 3.650855180038099,
+        "p_value": 0.006486342726820449,
+        "valid": true
+      },
+      "wilcoxon_test": {
+        "statistic": 0.0,
+        "p_value": 0.03125,
+        "valid": true
+      },
+      "cohens_d": 0.8406137552795011,
+      "ci_95_lower": 0.006926540817749967,
+      "ci_95_upper": 0.03068029678908763,
+      "significantly_different_ttest": true,
+      "significantly_different_wilcoxon": true,
+      "valid": true
+    },
+    {
+      "model_a": "TabPFN",
+      "model_a_id": "tabpfn",
+      "model_a_strategy": "ClassWeights",
+      "model_a_ba_mean": 0.9810606060606061,
+      "model_b": "Logistic Regression",
+      "model_b_id": "logistic_regression",
+      "model_b_strategy": "Original",
+      "model_b_ba_mean": 0.969137529137529,
+      "n_paired_seeds": 9,
+      "mean_difference": 0.013247863247863237,
+      "std_difference": 0.01967175994622712,
+      "paired_t_test": {
+        "t_statistic": 2.020337267851431,
+        "p_value": 0.07801779053962345,
+        "valid": true
+      },
+      "wilcoxon_test": {
+        "statistic": 4.5,
+        "p_value": 0.125,
+        "valid": true
+      },
+      "cohens_d": 0.5355613687151625,
+      "ci_95_lower": -0.0018731900130512374,
+      "ci_95_upper": 0.028368916508777712,
+      "significantly_different_ttest": false,
+      "significantly_different_wilcoxon": false,
+      "valid": true
+    }
+  ],
+  "comparison_notes": {
+    "paired_tests": "Aligned by seed order; requires equal seed counts",
+    "significance_threshold": 0.05,
+    "cohens_d_interpretation": {
+      "small": 0.2,
+      "medium": 0.5,
+      "large": 0.8
+    }
+  }
+}

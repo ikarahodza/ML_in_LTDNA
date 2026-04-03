@@ -34,13 +34,32 @@ CHART_COLORS = ['#5e81ac', '#a3be8c', '#ebcb8b', '#d08770', '#b48ead', '#88c0d0'
 # Configuration
 DATASET_TYPE = 'Single'  # Change to 'Single' for Single dataset
 REPORTS_DIR = f'{DATASET_TYPE}_Results/reports'
+REPORTS_V2_DIR = f'{DATASET_TYPE}_Results/reports_v2'
 FIGURES_DIR = f'{DATASET_TYPE}_Results/figures'
+FIGURES_V2_DIR = f'{DATASET_TYPE}_Results/figures_v2'
 OUTPUT_PDF = os.path.join(REPORTS_DIR, f'executive_summary_{datetime.now().strftime("%Y%m%d_%H%M%S")}.pdf')
 
 def load_results():
-    """Load combined results."""
-    with open(os.path.join(REPORTS_DIR, 'combined_results.json'), 'r') as f:
-        return json.load(f)
+    """Load combined results, preferring v2 (updated TabPFN) if available."""
+    # Merge v2 (TabPFN) with regular results
+    results = {}
+    
+    # Load main results
+    main_path = os.path.join(REPORTS_DIR, 'combined_results.json')
+    if os.path.exists(main_path):
+        with open(main_path, 'r') as f:
+            results = json.load(f)
+    
+    # Load and merge v2 results (updated TabPFN)
+    v2_path = os.path.join(REPORTS_V2_DIR, 'combined_results_v2.json')
+    if os.path.exists(v2_path):
+        with open(v2_path, 'r') as f:
+            results_v2 = json.load(f)
+        # Merge v2 results, overwriting TabPFN entries
+        for model_name, model_data in results_v2.items():
+            results[model_name] = model_data
+    
+    return results
 
 def load_external_validation():
     """Load external validation results."""
@@ -236,9 +255,18 @@ def add_confusion_matrices(pdf, best_models, results):
     for idx, model_info in enumerate(best_models[:3]):
         model_name = model_info['model']
         strategy = model_info['strategy']
+        strategy_clean = strategy.lower().replace(" ", "_")
         
-        # Find confusion matrix image
-        cm_path = os.path.join(FIGURES_DIR, f'confusion_matrix_{model_name.lower()}_{strategy.lower().replace(" ", "_")}.png')
+        # For TabPFN, try v2 version first
+        cm_path = None
+        if 'tabpfn' in model_name.lower():
+            cm_path_v2 = os.path.join(FIGURES_V2_DIR, f'confusion_matrix_{model_name.lower()}_{strategy_clean}_v2.png')
+            if os.path.exists(cm_path_v2):
+                cm_path = cm_path_v2
+        
+        # Fall back to regular version
+        if not cm_path:
+            cm_path = os.path.join(FIGURES_DIR, f'confusion_matrix_{model_name.lower()}_{strategy_clean}.png')
         
         if os.path.exists(cm_path):
             ax = fig.add_subplot(gs[idx])
@@ -264,9 +292,18 @@ def add_roc_curves(pdf, best_models):
     for idx, model_info in enumerate(best_models[:3]):
         model_name = model_info['model']
         strategy = model_info['strategy']
+        strategy_clean = strategy.lower().replace(" ", "_")
         
-        # Find ROC curve image
-        roc_path = os.path.join(FIGURES_DIR, f'roc_curves_{model_name.lower()}_{strategy.lower().replace(" ", "_")}.png')
+        # For TabPFN, try v2 version first
+        roc_path = None
+        if 'tabpfn' in model_name.lower():
+            roc_path_v2 = os.path.join(FIGURES_V2_DIR, f'roc_curves_{model_name.lower()}_{strategy_clean}_v2.png')
+            if os.path.exists(roc_path_v2):
+                roc_path = roc_path_v2
+        
+        # Fall back to regular version
+        if not roc_path:
+            roc_path = os.path.join(FIGURES_DIR, f'roc_curves_{model_name.lower()}_{strategy_clean}.png')
         
         if os.path.exists(roc_path):
             ax = fig.add_subplot(gs[idx])
@@ -291,9 +328,18 @@ def add_pr_curves(pdf, best_models):
     for idx, model_info in enumerate(best_models[:3]):
         model_name = model_info['model']
         strategy = model_info['strategy']
+        strategy_clean = strategy.lower().replace(" ", "_")
         
-        # Find PR curve image
-        pr_path = os.path.join(FIGURES_DIR, f'pr_curves_{model_name.lower()}_{strategy.lower().replace(" ", "_")}.png')
+        # For TabPFN, try v2 version first
+        pr_path = None
+        if 'tabpfn' in model_name.lower():
+            pr_path_v2 = os.path.join(FIGURES_V2_DIR, f'pr_curves_{model_name.lower()}_{strategy_clean}_v2.png')
+            if os.path.exists(pr_path_v2):
+                pr_path = pr_path_v2
+        
+        # Fall back to regular version
+        if not pr_path:
+            pr_path = os.path.join(FIGURES_DIR, f'pr_curves_{model_name.lower()}_{strategy_clean}.png')
         
         if os.path.exists(pr_path):
             ax = fig.add_subplot(gs[idx])

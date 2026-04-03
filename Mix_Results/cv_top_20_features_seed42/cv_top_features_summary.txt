@@ -1,0 +1,149 @@
+================================================================================
+CROSS-VALIDATION WITH TOP FEATURES FROM SEED 42
+Generated: 2026-02-28 16:44:23
+================================================================================
+
+Configuration:
+  - Random Seed: 42
+  - CV Folds: 30
+  - Top Features Selected: 20
+
+--------------------------------------------------------------------------------
+TOP 20 FEATURES (from LGBM Original - Seed 42)
+--------------------------------------------------------------------------------
+   1. UpStream_60
+   2. DownStream_45
+   3. UpStream_98
+   4. UpStream_97
+   5. UpStream_65
+   6. DownStream_4
+   7. UpStream_100
+   8. DownStream_40
+   9. C4_UpStream_1
+  10. C2
+  11. C1_DownStream_2
+  12. DownStream_42
+  13. DownStream_46
+  14. DownStream_5
+  15. UpStream_53
+  16. C4_UpStream_4
+  17. C2_UpStream_8
+  18. UpStream_54
+  19. C2_DownStream_1
+  20. DownStream_44
+
+================================================================================
+RESULTS SUMMARY
+================================================================================
+
+LGBM
+----------------------------------------
+  Full Features (305 features):
+    Balanced Accuracy: 0.7985 ± 0.1483
+    F1-Macro:         0.7716 ± 0.1448
+  Top 20 Features:
+    Balanced Accuracy: 0.7555 ± 0.1350
+    F1-Macro:         0.7323 ± 0.1342
+  Performance Change:
+    Balanced Accuracy: -0.0430 (-5.39%)
+    F1-Macro:         -0.0394 (-5.10%)
+
+XGBoost
+----------------------------------------
+  Full Features (305 features):
+    Balanced Accuracy: 0.8085 ± 0.1451
+    F1-Macro:         0.7801 ± 0.1477
+  Top 20 Features:
+    Balanced Accuracy: 0.8016 ± 0.1301
+    F1-Macro:         0.7723 ± 0.1319
+  Performance Change:
+    Balanced Accuracy: -0.0069 (-0.85%)
+    F1-Macro:         -0.0078 (-1.00%)
+
+RandomForest
+----------------------------------------
+  Full Features (305 features):
+    Balanced Accuracy: 0.7941 ± 0.1306
+    F1-Macro:         0.7536 ± 0.1379
+  Top 20 Features:
+    Balanced Accuracy: 0.7988 ± 0.1156
+    F1-Macro:         0.7618 ± 0.1222
+  Performance Change:
+    Balanced Accuracy: +0.0047 (+0.59%)
+    F1-Macro:         +0.0082 (+1.09%)
+
+ExtraTrees
+----------------------------------------
+  Full Features (305 features):
+    Balanced Accuracy: 0.8653 ± 0.1290
+    F1-Macro:         0.8418 ± 0.1423
+  Top 20 Features:
+    Balanced Accuracy: 0.8089 ± 0.1300
+    F1-Macro:         0.7739 ± 0.1407
+  Performance Change:
+    Balanced Accuracy: -0.0564 (-6.52%)
+    F1-Macro:         -0.0679 (-8.06%)
+
+LogisticReg
+----------------------------------------
+  Full Features (305 features):
+    Balanced Accuracy: 0.7331 ± 0.1675
+    F1-Macro:         0.7006 ± 0.1685
+  Top 20 Features:
+    Balanced Accuracy: 0.7724 ± 0.1371
+    F1-Macro:         0.7303 ± 0.1385
+  Performance Change:
+    Balanced Accuracy: +0.0392 (+5.35%)
+    F1-Macro:         +0.0297 (+4.24%)
+
+SVM
+----------------------------------------
+  Full Features (305 features):
+    Balanced Accuracy: 0.7326 ± 0.1697
+    F1-Macro:         0.7149 ± 0.1609
+  Top 20 Features:
+    Balanced Accuracy: 0.7857 ± 0.1296
+    F1-Macro:         0.7282 ± 0.1435
+  Performance Change:
+    Balanced Accuracy: +0.0531 (+7.25%)
+    F1-Macro:         +0.0134 (+1.87%)
+
+GaussianNB
+----------------------------------------
+  Full Features (305 features):
+    Balanced Accuracy: 0.5522 ± 0.1611
+    F1-Macro:         0.5041 ± 0.1505
+  Top 20 Features:
+    Balanced Accuracy: 0.6712 ± 0.1242
+    F1-Macro:         0.5604 ± 0.1131
+  Performance Change:
+    Balanced Accuracy: +0.1189 (+21.54%)
+    F1-Macro:         +0.0563 (+11.17%)
+
+MLP
+----------------------------------------
+  Full Features (305 features):
+    Balanced Accuracy: 0.7781 ± 0.1415
+    F1-Macro:         0.7494 ± 0.1378
+  Top 20 Features:
+    Balanced Accuracy: 0.7460 ± 0.1636
+    F1-Macro:         0.7268 ± 0.1620
+  Performance Change:
+    Balanced Accuracy: -0.0321 (-4.13%)
+    F1-Macro:         -0.0227 (-3.03%)
+
+TabPFN
+----------------------------------------
+  Full Features (305 features):
+    Balanced Accuracy: 0.8524 ± 0.1287
+    F1-Macro:         0.8335 ± 0.1385
+  Top 20 Features:
+    Balanced Accuracy: 0.8163 ± 0.1196
+    F1-Macro:         0.7927 ± 0.1259
+  Performance Change:
+    Balanced Accuracy: -0.0361 (-4.23%)
+    F1-Macro:         -0.0408 (-4.90%)
+
+================================================================================
+END OF REPORT
+================================================================================
