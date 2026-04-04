@@ -6,9 +6,13 @@ This project implements and compares nine machine learning algorithms for classi
 
 **Status:** ✅ Production-ready with comprehensive optimization, multi-seed validation, cross-validation, and deployment archive.
 
-**Best Models (Multi-Seed Validation - 10 Seeds):**
-- **Mix Dataset**: TabPFN (ClassWeights) - **84.73% ± 4.51%** | ExtraTrees (SMOTE) - **81.72% ± 2.39%**
-- **Single Dataset**: ExtraTrees (SMOTE) - **98.61% ± 1.92%** | RandomForest (Borderline SMOTE) - **98.53%**
+**Best Models (Strict Multi-Seed Validation - 10 Seeds):**
+- **Mix Dataset**: TabPFN (ClassWeights) - **84.73% ± 4.51%**
+- **Single Dataset**: Extra Trees (SMOTE) - **98.61% ± 1.92%**
+
+**Legacy Fallback Note:**
+- Older summaries may include low-seed entries (for example, RandomForest Borderline SMOTE on Single).
+- Use strict 10-seed policy for all primary comparisons and deployment decisions.
 
 **Best Models (30-Fold Cross-Validation - Seed 42):**
 - **Mix Dataset**: ExtraTrees (Baseline) - **86.53% ± 12.90%**
@@ -424,15 +428,52 @@ Each model generates:
 ### Why Phase 2 Was Not Needed
 Phase 1 results achieved **publication-quality performance**:
 - Mix: 88.10% (excellent for complex 4-class problem)
-- SiValidation Approaches
+- Single: 97.50% (near-perfect on held-out single-source profiles)
 
-**Three complementary validation strategies were performed:**
+### Validation Approaches
+
+Three complementary validation strategies were performed:
 
 1. **Train-Test Split (Seed 42)**: Initial model evaluation
-2. **Multi-Seed Validation (10 Seeds)**: Assesses robustness to random initialization
-3. **30-Fold Cross-Validation (Seed 42)**: Rigorous stability assessment
+2. **Multi-Seed Validation (10 Seeds)**: Robustness to random initialization
+3. **30-Fold Cross-Validation (Seed 42)**: Additional stability and variance assessment
 
-### Top 3 Model-Strategy Combinations - Mix Dataset (Multi-Seed Validation)
+### Evaluation Policy Split (Important)
+
+To avoid mixing incomparable settings, the project now reports multi-seed results in two tracks:
+
+1. **Strict 10-seed policy (current default for ranking and reporting)**
+  - Uses `--min-seeds 10 --top3-policy strict`
+  - Requires all selected top-3 entries to have full 10-seed support
+2. **Legacy fallback policy (historical reference only)**
+  - Older reports may include model-strategy entries with fewer seeds
+  - Useful for audit trail, but not recommended for primary model selection
+
+### Strict 10-Seed Results (Recommended)
+
+These values come from `top_models_report_seed_average/top3_seedavg_mean_summary.json` with strict policy enabled.
+
+#### Mix Dataset (Top-3)
+
+| Rank | Model | Strategy | Balanced Accuracy | Std Dev | Seeds |
+|------|-------|----------|-------------------|---------|-------|
+| 1 | **TabPFN** | ClassWeights | **0.8473** | ±0.0451 | 10 |
+| 2 | **LightGBM** | SMOTE | **0.8020** | ±0.0526 | 10 |
+| 3 | **XGBoost** | SMOTE | **0.7895** | ±0.0571 | 10 |
+
+#### Single Dataset (Top-3)
+
+| Rank | Model | Strategy | Balanced Accuracy | Std Dev | Seeds |
+|------|-------|----------|-------------------|---------|-------|
+| 1 | **Extra Trees** | SMOTE | **0.9861** | ±0.0192 | 10 |
+| 2 | **TabPFN** | ClassWeights | **0.9811** | ±0.0236 | 10 |
+| 3 | **Logistic Regression** | Original | **0.9691** | ±0.0232 | 10 |
+
+### Legacy Fallback Results (Historical Only)
+
+The following were reported in older summaries and may include low-seed entries.
+
+#### Mix Dataset (Legacy Top-3)
 
 | Rank | Model | Strategy | Balanced Accuracy | Std Dev |
 |------|-------|----------|-------------------|---------|
@@ -440,149 +481,35 @@ Phase 1 results achieved **publication-quality performance**:
 | 2 | **TabPFN** | RandomUnderSampler | **0.8360** | ±0.0471 |
 | 3 | **ExtraTrees** | SMOTE | **0.8172** | ±0.0239 |
 
-### Top 3 Model-Strategy Combinations - Single Dataset (Multi-Seed Validation)
+#### Single Dataset (Legacy Top-3)
 
-| Rank | Model | Strategy | Balanced Accuracy | Std Dev |
-|------|-------|----------|-------------------|---------|
-| 1 | **ExtraTrees** | SMOTE | **0.9861** | ±0.0192 |
-| 2 | **RandomForest** | Borderline SMOTE | **0.9853** | ±0.0000 |
-| 3 | **ExtraTrees** | RandomOverSampler | **0.9841** | ±0.0186 |
+| Rank | Model | Strategy | Balanced Accuracy | Std Dev | Notes |
+|------|-------|----------|-------------------|---------|-------|
+| 1 | **ExtraTrees** | SMOTE | **0.9861** | ±0.0192 | Full 10-seed support |
+| 2 | **RandomForest** | Borderline SMOTE | **0.9853** | ±0.0000 | Low seed support (not strict-comparable) |
+| 3 | **ExtraTrees** | RandomOverSampler | **0.9841** | ±0.0186 | Full 10-seed support |
 
-### Top 3 Models - Mix Dataset (30-Fold Cross-Validation, Seed 42)
+### Reproducible Commands
 
-| Rank | Model | Balanced Accuracy | Std Dev |
-|------|-------|--- (Multi-Seed Validation):**
-- **TabPFN** dominates Mix dataset (84.73% ± 4.51%) with low variance
-- **ExtraTrees** dominates Single dataset (98.61% ± 1.92%) - near perfect classification
-- **Low standard deviations** (< 5%) indicate robust models across random seeds
-- TabPFN not included in CV (sample size limitations, computational cost)
+Use the unified CLI:
 
-**Cross-Validation Insights (30-Fold):**
-- **ExtraTrees** consistently top performer across both datasets
-- **Higher variance on Mix** (12.90% std) vs Single (4.95% std) reflects task difficulty
-- **30-fold CV** provides rigorous stability estimates vs 10-fold
-- Confirms multi-seed findings: ExtraTrees highly stable
+```bash
+# Strict 10-seed (recommended)
+python scripts/ml_cli.py run top3-seedavg -- --min-seeds 10 --top3-policy strict --coverage-gate warn --schema-validation warn
 
-**Optimization Impact:**
-- **StandardScaler**: Critical for SVM and MLP performance on scaled features
-- **Class Weighting**: Effective for handling imbalanced classes in boosting models
-- **Early Stopping**: Prevents overfitting, reduces training time by 30-40%
-- **Multi-Seed Validation**: Reveals TabPFN superiority for Mix dataset
-| 3 | **ExtraTrees SMOTE** | **0.9708** | ±0.0619y | Type |
-|------|-------|----------|------------------|----------|----------|------|
-| 1 | **LogisticRegression** | Original | **0.9750** | 0.9667 | 0.9750 | Individual |
-| 1 | **ExtraTrees** | Original | **0.9750** | 0.9667 | 0.9750 | Individual |
-| 3 | **Stacking Ensemble** | N/A | **0.9625** | 0.9524 | 0.9625 | Ensemble |
-| 3 | **Voting Ensemble** | N/A | **0.9625** | 0.9524 | 0.9625 | Ensemble |
-| 5 | RandomForest | SMOTE | 0.9500 | 0.9385 | 0.9500 | Individual |
+# Legacy-style fallback exploration (historical comparison)
+python scripts/ml_cli.py run top3-seedavg -- --min-seeds 10 --top3-policy flexible --allow-fallback --coverage-gate warn --schema-validation warn
+```
 
 ### Key Findings
 
-**MxtraTrees shows most stable error patterns across seeds
+- **Strict ranking recommendation (Mix)**: TabPFN (ClassWeights)
+- **Strict ranking recommendation (Single)**: Extra Trees (SMOTE)
+- **Cross-validation confirms stability trends**, with higher variance on Mix than Single due to task complexity
+- **Legacy fallback results remain documented** for historical traceability, but strict policy should drive deployment decisions
 
-**Validation Robustness:**
-- **Multi-seed validation** (10 seeds) confirms model stability
-- **30-fold CV** provides comprehensive performance estimates
-- **Low variance models** (TabPFN, ExtraTrees) preferred for deployment
-- External validation: 70.12% on Mix dataset (expected drop, confirms generalization)
-- TabPFN shows remarkable consistency: 84.73% ± 4.51% across 10 seedsperformance on scaled features
-- **Class Weighting**: Effective for handling imbalanced classes in boosting models
-- **Early Stopping**: Prevents overfitting, reduces training time by 30-40%
-- **Ensemble Methods**: Best overall performance, robust to overfitting
-
-**Feature Insights:**
-- UpStream_60 most important feature (SHAP: 122.17)
-- Peak height and area features critical predictors
-- Positional features significantly contribute
-- Feature engineering improves F1 by 1.85%
-
-**Error Patterns:**
-- Most confusion between Class 0→1 and Class 0→3
-- 643 errors analyzed across 29 model configurations
-- Ensemble methods reduce error rate by 15-20%
-
-**Overfitting Assessment:**
-- Single dataset: 97.50% on 40 test samples (only 1 error)
-- Small test set creates high variance, but external validation confirms reliability
-- LoRecommended Models (Based on Multi-Seed & CV Validation)
-
-**Mix Dataset (Complex Mixture Profiles)**
-- **Recommended**: TabPFN with ClassWeights
-- **Performance (Multi-Seed)**: 84.73% ± 4.51% Balanced Accuracy
-- **Alternative**: ExtraTrees SMOTE (81.72% ± 2.39%, more stable)
-- **CV Performance**: ExtraTrees Baseline (86.53% ± 12.90%)
-- Use Case: DNA mixture interpretation with 4 artifact classes
-
-**Single Dataset (Single-source Profiles)**
-- **Recommended**: ExtraTrees SMOTE
-- **Performance (Multi-Seed)**: 98.61% ± 1.92% Balanced Accuracy
-- **CV Performance**: ExtraTrees Baseline (98.75% ± 4.95%)
-- Use Case: Single-source profile analysis (near-perfect classification)
-
-### Pre-trained Models Available
-
-**Mix Dataset Archive**
-from tabpfn import TabPFNClassifier
-
-# For TabPFN (Mix Dataset - Best Model)
-model = TabPFNClassifier()  # Configure with your API key
-# Train on your data with class_weight='balanced'
-
-# For ExtraTrees (Single Dataset - Best Model)
-model = joblib.load('Single_Results/models/extratrees_smote_best_model.pkl')
-
-# Load your data (307 features expected)
-X_new = pd.read_csv('your_data.csv')
-X_new = X_new.drop(['sample', 'PoI', 'Classification'], axis=1, errors='ignore')
-
-# Make predictions
-y_pred = model.predict(X_new)
-y_proba = model.predict_proba(X_new)
-
-# Decode predictions
-classes = ['Allele', 'Back_Stutter', 'Forward_Stutter', 'Pull_Up']
-predictions = [classes[pred] for pred in y_pred]
-```
-
-### Model Specifications
-
-**TabPFN ClassWeights (Mix) - Best Multi-Seed Model**
-- Type: Transformer-based prior-fitted network
-- Resampling: ClassWeights (balanced)
-- Input: 307 features
-- Output: 4 classes (Allele, Back_Stutter, Forward_Stutter, Pull_Up)
-- **Performance (Multi-Seed)**: 84.73% ± 4.51%
-
-**ExtraTrees SMOTE (Single) - Best Multi-Seed Model**
-- Type: Extremely Randomized Trees ensemble
-- Resampling: SMOTE (Synthetic Minority Over-sampling)
-- Input: 307 features
-- Output: 4 classes
-- **Performance (Multi-Seed)**: 98.61% ± 1.92
-y_pred = model.predict(X_scaled)
-y_proba = model.predict_proba(X_scaled)
-
-# Decode predictions
-classes = ['Allele', 'Back_Stutter', 'Forward_Stutter', 'Pull_Up']
-predictions = [classes[pred] for pred in y_pred]
-```
-Multi-seed validation** (10 random seeds: 42, 123, 456, ..., 2021)  
-✅ **30-fold stratified cross-validation** for rigorous stability assessment  
-✅ **3 resampling strategies** per model (35+ configurations)  
-✅ **Aggregated results** (mean ± std across seeds) with HTML reports  
-✅ **Hyperparameter tuning** with 5-fold CV  
-✅ **Error analysis** on 643 misclassifications  
-✅ **SHAP-based feature importance** analysis  
-✅ **Feature engineering** (+56 features, +1.85% F1)  
-✅ **Comprehensive PDF reports** (21-page technical analysis)  
-✅ **Executive summary PDFs** (presentation-ready with soft colors)  
-✅ **CV executive summary PDFs** (30-fold results with stability analysis)  
-✅ **Top 3 visualizations** (bar charts with error bars)  
-✅ **External validation** on independent dataset  
-✅ **Production deployment** archive with documentation  
-✅ **CLI dataset selection** (Mix or Single)  
-✅ **Publication-quality results** (TabPFN: 84.73% ± 4.51% Mix, ExtraTrees: 98.61% ± 1.92
 ## Key Features
+
 ### Core Documentation
 - **OPTIMIZATION_FINAL_SUMMARY.md**: Complete Phase 1 optimization journey
 - **PIPELINE_OPTIMIZATION_REPORT.md**: Pipeline optimization details
@@ -591,6 +518,7 @@ Multi-seed validation** (10 random seeds: 42, 123, 456, ..., 2021)
 
 ### Reports & Visualizations
 - **aggregated_top3_report.html**: Multi-seed top 3 models (interactive HTML)
+- **top_models_report_seed_average/top3_seedavg_mean_report.html**: Strict seed-average top-3 report
 - **Mix_Results/reports/comprehensive_analysis_*.pdf**: 21-page technical report
 - **Mix_Results/reports/executive_summary_*.pdf**: Presentation PDFs (train-test)
 - **Mix_Results/reports/executive_summary_cv_*.pdf**: CV executive summaries (30-fold)
@@ -600,20 +528,16 @@ Multi-seed validation** (10 random seeds: 42, 123, 456, ..., 2021)
 
 ### Analysis Results
 - **Mix_Results/multi_seed_aggregated/aggregated_results.json**: Mean ± std across 10 seeds
-- **Mix_Results/cross_validation_results/cv_results.json**: 30-fold CV detailed results
-- **Single_Results/multi_seed_aggregated/aggregated_results.json**: Single aggregated results
+- **Single_Results/multi_seed_aggregated/aggregated_results.json**: Mean ± std across 10 seeds
+- **top_models_report_seed_average/top3_seedavg_mean_summary.json**: Strict policy summary + coverage gate + stats
+- **top_models_report_seed_average/top3_seedavg_mean_comparison_mix.json**: Mix pairwise statistics
+- **top_models_report_seed_average/top3_seedavg_mean_comparison_single.json**: Single pairwise statistics
 
 ### Utility Scripts
 - **view_cv_std.py**: View cross-validation standard deviations
 - **view_external_validation.py**: View external validation results
-- **check_overfitting.py**: Overfitting analysi
-✅ **Executive summary PDFs** (12-page presentation-ready reports with soft colors)  
-✅ **Cross-validation** for stability assessment  
-✅ **External validation** on independent dataset (visualized in PDFs)  
-✅ **Overfitting analysis** confirming model reliability  
-✅ **Production deployment** archive with documentation  
-✅ **CLI dataset selection** (Mix or Single)  
-✅ **Publication-quality results** (88.10% Mix, 97.50% Single)  
+- **check_overfitting.py**: Overfitting analysis for Single dataset results
+- **scripts/ml_cli.py**: Unified CLI for running core scripts
 
 ## Documentation
 
