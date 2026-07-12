@@ -2,7 +2,7 @@
 <head><meta charset="utf-8"><title>Combined Comparison Report</title></head>
 <body>
 <h1>Combined Comparison Report</h1>
-<div>Generated: 2025-12-24 11:37:50</div>
+<div>Generated: 2026-06-28 14:41:43</div>
 <h2>Model: gnb</h2>
 <table border="1" cellpadding="6" cellspacing="0">
 <tr><th>Strategy</th><th>Accuracy</th><th>Balanced Accuracy</th><th>F1 (macro)</th><th>MSE</th><th>Log Loss</th><th>Informedness</th><th>Markedness</th></tr>
@@ -280,6 +280,40 @@
 <td>0.9444444444444444</td>
 <td>0.42857142857142855</td>
 <td>0.9375</td>
+</tr>
+</table>
+<h2>Model: randomforest</h2>
+<table border="1" cellpadding="6" cellspacing="0">
+<tr><th>Strategy</th><th>Accuracy</th><th>Balanced Accuracy</th><th>F1 (macro)</th><th>MSE</th><th>Log Loss</th><th>Informedness</th><th>Markedness</th></tr>
+<tr><td>Original</td><td>0.872093023255814</td><td>0.7512896825396825</td><td>0.7783991228070175</td><td>0.4186046511627907</td><td>0.47275044350876494</td><td>0.6941109573910865</td><td>0.8627065826330533</td></tr>
+<tr><td>SMOTE</td><td>0.8255813953488372</td><td>0.8514384920634921</td><td>0.8015393577199815</td><td>0.5930232558139535</td><td>0.5501840996431209</td><td>0.7939170750372804</td><td>0.7019500460444237</td></tr>
+<tr><td>RandomOverSampler</td><td>0.8488372093023255</td><td>0.7703373015873015</td><td>0.7749517507582023</td><td>0.5465116279069767</td><td>0.8807639372988654</td><td>0.7101693381376426</td><td>0.7217862945005402</td></tr>
+</table>
+<h3>Per-class Recall</h3>
+<table border="1" cellpadding="6" cellspacing="0">
+<tr><th>Strategy</th>
+<th>Allele</th>
+<th>Back_Stutter</th>
+<th>Forward_Stutter</th>
+<th>Pull_Up</th>
+</tr>
+<tr><td>Original</td>
+<td>0.9555555555555556</td>
+<td>0.8888888888888888</td>
+<td>0.2857142857142857</td>
+<td>0.875</td>
+</tr>
+<tr><td>SMOTE</td>
+<td>0.7777777777777778</td>
+<td>0.8333333333333334</td>
+<td>0.8571428571428571</td>
+<td>0.9375</td>
+</tr>
+<tr><td>RandomOverSampler</td>
+<td>0.8888888888888888</td>
+<td>0.8888888888888888</td>
+<td>0.42857142857142855</td>
+<td>0.875</td>
 </tr>
 </table>
 </body></html>

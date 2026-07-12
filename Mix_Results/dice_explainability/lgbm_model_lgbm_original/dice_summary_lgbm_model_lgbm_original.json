@@ -1,0 +1,28 @@
+{
+  "model": "lgbm_model_lgbm_original",
+  "total_counterfactuals": 144,
+  "top10_features_by_change_magnitude": {
+    "UpStream_17": 4210.998644693958,
+    "UpStream_60": 3641.8470282954167,
+    "C1_UpStream_5": 3322.119955528194,
+    "C2_DownStream_3": 3224.2331707305557,
+    "UpStream_100": 3066.0764008115275,
+    "C3_UpStream_9": 2614.942463420417,
+    "C5_UpStream_10": 2598.8726008591666,
+    "C5_DownStream_1": 2558.5572651784723,
+    "DownStream_70": 2550.5816400611116,
+    "C5_UpStream_9": 2389.617322625
+  },
+  "top10_features_by_change_frequency": {
+    "UpStream_60": 0.25,
+    "DownStream_39": 0.25,
+    "UpStream_65": 0.24305555555555555,
+    "UpStream_63": 0.2361111111111111,
+    "UpStream_100": 0.22916666666666666,
+    "DownStream_4": 0.2222222222222222,
+    "UpStream_97": 0.2222222222222222,
+    "DownStream_98": 0.20833333333333334,
+    "C1_UpStream_5": 0.20833333333333334,
+    "DownStream_45": 0.20833333333333334
+  }
+}

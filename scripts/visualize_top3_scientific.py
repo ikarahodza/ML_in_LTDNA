@@ -59,6 +59,7 @@ METRIC_CFG = [
 ]
 
 TOP_N = 3   # number of models to show per dataset
+TOP_N_CASES = 4  # number of models to show per train/test case
 
 # Human-readable model name mapping
 MODEL_DISPLAY = {
@@ -116,6 +117,253 @@ def build_color_map(mix_top: list, single_top: list) -> dict[str, str]:
         if m not in seen_order:
             seen_order.append(m)
     return {m: COLORBREWER_SET2[i % len(COLORBREWER_SET2)] for i, m in enumerate(seen_order)}
+
+
+def _normalize_model_key(model_name: str) -> str:
+    """Normalize model names from different result files to a shared key."""
+    name = model_name.lower()
+    aliases = [
+        ("stacking_ensemble", "stacking_ensemble"),
+        ("tabpfn", "tabpfn"),
+        ("extratrees", "extratrees"),
+        ("lightgbm", "lgbm"),
+        ("lgbm", "lgbm"),
+        ("randomforest", "randomforest"),
+        ("xgboost", "xgboost"),
+        ("logistic_regression", "logistic_regression"),
+        ("logre", "logistic_regression"),
+        ("svm", "svm"),
+        ("gaussiannb", "gnb"),
+        ("gnb", "gnb"),
+        ("mlp", "mlp"),
+    ]
+    for needle, canonical in aliases:
+        if needle in name:
+            return canonical
+    return name.replace(" ", "_")
+
+
+def _display_model_name(model_key: str) -> str:
+    """Human-readable model name for labels."""
+    return MODEL_DISPLAY.get(model_key, model_key.replace("_", " ").title())
+
+
+def _metric_pair(metrics: dict, key: str) -> tuple[float, float]:
+    """Return (mean, std) for a metric stored as either a dict or a scalar."""
+    value = metrics.get(key, 0.0)
+    if isinstance(value, dict):
+        return float(value.get("mean", 0.0)), float(value.get("std", 0.0))
+    return float(value), 0.0
+
+
+def _load_case_rows(result_path: str, source_kind: str) -> list[dict]:
+    """Load one train/test case and return best-per-model rows sorted by balanced accuracy."""
+    if not os.path.exists(result_path):
+        raise FileNotFoundError(f"Results not found: {result_path}")
+
+    with open(result_path, encoding="utf-8") as fh:
+        data = json.load(fh)
+
+    rows: list[dict] = []
+
+    # Case 1: nested combined_results.json structure: model -> results -> strategy -> metrics
+    if source_kind == "combined":
+        for model_name, model_data in data.items():
+            strategies = model_data.get("results", {})
+            best_strategy = None
+            best_metrics = None
+            best_ba = -1.0
+
+            for strategy_name, metrics in strategies.items():
+                ba_val = metrics.get("balanced_accuracy", 0.0)
+                if isinstance(ba_val, dict):
+                    ba_val = ba_val.get("mean", 0.0)
+                if ba_val > best_ba:
+                    best_ba = float(ba_val)
+                    best_strategy = strategy_name
+                    best_metrics = metrics
+
+            if best_metrics is None:
+                continue
+
+            norm_key = _normalize_model_key(model_name)
+            ba_mean, ba_std = _metric_pair(best_metrics, "balanced_accuracy")
+            f1_mean, f1_std = _metric_pair(best_metrics, "f1_macro")
+            acc_mean, acc_std = _metric_pair(best_metrics, "accuracy")
+
+            rows.append(
+                {
+                    "model": norm_key,
+                    "display": _display_model_name(norm_key),
+                    "strategy": best_strategy or "",
+                    "ba_mean": ba_mean,
+                    "ba_std": ba_std,
+                    "f1_mean": f1_mean,
+                    "f1_std": f1_std,
+                    "acc_mean": acc_mean,
+                    "acc_std": acc_std,
+                }
+            )
+
+    # Case 2: flat external-validation structure: model -> metrics
+    else:
+        for model_name, metrics in data.items():
+            if not isinstance(metrics, dict) or "error" in metrics:
+                continue
+
+            norm_key = _normalize_model_key(model_name)
+            rows.append(
+                {
+                    "model": norm_key,
+                    "display": _display_model_name(norm_key),
+                    "strategy": "External validation",
+                    "ba_mean": float(metrics.get("balanced_accuracy", 0.0)),
+                    "ba_std": 0.0,
+                    "f1_mean": float(metrics.get("f1_macro", 0.0)),
+                    "f1_std": 0.0,
+                    "acc_mean": float(metrics.get("accuracy", 0.0)),
+                    "acc_std": 0.0,
+                }
+            )
+
+    return sorted(rows, key=lambda x: x["ba_mean"], reverse=True)
+
+
+def _build_case_color_map(case_rows: list[list[dict]]) -> dict[str, str]:
+    """Assign one consistent color to each model across all four cases."""
+    seen_order: list[str] = []
+    for rows in case_rows:
+        for entry in rows:
+            model_key = entry["model"]
+            if model_key not in seen_order:
+                seen_order.append(model_key)
+    return {m: COLORBREWER_SET2[i % len(COLORBREWER_SET2)] for i, m in enumerate(seen_order)}
+
+
+def create_four_case_figure(case_specs: list[tuple[str, str, list[dict]]], output_path: str) -> None:
+    """Create one figure with the top 4 models for all four train/test scenarios."""
+    fig, axes = plt.subplots(
+        2,
+        2,
+        figsize=(13, 10),
+        sharey=True,
+        gridspec_kw={"wspace": 0.10, "hspace": 0.35},
+    )
+    fig.patch.set_facecolor("white")
+
+    color_map = _build_case_color_map([rows for _, _, rows in case_specs])
+
+    for ax, (panel_label, case_title, rows) in zip(axes.flat, case_specs):
+        _apply_scientific_style(ax)
+
+        top_rows = rows[:TOP_N_CASES]
+        x = np.arange(len(top_rows))
+        values = [row["ba_mean"] for row in top_rows]
+        stds = [row["ba_std"] for row in top_rows]
+
+        ax.bar(
+            x,
+            values,
+            width=0.60,
+            color=[color_map[row["model"]] for row in top_rows],
+            edgecolor="white",
+            linewidth=0.7,
+            zorder=3,
+        )
+
+        if any(std > 0 for std in stds):
+            ax.errorbar(
+                x,
+                values,
+                yerr=stds,
+                fmt="none",
+                ecolor="#444444",
+                capsize=4,
+                capthick=1.0,
+                elinewidth=1.0,
+                zorder=4,
+            )
+
+        for xi, row in zip(x, top_rows):
+            offset = row["ba_std"] + 0.012
+            ax.text(
+                xi,
+                row["ba_mean"] + offset,
+                f"{row['ba_mean']:.3f}",
+                ha="center",
+                va="bottom",
+                fontsize=7.5,
+                fontweight="bold",
+                color="#333333",
+                clip_on=False,
+            )
+
+        ax.set_xticks(x)
+        ax.set_xticklabels(
+            [f"#{i + 1}\n{row['display']}" for i, row in enumerate(top_rows)],
+            fontsize=8.5,
+        )
+
+        for xi, row in zip(x, top_rows):
+            strat_text = row["strategy"] if row["strategy"] else ""
+            if strat_text:
+                strat_text = (
+                    strat_text.replace("Borderline SMOTE", "BL-SMOTE")
+                    .replace("RandomOverSampler", "ROS")
+                    .replace("ClassWeights", "CW")
+                )
+                ax.text(
+                    xi,
+                    -0.13,
+                    strat_text,
+                    ha="center",
+                    va="top",
+                    fontsize=6.2,
+                    color="#666666",
+                    transform=ax.get_xaxis_transform(),
+                    clip_on=False,
+                )
+
+        ax.set_ylim(0, 1.12)
+        ax.yaxis.set_major_locator(MultipleLocator(0.2))
+        ax.yaxis.set_minor_locator(MultipleLocator(0.1))
+        ax.text(
+            0.03,
+            0.97,
+            case_title,
+            transform=ax.transAxes,
+            ha="left",
+            va="top",
+            fontsize=10,
+            fontweight="bold",
+            color="#333333",
+        )
+        ax.text(
+            -0.14,
+            1.03,
+            panel_label,
+            transform=ax.transAxes,
+            fontsize=12,
+            fontweight="bold",
+            va="bottom",
+            ha="left",
+            color="#222222",
+        )
+
+    axes[0][0].set_ylabel("Balanced Accuracy", fontsize=10, fontweight="bold")
+    axes[1][0].set_ylabel("Balanced Accuracy", fontsize=10, fontweight="bold")
+
+    fig.suptitle(
+        "Top 4 Models Across Train/Test Scenarios (balanced accuracy)",
+        fontsize=12,
+        fontweight="bold",
+        y=0.995,
+        color="#222222",
+    )
+
+    plt.savefig(output_path, dpi=300, bbox_inches="tight", facecolor="white")
+    plt.close(fig)
+    print(f"  Saved: {os.path.basename(output_path)}")
 
 
 # ---------------------------------------------------------------------------
@@ -545,8 +793,47 @@ def main() -> None:
     combined_out = os.path.join(OUTPUT_DIR, "top3_combined_figure.png")
     create_combined_figure(mix_top3, single_top3, color_map, combined_out)
 
+    # ---- Four train/test cases in one figure ----
+    print("[4/5] Generating four-case top-4 figure …")
+    case_specs = [
+        (
+            "A",
+            "Mix train / Mix test",
+            _load_case_rows(
+                os.path.join(PROJECT_ROOT, "Mix_Results", "reports", "combined_results.json"),
+                "combined",
+            ),
+        ),
+        (
+            "B",
+            "Single train / Single test",
+            _load_case_rows(
+                os.path.join(PROJECT_ROOT, "Single_Results", "reports", "combined_results.json"),
+                "combined",
+            ),
+        ),
+        (
+            "C",
+            "Mix train / Single test",
+            _load_case_rows(
+                os.path.join(PROJECT_ROOT, "Mix_Results", "external_validation_results", "external_validation_results.json"),
+                "external",
+            ),
+        ),
+        (
+            "D",
+            "Single train / Mix test",
+            _load_case_rows(
+                os.path.join(PROJECT_ROOT, "Single_Results", "external_validation_results", "external_validation_results.json"),
+                "external",
+            ),
+        ),
+    ]
+    four_case_out = os.path.join(OUTPUT_DIR, "top4_four_case_comparison.png")
+    create_four_case_figure(case_specs, four_case_out)
+
     # ---- Per-model profiles for models appearing in either top-3 ----
-    print("[4/4] Generating per-model metric profiles …")
+    print("[5/5] Generating per-model metric profiles …")
     seen_models = {r["model"] for r in mix_top3 + single_top3}
     for model_key in seen_models:
         out = os.path.join(OUTPUT_DIR, f"profile_{model_key}.png")

@@ -1,0 +1,28 @@
+{
+  "model": "model_gnb_randomoversampler",
+  "total_counterfactuals": 140,
+  "top10_features_by_change_magnitude": {
+    "UpStream_31": 1265.0941083305715,
+    "C5_DownStream_1": 1123.1265144267143,
+    "C5_DownStream_4": 1073.9385220514287,
+    "UpStream_29": 931.3623809525,
+    "C1_DownStream_4": 930.0939857576714,
+    "C3_DownStream_1": 882.6282212222857,
+    "C4": 800.4530008648571,
+    "C1_UpStream_10": 792.9228711353571,
+    "UpStream_9": 777.2862602,
+    "C4_UpStream_8": 775.3296329302858
+  },
+  "top10_features_by_change_frequency": {
+    "UpStream_31": 0.06428571428571428,
+    "DownStream_52": 0.05,
+    "C5_DownStream_1": 0.05,
+    "UpStream_1": 0.05,
+    "DownStream_43": 0.05,
+    "C5_DownStream_4": 0.04285714285714286,
+    "DownStream_37": 0.04285714285714286,
+    "UpStream_93": 0.04285714285714286,
+    "C2_UpStream_8": 0.04285714285714286,
+    "C4_DownStream_3": 0.04285714285714286
+  }
+}

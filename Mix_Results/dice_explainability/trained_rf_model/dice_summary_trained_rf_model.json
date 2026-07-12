@@ -1,0 +1,28 @@
+{
+  "model": "trained_rf_model",
+  "total_counterfactuals": 128,
+  "top10_features_by_change_magnitude": {
+    "UpStream_18": 4391.620661260703,
+    "C1_UpStream_5": 4015.238215503125,
+    "UpStream_57": 3544.9971572309373,
+    "C2_UpStream_9": 3539.052083667235,
+    "UpStream_61": 3483.693936751094,
+    "C5_UpStream_7": 3483.436220005312,
+    "C5": 3400.4311500875783,
+    "C3_UpStream_8": 3277.643275021875,
+    "C1_DownStream_2": 3177.008932822344,
+    "UpStream_100": 3110.470905242969
+  },
+  "top10_features_by_change_frequency": {
+    "UpStream_97": 0.34375,
+    "DownStream_44": 0.328125,
+    "C4": 0.296875,
+    "UpStream_61": 0.28125,
+    "UpStream_18": 0.2734375,
+    "UpStream_57": 0.2734375,
+    "UpStream_96": 0.2734375,
+    "UpStream_62": 0.265625,
+    "C3_UpStream_1": 0.2421875,
+    "DownStream_96": 0.2421875
+  }
+}

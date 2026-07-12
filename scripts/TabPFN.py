@@ -19,43 +19,13 @@ from collections import Counter
 import joblib
 import os
 
-# Disable TabPFN telemetry to prevent PostHog connection errors
-os.environ['POSTHOG_DISABLED'] = '1'
-os.environ['TABPFN_TELEMETRY'] = '0'
+os.environ['TABPFN_TOKEN']     = "tabpfn_sk_tjOlL6KMZ2Myhf50Vbm7Rbtrgy7gjg74dInHzu5toiw"
+os.environ['TABPFN_NO_BROWSER'] = '1'
+
 import helper_functions as hf
-
-os.environ["HF_TOKEN"] = "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"
-
-parser = argparse.ArgumentParser(add_help=False)
-parser.add_argument('--tabpfn-key', dest='tabpfn_key', default=None)
-args, _ = parser.parse_known_args()
-
-def _get_tabpfn_key(cli_key=None):
-    if cli_key:
-        return cli_key
-    for name in ('TABPFN_KEY', 'TABPFN_API_KEY'):
-        val = os.environ.get(name)
-        if val:
-            return val
-    key_file = os.path.join(os.getcwd(), 'tabpfn.key')
-    if os.path.exists(key_file):
-        try:
-            with open(key_file, 'r', encoding='utf-8') as fh:
-                return fh.read().strip()
-        except Exception:
-            return None
-    return None
-
-tabpfn_key = _get_tabpfn_key(args.tabpfn_key)
-if tabpfn_key:
-    os.environ['TABPFN_KEY'] = tabpfn_key
-    src = 'CLI' if args.tabpfn_key else ('env' if any(os.environ.get(n) for n in ('TABPFN_KEY','TABPFN_API_KEY')) else 'file')
-    print(f"TabPFN API key found ({src}) — using it for this run.")
-else:
-    print("ERROR: TabPFN API key not found. Provide it with --tabpfn-key, set TABPFN_KEY/TABPFN_API_KEY in the environment, or place it in 'tabpfn.key' in the repo root.")
-    sys.exit(1)
-
 from tabpfn import TabPFNClassifier
+
+TABPFN_MODEL = 'tabpfn-v2.5-classifier-v2.5_default.ckpt'
 
 MODEL_NAME = 'tabpfn'
 VERSION_SUFFIX = '_v2'  # Add version suffix to distinguish new results from old ones
@@ -129,7 +99,7 @@ print(f"\nFeature scaling applied with StandardScaler")
 
 def train_tabpfn_pipeline(X_train, y_train, X_test, y_test, strategy_name="Original", class_weight=None):
     # TabPFN doesn't support class_weight parameter directly, so we note it for the strategy name
-    clf = TabPFNClassifier()
+    clf = TabPFNClassifier(model_path=TABPFN_MODEL)
     clf.fit(X_train, y_train)
     
     y_pred = clf.predict(X_test)

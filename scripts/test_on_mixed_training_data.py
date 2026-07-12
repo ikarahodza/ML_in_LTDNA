@@ -70,6 +70,45 @@ scaler = StandardScaler()
 X_scaled = scaler.fit_transform(X)
 X_scaled_df = pd.DataFrame(X_scaled, columns=X.columns)
 
+
+def normalize_predicted_labels(y_pred_raw, label_encoder):
+    """Convert model predictions to integer-encoded labels for metric compatibility."""
+    normalized = []
+    for value in np.asarray(y_pred_raw).tolist():
+        if isinstance(value, (int, np.integer)):
+            normalized.append(int(value))
+            continue
+        if isinstance(value, (float, np.floating)) and float(value).is_integer():
+            normalized.append(int(value))
+            continue
+        normalized.append(int(label_encoder.transform([str(value)])[0]))
+    return np.asarray(normalized, dtype=int)
+
+
+def normalize_predicted_proba(y_pred_proba_raw, model_classes, label_encoder):
+    """Align probability columns to encoded label order expected by sklearn metrics."""
+    y_pred_proba = np.asarray(y_pred_proba_raw)
+    n_classes = len(label_encoder.classes_)
+
+    if y_pred_proba.ndim != 2 or y_pred_proba.shape[1] != n_classes:
+        return y_pred_proba
+
+    if model_classes is None:
+        return y_pred_proba
+
+    encoded_order = []
+    for cls in np.asarray(model_classes).tolist():
+        if isinstance(cls, (int, np.integer)):
+            encoded_order.append(int(cls))
+        else:
+            encoded_order.append(int(label_encoder.transform([str(cls)])[0]))
+
+    aligned = np.zeros_like(y_pred_proba)
+    for source_idx, target_idx in enumerate(encoded_order):
+        aligned[:, target_idx] = y_pred_proba[:, source_idx]
+
+    return aligned
+
 # =============================================================================
 # Step 2: Discover All Models
 # =============================================================================
@@ -215,12 +254,18 @@ for idx, model_info in enumerate(all_models, 1):
             raise  # Re-raise keyboard interrupt
         except Exception as pred_error:
             raise Exception(f"Prediction failed: {str(pred_error)[:100]}")
+
+        y_pred = normalize_predicted_labels(y_pred, le)
         
         # Get probabilities if available
         try:
             y_pred_proba = model.predict_proba(X_test)
         except Exception:
             y_pred_proba = None
+
+        model_classes = getattr(model, 'classes_', None)
+        if y_pred_proba is not None:
+            y_pred_proba = normalize_predicted_proba(y_pred_proba, model_classes, le)
         
         # Calculate metrics
         metrics = {
@@ -248,7 +293,7 @@ for idx, model_info in enumerate(all_models, 1):
         # Add log loss if probabilities available
         if y_pred_proba is not None:
             try:
-                metrics['log_loss'] = log_loss(y, y_pred_proba)
+                metrics['log_loss'] = log_loss(y, y_pred_proba, labels=np.arange(len(le.classes_)))
             except Exception:
                 metrics['log_loss'] = None
         else:

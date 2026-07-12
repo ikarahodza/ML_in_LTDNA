@@ -56,12 +56,10 @@ def load_data():
     X = df.drop(columns=[c for c in drop_cols if c in df.columns])
     y = df['Classification']
     
-    # 80-20 split (consistent with training)
-    split_idx = int(0.8 * len(X))
-    X_train = X.iloc[:split_idx]
-    X_test = X.iloc[split_idx:]
-    y_train = y.iloc[:split_idx]
-    y_test = y.iloc[split_idx:]
+    from sklearn.model_selection import train_test_split as _tts
+    X_train, X_test, y_train, y_test = _tts(
+        X, y, test_size=0.2, stratify=y, random_state=42
+    )
     
     print(f"   Training samples: {len(X_train)}")
     print(f"   Test samples: {len(X_test)}")
@@ -75,7 +73,7 @@ def find_tabpfn_model():
     print("\n[2/6] Finding TabPFN model...")
     
     # Search in seed subdirectories
-    model_files = list(Path(MODELS_DIR).glob('**/models/*tabpfn*.pkl'))
+    model_files = list(Path(MODELS_DIR).glob('**/models_v2/*tabpfn*.pkl'))
     
     if not model_files:
         print("   ✗ No TabPFN model found!")

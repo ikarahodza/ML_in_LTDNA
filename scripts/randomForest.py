@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.model_selection import train_test_split, GridSearchCV
+from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import (
     confusion_matrix, classification_report,
@@ -48,26 +48,26 @@ FEATURE_COLUMNS = None
 DROP_COLUMNS = ['sample', 'PoI']
 
 # Train/test split ratio
-TEST_SIZE = 0.3
+TEST_SIZE = 0.2
 RANDOM_STATE = RANDOM_SEED
 
 RESAMPLING_STRATEGY = 'compare_all'   # Options: None, 'smote', 'class_weights', 'smote_svm'
 SMOTE_SAMPLING_STRATEGY = 'auto'  # Options: 'auto', 'minority', 'not majority', etc.
 SMOTE_K_NEIGHBORS = 5  # Number of neighbors for SMOTE  
 
-HYPERPARAMETERS = {
-    'n_estimators': [10, 20, 50],
-    'max_depth': [None, 5, 10],
-    'min_samples_split': [2, 5, 10],
-    'min_samples_leaf': [1, 2, 4],
-    'max_features': ['sqrt', 'log2', 10]
-}
-
 MODEL_NAME = 'randomforest'
-DATA_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, 'data')
-FIG_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, 'figures')
-MODEL_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, 'models')
-REPORTS_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, 'reports')
+
+if RANDOM_SEED != 42:
+    SEED_FOLDER = f"seed_{RANDOM_SEED}"
+    DATA_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, SEED_FOLDER, 'data')
+    FIG_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, SEED_FOLDER, 'figures')
+    MODEL_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, SEED_FOLDER, 'models')
+    REPORTS_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, SEED_FOLDER, 'reports')
+else:
+    DATA_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, 'data')
+    FIG_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, 'figures')
+    MODEL_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, 'models')
+    REPORTS_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, 'reports')
 
 print(f"\n{'='*60}")
 print(f"Running RandomForest with {dataset_type.upper()} dataset")
@@ -137,40 +137,26 @@ def calculate_class_weights(y):
 
     return weight_dict
 
-def apply_smote(X_train, y_train, strategy='auto', k_neighbors=5, smote_variant='standardd'):
-    from imblearn.over_sampling import SMOTE, BorderlineSMOTE, SVMSMOTE
-    if smote_variant == 'borderline':
-        smote = BorderlineSMOTE(sampling_strategy=strategy, k_neighbors=k_neighbors, random_state=RANDOM_STATE)
-    elif smote_variant == 'svm':
-        smote = SVMSMOTE(sampling_strategy=strategy, k_neighbors=k_neighbors, random_state=RANDOM_STATE)
-    else:  
-        smote = SMOTE(sampling_strategy=strategy, k_neighbors=k_neighbors, random_state=RANDOM_STATE)
-    
-    X_resampled, y_resampled = smote.fit_resample(X_train, y_train)
+def apply_smote(X_train, y_train, strategy='auto', k_neighbors=5, smote_variant='standard'):
+    from imblearn.over_sampling import SMOTE, RandomOverSampler
+    if smote_variant == 'randomoversampler':
+        resampler = RandomOverSampler(random_state=RANDOM_STATE)
+    else:
+        resampler = SMOTE(sampling_strategy=strategy, k_neighbors=k_neighbors, random_state=RANDOM_STATE)
+    X_resampled, y_resampled = resampler.fit_resample(X_train, y_train)
     return X_resampled, y_resampled
 
-def train_random_forest(X_train, y_train, hyperparams, class_weight_param=None):
-    """Train Random Forest with GridSearchCV."""
-    print("\n" + "="*60)
-    print("Starting hyperparameter search...")
-    print("="*60)
-    
-    rf = RandomForestClassifier(random_state=RANDOM_STATE, class_weight=class_weight_param)
-    grid_search = GridSearchCV(
-        rf, 
-        hyperparams, 
-        cv=5, 
-        scoring='balanced_accuracy',
+def train_random_forest(X_train, y_train, class_weight_param=None):
+    """Train Random Forest with fixed hyperparameters."""
+    model = RandomForestClassifier(
+        n_estimators=100,
+        max_depth=None,
+        random_state=RANDOM_STATE,
         n_jobs=-1,
-        verbose=2
+        class_weight=class_weight_param
     )
-    
-    grid_search.fit(X_train, y_train)
-    
-    print(f"\nBest parameters: {grid_search.best_params_}")
-    print(f"Best cross-validation score: {grid_search.best_score_:.4f}")
-    
-    return grid_search.best_estimator_
+    model.fit(X_train, y_train)
+    return model
 
 def compute_metrics(y_true, y_pred, y_prob):
     return hf.compute_metrics(y_true, y_pred, y_prob)
@@ -274,59 +260,35 @@ if __name__ == "__main__":
     print(f"\nTraining set size: {len(X_train)}")
     print(f"Test set size: {len(X_test)}")
 
-    if RESAMPLING_STRATEGY == 'compare_all':
-        strategies_to_test = [
-            ('No Resampling', 'none', None),
-            ('Class Weights', 'class_weights', None),
-            ('SMOTE', 'smote', 'standard'),
-            ('Borderline SMOTE', 'smote_borderline', 'borderline'),
-            ('SVM SMOTE', 'smote_svm', 'svm')
-        ]
-    else : 
-        strategy_map = {
-            'none': ('No Resampling', 'none', None),
-            'class_weights': ('Class Weights', 'class_weights', None),
-            'smote': ('SMOTE', 'smote', 'standard'),
-            'smote_borderline': ('Borderline SMOTE', 'smote_borderline', 'borderline'),
-            'smote_svm': ('SVM SMOTE', 'smote_svm', 'svm')
-        }
-    
-        if RESAMPLING_STRATEGY in strategy_map: 
-            strategies_to_test = [strategy_map[RESAMPLING_STRATEGY]]
-        else: 
-            print(f"WARNING: Unknown strategy '{RESAMPLING_STRATEGY}'. Using 'none'.")
-            strategies_to_test = [('No Resampling', 'none', None)]
+    strategies_to_test = [
+        ('Original', 'none', None),
+        ('SMOTE', 'smote', 'standard'),
+        ('RandomOverSampler', 'randomoversampler', 'randomoversampler'),
+    ]
     
     results = {}
     models = {}
 
     for strategy_name, strategy_type, smote_variant in strategies_to_test:
+        print(f"\n==== Running strategy: {strategy_name} ====")
         X_train_processed = X_train.copy()
         y_train_processed = y_train.copy()
-        class_weight_param = None
 
-        if strategy_type == 'class_weights': 
-            class_weight_param = 'balanced'
-            weight_dict = calculate_class_weights(y_train_processed)
-        
-        elif strategy_type == 'none': 
-            pass
-
-        elif strategy_type in ['smote', 'smote_borderline', 'smote_svm']:
-            try: 
+        if strategy_type in ['smote', 'randomoversampler']:
+            try:
                 X_train_processed, y_train_processed = apply_smote(
-                    X_train_processed, 
-                    y_train_processed, 
-                    strategy=SMOTE_SAMPLING_STRATEGY, 
+                    X_train_processed,
+                    y_train_processed,
+                    strategy=SMOTE_SAMPLING_STRATEGY,
                     k_neighbors=SMOTE_K_NEIGHBORS,
                     smote_variant=smote_variant
                 )
             except Exception as e:
-                print(f"WARNING: SMOTE failed: {e}")
-                print("Falling back to original training data")
+                print(f"WARNING: Resampling failed: {e}. Falling back to original data.")
                 X_train_processed = X_train.copy()
                 y_train_processed = y_train.copy()
-        model = train_random_forest(X_train_processed, y_train_processed, HYPERPARAMETERS, class_weight_param)
+
+        model = train_random_forest(X_train_processed, y_train_processed)
         y_pred = model.predict(X_test)
         y_pred_proba = model.predict_proba(X_test)
 
@@ -501,7 +463,7 @@ if __name__ == "__main__":
                 'shap_bar': shap_bar_path
             }
         
-        print("\n✓ All individual strategy outputs saved!")
+        print("\nAll individual strategy outputs saved!")
 
         os.makedirs(REPORTS_DIR, exist_ok=True)
         generate_html_report(results, class_names, output_path=os.path.join(REPORTS_DIR, 'comparison_report.html'), assets=assets)
@@ -513,7 +475,7 @@ if __name__ == "__main__":
     
     else: 
         strategy_name = list(results.keys())[0]
-        print(f"\n✓ Using strategy: {strategy_name}")
+        print(f"\nUsing strategy: {strategy_name}")
         best_model_to_save = models[strategy_name]
         y_pred = results[strategy_name]['y_pred']
         y_pred_proba = results[strategy_name]['y_pred_proba']

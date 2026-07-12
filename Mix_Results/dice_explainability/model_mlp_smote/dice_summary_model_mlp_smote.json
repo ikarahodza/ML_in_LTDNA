@@ -1,0 +1,28 @@
+{
+  "model": "model_mlp_smote",
+  "total_counterfactuals": 144,
+  "top10_features_by_change_magnitude": {
+    "C5_DownStream_8": 1.7272013649878897,
+    "DownStream_71": 1.2014539235242792,
+    "C2_DownStream_5": 1.0048938672077763,
+    "DownStream_12": 0.9982462128209474,
+    "UpStream_74": 0.9890752066429387,
+    "DownStream_98": 0.8710987714540894,
+    "UpStream_82": 0.8176296156520166,
+    "C5_DownStream_6": 0.8044938953555909,
+    "C3_UpStream_8": 0.7903435964079285,
+    "DownStream_64": 0.7535497556668909
+  },
+  "top10_features_by_change_frequency": {
+    "DownStream_98": 0.13194444444444445,
+    "DownStream_12": 0.11805555555555555,
+    "DownStream_64": 0.09722222222222222,
+    "UpStream_57": 0.09722222222222222,
+    "UpStream_74": 0.09722222222222222,
+    "C1_UpStream_9": 0.09722222222222222,
+    "C3_UpStream_6": 0.09027777777777778,
+    "DownStream_99": 0.09027777777777778,
+    "DownStream_71": 0.09027777777777778,
+    "C2_DownStream_5": 0.09027777777777778
+  }
+}

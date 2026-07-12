@@ -2,7 +2,7 @@
 <head><meta charset="utf-8"><title>Combined Comparison Report</title></head>
 <body>
 <h1>Combined Comparison Report</h1>
-<div>Generated: 2025-12-24 03:23:16</div>
+<div>Generated: 2026-06-28 14:44:36</div>
 <h2>Model: gnb</h2>
 <table border="1" cellpadding="6" cellspacing="0">
 <tr><th>Strategy</th><th>Accuracy</th><th>Balanced Accuracy</th><th>F1 (macro)</th><th>MSE</th><th>Log Loss</th><th>Informedness</th><th>Markedness</th></tr>
@@ -246,6 +246,74 @@
 <td>0.8888888888888888</td>
 <td>0.5714285714285714</td>
 <td>0.8125</td>
+</tr>
+</table>
+<h2>Model: extratrees</h2>
+<table border="1" cellpadding="6" cellspacing="0">
+<tr><th>Strategy</th><th>Accuracy</th><th>Balanced Accuracy</th><th>F1 (macro)</th><th>MSE</th><th>Log Loss</th><th>Informedness</th><th>Markedness</th></tr>
+<tr><td>Original</td><td>0.8372093023255814</td><td>0.764781746031746</td><td>0.7667486515061914</td><td>0.6395348837209303</td><td>0.4529745312301771</td><td>0.7025446591624197</td><td>0.7145911629181024</td></tr>
+<tr><td>SMOTE</td><td>0.8488372093023255</td><td>0.8105654761904761</td><td>0.8007511525830491</td><td>0.47674418604651164</td><td>0.8591575874654707</td><td>0.7547277798893561</td><td>0.73336867510127</td></tr>
+<tr><td>RandomOverSampler</td><td>0.8604651162790697</td><td>0.8379464285714286</td><td>0.8332786127729949</td><td>0.5232558139534884</td><td>0.47980553496986345</td><td>0.7829572408617662</td><td>0.7723879064809492</td></tr>
+</table>
+<h3>Per-class Recall</h3>
+<table border="1" cellpadding="6" cellspacing="0">
+<tr><th>Strategy</th>
+<th>Allele</th>
+<th>Back_Stutter</th>
+<th>Forward_Stutter</th>
+<th>Pull_Up</th>
+</tr>
+<tr><td>Original</td>
+<td>0.8666666666666667</td>
+<td>0.8888888888888888</td>
+<td>0.42857142857142855</td>
+<td>0.875</td>
+</tr>
+<tr><td>SMOTE</td>
+<td>0.8444444444444444</td>
+<td>0.8888888888888888</td>
+<td>0.5714285714285714</td>
+<td>0.9375</td>
+</tr>
+<tr><td>RandomOverSampler</td>
+<td>0.8666666666666667</td>
+<td>0.8333333333333334</td>
+<td>0.7142857142857143</td>
+<td>0.9375</td>
+</tr>
+</table>
+<h2>Model: randomforest</h2>
+<table border="1" cellpadding="6" cellspacing="0">
+<tr><th>Strategy</th><th>Accuracy</th><th>Balanced Accuracy</th><th>F1 (macro)</th><th>MSE</th><th>Log Loss</th><th>Informedness</th><th>Markedness</th></tr>
+<tr><td>Original</td><td>0.8372093023255814</td><td>0.764781746031746</td><td>0.7679793287237108</td><td>0.5465116279069767</td><td>0.48794782808089787</td><td>0.702439617145613</td><td>0.7179219700053033</td></tr>
+<tr><td>SMOTE</td><td>0.7674418604651163</td><td>0.7231150793650793</td><td>0.7007713164607601</td><td>0.7790697674418605</td><td>0.5386946657860837</td><td>0.6423691286229425</td><td>0.5991073927784865</td></tr>
+<tr><td>RandomOverSampler</td><td>0.7906976744186046</td><td>0.7442460317460318</td><td>0.7337633087633088</td><td>0.9418604651162791</td><td>0.5306329530503813</td><td>0.6660108414056165</td><td>0.6433779434635771</td></tr>
+</table>
+<h3>Per-class Recall</h3>
+<table border="1" cellpadding="6" cellspacing="0">
+<tr><th>Strategy</th>
+<th>Allele</th>
+<th>Back_Stutter</th>
+<th>Forward_Stutter</th>
+<th>Pull_Up</th>
+</tr>
+<tr><td>Original</td>
+<td>0.8666666666666667</td>
+<td>0.8888888888888888</td>
+<td>0.42857142857142855</td>
+<td>0.875</td>
+</tr>
+<tr><td>SMOTE</td>
+<td>0.7555555555555555</td>
+<td>0.8333333333333334</td>
+<td>0.42857142857142855</td>
+<td>0.875</td>
+</tr>
+<tr><td>RandomOverSampler</td>
+<td>0.8222222222222222</td>
+<td>0.8333333333333334</td>
+<td>0.5714285714285714</td>
+<td>0.75</td>
 </tr>
 </table>
 </body></html>

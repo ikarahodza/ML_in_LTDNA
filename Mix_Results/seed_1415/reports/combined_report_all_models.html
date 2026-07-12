@@ -2,7 +2,7 @@
 <head><meta charset="utf-8"><title>Combined Comparison Report</title></head>
 <body>
 <h1>Combined Comparison Report</h1>
-<div>Generated: 2025-12-24 11:38:16</div>
+<div>Generated: 2026-06-28 14:43:16</div>
 <h2>Model: gnb</h2>
 <table border="1" cellpadding="6" cellspacing="0">
 <tr><th>Strategy</th><th>Accuracy</th><th>Balanced Accuracy</th><th>F1 (macro)</th><th>MSE</th><th>Log Loss</th><th>Informedness</th><th>Markedness</th></tr>
@@ -279,6 +279,40 @@
 <td>0.8666666666666667</td>
 <td>0.8333333333333334</td>
 <td>0.5714285714285714</td>
+<td>0.9375</td>
+</tr>
+</table>
+<h2>Model: randomforest</h2>
+<table border="1" cellpadding="6" cellspacing="0">
+<tr><th>Strategy</th><th>Accuracy</th><th>Balanced Accuracy</th><th>F1 (macro)</th><th>MSE</th><th>Log Loss</th><th>Informedness</th><th>Markedness</th></tr>
+<tr><td>Original</td><td>0.8488372093023255</td><td>0.7654761904761904</td><td>0.7901780066865456</td><td>0.47674418604651164</td><td>0.49412463589959504</td><td>0.7010495661679306</td><td>0.8209718573542288</td></tr>
+<tr><td>SMOTE</td><td>0.8372093023255814</td><td>0.8201884920634921</td><td>0.8332334332334332</td><td>0.8837209302325582</td><td>0.47301876104879403</td><td>0.7548216136047915</td><td>0.791935938939877</td></tr>
+<tr><td>RandomOverSampler</td><td>0.8372093023255814</td><td>0.7581845238095237</td><td>0.7816770186335404</td><td>0.6744186046511628</td><td>0.46989372855186945</td><td>0.6901864709298353</td><td>0.8036931597114796</td></tr>
+</table>
+<h3>Per-class Recall</h3>
+<table border="1" cellpadding="6" cellspacing="0">
+<tr><th>Strategy</th>
+<th>Allele</th>
+<th>Back_Stutter</th>
+<th>Forward_Stutter</th>
+<th>Pull_Up</th>
+</tr>
+<tr><td>Original</td>
+<td>0.9111111111111111</td>
+<td>0.7222222222222222</td>
+<td>0.42857142857142855</td>
+<td>1.0</td>
+</tr>
+<tr><td>SMOTE</td>
+<td>0.8888888888888888</td>
+<td>0.7222222222222222</td>
+<td>0.8571428571428571</td>
+<td>0.8125</td>
+</tr>
+<tr><td>RandomOverSampler</td>
+<td>0.8888888888888888</td>
+<td>0.7777777777777778</td>
+<td>0.42857142857142855</td>
 <td>0.9375</td>
 </tr>
 </table>

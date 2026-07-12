@@ -134,7 +134,6 @@ def plot_confusion_matrix(cm, class_names, save_path='confusion_matrix.png', cma
     """
     plt.figure(figsize=(10, 8))
     plt.imshow(cm, interpolation='nearest', cmap=cmap)
-    plt.title('Confusion Matrix', fontsize=16, fontweight='bold')
     plt.colorbar()
     tick_marks = np.arange(len(class_names))
     plt.xticks(tick_marks, class_names, rotation=45, ha='right')
@@ -165,7 +164,6 @@ def plot_roc_curves(y_test, y_pred_proba, class_names, save_path='roc_curves.png
     plt.plot([0,1],[0,1],'k--', alpha=0.5)
     plt.xlabel('False Positive Rate', fontsize=12, fontweight='bold')
     plt.ylabel('True Positive Rate', fontsize=12, fontweight='bold')
-    plt.title('ROC Curves', fontsize=16, fontweight='bold')
     plt.legend(loc='lower right')
     plt.grid(alpha=0.3)
     plt.tight_layout()
@@ -185,7 +183,6 @@ def plot_precision_recall_curves(y_test, y_pred_proba, class_names, save_path='p
         plt.plot(recall, precision, linewidth=2, label=f'{class_name} (AP={ap:.3f})')
     plt.xlabel('Recall', fontsize=12, fontweight='bold')
     plt.ylabel('Precision', fontsize=12, fontweight='bold')
-    plt.title('Precision-Recall Curves', fontsize=16, fontweight='bold')
     plt.legend(loc='lower left')
     plt.grid(alpha=0.3)
     plt.tight_layout()
