@@ -1,11 +1,5 @@
 # Transformer-based in-context learning outperforms traditional classifiers for peak classification in low-template DNA mixture electropherograms
 
-**Ilma Karahodža** — University of Sarajevo
-
-Companion code for the FSI:Genetics article extending Tan et al. (2025) to two-person LTDNA mixture electropherograms using TabPFN-2.5 and eight additional classifiers.
-
----
-
 ## Key Results
 
 | Dataset | Best Model | Balanced Accuracy (10 seeds) |
