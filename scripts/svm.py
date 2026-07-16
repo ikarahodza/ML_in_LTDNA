@@ -67,14 +67,9 @@ y_raw = df_m['Classification']
 le = LabelEncoder()
 y = le.fit_transform(y_raw)
 
-# Scale features for SVM (important for SVM performance)
-scaler = StandardScaler()
-X_scaled = scaler.fit_transform(X)
-X_scaled = pd.DataFrame(X_scaled, columns=X.columns, index=X.index)
-
 indices = np.arange(len(df_m))
 X_train, X_test, y_train, y_test, train_idx, test_idx = train_test_split(
-    X_scaled, y, indices,
+    X, y, indices,
     test_size=0.2,
     stratify=y,
     random_state=RANDOM_SEED

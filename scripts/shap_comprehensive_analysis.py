@@ -22,7 +22,10 @@ import os
 import sys
 
 # Must be set before tabpfn is imported (joblib unpickling triggers the import)
-os.environ['TABPFN_TOKEN']      = "tabpfn_sk_tjOlL6KMZ2Myhf50Vbm7Rbtrgy7gjg74dInHzu5toiw"
+_key_file = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'tabpfn.key')
+if os.path.exists(_key_file):
+    with open(_key_file) as _f:
+        os.environ.setdefault('TABPFN_TOKEN', _f.read().strip())
 os.environ['TABPFN_NO_BROWSER'] = '1'
 
 import joblib

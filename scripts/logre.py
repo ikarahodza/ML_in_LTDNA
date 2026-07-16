@@ -68,14 +68,9 @@ y_raw = df_m['Classification']
 le = LabelEncoder()
 y = le.fit_transform(y_raw)
 
-# Scale features for Logistic Regression (important for convergence)
-scaler = StandardScaler()
-X_scaled = scaler.fit_transform(X)
-X_scaled = pd.DataFrame(X_scaled, columns=X.columns, index=X.index)
-
 indices = np.arange(len(df_m))
 X_train, X_test, y_train, y_test, train_idx, test_idx = train_test_split(
-    X_scaled, y, indices,
+    X, y, indices,
     test_size=0.2,
     stratify=y,
     random_state=RANDOM_SEED
@@ -84,17 +79,21 @@ X_train, X_test, y_train, y_test, train_idx, test_idx = train_test_split(
 # Use shared helpers from `helper_functions.py` as `hf`
 
 def train_logreg_pipeline(X_train, y_train, X_test, y_test, feature_names, strategy_name="Original"):
+    scaler = StandardScaler()
+    X_train_scaled = scaler.fit_transform(X_train)
+    X_test_scaled = scaler.transform(X_test)
+
     model = LogisticRegression(
         max_iter=1000,
         multi_class='multinomial',
         solver='lbfgs',
         random_state=RANDOM_SEED
     )
-    model.fit(X_train, y_train)
-    
-    y_pred = model.predict(X_test)
+    model.fit(X_train_scaled, y_train)
+
+    y_pred = model.predict(X_test_scaled)
     try:
-        y_pred_proba = model.predict_proba(X_test)
+        y_pred_proba = model.predict_proba(X_test_scaled)
     except Exception:
         y_pred_proba = None
     class_names = [str(c) for c in np.unique(y_test)]
@@ -172,21 +171,21 @@ def train_logreg_pipeline(X_train, y_train, X_test, y_test, feature_names, strat
     shap_summary_path = os.path.join(FIG_DIR, f'shap_summary_{safe_name}.png')
     shap_bar_path = os.path.join(FIG_DIR, f'shap_bar_{safe_name}.png')
     try:
-        explainer = shap.LinearExplainer(model, X_train)
-        shap_values = explainer.shap_values(X_test)
-        
+        explainer = shap.LinearExplainer(model, X_train_scaled)
+        shap_values = explainer.shap_values(X_test_scaled)
+
         # SHAP summary plot (beeswarm)
         plt.figure(figsize=(12, 8))
-        shap.summary_plot(shap_values, X_test, feature_names=feature_names, show=False, plot_type="dot")
+        shap.summary_plot(shap_values, X_test_scaled, feature_names=feature_names, show=False, plot_type="dot")
         plt.tight_layout()
         os.makedirs(os.path.dirname(shap_summary_path) or '.', exist_ok=True)
         plt.savefig(shap_summary_path, dpi=150, bbox_inches='tight')
         plt.close()
         print(f"Saved SHAP summary plot: {shap_summary_path}")
-        
+
         # SHAP bar plot (mean absolute values)
         plt.figure(figsize=(10, 8))
-        shap.summary_plot(shap_values, X_test, feature_names=feature_names, show=False, plot_type="bar")
+        shap.summary_plot(shap_values, X_test_scaled, feature_names=feature_names, show=False, plot_type="bar")
         plt.tight_layout()
         plt.savefig(shap_bar_path, dpi=150, bbox_inches='tight')
         plt.close()
