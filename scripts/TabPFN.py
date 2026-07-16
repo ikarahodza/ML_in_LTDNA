@@ -19,8 +19,11 @@ from collections import Counter
 import joblib
 import os
 
-os.environ['TABPFN_TOKEN']     = "tabpfn_sk_tjOlL6KMZ2Myhf50Vbm7Rbtrgy7gjg74dInHzu5toiw"
 os.environ['TABPFN_NO_BROWSER'] = '1'
+_key_file = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'tabpfn.key')
+if os.path.exists(_key_file):
+    with open(_key_file) as _f:
+        os.environ.setdefault('TABPFN_TOKEN', _f.read().strip())
 
 import helper_functions as hf
 from tabpfn import TabPFNClassifier
@@ -55,11 +58,11 @@ if RANDOM_SEED != 42:
     MODEL_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, SEED_FOLDER, 'models')
     REPORTS_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, SEED_FOLDER, 'reports')
 else:
-    # Use default folders for seed 42 with version suffix
-    DATA_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, f'data{VERSION_SUFFIX}')
-    FIG_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, f'figures{VERSION_SUFFIX}')
-    MODEL_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, f'models{VERSION_SUFFIX}')
-    REPORTS_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, f'reports{VERSION_SUFFIX}')
+    # Use main folders for seed 42; VERSION_SUFFIX is kept in file names only
+    DATA_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, 'data')
+    FIG_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, 'figures')
+    MODEL_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, 'models')
+    REPORTS_DIR = os.path.join(PROJECT_ROOT, RESULTS_FOLDER, 'reports')
 DATA_FILE = os.path.join(PROJECT_ROOT, f'Input_Data-{dataset_type.capitalize()}-train.csv')
 
 print(f"{'='*60}")

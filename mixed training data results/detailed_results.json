@@ -1,301 +1,24 @@
 {
-  "test_data": {
-    "file": "C:\\Users\\DT User\\Documents\\GitHub\\ML_in_LTDNA\\Mixed_Training_Data.csv",
-    "samples": 381,
-    "features": 305,
-    "classes": [
-      "Allele",
-      "Back_Stutter",
-      "Forward_Stutter",
-      "Pull_Up"
-    ],
-    "class_distribution": {
-      "Allele": 192,
-      "Back_Stutter": 83,
-      "Forward_Stutter": 35,
-      "Pull_Up": 71
-    }
-  },
   "results": [
     {
       "dataset": "Mix",
-      "model_type": "tabpfn",
-      "strategy": "classweights",
-      "version": "v2",
-      "display_name": "Mix_TabPFN_classweights_v2",
-      "accuracy": 0.973753280839895,
-      "balanced_accuracy": 0.9567762119908204,
-      "f1_macro": 0.9666716910985611,
-      "f1_weighted": 0.9735575768941954,
-      "precision_macro": 0.9790136054421769,
-      "recall_macro": 0.9567762119908204,
-      "matthews_corrcoef": 0.9600539719539635,
-      "cohen_kappa": 0.9597089740064719,
-      "log_loss": 0.1262476749074253,
-      "per_class_precision": [
-        0.9693877551020408,
-        1.0,
-        1.0,
-        0.9466666666666667
-      ],
-      "per_class_recall": [
-        0.9895833333333334,
-        0.9518072289156626,
-        0.8857142857142857,
-        1.0
-      ],
-      "per_class_f1": [
-        0.979381443298969,
-        0.9753086419753086,
-        0.9393939393939394,
-        0.9726027397260274
-      ],
-      "confusion_matrix": [
-        [
-          190,
-          0,
-          0,
-          2
-        ],
-        [
-          3,
-          79,
-          0,
-          1
-        ],
-        [
-          3,
-          0,
-          31,
-          1
-        ],
-        [
-          0,
-          0,
-          0,
-          71
-        ]
-      ]
-    },
-    {
-      "dataset": "Mix",
-      "model_type": "tabpfn",
-      "strategy": "original",
-      "version": "v2",
-      "display_name": "Mix_TabPFN_original_v2",
-      "accuracy": 0.973753280839895,
-      "balanced_accuracy": 0.9567762119908204,
-      "f1_macro": 0.9666716910985611,
-      "f1_weighted": 0.9735575768941954,
-      "precision_macro": 0.9790136054421769,
-      "recall_macro": 0.9567762119908204,
-      "matthews_corrcoef": 0.9600539719539635,
-      "cohen_kappa": 0.9597089740064719,
-      "log_loss": 0.1262476749074253,
-      "per_class_precision": [
-        0.9693877551020408,
-        1.0,
-        1.0,
-        0.9466666666666667
-      ],
-      "per_class_recall": [
-        0.9895833333333334,
-        0.9518072289156626,
-        0.8857142857142857,
-        1.0
-      ],
-      "per_class_f1": [
-        0.979381443298969,
-        0.9753086419753086,
-        0.9393939393939394,
-        0.9726027397260274
-      ],
-      "confusion_matrix": [
-        [
-          190,
-          0,
-          0,
-          2
-        ],
-        [
-          3,
-          79,
-          0,
-          1
-        ],
-        [
-          3,
-          0,
-          31,
-          1
-        ],
-        [
-          0,
-          0,
-          0,
-          71
-        ]
-      ]
-    },
-    {
-      "dataset": "Mix",
-      "model_type": "tabpfn",
-      "strategy": "randomundersampler",
-      "version": "v2",
-      "display_name": "Mix_TabPFN_randomundersampler_v2",
-      "accuracy": 0.8582677165354331,
-      "balanced_accuracy": 0.8939418956005107,
-      "f1_macro": 0.8514338174927762,
-      "f1_weighted": 0.8597718912212727,
-      "precision_macro": 0.8237727456618011,
-      "recall_macro": 0.8939418956005107,
-      "matthews_corrcoef": 0.7984542249453146,
-      "cohen_kappa": 0.7925861703950884,
-      "log_loss": 0.43761082558002995,
-      "per_class_precision": [
-        0.9627329192546584,
-        0.8181818181818182,
-        0.7555555555555555,
-        0.7586206896551724
-      ],
-      "per_class_recall": [
-        0.8072916666666666,
-        0.8674698795180723,
-        0.9714285714285714,
-        0.9295774647887324
-      ],
-      "per_class_f1": [
-        0.8781869688385269,
-        0.8421052631578947,
-        0.85,
-        0.8354430379746836
-      ],
-      "confusion_matrix": [
-        [
-          155,
-          14,
-          7,
-          16
-        ],
-        [
-          5,
-          72,
-          1,
-          5
-        ],
-        [
-          1,
-          0,
-          34,
-          0
-        ],
-        [
-          0,
-          2,
-          3,
-          66
-        ]
-      ]
-    },
-    {
-      "dataset": "Mix",
-      "model_type": "tabpfn",
-      "strategy": "smote",
-      "version": "v2",
-      "display_name": "Mix_TabPFN_smote_v2",
-      "accuracy": 0.963254593175853,
-      "balanced_accuracy": 0.9254766614243695,
-      "f1_macro": 0.9461264689162487,
-      "f1_weighted": 0.9621907444909809,
-      "precision_macro": 0.9744223745579899,
-      "recall_macro": 0.9254766614243695,
-      "matthews_corrcoef": 0.9439662795322503,
-      "cohen_kappa": 0.943120381330177,
-      "log_loss": 0.10387674163438564,
-      "per_class_precision": [
-        0.9502487562189055,
-        0.975609756097561,
-        1.0,
-        0.971830985915493
-      ],
-      "per_class_recall": [
-        0.9947916666666666,
-        0.963855421686747,
-        0.7714285714285715,
-        0.971830985915493
-      ],
-      "per_class_f1": [
-        0.9720101781170484,
-        0.9696969696969697,
-        0.8709677419354839,
-        0.971830985915493
-      ],
-      "confusion_matrix": [
-        [
-          191,
-          0,
-          0,
-          1
-        ],
-        [
-          3,
-          80,
-          0,
-          0
-        ],
-        [
-          5,
-          2,
-          27,
-          1
-        ],
-        [
-          2,
-          0,
-          0,
-          69
-        ]
-      ]
-    },
-    {
-      "dataset": "Mix",
       "model_type": "extratrees",
-      "strategy": "original",
+      "strategy": "smote",
       "version": "v1",
-      "display_name": "Mix_extratrees_original",
+      "display": "[Mix] extratrees / smote",
+      "balanced_accuracy": 0.9588940583763625,
+      "f1_macro": 0.9628111662196235,
       "accuracy": 0.9711286089238845,
-      "balanced_accuracy": 0.9508342411396088,
-      "f1_macro": 0.9626564616571813,
-      "f1_weighted": 0.9708629073895662,
-      "precision_macro": 0.9775579150579151,
-      "recall_macro": 0.9508342411396088,
-      "matthews_corrcoef": 0.9559486725662016,
-      "cohen_kappa": 0.9556517322384711,
-      "log_loss": 0.11163148748784965,
-      "per_class_precision": [
-        0.9642857142857143,
-        1.0,
-        1.0,
-        0.9459459459459459
-      ],
-      "per_class_recall": [
-        0.984375,
-        0.9759036144578314,
-        0.8571428571428571,
-        0.9859154929577465
-      ],
-      "per_class_f1": [
-        0.9742268041237113,
-        0.9878048780487805,
-        0.9230769230769231,
-        0.9655172413793104
-      ],
+      "precision_macro": 0.9678881913420525,
+      "recall_macro": 0.9588940583763625,
+      "matthews_corrcoef": 0.9560510065593415,
+      "cohen_kappa": 0.955950516590816,
       "confusion_matrix": [
         [
-          189,
-          0,
-          0,
-          3
+          187,
+          2,
+          1,
+          2
         ],
         [
           2,
@@ -304,94 +27,18 @@
           0
         ],
         [
-          4,
-          0,
-          30,
+          2,
+          1,
+          31,
           1
         ],
         [
-          1,
           0,
           0,
-          70
+          0,
+          71
         ]
-      ]
-    },
-    {
-      "dataset": "Mix",
-      "model_type": "extratrees",
-      "strategy": "randomoversampler",
-      "version": "v1",
-      "display_name": "Mix_extratrees_randomoversampler",
-      "accuracy": 0.968503937007874,
-      "balanced_accuracy": 0.9478221929468377,
-      "f1_macro": 0.9606578166088167,
-      "f1_weighted": 0.9681936323595046,
-      "precision_macro": 0.9764873233802144,
-      "recall_macro": 0.9478221929468377,
-      "matthews_corrcoef": 0.9518838839348224,
-      "cohen_kappa": 0.9515580466407434,
-      "log_loss": 0.12471248190137359,
-      "per_class_precision": [
-        0.9593908629441624,
-        0.9876543209876543,
-        1.0,
-        0.958904109589041
       ],
-      "per_class_recall": [
-        0.984375,
-        0.963855421686747,
-        0.8571428571428571,
-        0.9859154929577465
-      ],
-      "per_class_f1": [
-        0.9717223650385605,
-        0.975609756097561,
-        0.9230769230769231,
-        0.9722222222222222
-      ],
-      "confusion_matrix": [
-        [
-          189,
-          1,
-          0,
-          2
-        ],
-        [
-          3,
-          80,
-          0,
-          0
-        ],
-        [
-          4,
-          0,
-          30,
-          1
-        ],
-        [
-          1,
-          0,
-          0,
-          70
-        ]
-      ]
-    },
-    {
-      "dataset": "Mix",
-      "model_type": "extratrees",
-      "strategy": "smote",
-      "version": "v1",
-      "display_name": "Mix_extratrees_smote",
-      "accuracy": 0.9711286089238845,
-      "balanced_accuracy": 0.9588940583763625,
-      "f1_macro": 0.9628111662196235,
-      "f1_weighted": 0.9709247110154143,
-      "precision_macro": 0.9678881913420525,
-      "recall_macro": 0.9588940583763625,
-      "matthews_corrcoef": 0.9560510065593415,
-      "cohen_kappa": 0.955950516590816,
-      "log_loss": 0.11321248079070512,
       "per_class_precision": [
         0.9790575916230366,
         0.9642857142857143,
@@ -410,22 +57,96 @@
         0.9253731343283582,
         0.9793103448275862
       ],
+      "log_loss": 0.11321248079070512
+    },
+    {
+      "dataset": "Mix",
+      "model_type": "xgboost",
+      "strategy": "smote",
+      "version": "v1",
+      "display": "[Mix] xgboost / smote",
+      "balanced_accuracy": 0.9574086524670109,
+      "f1_macro": 0.959611667127465,
+      "accuracy": 0.963254593175853,
+      "precision_macro": 0.9633806739069897,
+      "recall_macro": 0.9574086524670109,
+      "matthews_corrcoef": 0.9442995901554996,
+      "cohen_kappa": 0.9440792577449284,
       "confusion_matrix": [
         [
-          187,
+          185,
+          4,
+          0,
+          3
+        ],
+        [
           2,
-          1,
+          79,
+          0,
           2
         ],
         [
           2,
-          81,
-          0,
+          1,
+          32,
           0
         ],
         [
-          2,
-          1,
+          0,
+          0,
+          0,
+          71
+        ]
+      ],
+      "per_class_precision": [
+        0.9788359788359788,
+        0.9404761904761905,
+        1.0,
+        0.9342105263157895
+      ],
+      "per_class_recall": [
+        0.9635416666666666,
+        0.9518072289156626,
+        0.9142857142857143,
+        1.0
+      ],
+      "per_class_f1": [
+        0.9711286089238845,
+        0.9461077844311377,
+        0.9552238805970149,
+        0.9659863945578231
+      ],
+      "log_loss": 0.12669055734486726
+    },
+    {
+      "dataset": "Mix",
+      "model_type": "tabpfn",
+      "strategy": "classweights",
+      "version": "v2.5",
+      "display": "[Mix] tabpfn / classweights (v2.5)",
+      "balanced_accuracy": 0.9567762119908204,
+      "f1_macro": 0.9666716910985611,
+      "accuracy": 0.973753280839895,
+      "precision_macro": 0.9790136054421769,
+      "recall_macro": 0.9567762119908204,
+      "matthews_corrcoef": 0.9600539719539635,
+      "cohen_kappa": 0.9597089740064719,
+      "confusion_matrix": [
+        [
+          190,
+          0,
+          0,
+          2
+        ],
+        [
+          3,
+          79,
+          0,
+          1
+        ],
+        [
+          3,
+          0,
           31,
           1
         ],
@@ -435,107 +156,105 @@
           0,
           71
         ]
-      ]
-    },
-    {
-      "dataset": "Mix",
-      "model_type": "lgbm",
-      "strategy": "original",
-      "version": "v1",
-      "display_name": "Mix_lgbm_original",
-      "accuracy": 0.94750656167979,
-      "balanced_accuracy": 0.9364064406519438,
-      "f1_macro": 0.9336996122340809,
-      "f1_weighted": 0.947434046809593,
-      "precision_macro": 0.9314350691543674,
-      "recall_macro": 0.9364064406519438,
-      "matthews_corrcoef": 0.920251490440633,
-      "cohen_kappa": 0.9201324836491699,
-      "log_loss": 0.15773963687804735,
+      ],
       "per_class_precision": [
-        0.968421052631579,
-        0.9382716049382716,
-        0.8857142857142857,
-        0.9333333333333333
-      ],
-      "per_class_recall": [
-        0.9583333333333334,
-        0.9156626506024096,
-        0.8857142857142857,
-        0.9859154929577465
-      ],
-      "per_class_f1": [
-        0.9633507853403142,
-        0.926829268292683,
-        0.8857142857142857,
-        0.958904109589041
-      ],
-      "confusion_matrix": [
-        [
-          184,
-          4,
-          1,
-          3
-        ],
-        [
-          2,
-          76,
-          3,
-          2
-        ],
-        [
-          3,
-          1,
-          31,
-          0
-        ],
-        [
-          1,
-          0,
-          0,
-          70
-        ]
-      ]
-    },
-    {
-      "dataset": "Mix",
-      "model_type": "lgbm",
-      "strategy": "randomoversampler",
-      "version": "v1",
-      "display_name": "Mix_lgbm_randomoversampler",
-      "accuracy": 0.958005249343832,
-      "balanced_accuracy": 0.9506736768502582,
-      "f1_macro": 0.9532684806210489,
-      "f1_weighted": 0.9580536404241335,
-      "precision_macro": 0.9589984635552714,
-      "recall_macro": 0.9506736768502582,
-      "matthews_corrcoef": 0.9366307438643636,
-      "cohen_kappa": 0.9361555057497748,
-      "log_loss": 0.13955648235762133,
-      "per_class_precision": [
-        0.973404255319149,
-        0.963855421686747,
+        0.9693877551020408,
         1.0,
-        0.8987341772151899
+        1.0,
+        0.9466666666666667
       ],
       "per_class_recall": [
-        0.953125,
-        0.963855421686747,
+        0.9895833333333334,
+        0.9518072289156626,
         0.8857142857142857,
         1.0
       ],
       "per_class_f1": [
-        0.9631578947368421,
-        0.963855421686747,
+        0.979381443298969,
+        0.9753086419753086,
         0.9393939393939394,
-        0.9466666666666667
+        0.9726027397260274
       ],
+      "log_loss": 0.12583317215079495
+    },
+    {
+      "dataset": "Mix",
+      "model_type": "tabpfn",
+      "strategy": "original",
+      "version": "v2.5",
+      "display": "[Mix] tabpfn / original (v2.5)",
+      "balanced_accuracy": 0.9567762119908204,
+      "f1_macro": 0.9666716910985611,
+      "accuracy": 0.973753280839895,
+      "precision_macro": 0.9790136054421769,
+      "recall_macro": 0.9567762119908204,
+      "matthews_corrcoef": 0.9600539719539635,
+      "cohen_kappa": 0.9597089740064719,
       "confusion_matrix": [
         [
-          183,
+          190,
+          0,
+          0,
+          2
+        ],
+        [
+          3,
+          79,
+          0,
+          1
+        ],
+        [
           3,
           0,
-          6
+          31,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          71
+        ]
+      ],
+      "per_class_precision": [
+        0.9693877551020408,
+        1.0,
+        1.0,
+        0.9466666666666667
+      ],
+      "per_class_recall": [
+        0.9895833333333334,
+        0.9518072289156626,
+        0.8857142857142857,
+        1.0
+      ],
+      "per_class_f1": [
+        0.979381443298969,
+        0.9753086419753086,
+        0.9393939393939394,
+        0.9726027397260274
+      ],
+      "log_loss": 0.12583317215079495
+    },
+    {
+      "dataset": "Mix",
+      "model_type": "lgbm",
+      "strategy": "smote",
+      "version": "v1",
+      "display": "[Mix] lgbm / smote",
+      "balanced_accuracy": 0.9532778435169248,
+      "f1_macro": 0.9580126384304117,
+      "accuracy": 0.963254593175853,
+      "precision_macro": 0.9650689223057644,
+      "recall_macro": 0.9532778435169248,
+      "matthews_corrcoef": 0.9442153214819836,
+      "cohen_kappa": 0.9439870626286386,
+      "confusion_matrix": [
+        [
+          185,
+          3,
+          0,
+          4
         ],
         [
           2,
@@ -545,9 +264,9 @@
         ],
         [
           3,
-          0,
+          1,
           31,
-          1
+          0
         ],
         [
           0,
@@ -555,23 +274,7 @@
           0,
           71
         ]
-      ]
-    },
-    {
-      "dataset": "Mix",
-      "model_type": "lgbm",
-      "strategy": "smote",
-      "version": "v1",
-      "display_name": "Mix_lgbm_smote",
-      "accuracy": 0.963254593175853,
-      "balanced_accuracy": 0.9532778435169248,
-      "f1_macro": 0.9580126384304117,
-      "f1_weighted": 0.9631321951802104,
-      "precision_macro": 0.9650689223057644,
-      "recall_macro": 0.9532778435169248,
-      "matthews_corrcoef": 0.9442153214819836,
-      "cohen_kappa": 0.9439870626286386,
-      "log_loss": 0.12735328511642177,
+      ],
       "per_class_precision": [
         0.9736842105263158,
         0.9523809523809523,
@@ -590,12 +293,204 @@
         0.9393939393939394,
         0.9659863945578231
       ],
+      "log_loss": 0.12735328511642177
+    },
+    {
+      "dataset": "Mix",
+      "model_type": "extratrees",
+      "strategy": "original",
+      "version": "v1",
+      "display": "[Mix] extratrees / original",
+      "balanced_accuracy": 0.9508342411396088,
+      "f1_macro": 0.9626564616571813,
+      "accuracy": 0.9711286089238845,
+      "precision_macro": 0.9775579150579151,
+      "recall_macro": 0.9508342411396088,
+      "matthews_corrcoef": 0.9559486725662016,
+      "cohen_kappa": 0.9556517322384711,
       "confusion_matrix": [
         [
-          185,
+          189,
+          0,
+          0,
+          3
+        ],
+        [
+          2,
+          81,
+          0,
+          0
+        ],
+        [
+          4,
+          0,
+          30,
+          1
+        ],
+        [
+          1,
+          0,
+          0,
+          70
+        ]
+      ],
+      "per_class_precision": [
+        0.9642857142857143,
+        1.0,
+        1.0,
+        0.9459459459459459
+      ],
+      "per_class_recall": [
+        0.984375,
+        0.9759036144578314,
+        0.8571428571428571,
+        0.9859154929577465
+      ],
+      "per_class_f1": [
+        0.9742268041237113,
+        0.9878048780487805,
+        0.9230769230769231,
+        0.9655172413793104
+      ],
+      "log_loss": 0.11163148748784965
+    },
+    {
+      "dataset": "Mix",
+      "model_type": "lgbm",
+      "strategy": "randomoversampler",
+      "version": "v1",
+      "display": "[Mix] lgbm / randomoversampler",
+      "balanced_accuracy": 0.9506736768502582,
+      "f1_macro": 0.9532684806210489,
+      "accuracy": 0.958005249343832,
+      "precision_macro": 0.9589984635552714,
+      "recall_macro": 0.9506736768502582,
+      "matthews_corrcoef": 0.9366307438643636,
+      "cohen_kappa": 0.9361555057497748,
+      "confusion_matrix": [
+        [
+          183,
           3,
           0,
-          4
+          6
+        ],
+        [
+          2,
+          80,
+          0,
+          1
+        ],
+        [
+          3,
+          0,
+          31,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          71
+        ]
+      ],
+      "per_class_precision": [
+        0.973404255319149,
+        0.963855421686747,
+        1.0,
+        0.8987341772151899
+      ],
+      "per_class_recall": [
+        0.953125,
+        0.963855421686747,
+        0.8857142857142857,
+        1.0
+      ],
+      "per_class_f1": [
+        0.9631578947368421,
+        0.963855421686747,
+        0.9393939393939394,
+        0.9466666666666667
+      ],
+      "log_loss": 0.13955648235762133
+    },
+    {
+      "dataset": "Mix",
+      "model_type": "extratrees",
+      "strategy": "randomoversampler",
+      "version": "v1",
+      "display": "[Mix] extratrees / randomoversampler",
+      "balanced_accuracy": 0.9478221929468377,
+      "f1_macro": 0.9606578166088167,
+      "accuracy": 0.968503937007874,
+      "precision_macro": 0.9764873233802144,
+      "recall_macro": 0.9478221929468377,
+      "matthews_corrcoef": 0.9518838839348224,
+      "cohen_kappa": 0.9515580466407434,
+      "confusion_matrix": [
+        [
+          189,
+          1,
+          0,
+          2
+        ],
+        [
+          3,
+          80,
+          0,
+          0
+        ],
+        [
+          4,
+          0,
+          30,
+          1
+        ],
+        [
+          1,
+          0,
+          0,
+          70
+        ]
+      ],
+      "per_class_precision": [
+        0.9593908629441624,
+        0.9876543209876543,
+        1.0,
+        0.958904109589041
+      ],
+      "per_class_recall": [
+        0.984375,
+        0.963855421686747,
+        0.8571428571428571,
+        0.9859154929577465
+      ],
+      "per_class_f1": [
+        0.9717223650385605,
+        0.975609756097561,
+        0.9230769230769231,
+        0.9722222222222222
+      ],
+      "log_loss": 0.12471248190137359
+    },
+    {
+      "dataset": "Mix",
+      "model_type": "randomforest",
+      "strategy": "smote",
+      "version": "v1",
+      "display": "[Mix] randomforest / smote",
+      "balanced_accuracy": 0.9475376733291314,
+      "f1_macro": 0.9534489138955512,
+      "accuracy": 0.9606299212598425,
+      "precision_macro": 0.9603853677717471,
+      "recall_macro": 0.9475376733291314,
+      "matthews_corrcoef": 0.9398591846738565,
+      "cohen_kappa": 0.9397869627975093,
+      "confusion_matrix": [
+        [
+          186,
+          2,
+          1,
+          3
         ],
         [
           2,
@@ -610,1126 +505,45 @@
           0
         ],
         [
-          0,
-          0,
-          0,
-          71
-        ]
-      ]
-    },
-    {
-      "dataset": "Mix",
-      "model_type": "gaussiannb",
-      "strategy": "original",
-      "version": "v1",
-      "display_name": "Mix_gaussiannb_original",
-      "accuracy": 0.7716535433070866,
-      "balanced_accuracy": 0.743590982390326,
-      "f1_macro": 0.7461828019053736,
-      "f1_weighted": 0.7673718845927757,
-      "precision_macro": 0.8034455128205128,
-      "recall_macro": 0.743590982390326,
-      "matthews_corrcoef": 0.661180269959132,
-      "cohen_kappa": 0.6506245059288538,
-      "log_loss": 8.23044053767242,
-      "per_class_precision": [
-        0.8051282051282052,
-        0.9375,
-        0.8461538461538461,
-        0.625
-      ],
-      "per_class_recall": [
-        0.8177083333333334,
-        0.5421686746987951,
-        0.6285714285714286,
-        0.9859154929577465
-      ],
-      "per_class_f1": [
-        0.8113695090439277,
-        0.6870229007633588,
-        0.7213114754098361,
-        0.7650273224043715
-      ],
-      "confusion_matrix": [
-        [
-          157,
-          1,
-          1,
-          33
-        ],
-        [
-          30,
-          45,
-          3,
-          5
-        ],
-        [
-          7,
-          2,
-          22,
-          4
-        ],
-        [
-          1,
-          0,
-          0,
-          70
-        ]
-      ]
-    },
-    {
-      "dataset": "Mix",
-      "model_type": "gaussiannb",
-      "strategy": "randomoversampler",
-      "version": "v1",
-      "display_name": "Mix_gaussiannb_randomoversampler",
-      "accuracy": 0.7349081364829396,
-      "balanced_accuracy": 0.709261252757509,
-      "f1_macro": 0.7039134120081068,
-      "f1_weighted": 0.7284607932706266,
-      "precision_macro": 0.767733134920635,
-      "recall_macro": 0.709261252757509,
-      "matthews_corrcoef": 0.6097843925256505,
-      "cohen_kappa": 0.5964067711283116,
-      "log_loss": 9.554879244884074,
-      "per_class_precision": [
-        0.78125,
-        0.9285714285714286,
-        0.7777777777777778,
-        0.5833333333333334
-      ],
-      "per_class_recall": [
-        0.78125,
-        0.46987951807228917,
-        0.6,
-        0.9859154929577465
-      ],
-      "per_class_f1": [
-        0.78125,
-        0.624,
-        0.6774193548387096,
-        0.7329842931937173
-      ],
-      "confusion_matrix": [
-        [
-          150,
-          0,
-          2,
-          40
-        ],
-        [
-          34,
-          39,
-          4,
-          6
-        ],
-        [
-          7,
-          3,
-          21,
-          4
-        ],
-        [
-          1,
-          0,
-          0,
-          70
-        ]
-      ]
-    },
-    {
-      "dataset": "Mix",
-      "model_type": "gaussiannb",
-      "strategy": "smote",
-      "version": "v1",
-      "display_name": "Mix_gaussiannb_smote",
-      "accuracy": 0.7611548556430446,
-      "balanced_accuracy": 0.6613670981713575,
-      "f1_macro": 0.6877593277637688,
-      "f1_weighted": 0.7355649389111151,
-      "precision_macro": 0.8430515387973372,
-      "recall_macro": 0.6613670981713575,
-      "matthews_corrcoef": 0.6335793167187044,
-      "cohen_kappa": 0.6085071306782895,
-      "log_loss": 8.60885159687575,
-      "per_class_precision": [
-        0.7183673469387755,
-        0.9411764705882353,
-        0.9285714285714286,
-        0.7840909090909091
-      ],
-      "per_class_recall": [
-        0.9166666666666666,
-        0.3855421686746988,
-        0.37142857142857144,
-        0.971830985915493
-      ],
-      "per_class_f1": [
-        0.8054919908466819,
-        0.5470085470085471,
-        0.5306122448979592,
-        0.8679245283018868
-      ],
-      "confusion_matrix": [
-        [
-          176,
-          0,
-          1,
-          15
-        ],
-        [
-          48,
-          32,
-          0,
-          3
-        ],
-        [
-          19,
-          2,
-          13,
-          1
-        ],
-        [
           2,
           0,
           0,
           69
         ]
-      ]
-    },
-    {
-      "dataset": "Mix",
-      "model_type": "logistic_regression",
-      "strategy": "original",
-      "version": "v1",
-      "display_name": "Mix_logistic_regression_original",
-      "accuracy": 0.89501312335958,
-      "balanced_accuracy": 0.8393727260652267,
-      "f1_macro": 0.8561710002277474,
-      "f1_weighted": 0.8927117926214667,
-      "precision_macro": 0.8771622554231249,
-      "recall_macro": 0.8393727260652267,
-      "matthews_corrcoef": 0.838272831701343,
-      "cohen_kappa": 0.8365771272317838,
-      "log_loss": 0.46645334640887925,
+      ],
       "per_class_precision": [
-        0.893719806763285,
-        0.9054054054054054,
-        0.7666666666666667,
-        0.9428571428571428
-      ],
-      "per_class_recall": [
-        0.9635416666666666,
-        0.8072289156626506,
-        0.6571428571428571,
-        0.9295774647887324
-      ],
-      "per_class_f1": [
-        0.9273182957393483,
-        0.8535031847133758,
-        0.7076923076923077,
-        0.9361702127659575
-      ],
-      "confusion_matrix": [
-        [
-          185,
-          2,
-          2,
-          3
-        ],
-        [
-          11,
-          67,
-          5,
-          0
-        ],
-        [
-          7,
-          4,
-          23,
-          1
-        ],
-        [
-          4,
-          1,
-          0,
-          66
-        ]
-      ]
-    },
-    {
-      "dataset": "Mix",
-      "model_type": "logistic_regression",
-      "strategy": "randomoversampler",
-      "version": "v1",
-      "display_name": "Mix_logistic_regression_randomoversampler",
-      "accuracy": 0.9028871391076115,
-      "balanced_accuracy": 0.8803408616861813,
-      "f1_macro": 0.871544582652762,
-      "f1_weighted": 0.9031493182965145,
-      "precision_macro": 0.8648377215949815,
-      "recall_macro": 0.8803408616861813,
-      "matthews_corrcoef": 0.8535175051689882,
-      "cohen_kappa": 0.85297093211235,
-      "log_loss": 0.6041356334726758,
-      "per_class_precision": [
-        0.9572192513368984,
-        0.8846153846153846,
-        0.7567567567567568,
-        0.8607594936708861
-      ],
-      "per_class_recall": [
-        0.9322916666666666,
-        0.8313253012048193,
-        0.8,
-        0.9577464788732394
-      ],
-      "per_class_f1": [
-        0.9445910290237467,
-        0.8571428571428571,
-        0.7777777777777778,
-        0.9066666666666666
-      ],
-      "confusion_matrix": [
-        [
-          179,
-          4,
-          3,
-          6
-        ],
-        [
-          5,
-          69,
-          6,
-          3
-        ],
-        [
-          1,
-          4,
-          28,
-          2
-        ],
-        [
-          2,
-          1,
-          0,
-          68
-        ]
-      ]
-    },
-    {
-      "dataset": "Mix",
-      "model_type": "logistic_regression",
-      "strategy": "smote",
-      "version": "v1",
-      "display_name": "Mix_logistic_regression_smote",
-      "accuracy": 0.9028871391076115,
-      "balanced_accuracy": 0.8861816354957052,
-      "f1_macro": 0.8761513257212105,
-      "f1_weighted": 0.9031586642662763,
-      "precision_macro": 0.8678910392816808,
-      "recall_macro": 0.8861816354957052,
-      "matthews_corrcoef": 0.8534143001660562,
-      "cohen_kappa": 0.853007726557042,
-      "log_loss": 0.6240568229935328,
-      "per_class_precision": [
-        0.9518716577540107,
-        0.8734177215189873,
-        0.7631578947368421,
-        0.8831168831168831
-      ],
-      "per_class_recall": [
-        0.9270833333333334,
-        0.8313253012048193,
-        0.8285714285714286,
-        0.9577464788732394
-      ],
-      "per_class_f1": [
-        0.9393139841688655,
-        0.8518518518518519,
-        0.7945205479452054,
-        0.918918918918919
-      ],
-      "confusion_matrix": [
-        [
-          178,
-          5,
-          3,
-          6
-        ],
-        [
-          7,
-          69,
-          6,
-          1
-        ],
-        [
-          0,
-          4,
-          29,
-          2
-        ],
-        [
-          2,
-          1,
-          0,
-          68
-        ]
-      ]
-    },
-    {
-      "dataset": "Mix",
-      "model_type": "mlp",
-      "strategy": "original",
-      "version": "v1",
-      "display_name": "Mix_mlp_original",
-      "accuracy": 0.9002624671916011,
-      "balanced_accuracy": 0.8483076736018521,
-      "f1_macro": 0.8721191895282092,
-      "f1_weighted": 0.8982181919638658,
-      "precision_macro": 0.9085240784985292,
-      "recall_macro": 0.8483076736018521,
-      "matthews_corrcoef": 0.8464431549313142,
-      "cohen_kappa": 0.8446099686601125,
-      "log_loss": 0.36140611961267943,
-      "per_class_precision": [
-        0.8883495145631068,
-        0.9473684210526315,
-        0.92,
-        0.8783783783783784
-      ],
-      "per_class_recall": [
-        0.953125,
-        0.8674698795180723,
-        0.6571428571428571,
-        0.9154929577464789
-      ],
-      "per_class_f1": [
-        0.9195979899497487,
-        0.9056603773584906,
-        0.7666666666666667,
-        0.896551724137931
-      ],
-      "confusion_matrix": [
-        [
-          183,
-          4,
-          1,
-          4
-        ],
-        [
-          8,
-          72,
-          1,
-          2
-        ],
-        [
-          9,
-          0,
-          23,
-          3
-        ],
-        [
-          6,
-          0,
-          0,
-          65
-        ]
-      ]
-    },
-    {
-      "dataset": "Mix",
-      "model_type": "mlp",
-      "strategy": "randomoversampler",
-      "version": "v1",
-      "display_name": "Mix_mlp_randomoversampler",
-      "accuracy": 0.7769028871391076,
-      "balanced_accuracy": 0.8529719102769227,
-      "f1_macro": 0.7670906643197823,
-      "f1_weighted": 0.7755573239379076,
-      "precision_macro": 0.7410112035593498,
-      "recall_macro": 0.8529719102769227,
-      "matthews_corrcoef": 0.714693581995432,
-      "cohen_kappa": 0.6898879632289572,
-      "log_loss": 0.590917494910229,
-      "per_class_precision": [
-        0.9833333333333333,
-        0.7289719626168224,
-        0.5254237288135594,
-        0.7263157894736842
-      ],
-      "per_class_recall": [
-        0.6145833333333334,
-        0.9397590361445783,
-        0.8857142857142857,
-        0.971830985915493
-      ],
-      "per_class_f1": [
-        0.7564102564102564,
-        0.8210526315789474,
-        0.6595744680851063,
-        0.8313253012048193
-      ],
-      "confusion_matrix": [
-        [
-          118,
-          27,
-          26,
-          21
-        ],
-        [
-          1,
-          78,
-          1,
-          3
-        ],
-        [
-          1,
-          1,
-          31,
-          2
-        ],
-        [
-          0,
-          1,
-          1,
-          69
-        ]
-      ]
-    },
-    {
-      "dataset": "Mix",
-      "model_type": "mlp",
-      "strategy": "smote",
-      "version": "v1",
-      "display_name": "Mix_mlp_smote",
-      "accuracy": 0.7900262467191601,
-      "balanced_accuracy": 0.8572632835163593,
-      "f1_macro": 0.78133690888856,
-      "f1_weighted": 0.7895939497355752,
-      "precision_macro": 0.7541148291148291,
-      "recall_macro": 0.8572632835163593,
-      "matthews_corrcoef": 0.727053790178054,
-      "cohen_kappa": 0.7054389423634466,
-      "log_loss": 0.5089918283404922,
-      "per_class_precision": [
-        0.9841269841269841,
-        0.7027027027027027,
-        0.5740740740740741,
-        0.7555555555555555
-      ],
-      "per_class_recall": [
-        0.6458333333333334,
-        0.9397590361445783,
-        0.8857142857142857,
-        0.9577464788732394
-      ],
-      "per_class_f1": [
-        0.779874213836478,
-        0.8041237113402062,
-        0.6966292134831461,
-        0.84472049689441
-      ],
-      "confusion_matrix": [
-        [
-          124,
-          30,
-          19,
-          19
-        ],
-        [
-          1,
-          78,
-          3,
-          1
-        ],
-        [
-          1,
-          1,
-          31,
-          2
-        ],
-        [
-          0,
-          2,
-          1,
-          68
-        ]
-      ]
-    },
-    {
-      "dataset": "Mix",
-      "model_type": "randomforest",
-      "strategy": "borderline_smote",
-      "version": "v1",
-      "display_name": "Mix_randomforest_borderline_smote",
-      "accuracy": 0.9553805774278216,
-      "balanced_accuracy": 0.9315419941839794,
-      "f1_macro": 0.943030589042859,
-      "f1_weighted": 0.9549924486304371,
-      "precision_macro": 0.95644041218638,
-      "recall_macro": 0.9315419941839794,
-      "matthews_corrcoef": 0.9316662297329511,
-      "cohen_kappa": 0.9313207787250286,
-      "log_loss": 0.2478133124431918,
-      "per_class_precision": [
-        0.9444444444444444,
-        0.9875,
-        0.9354838709677419,
-        0.9583333333333334
-      ],
-      "per_class_recall": [
-        0.9739583333333334,
-        0.9518072289156626,
-        0.8285714285714286,
-        0.971830985915493
-      ],
-      "per_class_f1": [
-        0.958974358974359,
-        0.9693251533742331,
-        0.8787878787878788,
-        0.965034965034965
-      ],
-      "confusion_matrix": [
-        [
-          187,
-          1,
-          2,
-          2
-        ],
-        [
-          3,
-          79,
-          0,
-          1
-        ],
-        [
-          6,
-          0,
-          29,
-          0
-        ],
-        [
-          2,
-          0,
-          0,
-          69
-        ]
-      ]
-    },
-    {
-      "dataset": "Mix",
-      "model_type": "randomforest",
-      "strategy": "class_weights",
-      "version": "v1",
-      "display_name": "Mix_randomforest_class_weights",
-      "accuracy": 0.8792650918635171,
-      "balanced_accuracy": 0.8676039545505968,
-      "f1_macro": 0.8558008956187322,
-      "f1_weighted": 0.8808346307736397,
-      "precision_macro": 0.8494257272119723,
-      "recall_macro": 0.8676039545505968,
-      "matthews_corrcoef": 0.8203608890666959,
-      "cohen_kappa": 0.8185357368426502,
-      "log_loss": 0.5341479127518782,
-      "per_class_precision": [
-        0.9392265193370166,
-        0.922077922077922,
-        0.7777777777777778,
-        0.7586206896551724
-      ],
-      "per_class_recall": [
-        0.8854166666666666,
-        0.8554216867469879,
-        0.8,
-        0.9295774647887324
-      ],
-      "per_class_f1": [
-        0.9115281501340483,
-        0.8875,
-        0.7887323943661971,
-        0.8354430379746836
-      ],
-      "confusion_matrix": [
-        [
-          170,
-          6,
-          4,
-          12
-        ],
-        [
-          4,
-          71,
-          3,
-          5
-        ],
-        [
-          3,
-          0,
-          28,
-          4
-        ],
-        [
-          4,
-          0,
-          1,
-          66
-        ]
-      ]
-    },
-    {
-      "dataset": "Mix",
-      "model_type": "randomforest",
-      "strategy": "no_resampling",
-      "version": "v1",
-      "display_name": "Mix_randomforest_no_resampling",
-      "accuracy": 0.9343832020997376,
-      "balanced_accuracy": 0.884063441896358,
-      "f1_macro": 0.9099349639576793,
-      "f1_weighted": 0.9327655142034696,
-      "precision_macro": 0.9460164835164835,
-      "recall_macro": 0.884063441896358,
-      "matthews_corrcoef": 0.8996340860145615,
-      "cohen_kappa": 0.8975299610560062,
-      "log_loss": 0.30554325171286556,
-      "per_class_precision": [
-        0.9038461538461539,
-        1.0,
-        0.9230769230769231,
-        0.9571428571428572
-      ],
-      "per_class_recall": [
-        0.9791666666666666,
-        0.927710843373494,
-        0.6857142857142857,
-        0.9436619718309859
-      ],
-      "per_class_f1": [
-        0.94,
-        0.9625,
-        0.7868852459016393,
-        0.950354609929078
-      ],
-      "confusion_matrix": [
-        [
-          188,
-          0,
-          2,
-          2
-        ],
-        [
-          6,
-          77,
-          0,
-          0
-        ],
-        [
-          10,
-          0,
-          24,
-          1
-        ],
-        [
-          4,
-          0,
-          0,
-          67
-        ]
-      ]
-    },
-    {
-      "dataset": "Mix",
-      "model_type": "randomforest",
-      "strategy": "smote",
-      "version": "v1",
-      "display_name": "Mix_randomforest_smote",
-      "accuracy": 0.952755905511811,
-      "balanced_accuracy": 0.9419214584696937,
-      "f1_macro": 0.9412742275882217,
-      "f1_weighted": 0.9528252008482015,
-      "precision_macro": 0.9409950128700129,
-      "recall_macro": 0.9419214584696937,
-      "matthews_corrcoef": 0.9280333254987898,
-      "cohen_kappa": 0.9279455336317216,
-      "log_loss": 0.29019126220037805,
-      "per_class_precision": [
-        0.9583333333333334,
-        0.9875,
-        0.8857142857142857,
-        0.9324324324324325
-      ],
-      "per_class_recall": [
-        0.9583333333333334,
-        0.9518072289156626,
-        0.8857142857142857,
-        0.971830985915493
-      ],
-      "per_class_f1": [
-        0.9583333333333334,
-        0.9693251533742331,
-        0.8857142857142857,
-        0.9517241379310345
-      ],
-      "confusion_matrix": [
-        [
-          184,
-          1,
-          3,
-          4
-        ],
-        [
-          2,
-          79,
-          1,
-          1
-        ],
-        [
-          4,
-          0,
-          31,
-          0
-        ],
-        [
-          2,
-          0,
-          0,
-          69
-        ]
-      ]
-    },
-    {
-      "dataset": "Mix",
-      "model_type": "randomforest",
-      "strategy": "svm_smote",
-      "version": "v1",
-      "display_name": "Mix_randomforest_svm_smote",
-      "accuracy": 0.9448818897637795,
-      "balanced_accuracy": 0.9170729573222467,
-      "f1_macro": 0.9313432814597412,
-      "f1_weighted": 0.9443330677191389,
-      "precision_macro": 0.9489295749912188,
-      "recall_macro": 0.9170729573222467,
-      "matthews_corrcoef": 0.9155743145419647,
-      "cohen_kappa": 0.9149318476619814,
-      "log_loss": 0.24878626116453126,
-      "per_class_precision": [
-        0.93,
-        0.9871794871794872,
-        0.9333333333333333,
+        0.9637305699481865,
+        0.963855421686747,
+        0.96875,
         0.9452054794520548
       ],
       "per_class_recall": [
         0.96875,
-        0.927710843373494,
-        0.8,
+        0.963855421686747,
+        0.8857142857142857,
         0.971830985915493
       ],
       "per_class_f1": [
-        0.9489795918367347,
-        0.9565217391304348,
-        0.8615384615384616,
+        0.9662337662337662,
+        0.963855421686747,
+        0.9253731343283582,
         0.9583333333333334
       ],
-      "confusion_matrix": [
-        [
-          186,
-          1,
-          2,
-          3
-        ],
-        [
-          5,
-          77,
-          0,
-          1
-        ],
-        [
-          7,
-          0,
-          28,
-          0
-        ],
-        [
-          2,
-          0,
-          0,
-          69
-        ]
-      ]
-    },
-    {
-      "dataset": "Mix",
-      "model_type": "svm",
-      "strategy": "original",
-      "version": "v1",
-      "display_name": "Mix_svm_original",
-      "accuracy": 0.8293963254593176,
-      "balanced_accuracy": 0.7690387240612349,
-      "f1_macro": 0.8048206655996796,
-      "f1_weighted": 0.8265615504007714,
-      "precision_macro": 0.8582494977984294,
-      "recall_macro": 0.7690387240612349,
-      "matthews_corrcoef": 0.7347499285404074,
-      "cohen_kappa": 0.7284866956836347,
-      "log_loss": 0.5233152766336076,
-      "per_class_precision": [
-        0.7937219730941704,
-        0.8823529411764706,
-        0.88,
-        0.8769230769230769
-      ],
-      "per_class_recall": [
-        0.921875,
-        0.7228915662650602,
-        0.6285714285714286,
-        0.8028169014084507
-      ],
-      "per_class_f1": [
-        0.8530120481927711,
-        0.7947019867549668,
-        0.7333333333333333,
-        0.8382352941176471
-      ],
-      "confusion_matrix": [
-        [
-          177,
-          8,
-          2,
-          5
-        ],
-        [
-          22,
-          60,
-          1,
-          0
-        ],
-        [
-          10,
-          0,
-          22,
-          3
-        ],
-        [
-          14,
-          0,
-          0,
-          57
-        ]
-      ]
-    },
-    {
-      "dataset": "Mix",
-      "model_type": "svm",
-      "strategy": "randomoversampler",
-      "version": "v1",
-      "display_name": "Mix_svm_randomoversampler",
-      "accuracy": 0.8503937007874016,
-      "balanced_accuracy": 0.8353459613100289,
-      "f1_macro": 0.8290592494838132,
-      "f1_weighted": 0.85118880822676,
-      "precision_macro": 0.8257735129639886,
-      "recall_macro": 0.8353459613100289,
-      "matthews_corrcoef": 0.7721759800109246,
-      "cohen_kappa": 0.7718514938857839,
-      "log_loss": 0.5517874679767623,
-      "per_class_precision": [
-        0.865979381443299,
-        0.8701298701298701,
-        0.6829268292682927,
-        0.8840579710144928
-      ],
-      "per_class_recall": [
-        0.875,
-        0.8072289156626506,
-        0.8,
-        0.8591549295774648
-      ],
-      "per_class_f1": [
-        0.8704663212435233,
-        0.8375,
-        0.7368421052631579,
-        0.8714285714285714
-      ],
-      "confusion_matrix": [
-        [
-          168,
-          10,
-          8,
-          6
-        ],
-        [
-          11,
-          67,
-          4,
-          1
-        ],
-        [
-          6,
-          0,
-          28,
-          1
-        ],
-        [
-          9,
-          0,
-          1,
-          61
-        ]
-      ]
-    },
-    {
-      "dataset": "Mix",
-      "model_type": "svm",
-      "strategy": "smote",
-      "version": "v1",
-      "display_name": "Mix_svm_smote",
-      "accuracy": 0.7874015748031497,
-      "balanced_accuracy": 0.8157775089290764,
-      "f1_macro": 0.7669211765222513,
-      "f1_weighted": 0.7976763982665426,
-      "precision_macro": 0.7556360708534622,
-      "recall_macro": 0.8157775089290764,
-      "matthews_corrcoef": 0.6991883801542579,
-      "cohen_kappa": 0.6914517096580683,
-      "log_loss": 0.5451753077682232,
-      "per_class_precision": [
-        0.8765432098765432,
-        0.8271604938271605,
-        0.43478260869565216,
-        0.8840579710144928
-      ],
-      "per_class_recall": [
-        0.7395833333333334,
-        0.8072289156626506,
-        0.8571428571428571,
-        0.8591549295774648
-      ],
-      "per_class_f1": [
-        0.8022598870056498,
-        0.8170731707317073,
-        0.5769230769230769,
-        0.8714285714285714
-      ],
-      "confusion_matrix": [
-        [
-          142,
-          14,
-          29,
-          7
-        ],
-        [
-          7,
-          67,
-          9,
-          0
-        ],
-        [
-          4,
-          0,
-          30,
-          1
-        ],
-        [
-          9,
-          0,
-          1,
-          61
-        ]
-      ]
-    },
-    {
-      "dataset": "Mix",
-      "model_type": "xgboost",
-      "strategy": "original",
-      "version": "v1",
-      "display_name": "Mix_xgboost_original",
-      "accuracy": 0.9422572178477691,
-      "balanced_accuracy": 0.9201034836024178,
-      "f1_macro": 0.9275189861741203,
-      "f1_weighted": 0.9418803017001295,
-      "precision_macro": 0.936534620745147,
-      "recall_macro": 0.9201034836024178,
-      "matthews_corrcoef": 0.9117368485823183,
-      "cohen_kappa": 0.9112339560299911,
-      "log_loss": 0.20248705248445142,
-      "per_class_precision": [
-        0.9444444444444444,
-        0.9736842105263158,
-        0.9090909090909091,
-        0.918918918918919
-      ],
-      "per_class_recall": [
-        0.9739583333333334,
-        0.891566265060241,
-        0.8571428571428571,
-        0.9577464788732394
-      ],
-      "per_class_f1": [
-        0.958974358974359,
-        0.9308176100628931,
-        0.8823529411764706,
-        0.9379310344827586
-      ],
-      "confusion_matrix": [
-        [
-          187,
-          2,
-          0,
-          3
-        ],
-        [
-          5,
-          74,
-          2,
-          2
-        ],
-        [
-          4,
-          0,
-          30,
-          1
-        ],
-        [
-          2,
-          0,
-          1,
-          68
-        ]
-      ]
+      "log_loss": 0.1873529403183166
     },
     {
       "dataset": "Mix",
       "model_type": "xgboost",
       "strategy": "randomoversampler",
       "version": "v1",
-      "display_name": "Mix_xgboost_randomoversampler",
-      "accuracy": 0.9501312335958005,
+      "display": "[Mix] xgboost / randomoversampler",
       "balanced_accuracy": 0.9428384185635904,
       "f1_macro": 0.9435442405198886,
-      "f1_weighted": 0.9502606396866962,
+      "accuracy": 0.9501312335958005,
       "precision_macro": 0.9465814224741022,
       "recall_macro": 0.9428384185635904,
       "matthews_corrcoef": 0.9246642891619123,
       "cohen_kappa": 0.9242227572490317,
-      "log_loss": 0.13937709036623644,
-      "per_class_precision": [
-        0.9680851063829787,
-        0.9634146341463414,
-        0.96875,
-        0.8860759493670886
-      ],
-      "per_class_recall": [
-        0.9479166666666666,
-        0.9518072289156626,
-        0.8857142857142857,
-        0.9859154929577465
-      ],
-      "per_class_f1": [
-        0.9578947368421052,
-        0.9575757575757575,
-        0.9253731343283582,
-        0.9333333333333333
-      ],
       "confusion_matrix": [
         [
           182,
@@ -1755,358 +569,706 @@
           0,
           70
         ]
-      ]
+      ],
+      "per_class_precision": [
+        0.9680851063829787,
+        0.9634146341463414,
+        0.96875,
+        0.8860759493670886
+      ],
+      "per_class_recall": [
+        0.9479166666666666,
+        0.9518072289156626,
+        0.8857142857142857,
+        0.9859154929577465
+      ],
+      "per_class_f1": [
+        0.9578947368421052,
+        0.9575757575757575,
+        0.9253731343283582,
+        0.9333333333333333
+      ],
+      "log_loss": 0.13937709036623644
     },
     {
       "dataset": "Mix",
-      "model_type": "xgboost",
-      "strategy": "smote",
+      "model_type": "randomforest",
+      "strategy": "randomoversampler",
       "version": "v1",
-      "display_name": "Mix_xgboost_smote",
-      "accuracy": 0.963254593175853,
-      "balanced_accuracy": 0.9574086524670109,
-      "f1_macro": 0.959611667127465,
-      "f1_weighted": 0.9632585534269585,
-      "precision_macro": 0.9633806739069897,
-      "recall_macro": 0.9574086524670109,
-      "matthews_corrcoef": 0.9442995901554996,
-      "cohen_kappa": 0.9440792577449284,
-      "log_loss": 0.12669055734486726,
-      "per_class_precision": [
-        0.9788359788359788,
-        0.9404761904761905,
-        1.0,
-        0.9342105263157895
-      ],
-      "per_class_recall": [
-        0.9635416666666666,
-        0.9518072289156626,
-        0.9142857142857143,
-        1.0
-      ],
-      "per_class_f1": [
-        0.9711286089238845,
-        0.9461077844311377,
-        0.9552238805970149,
-        0.9659863945578231
-      ],
+      "display": "[Mix] randomforest / randomoversampler",
+      "balanced_accuracy": 0.9423065817091303,
+      "f1_macro": 0.9538242783195445,
+      "accuracy": 0.958005249343832,
+      "precision_macro": 0.967247916274989,
+      "recall_macro": 0.9423065817091303,
+      "matthews_corrcoef": 0.9356926618344772,
+      "cohen_kappa": 0.9354353559210735,
       "confusion_matrix": [
         [
-          185,
-          4,
+          187,
+          2,
           0,
           3
         ],
         [
-          2,
+          3,
           79,
           0,
+          1
+        ],
+        [
+          4,
+          0,
+          31,
+          0
+        ],
+        [
+          3,
+          0,
+          0,
+          68
+        ]
+      ],
+      "per_class_precision": [
+        0.949238578680203,
+        0.9753086419753086,
+        1.0,
+        0.9444444444444444
+      ],
+      "per_class_recall": [
+        0.9739583333333334,
+        0.9518072289156626,
+        0.8857142857142857,
+        0.9577464788732394
+      ],
+      "per_class_f1": [
+        0.961439588688946,
+        0.9634146341463414,
+        0.9393939393939394,
+        0.951048951048951
+      ],
+      "log_loss": 0.18400656509091246
+    },
+    {
+      "dataset": "Mix",
+      "model_type": "randomforest",
+      "strategy": "original",
+      "version": "v1",
+      "display": "[Mix] randomforest / original",
+      "balanced_accuracy": 0.9399869346601698,
+      "f1_macro": 0.9528514668550878,
+      "accuracy": 0.9606299212598425,
+      "precision_macro": 0.9687072105598866,
+      "recall_macro": 0.9399869346601698,
+      "matthews_corrcoef": 0.9397692486606571,
+      "cohen_kappa": 0.9394475583009292,
+      "confusion_matrix": [
+        [
+          188,
+          2,
+          0,
+          2
+        ],
+        [
+          3,
+          79,
+          0,
+          1
+        ],
+        [
+          4,
+          0,
+          30,
+          1
+        ],
+        [
+          2,
+          0,
+          0,
+          69
+        ]
+      ],
+      "per_class_precision": [
+        0.9543147208121827,
+        0.9753086419753086,
+        1.0,
+        0.9452054794520548
+      ],
+      "per_class_recall": [
+        0.9791666666666666,
+        0.9518072289156626,
+        0.8571428571428571,
+        0.971830985915493
+      ],
+      "per_class_f1": [
+        0.9665809768637532,
+        0.9634146341463414,
+        0.9230769230769231,
+        0.9583333333333334
+      ],
+      "log_loss": 0.22709255686551738
+    },
+    {
+      "dataset": "Mix",
+      "model_type": "lgbm",
+      "strategy": "original",
+      "version": "v1",
+      "display": "[Mix] lgbm / original",
+      "balanced_accuracy": 0.9364064406519438,
+      "f1_macro": 0.9336996122340809,
+      "accuracy": 0.94750656167979,
+      "precision_macro": 0.9314350691543674,
+      "recall_macro": 0.9364064406519438,
+      "matthews_corrcoef": 0.920251490440633,
+      "cohen_kappa": 0.9201324836491699,
+      "confusion_matrix": [
+        [
+          184,
+          4,
+          1,
+          3
+        ],
+        [
+          2,
+          76,
+          3,
+          2
+        ],
+        [
+          3,
+          1,
+          31,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          70
+        ]
+      ],
+      "per_class_precision": [
+        0.968421052631579,
+        0.9382716049382716,
+        0.8857142857142857,
+        0.9333333333333333
+      ],
+      "per_class_recall": [
+        0.9583333333333334,
+        0.9156626506024096,
+        0.8857142857142857,
+        0.9859154929577465
+      ],
+      "per_class_f1": [
+        0.9633507853403142,
+        0.926829268292683,
+        0.8857142857142857,
+        0.958904109589041
+      ],
+      "log_loss": 0.15773963687804735
+    },
+    {
+      "dataset": "Mix",
+      "model_type": "randomforest",
+      "strategy": "borderline_smote",
+      "version": "v1",
+      "display": "[Mix] randomforest / borderline_smote",
+      "balanced_accuracy": 0.9315419941839794,
+      "f1_macro": 0.943030589042859,
+      "accuracy": 0.9553805774278216,
+      "precision_macro": 0.95644041218638,
+      "recall_macro": 0.9315419941839794,
+      "matthews_corrcoef": 0.9316662297329511,
+      "cohen_kappa": 0.9313207787250286,
+      "confusion_matrix": [
+        [
+          187,
+          1,
+          2,
+          2
+        ],
+        [
+          3,
+          79,
+          0,
+          1
+        ],
+        [
+          6,
+          0,
+          29,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          69
+        ]
+      ],
+      "per_class_precision": [
+        0.9444444444444444,
+        0.9875,
+        0.9354838709677419,
+        0.9583333333333334
+      ],
+      "per_class_recall": [
+        0.9739583333333334,
+        0.9518072289156626,
+        0.8285714285714286,
+        0.971830985915493
+      ],
+      "per_class_f1": [
+        0.958974358974359,
+        0.9693251533742331,
+        0.8787878787878788,
+        0.965034965034965
+      ],
+      "log_loss": 0.2478133124431918
+    },
+    {
+      "dataset": "Mix",
+      "model_type": "tabpfn",
+      "strategy": "smote",
+      "version": "v2.5",
+      "display": "[Mix] tabpfn / smote (v2.5)",
+      "balanced_accuracy": 0.9254766614243695,
+      "f1_macro": 0.9461264689162487,
+      "accuracy": 0.963254593175853,
+      "precision_macro": 0.9744223745579899,
+      "recall_macro": 0.9254766614243695,
+      "matthews_corrcoef": 0.9439662795322503,
+      "cohen_kappa": 0.943120381330177,
+      "confusion_matrix": [
+        [
+          191,
+          0,
+          0,
+          1
+        ],
+        [
+          3,
+          80,
+          0,
+          0
+        ],
+        [
+          5,
+          2,
+          27,
+          1
+        ],
+        [
+          2,
+          0,
+          0,
+          69
+        ]
+      ],
+      "per_class_precision": [
+        0.9502487562189055,
+        0.975609756097561,
+        1.0,
+        0.971830985915493
+      ],
+      "per_class_recall": [
+        0.9947916666666666,
+        0.963855421686747,
+        0.7714285714285715,
+        0.971830985915493
+      ],
+      "per_class_f1": [
+        0.9720101781170484,
+        0.9696969696969697,
+        0.8709677419354839,
+        0.971830985915493
+      ],
+      "log_loss": 0.1037469081663868
+    },
+    {
+      "dataset": "Mix",
+      "model_type": "xgboost",
+      "strategy": "original",
+      "version": "v1",
+      "display": "[Mix] xgboost / original",
+      "balanced_accuracy": 0.9201034836024178,
+      "f1_macro": 0.9275189861741203,
+      "accuracy": 0.9422572178477691,
+      "precision_macro": 0.936534620745147,
+      "recall_macro": 0.9201034836024178,
+      "matthews_corrcoef": 0.9117368485823183,
+      "cohen_kappa": 0.9112339560299911,
+      "confusion_matrix": [
+        [
+          187,
+          2,
+          0,
+          3
+        ],
+        [
+          5,
+          74,
+          2,
+          2
+        ],
+        [
+          4,
+          0,
+          30,
+          1
+        ],
+        [
+          2,
+          0,
+          1,
+          68
+        ]
+      ],
+      "per_class_precision": [
+        0.9444444444444444,
+        0.9736842105263158,
+        0.9090909090909091,
+        0.918918918918919
+      ],
+      "per_class_recall": [
+        0.9739583333333334,
+        0.891566265060241,
+        0.8571428571428571,
+        0.9577464788732394
+      ],
+      "per_class_f1": [
+        0.958974358974359,
+        0.9308176100628931,
+        0.8823529411764706,
+        0.9379310344827586
+      ],
+      "log_loss": 0.20248705248445142
+    },
+    {
+      "dataset": "Mix",
+      "model_type": "randomforest",
+      "strategy": "svm_smote",
+      "version": "v1",
+      "display": "[Mix] randomforest / svm_smote",
+      "balanced_accuracy": 0.9170729573222467,
+      "f1_macro": 0.9313432814597412,
+      "accuracy": 0.9448818897637795,
+      "precision_macro": 0.9489295749912188,
+      "recall_macro": 0.9170729573222467,
+      "matthews_corrcoef": 0.9155743145419647,
+      "cohen_kappa": 0.9149318476619814,
+      "confusion_matrix": [
+        [
+          186,
+          1,
+          2,
+          3
+        ],
+        [
+          5,
+          77,
+          0,
+          1
+        ],
+        [
+          7,
+          0,
+          28,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          69
+        ]
+      ],
+      "per_class_precision": [
+        0.93,
+        0.9871794871794872,
+        0.9333333333333333,
+        0.9452054794520548
+      ],
+      "per_class_recall": [
+        0.96875,
+        0.927710843373494,
+        0.8,
+        0.971830985915493
+      ],
+      "per_class_f1": [
+        0.9489795918367347,
+        0.9565217391304348,
+        0.8615384615384616,
+        0.9583333333333334
+      ],
+      "log_loss": 0.24878626116453126
+    },
+    {
+      "dataset": "Mix",
+      "model_type": "tabpfn",
+      "strategy": "randomundersampler",
+      "version": "v2.5",
+      "display": "[Mix] tabpfn / randomundersampler (v2.5)",
+      "balanced_accuracy": 0.8926398122671774,
+      "f1_macro": 0.849264705882353,
+      "accuracy": 0.8556430446194225,
+      "precision_macro": 0.8218036990399932,
+      "recall_macro": 0.8926398122671774,
+      "matthews_corrcoef": 0.7953737561711371,
+      "cohen_kappa": 0.7890280490506011,
+      "confusion_matrix": [
+        [
+          154,
+          13,
+          7,
+          18
+        ],
+        [
+          5,
+          72,
+          1,
+          5
+        ],
+        [
+          1,
+          0,
+          34,
+          0
+        ],
+        [
+          0,
+          2,
+          3,
+          66
+        ]
+      ],
+      "per_class_precision": [
+        0.9625,
+        0.8275862068965517,
+        0.7555555555555555,
+        0.7415730337078652
+      ],
+      "per_class_recall": [
+        0.8020833333333334,
+        0.8674698795180723,
+        0.9714285714285714,
+        0.9295774647887324
+      ],
+      "per_class_f1": [
+        0.875,
+        0.8470588235294118,
+        0.85,
+        0.825
+      ],
+      "log_loss": 0.4389532559670736
+    },
+    {
+      "dataset": "Mix",
+      "model_type": "logistic_regression",
+      "strategy": "smote",
+      "version": "v1",
+      "display": "[Mix] logistic_regression / smote",
+      "balanced_accuracy": 0.8861816354957052,
+      "f1_macro": 0.8761513257212105,
+      "accuracy": 0.9028871391076115,
+      "precision_macro": 0.8678910392816808,
+      "recall_macro": 0.8861816354957052,
+      "matthews_corrcoef": 0.8534143001660562,
+      "cohen_kappa": 0.853007726557042,
+      "confusion_matrix": [
+        [
+          178,
+          5,
+          3,
+          6
+        ],
+        [
+          7,
+          69,
+          6,
+          1
+        ],
+        [
+          0,
+          4,
+          29,
           2
         ],
         [
           2,
           1,
-          32,
-          0
-        ],
-        [
           0,
-          0,
-          0,
-          71
+          68
         ]
-      ]
+      ],
+      "per_class_precision": [
+        0.9518716577540107,
+        0.8734177215189873,
+        0.7631578947368421,
+        0.8831168831168831
+      ],
+      "per_class_recall": [
+        0.9270833333333334,
+        0.8313253012048193,
+        0.8285714285714286,
+        0.9577464788732394
+      ],
+      "per_class_f1": [
+        0.9393139841688655,
+        0.8518518518518519,
+        0.7945205479452054,
+        0.918918918918919
+      ],
+      "log_loss": 0.6240568229935328
     },
     {
       "dataset": "Mix",
-      "model_type": "stacking_ensemble",
-      "strategy": "ensemble",
+      "model_type": "randomforest",
+      "strategy": "no_resampling",
       "version": "v1",
-      "display_name": "Mix_stacking_ensemble_ensemble",
-      "accuracy": 0.9711286089238845,
-      "balanced_accuracy": 0.9747064149454963,
-      "f1_macro": 0.97019903655242,
-      "f1_weighted": 0.9711738869278387,
-      "precision_macro": 0.9663228517583528,
-      "recall_macro": 0.9747064149454963,
-      "matthews_corrcoef": 0.9564003096069704,
-      "cohen_kappa": 0.9561785064514106,
-      "log_loss": 0.1884100918769457,
-      "per_class_precision": [
-        0.9840425531914894,
-        0.975609756097561,
-        0.9714285714285714,
-        0.9342105263157895
-      ],
-      "per_class_recall": [
-        0.9635416666666666,
-        0.963855421686747,
-        0.9714285714285714,
-        1.0
-      ],
-      "per_class_f1": [
-        0.9736842105263158,
-        0.9696969696969697,
-        0.9714285714285714,
-        0.9659863945578231
-      ],
+      "display": "[Mix] randomforest / no_resampling",
+      "balanced_accuracy": 0.884063441896358,
+      "f1_macro": 0.9099349639576793,
+      "accuracy": 0.9343832020997376,
+      "precision_macro": 0.9460164835164835,
+      "recall_macro": 0.884063441896358,
+      "matthews_corrcoef": 0.8996340860145615,
+      "cohen_kappa": 0.8975299610560062,
       "confusion_matrix": [
         [
-          185,
+          188,
+          0,
           2,
-          1,
-          4
-        ],
-        [
-          2,
-          80,
-          0,
-          1
-        ],
-        [
-          1,
-          0,
-          34,
-          0
-        ],
-        [
-          0,
-          0,
-          0,
-          71
-        ]
-      ]
-    },
-    {
-      "dataset": "Single",
-      "model_type": "tabpfn",
-      "strategy": "classweights",
-      "version": "v2",
-      "display_name": "Single_TabPFN_classweights_v2",
-      "accuracy": 0.7532808398950132,
-      "balanced_accuracy": 0.8276697648238831,
-      "f1_macro": 0.7561906290877385,
-      "f1_weighted": 0.7613165942914413,
-      "precision_macro": 0.7463191322162187,
-      "recall_macro": 0.8276697648238831,
-      "matthews_corrcoef": 0.680169710513832,
-      "cohen_kappa": 0.6547682163892075,
-      "log_loss": 0.7816677235963183,
-      "per_class_precision": [
-        0.968503937007874,
-        0.8552631578947368,
-        0.6415094339622641,
-        0.52
-      ],
-      "per_class_recall": [
-        0.640625,
-        0.7831325301204819,
-        0.9714285714285714,
-        0.9154929577464789
-      ],
-      "per_class_f1": [
-        0.7711598746081505,
-        0.8176100628930818,
-        0.7727272727272727,
-        0.6632653061224489
-      ],
-      "confusion_matrix": [
-        [
-          123,
-          11,
-          9,
-          49
-        ],
-        [
-          1,
-          65,
-          7,
-          10
-        ],
-        [
-          0,
-          0,
-          34,
-          1
-        ],
-        [
-          3,
-          0,
-          3,
-          65
-        ]
-      ]
-    },
-    {
-      "dataset": "Single",
-      "model_type": "tabpfn",
-      "strategy": "original",
-      "version": "v2",
-      "display_name": "Single_TabPFN_original_v2",
-      "accuracy": 0.7532808398950132,
-      "balanced_accuracy": 0.8276697648238831,
-      "f1_macro": 0.7561906290877385,
-      "f1_weighted": 0.7613165942914413,
-      "precision_macro": 0.7463191322162187,
-      "recall_macro": 0.8276697648238831,
-      "matthews_corrcoef": 0.680169710513832,
-      "cohen_kappa": 0.6547682163892075,
-      "log_loss": 0.7816677235963183,
-      "per_class_precision": [
-        0.968503937007874,
-        0.8552631578947368,
-        0.6415094339622641,
-        0.52
-      ],
-      "per_class_recall": [
-        0.640625,
-        0.7831325301204819,
-        0.9714285714285714,
-        0.9154929577464789
-      ],
-      "per_class_f1": [
-        0.7711598746081505,
-        0.8176100628930818,
-        0.7727272727272727,
-        0.6632653061224489
-      ],
-      "confusion_matrix": [
-        [
-          123,
-          11,
-          9,
-          49
-        ],
-        [
-          1,
-          65,
-          7,
-          10
-        ],
-        [
-          0,
-          0,
-          34,
-          1
-        ],
-        [
-          3,
-          0,
-          3,
-          65
-        ]
-      ]
-    },
-    {
-      "dataset": "Single",
-      "model_type": "tabpfn",
-      "strategy": "randomundersampler",
-      "version": "v2",
-      "display_name": "Single_TabPFN_randomundersampler_v2",
-      "accuracy": 0.7585301837270341,
-      "balanced_accuracy": 0.8119352535898119,
-      "f1_macro": 0.7558772596127925,
-      "f1_weighted": 0.7704525187728756,
-      "precision_macro": 0.7506812928423402,
-      "recall_macro": 0.8119352535898119,
-      "matthews_corrcoef": 0.6794454976352833,
-      "cohen_kappa": 0.6583292718588556,
-      "log_loss": 0.784978207148953,
-      "per_class_precision": [
-        0.9558823529411765,
-        0.9027777777777778,
-        0.64,
-        0.5040650406504065
-      ],
-      "per_class_recall": [
-        0.6770833333333334,
-        0.7831325301204819,
-        0.9142857142857143,
-        0.8732394366197183
-      ],
-      "per_class_f1": [
-        0.7926829268292683,
-        0.8387096774193549,
-        0.7529411764705882,
-        0.6391752577319587
-      ],
-      "confusion_matrix": [
-        [
-          130,
-          7,
-          8,
-          47
-        ],
-        [
-          0,
-          65,
-          7,
-          11
-        ],
-        [
-          0,
-          0,
-          32,
-          3
+          2
         ],
         [
           6,
+          77,
           0,
-          3,
-          62
+          0
+        ],
+        [
+          10,
+          0,
+          24,
+          1
+        ],
+        [
+          4,
+          0,
+          0,
+          67
         ]
-      ]
-    },
-    {
-      "dataset": "Single",
-      "model_type": "tabpfn",
-      "strategy": "smote",
-      "version": "v2",
-      "display_name": "Single_TabPFN_smote_v2",
-      "accuracy": 0.7690288713910761,
-      "balanced_accuracy": 0.8253088814008549,
-      "f1_macro": 0.7720625415717437,
-      "f1_weighted": 0.779048649661465,
-      "precision_macro": 0.7682460768398268,
-      "recall_macro": 0.8253088814008549,
-      "matthews_corrcoef": 0.6980942364021487,
-      "cohen_kappa": 0.6738457946652658,
-      "log_loss": 0.7200258205238891,
+      ],
       "per_class_precision": [
-        0.9696969696969697,
-        0.8831168831168831,
-        0.7045454545454546,
-        0.515625
+        0.9038461538461539,
+        1.0,
+        0.9230769230769231,
+        0.9571428571428572
       ],
       "per_class_recall": [
-        0.6666666666666666,
-        0.8192771084337349,
-        0.8857142857142857,
-        0.9295774647887324
+        0.9791666666666666,
+        0.927710843373494,
+        0.6857142857142857,
+        0.9436619718309859
       ],
       "per_class_f1": [
-        0.7901234567901234,
-        0.85,
-        0.7848101265822784,
-        0.6633165829145728
+        0.94,
+        0.9625,
+        0.7868852459016393,
+        0.950354609929078
       ],
+      "log_loss": 0.30554325171286556
+    },
+    {
+      "dataset": "Mix",
+      "model_type": "logistic_regression",
+      "strategy": "randomoversampler",
+      "version": "v1",
+      "display": "[Mix] logistic_regression / randomoversampler",
+      "balanced_accuracy": 0.8803408616861813,
+      "f1_macro": 0.871544582652762,
+      "accuracy": 0.9028871391076115,
+      "precision_macro": 0.8648377215949815,
+      "recall_macro": 0.8803408616861813,
+      "matthews_corrcoef": 0.8535175051689882,
+      "cohen_kappa": 0.85297093211235,
       "confusion_matrix": [
         [
-          128,
-          9,
-          7,
-          48
+          179,
+          4,
+          3,
+          6
         ],
         [
-          0,
-          68,
           5,
-          10
+          69,
+          6,
+          3
         ],
         [
+          1,
+          4,
+          28,
+          2
+        ],
+        [
+          2,
+          1,
           0,
+          68
+        ]
+      ],
+      "per_class_precision": [
+        0.9572192513368984,
+        0.8846153846153846,
+        0.7567567567567568,
+        0.8607594936708861
+      ],
+      "per_class_recall": [
+        0.9322916666666666,
+        0.8313253012048193,
+        0.8,
+        0.9577464788732394
+      ],
+      "per_class_f1": [
+        0.9445910290237467,
+        0.8571428571428571,
+        0.7777777777777778,
+        0.9066666666666666
+      ],
+      "log_loss": 0.6041356334726758
+    },
+    {
+      "dataset": "Mix",
+      "model_type": "randomforest",
+      "strategy": "class_weights",
+      "version": "v1",
+      "display": "[Mix] randomforest / class_weights",
+      "balanced_accuracy": 0.8676039545505968,
+      "f1_macro": 0.8558008956187322,
+      "accuracy": 0.8792650918635171,
+      "precision_macro": 0.8494257272119723,
+      "recall_macro": 0.8676039545505968,
+      "matthews_corrcoef": 0.8203608890666959,
+      "cohen_kappa": 0.8185357368426502,
+      "confusion_matrix": [
+        [
+          170,
+          6,
+          4,
+          12
+        ],
+        [
+          4,
+          71,
+          3,
+          5
+        ],
+        [
+          3,
           0,
-          31,
+          28,
           4
         ],
         [
@@ -2115,178 +1277,352 @@
           1,
           66
         ]
-      ]
-    },
-    {
-      "dataset": "Single",
-      "model_type": "extratrees",
-      "strategy": "original",
-      "version": "v1",
-      "display_name": "Single_extratrees_original",
-      "accuracy": 0.7244094488188977,
-      "balanced_accuracy": 0.7948063695930604,
-      "f1_macro": 0.7279195912974681,
-      "f1_weighted": 0.731496629635674,
-      "precision_macro": 0.7191870810275044,
-      "recall_macro": 0.7948063695930604,
-      "matthews_corrcoef": 0.6427262667223087,
-      "cohen_kappa": 0.6161669465099544,
-      "log_loss": 1.2388599056594096,
+      ],
       "per_class_precision": [
-        0.9504132231404959,
-        0.7976190476190477,
-        0.6326530612244898,
-        0.49606299212598426
+        0.9392265193370166,
+        0.922077922077922,
+        0.7777777777777778,
+        0.7586206896551724
       ],
       "per_class_recall": [
-        0.5989583333333334,
-        0.8072289156626506,
-        0.8857142857142857,
-        0.8873239436619719
+        0.8854166666666666,
+        0.8554216867469879,
+        0.8,
+        0.9295774647887324
       ],
       "per_class_f1": [
-        0.7348242811501597,
-        0.8023952095808383,
-        0.7380952380952381,
-        0.6363636363636364
+        0.9115281501340483,
+        0.8875,
+        0.7887323943661971,
+        0.8354430379746836
       ],
+      "log_loss": 0.5341479127518782
+    },
+    {
+      "dataset": "Mix",
+      "model_type": "mlp",
+      "strategy": "smote",
+      "version": "v1",
+      "display": "[Mix] mlp / smote",
+      "balanced_accuracy": 0.8572632835163593,
+      "f1_macro": 0.78133690888856,
+      "accuracy": 0.7900262467191601,
+      "precision_macro": 0.7541148291148291,
+      "recall_macro": 0.8572632835163593,
+      "matthews_corrcoef": 0.727053790178054,
+      "cohen_kappa": 0.7054389423634466,
       "confusion_matrix": [
         [
-          115,
-          16,
-          9,
-          52
+          124,
+          30,
+          19,
+          19
         ],
         [
           1,
-          67,
-          6,
-          9
+          78,
+          3,
+          1
         ],
         [
           1,
-          0,
+          1,
           31,
+          2
+        ],
+        [
+          0,
+          2,
+          1,
+          68
+        ]
+      ],
+      "per_class_precision": [
+        0.9841269841269841,
+        0.7027027027027027,
+        0.5740740740740741,
+        0.7555555555555555
+      ],
+      "per_class_recall": [
+        0.6458333333333334,
+        0.9397590361445783,
+        0.8857142857142857,
+        0.9577464788732394
+      ],
+      "per_class_f1": [
+        0.779874213836478,
+        0.8041237113402062,
+        0.6966292134831461,
+        0.84472049689441
+      ],
+      "log_loss": 0.5089918283404922
+    },
+    {
+      "dataset": "Mix",
+      "model_type": "mlp",
+      "strategy": "randomoversampler",
+      "version": "v1",
+      "display": "[Mix] mlp / randomoversampler",
+      "balanced_accuracy": 0.8529719102769227,
+      "f1_macro": 0.7670906643197823,
+      "accuracy": 0.7769028871391076,
+      "precision_macro": 0.7410112035593498,
+      "recall_macro": 0.8529719102769227,
+      "matthews_corrcoef": 0.714693581995432,
+      "cohen_kappa": 0.6898879632289572,
+      "confusion_matrix": [
+        [
+          118,
+          27,
+          26,
+          21
+        ],
+        [
+          1,
+          78,
+          1,
           3
+        ],
+        [
+          1,
+          1,
+          31,
+          2
+        ],
+        [
+          0,
+          1,
+          1,
+          69
+        ]
+      ],
+      "per_class_precision": [
+        0.9833333333333333,
+        0.7289719626168224,
+        0.5254237288135594,
+        0.7263157894736842
+      ],
+      "per_class_recall": [
+        0.6145833333333334,
+        0.9397590361445783,
+        0.8857142857142857,
+        0.971830985915493
+      ],
+      "per_class_f1": [
+        0.7564102564102564,
+        0.8210526315789474,
+        0.6595744680851063,
+        0.8313253012048193
+      ],
+      "log_loss": 0.590917494910229
+    },
+    {
+      "dataset": "Mix",
+      "model_type": "mlp",
+      "strategy": "original",
+      "version": "v1",
+      "display": "[Mix] mlp / original",
+      "balanced_accuracy": 0.8483076736018521,
+      "f1_macro": 0.8721191895282092,
+      "accuracy": 0.9002624671916011,
+      "precision_macro": 0.9085240784985292,
+      "recall_macro": 0.8483076736018521,
+      "matthews_corrcoef": 0.8464431549313142,
+      "cohen_kappa": 0.8446099686601125,
+      "confusion_matrix": [
+        [
+          183,
+          4,
+          1,
+          4
+        ],
+        [
+          8,
+          72,
+          1,
+          2
+        ],
+        [
+          9,
+          0,
+          23,
+          3
+        ],
+        [
+          6,
+          0,
+          0,
+          65
+        ]
+      ],
+      "per_class_precision": [
+        0.8883495145631068,
+        0.9473684210526315,
+        0.92,
+        0.8783783783783784
+      ],
+      "per_class_recall": [
+        0.953125,
+        0.8674698795180723,
+        0.6571428571428571,
+        0.9154929577464789
+      ],
+      "per_class_f1": [
+        0.9195979899497487,
+        0.9056603773584906,
+        0.7666666666666667,
+        0.896551724137931
+      ],
+      "log_loss": 0.36140611961267943
+    },
+    {
+      "dataset": "Mix",
+      "model_type": "logistic_regression",
+      "strategy": "original",
+      "version": "v1",
+      "display": "[Mix] logistic_regression / original",
+      "balanced_accuracy": 0.8393727260652267,
+      "f1_macro": 0.8561710002277474,
+      "accuracy": 0.89501312335958,
+      "precision_macro": 0.8771622554231249,
+      "recall_macro": 0.8393727260652267,
+      "matthews_corrcoef": 0.838272831701343,
+      "cohen_kappa": 0.8365771272317838,
+      "confusion_matrix": [
+        [
+          185,
+          2,
+          2,
+          3
+        ],
+        [
+          11,
+          67,
+          5,
+          0
+        ],
+        [
+          7,
+          4,
+          23,
+          1
         ],
         [
           4,
           1,
-          3,
-          63
+          0,
+          66
         ]
-      ]
+      ],
+      "per_class_precision": [
+        0.893719806763285,
+        0.9054054054054054,
+        0.7666666666666667,
+        0.9428571428571428
+      ],
+      "per_class_recall": [
+        0.9635416666666666,
+        0.8072289156626506,
+        0.6571428571428571,
+        0.9295774647887324
+      ],
+      "per_class_f1": [
+        0.9273182957393483,
+        0.8535031847133758,
+        0.7076923076923077,
+        0.9361702127659575
+      ],
+      "log_loss": 0.46645334640887925
     },
     {
-      "dataset": "Single",
-      "model_type": "extratrees",
+      "dataset": "Mix",
+      "model_type": "svm",
       "strategy": "randomoversampler",
       "version": "v1",
-      "display_name": "Single_extratrees_randomoversampler",
-      "accuracy": 0.7217847769028871,
-      "balanced_accuracy": 0.7976350952098131,
-      "f1_macro": 0.7221186643775476,
-      "f1_weighted": 0.7295639739249262,
-      "precision_macro": 0.7142179023508137,
-      "recall_macro": 0.7976350952098131,
-      "matthews_corrcoef": 0.6414945643453182,
-      "cohen_kappa": 0.6141145445164249,
-      "log_loss": 0.9524831019316974,
-      "per_class_precision": [
-        0.95,
-        0.8354430379746836,
-        0.5714285714285714,
-        0.5
-      ],
-      "per_class_recall": [
-        0.59375,
-        0.7951807228915663,
-        0.9142857142857143,
-        0.8873239436619719
-      ],
-      "per_class_f1": [
-        0.7307692307692307,
-        0.8148148148148148,
-        0.7032967032967034,
-        0.6395939086294417
-      ],
+      "display": "[Mix] svm / randomoversampler",
+      "balanced_accuracy": 0.8353459613100289,
+      "f1_macro": 0.8290592494838132,
+      "accuracy": 0.8503937007874016,
+      "precision_macro": 0.8257735129639886,
+      "recall_macro": 0.8353459613100289,
+      "matthews_corrcoef": 0.7721759800109246,
+      "cohen_kappa": 0.7718514938857839,
       "confusion_matrix": [
         [
-          114,
-          13,
-          12,
-          53
+          168,
+          10,
+          8,
+          6
         ],
         [
+          11,
+          67,
+          4,
+          1
+        ],
+        [
+          6,
           0,
-          66,
+          28,
+          1
+        ],
+        [
           9,
-          8
-        ],
-        [
+          0,
           1,
-          0,
-          32,
-          2
-        ],
-        [
-          5,
-          0,
-          3,
-          63
+          61
         ]
-      ]
+      ],
+      "per_class_precision": [
+        0.865979381443299,
+        0.8701298701298701,
+        0.6829268292682927,
+        0.8840579710144928
+      ],
+      "per_class_recall": [
+        0.875,
+        0.8072289156626506,
+        0.8,
+        0.8591549295774648
+      ],
+      "per_class_f1": [
+        0.8704663212435233,
+        0.8375,
+        0.7368421052631579,
+        0.8714285714285714
+      ],
+      "log_loss": 0.5517874679767623
     },
     {
       "dataset": "Single",
-      "model_type": "extratrees",
-      "strategy": "smote",
-      "version": "v1",
-      "display_name": "Single_extratrees_smote",
-      "accuracy": 0.7139107611548556,
-      "balanced_accuracy": 0.8057176707332347,
-      "f1_macro": 0.7192500535020021,
-      "f1_weighted": 0.7171845205563366,
-      "precision_macro": 0.7099340147243108,
-      "recall_macro": 0.8057176707332347,
-      "matthews_corrcoef": 0.6382392876797431,
-      "cohen_kappa": 0.6067404026438893,
-      "log_loss": 1.1947256975378029,
-      "per_class_precision": [
-        0.9553571428571429,
-        0.7976190476190477,
-        0.5789473684210527,
-        0.5078125
-      ],
-      "per_class_recall": [
-        0.5572916666666666,
-        0.8072289156626506,
-        0.9428571428571428,
-        0.9154929577464789
-      ],
-      "per_class_f1": [
-        0.7039473684210527,
-        0.8023952095808383,
-        0.717391304347826,
-        0.6532663316582915
-      ],
+      "model_type": "tabpfn",
+      "strategy": "classweights",
+      "version": "v2.5",
+      "display": "[Single] tabpfn / classweights (v2.5)",
+      "balanced_accuracy": 0.8276697648238831,
+      "f1_macro": 0.7561906290877385,
+      "accuracy": 0.7532808398950132,
+      "precision_macro": 0.7463191322162187,
+      "recall_macro": 0.8276697648238831,
+      "matthews_corrcoef": 0.680169710513832,
+      "cohen_kappa": 0.6547682163892075,
       "confusion_matrix": [
         [
-          107,
-          17,
-          14,
-          54
+          123,
+          11,
+          9,
+          49
         ],
         [
           1,
-          67,
+          65,
           7,
-          8
+          10
         ],
         [
-          1,
           0,
-          33,
+          0,
+          34,
           1
         ],
         [
@@ -2295,521 +1631,99 @@
           3,
           65
         ]
-      ]
+      ],
+      "per_class_precision": [
+        0.968503937007874,
+        0.8552631578947368,
+        0.6415094339622641,
+        0.52
+      ],
+      "per_class_recall": [
+        0.640625,
+        0.7831325301204819,
+        0.9714285714285714,
+        0.9154929577464789
+      ],
+      "per_class_f1": [
+        0.7711598746081505,
+        0.8176100628930818,
+        0.7727272727272727,
+        0.6632653061224489
+      ],
+      "log_loss": 0.7835705251708848
     },
     {
       "dataset": "Single",
-      "model_type": "lgbm",
+      "model_type": "tabpfn",
       "strategy": "original",
-      "version": "v1",
-      "display_name": "Single_lgbm_original",
-      "accuracy": 0.6614173228346457,
-      "balanced_accuracy": 0.7656699357793346,
-      "f1_macro": 0.6653390540762689,
-      "f1_weighted": 0.6631365897535233,
-      "precision_macro": 0.6633214649861159,
-      "recall_macro": 0.7656699357793346,
-      "matthews_corrcoef": 0.5775240620223833,
-      "cohen_kappa": 0.5423316882391285,
-      "log_loss": 1.6004033199855106,
-      "per_class_precision": [
-        0.94,
-        0.7441860465116279,
-        0.4925373134328358,
-        0.4765625
-      ],
-      "per_class_recall": [
-        0.4895833333333333,
-        0.7710843373493976,
-        0.9428571428571428,
-        0.8591549295774648
-      ],
-      "per_class_f1": [
-        0.6438356164383562,
-        0.757396449704142,
-        0.6470588235294118,
-        0.6130653266331658
-      ],
-      "confusion_matrix": [
-        [
-          94,
-          21,
-          20,
-          57
-        ],
-        [
-          0,
-          64,
-          11,
-          8
-        ],
-        [
-          0,
-          0,
-          33,
-          2
-        ],
-        [
-          6,
-          1,
-          3,
-          61
-        ]
-      ]
-    },
-    {
-      "dataset": "Single",
-      "model_type": "lgbm",
-      "strategy": "randomoversampler",
-      "version": "v1",
-      "display_name": "Single_lgbm_randomoversampler",
-      "accuracy": 0.6430446194225722,
-      "balanced_accuracy": 0.7337013357756983,
-      "f1_macro": 0.6445479537483623,
-      "f1_weighted": 0.6480392116670867,
-      "precision_macro": 0.6531774580335732,
-      "recall_macro": 0.7337013357756983,
-      "matthews_corrcoef": 0.5557361788500079,
-      "cohen_kappa": 0.5182058243760925,
-      "log_loss": 2.61137372007719,
-      "per_class_precision": [
-        0.9285714285714286,
-        0.7777777777777778,
-        0.4603174603174603,
-        0.4460431654676259
-      ],
-      "per_class_recall": [
-        0.4739583333333333,
-        0.7590361445783133,
-        0.8285714285714286,
-        0.8732394366197183
-      ],
-      "per_class_f1": [
-        0.6275862068965518,
-        0.7682926829268293,
-        0.5918367346938775,
-        0.5904761904761905
-      ],
-      "confusion_matrix": [
-        [
-          91,
-          17,
-          22,
-          62
-        ],
-        [
-          0,
-          63,
-          9,
-          11
-        ],
-        [
-          1,
-          1,
-          29,
-          4
-        ],
-        [
-          6,
-          0,
-          3,
-          62
-        ]
-      ]
-    },
-    {
-      "dataset": "Single",
-      "model_type": "lgbm",
-      "strategy": "smote",
-      "version": "v1",
-      "display_name": "Single_lgbm_smote",
-      "accuracy": 0.6640419947506562,
-      "balanced_accuracy": 0.7538877845385566,
-      "f1_macro": 0.6630278640352189,
-      "f1_weighted": 0.6710830361489467,
-      "precision_macro": 0.6721061102714083,
-      "recall_macro": 0.7538877845385566,
-      "matthews_corrcoef": 0.584651789130016,
-      "cohen_kappa": 0.5461879902850283,
-      "log_loss": 2.366277827422233,
-      "per_class_precision": [
-        0.9696969696969697,
-        0.7901234567901234,
-        0.46875,
-        0.45985401459854014
-      ],
-      "per_class_recall": [
-        0.5,
-        0.7710843373493976,
-        0.8571428571428571,
-        0.8873239436619719
-      ],
-      "per_class_f1": [
-        0.6597938144329897,
-        0.7804878048780488,
-        0.6060606060606061,
-        0.6057692307692307
-      ],
-      "confusion_matrix": [
-        [
-          96,
-          17,
-          20,
-          59
-        ],
-        [
-          0,
-          64,
-          8,
-          11
-        ],
-        [
-          1,
-          0,
-          30,
-          4
-        ],
-        [
-          2,
-          0,
-          6,
-          63
-        ]
-      ]
-    },
-    {
-      "dataset": "Single",
-      "model_type": "gaussiannb",
-      "strategy": "original",
-      "version": "v1",
-      "display_name": "Single_gaussiannb_original",
-      "accuracy": 0.7375328083989501,
-      "balanced_accuracy": 0.7007081141467277,
-      "f1_macro": 0.7058375680086378,
-      "f1_weighted": 0.7380499817131783,
-      "precision_macro": 0.7128442728442729,
-      "recall_macro": 0.7007081141467277,
-      "matthews_corrcoef": 0.5963015294481712,
-      "cohen_kappa": 0.5958417311976238,
-      "log_loss": 9.460276480083243,
-      "per_class_precision": [
-        0.76,
-        0.6666666666666666,
-        0.5675675675675675,
-        0.8571428571428571
-      ],
-      "per_class_recall": [
-        0.7916666666666666,
-        0.6506024096385542,
-        0.6,
-        0.7605633802816901
-      ],
-      "per_class_f1": [
-        0.7755102040816326,
-        0.6585365853658537,
-        0.5833333333333334,
-        0.8059701492537313
-      ],
-      "confusion_matrix": [
-        [
-          152,
-          24,
-          8,
-          8
-        ],
-        [
-          26,
-          54,
-          3,
-          0
-        ],
-        [
-          11,
-          2,
-          21,
-          1
-        ],
-        [
-          11,
-          1,
-          5,
-          54
-        ]
-      ]
-    },
-    {
-      "dataset": "Single",
-      "model_type": "gaussiannb",
-      "strategy": "randomoversampler",
-      "version": "v1",
-      "display_name": "Single_gaussiannb_randomoversampler",
+      "version": "v2.5",
+      "display": "[Single] tabpfn / original (v2.5)",
+      "balanced_accuracy": 0.8276697648238831,
+      "f1_macro": 0.7561906290877385,
       "accuracy": 0.7532808398950132,
-      "balanced_accuracy": 0.7036979974727885,
-      "f1_macro": 0.7179535834184791,
-      "f1_weighted": 0.7513198640273601,
-      "precision_macro": 0.7358439480477396,
-      "recall_macro": 0.7036979974727885,
-      "matthews_corrcoef": 0.6164568782074188,
-      "cohen_kappa": 0.614501146356953,
-      "log_loss": 8.892659891278248,
-      "per_class_precision": [
-        0.7535545023696683,
-        0.7222222222222222,
-        0.6060606060606061,
-        0.8615384615384616
-      ],
-      "per_class_recall": [
-        0.828125,
-        0.6265060240963856,
-        0.5714285714285714,
-        0.7887323943661971
-      ],
-      "per_class_f1": [
-        0.7890818858560794,
-        0.6709677419354839,
-        0.5882352941176471,
-        0.8235294117647058
-      ],
+      "precision_macro": 0.7463191322162187,
+      "recall_macro": 0.8276697648238831,
+      "matthews_corrcoef": 0.680169710513832,
+      "cohen_kappa": 0.6547682163892075,
       "confusion_matrix": [
         [
-          159,
-          17,
-          8,
-          8
-        ],
-        [
-          29,
-          52,
-          2,
-          0
-        ],
-        [
-          12,
-          2,
-          20,
-          1
-        ],
-        [
+          123,
           11,
+          9,
+          49
+        ],
+        [
           1,
-          3,
-          56
-        ]
-      ]
-    },
-    {
-      "dataset": "Single",
-      "model_type": "gaussiannb",
-      "strategy": "smote",
-      "version": "v1",
-      "display_name": "Single_gaussiannb_smote",
-      "accuracy": 0.7506561679790026,
-      "balanced_accuracy": 0.6984669058527874,
-      "f1_macro": 0.7187971342383106,
-      "f1_weighted": 0.7477335977799157,
-      "precision_macro": 0.7455331705331705,
-      "recall_macro": 0.6984669058527874,
-      "matthews_corrcoef": 0.6105576212400192,
-      "cohen_kappa": 0.6074891014379595,
-      "log_loss": 8.98726265607908,
-      "per_class_precision": [
-        0.7407407407407407,
-        0.7285714285714285,
-        0.6666666666666666,
-        0.8461538461538461
-      ],
-      "per_class_recall": [
-        0.8333333333333334,
-        0.6144578313253012,
-        0.5714285714285714,
-        0.7746478873239436
-      ],
-      "per_class_f1": [
-        0.7843137254901961,
-        0.6666666666666666,
-        0.6153846153846154,
-        0.8088235294117647
-      ],
-      "confusion_matrix": [
-        [
-          160,
-          18,
-          5,
-          9
-        ],
-        [
-          30,
-          51,
-          2,
-          0
-        ],
-        [
-          14,
-          0,
-          20,
-          1
-        ],
-        [
-          12,
-          1,
-          3,
-          55
-        ]
-      ]
-    },
-    {
-      "dataset": "Single",
-      "model_type": "logistic_regression",
-      "strategy": "original",
-      "version": "v1",
-      "display_name": "Single_logistic_regression_original",
-      "accuracy": 0.8162729658792651,
-      "balanced_accuracy": 0.8132117314832772,
-      "f1_macro": 0.7877958665468439,
-      "f1_weighted": 0.8175759541122043,
-      "precision_macro": 0.7701437020277235,
-      "recall_macro": 0.8132117314832772,
-      "matthews_corrcoef": 0.7291671299686469,
-      "cohen_kappa": 0.7268649379378149,
-      "log_loss": 1.1186939129236122,
-      "per_class_precision": [
-        0.8908045977011494,
-        0.7875,
-        0.6046511627906976,
-        0.7976190476190477
-      ],
-      "per_class_recall": [
-        0.8072916666666666,
-        0.7590361445783133,
-        0.7428571428571429,
-        0.9436619718309859
-      ],
-      "per_class_f1": [
-        0.8469945355191257,
-        0.7730061349693251,
-        0.6666666666666666,
-        0.864516129032258
-      ],
-      "confusion_matrix": [
-        [
-          155,
-          16,
-          11,
+          65,
+          7,
           10
         ],
         [
-          11,
-          63,
-          5,
-          4
-        ],
-        [
-          5,
-          1,
-          26,
-          3
+          0,
+          0,
+          34,
+          1
         ],
         [
           3,
           0,
-          1,
-          67
+          3,
+          65
         ]
-      ]
-    },
-    {
-      "dataset": "Single",
-      "model_type": "logistic_regression",
-      "strategy": "randomoversampler",
-      "version": "v1",
-      "display_name": "Single_logistic_regression_randomoversampler",
-      "accuracy": 0.8136482939632546,
-      "balanced_accuracy": 0.8253011606284293,
-      "f1_macro": 0.7860560171535781,
-      "f1_weighted": 0.8169203645372602,
-      "precision_macro": 0.7633775665148214,
-      "recall_macro": 0.8253011606284293,
-      "matthews_corrcoef": 0.731344375828329,
-      "cohen_kappa": 0.7266830347670576,
-      "log_loss": 1.1598930674190993,
+      ],
       "per_class_precision": [
-        0.9151515151515152,
-        0.7901234567901234,
-        0.56,
-        0.788235294117647
+        0.968503937007874,
+        0.8552631578947368,
+        0.6415094339622641,
+        0.52
       ],
       "per_class_recall": [
-        0.7864583333333334,
-        0.7710843373493976,
-        0.8,
-        0.9436619718309859
+        0.640625,
+        0.7831325301204819,
+        0.9714285714285714,
+        0.9154929577464789
       ],
       "per_class_f1": [
-        0.84593837535014,
-        0.7804878048780488,
-        0.6588235294117647,
-        0.8589743589743589
+        0.7711598746081505,
+        0.8176100628930818,
+        0.7727272727272727,
+        0.6632653061224489
       ],
-      "confusion_matrix": [
-        [
-          151,
-          16,
-          14,
-          11
-        ],
-        [
-          8,
-          64,
-          7,
-          4
-        ],
-        [
-          3,
-          1,
-          28,
-          3
-        ],
-        [
-          3,
-          0,
-          1,
-          67
-        ]
-      ]
+      "log_loss": 0.7835705251708848
     },
     {
       "dataset": "Single",
       "model_type": "logistic_regression",
       "strategy": "smote",
       "version": "v1",
-      "display_name": "Single_logistic_regression_smote",
-      "accuracy": 0.8136482939632546,
+      "display": "[Single] logistic_regression / smote",
       "balanced_accuracy": 0.8275202040556593,
       "f1_macro": 0.7881948745656606,
-      "f1_weighted": 0.8161123688535046,
+      "accuracy": 0.8136482939632546,
       "precision_macro": 0.7658107067192044,
       "recall_macro": 0.8275202040556593,
       "matthews_corrcoef": 0.7326416171850164,
       "cohen_kappa": 0.7270856243505281,
-      "log_loss": 1.1639357123349907,
-      "per_class_precision": [
-        0.9202453987730062,
-        0.8,
-        0.5957446808510638,
-        0.7472527472527473
-      ],
-      "per_class_recall": [
-        0.78125,
-        0.7710843373493976,
-        0.8,
-        0.9577464788732394
-      ],
-      "per_class_f1": [
-        0.8450704225352113,
-        0.7852760736196319,
-        0.6829268292682927,
-        0.8395061728395061
-      ],
       "confusion_matrix": [
         [
           150,
@@ -2835,341 +1749,571 @@
           1,
           68
         ]
-      ]
-    },
-    {
-      "dataset": "Single",
-      "model_type": "mlp",
-      "strategy": "original",
-      "version": "v1",
-      "display_name": "Single_mlp_original",
-      "accuracy": 0.6850393700787402,
-      "balanced_accuracy": 0.686664426821976,
-      "f1_macro": 0.6450095070898112,
-      "f1_weighted": 0.6880128002505196,
-      "precision_macro": 0.6353079455176109,
-      "recall_macro": 0.686664426821976,
-      "matthews_corrcoef": 0.567242129593796,
-      "cohen_kappa": 0.5522081076581032,
-      "log_loss": 1.0555678614351611,
+      ],
       "per_class_precision": [
-        0.8872180451127819,
-        0.6057692307692307,
-        0.4594594594594595,
-        0.5887850467289719
+        0.9202453987730062,
+        0.8,
+        0.5957446808510638,
+        0.7472527472527473
       ],
       "per_class_recall": [
-        0.6145833333333334,
-        0.7590361445783133,
-        0.4857142857142857,
-        0.8873239436619719
+        0.78125,
+        0.7710843373493976,
+        0.8,
+        0.9577464788732394
       ],
       "per_class_f1": [
-        0.7261538461538461,
-        0.6737967914438503,
-        0.4722222222222222,
-        0.7078651685393258
+        0.8450704225352113,
+        0.7852760736196319,
+        0.6829268292682927,
+        0.8395061728395061
       ],
-      "confusion_matrix": [
-        [
-          118,
-          33,
-          14,
-          27
-        ],
-        [
-          6,
-          63,
-          5,
-          9
-        ],
-        [
-          6,
-          4,
-          17,
-          8
-        ],
-        [
-          3,
-          4,
-          1,
-          63
-        ]
-      ]
+      "log_loss": 1.1639357123349907
     },
     {
       "dataset": "Single",
-      "model_type": "mlp",
-      "strategy": "randomoversampler",
-      "version": "v1",
-      "display_name": "Single_mlp_randomoversampler",
-      "accuracy": 0.6955380577427821,
-      "balanced_accuracy": 0.7478596541598992,
-      "f1_macro": 0.6774573116921292,
-      "f1_weighted": 0.7054947870554472,
-      "precision_macro": 0.6677460309131086,
-      "recall_macro": 0.7478596541598992,
-      "matthews_corrcoef": 0.6016050979036843,
-      "cohen_kappa": 0.5787326521274974,
-      "log_loss": 1.0401133064372845,
-      "per_class_precision": [
-        0.940677966101695,
-        0.5701754385964912,
-        0.38235294117647056,
-        0.7777777777777778
-      ],
-      "per_class_recall": [
-        0.578125,
-        0.7831325301204819,
-        0.7428571428571429,
-        0.8873239436619719
-      ],
-      "per_class_f1": [
-        0.7161290322580646,
-        0.6598984771573604,
-        0.5048543689320388,
-        0.8289473684210527
-      ],
-      "confusion_matrix": [
-        [
-          111,
-          42,
-          29,
-          10
-        ],
-        [
-          4,
-          65,
-          10,
-          4
-        ],
-        [
-          2,
-          3,
-          26,
-          4
-        ],
-        [
-          1,
-          4,
-          3,
-          63
-        ]
-      ]
-    },
-    {
-      "dataset": "Single",
-      "model_type": "mlp",
+      "model_type": "tabpfn",
       "strategy": "smote",
-      "version": "v1",
-      "display_name": "Single_mlp_smote",
-      "accuracy": 0.7086614173228346,
-      "balanced_accuracy": 0.7565891142537959,
-      "f1_macro": 0.6885707062825087,
-      "f1_weighted": 0.716722414972212,
-      "precision_macro": 0.6727939921488308,
-      "recall_macro": 0.7565891142537959,
-      "matthews_corrcoef": 0.6135497974132708,
-      "cohen_kappa": 0.5939414306289006,
-      "log_loss": 1.029635663566708,
-      "per_class_precision": [
-        0.9274193548387096,
-        0.6018518518518519,
-        0.4,
-        0.7619047619047619
-      ],
-      "per_class_recall": [
-        0.5989583333333334,
-        0.7831325301204819,
-        0.7428571428571429,
-        0.9014084507042254
-      ],
-      "per_class_f1": [
-        0.7278481012658228,
-        0.680628272251309,
-        0.52,
-        0.8258064516129032
-      ],
+      "version": "v2.5",
+      "display": "[Single] tabpfn / smote (v2.5)",
+      "balanced_accuracy": 0.8253088814008549,
+      "f1_macro": 0.7720625415717437,
+      "accuracy": 0.7690288713910761,
+      "precision_macro": 0.7682460768398268,
+      "recall_macro": 0.8253088814008549,
+      "matthews_corrcoef": 0.6980942364021487,
+      "cohen_kappa": 0.6738457946652658,
       "confusion_matrix": [
         [
-          115,
-          36,
-          29,
-          12
-        ],
-        [
-          5,
-          65,
+          128,
           9,
-          4
-        ],
-        [
-          3,
-          2,
-          26,
-          4
-        ],
-        [
-          1,
-          5,
-          1,
-          64
-        ]
-      ]
-    },
-    {
-      "dataset": "Single",
-      "model_type": "randomforest",
-      "strategy": "borderline_smote",
-      "version": "v1",
-      "display_name": "Single_randomforest_borderline_smote",
-      "accuracy": 0.6456692913385826,
-      "balanced_accuracy": 0.7495958178791626,
-      "f1_macro": 0.6505631367821377,
-      "f1_weighted": 0.6440191732016137,
-      "precision_macro": 0.6516555640517201,
-      "recall_macro": 0.7495958178791626,
-      "matthews_corrcoef": 0.5614767910256268,
-      "cohen_kappa": 0.5235249979156824,
-      "log_loss": 1.0632506014357481,
-      "per_class_precision": [
-        0.946236559139785,
-        0.6947368421052632,
-        0.5,
-        0.46564885496183206
-      ],
-      "per_class_recall": [
-        0.4583333333333333,
-        0.7951807228915663,
-        0.8857142857142857,
-        0.8591549295774648
-      ],
-      "per_class_f1": [
-        0.6175438596491228,
-        0.7415730337078652,
-        0.6391752577319587,
-        0.6039603960396039
-      ],
-      "confusion_matrix": [
-        [
-          88,
-          25,
-          19,
-          60
-        ],
-        [
-          1,
-          66,
-          8,
-          8
+          7,
+          48
         ],
         [
           0,
-          2,
+          68,
+          5,
+          10
+        ],
+        [
+          0,
+          0,
           31,
-          2
+          4
         ],
         [
           4,
-          2,
-          4,
-          61
+          0,
+          1,
+          66
         ]
-      ]
+      ],
+      "per_class_precision": [
+        0.9696969696969697,
+        0.8831168831168831,
+        0.7045454545454546,
+        0.515625
+      ],
+      "per_class_recall": [
+        0.6666666666666666,
+        0.8192771084337349,
+        0.8857142857142857,
+        0.9295774647887324
+      ],
+      "per_class_f1": [
+        0.7901234567901234,
+        0.85,
+        0.7848101265822784,
+        0.6633165829145728
+      ],
+      "log_loss": 0.7210600963379585
     },
     {
       "dataset": "Single",
-      "model_type": "randomforest",
-      "strategy": "class_weights",
+      "model_type": "logistic_regression",
+      "strategy": "randomoversampler",
       "version": "v1",
-      "display_name": "Single_randomforest_class_weights",
-      "accuracy": 0.6325459317585301,
-      "balanced_accuracy": 0.7057162376871673,
-      "f1_macro": 0.6361992768379212,
-      "f1_weighted": 0.6394003306190786,
-      "precision_macro": 0.6402468614228942,
-      "recall_macro": 0.7057162376871673,
-      "matthews_corrcoef": 0.5304126117215733,
-      "cohen_kappa": 0.4984720981618165,
-      "log_loss": 4.225771969082481,
-      "per_class_precision": [
-        0.912621359223301,
-        0.6923076923076923,
-        0.54,
-        0.41605839416058393
-      ],
-      "per_class_recall": [
-        0.4895833333333333,
-        0.7590361445783133,
-        0.7714285714285715,
-        0.8028169014084507
-      ],
-      "per_class_f1": [
-        0.6372881355932203,
-        0.7241379310344828,
-        0.6352941176470588,
-        0.5480769230769231
-      ],
+      "display": "[Single] logistic_regression / randomoversampler",
+      "balanced_accuracy": 0.8253011606284293,
+      "f1_macro": 0.7860560171535781,
+      "accuracy": 0.8136482939632546,
+      "precision_macro": 0.7633775665148214,
+      "recall_macro": 0.8253011606284293,
+      "matthews_corrcoef": 0.731344375828329,
+      "cohen_kappa": 0.7266830347670576,
       "confusion_matrix": [
         [
-          94,
-          22,
-          12,
-          64
-        ],
-        [
-          1,
-          63,
-          8,
+          151,
+          16,
+          14,
           11
         ],
         [
+          8,
+          64,
+          7,
+          4
+        ],
+        [
+          3,
           1,
-          2,
-          27,
-          5
+          28,
+          3
+        ],
+        [
+          3,
+          0,
+          1,
+          67
+        ]
+      ],
+      "per_class_precision": [
+        0.9151515151515152,
+        0.7901234567901234,
+        0.56,
+        0.788235294117647
+      ],
+      "per_class_recall": [
+        0.7864583333333334,
+        0.7710843373493976,
+        0.8,
+        0.9436619718309859
+      ],
+      "per_class_f1": [
+        0.84593837535014,
+        0.7804878048780488,
+        0.6588235294117647,
+        0.8589743589743589
+      ],
+      "log_loss": 1.1598930674190993
+    },
+    {
+      "dataset": "Mix",
+      "model_type": "svm",
+      "strategy": "smote",
+      "version": "v1",
+      "display": "[Mix] svm / smote",
+      "balanced_accuracy": 0.8157775089290764,
+      "f1_macro": 0.7669211765222513,
+      "accuracy": 0.7874015748031497,
+      "precision_macro": 0.7556360708534622,
+      "recall_macro": 0.8157775089290764,
+      "matthews_corrcoef": 0.6991883801542579,
+      "cohen_kappa": 0.6914517096580683,
+      "confusion_matrix": [
+        [
+          142,
+          14,
+          29,
+          7
         ],
         [
           7,
+          67,
+          9,
+          0
+        ],
+        [
           4,
+          0,
+          30,
+          1
+        ],
+        [
+          9,
+          0,
+          1,
+          61
+        ]
+      ],
+      "per_class_precision": [
+        0.8765432098765432,
+        0.8271604938271605,
+        0.43478260869565216,
+        0.8840579710144928
+      ],
+      "per_class_recall": [
+        0.7395833333333334,
+        0.8072289156626506,
+        0.8571428571428571,
+        0.8591549295774648
+      ],
+      "per_class_f1": [
+        0.8022598870056498,
+        0.8170731707317073,
+        0.5769230769230769,
+        0.8714285714285714
+      ],
+      "log_loss": 0.5451753077682232
+    },
+    {
+      "dataset": "Single",
+      "model_type": "logistic_regression",
+      "strategy": "original",
+      "version": "v1",
+      "display": "[Single] logistic_regression / original",
+      "balanced_accuracy": 0.8132117314832772,
+      "f1_macro": 0.7877958665468439,
+      "accuracy": 0.8162729658792651,
+      "precision_macro": 0.7701437020277235,
+      "recall_macro": 0.8132117314832772,
+      "matthews_corrcoef": 0.7291671299686469,
+      "cohen_kappa": 0.7268649379378149,
+      "confusion_matrix": [
+        [
+          155,
+          16,
+          11,
+          10
+        ],
+        [
+          11,
+          63,
+          5,
+          4
+        ],
+        [
+          5,
+          1,
+          26,
+          3
+        ],
+        [
           3,
+          0,
+          1,
+          67
+        ]
+      ],
+      "per_class_precision": [
+        0.8908045977011494,
+        0.7875,
+        0.6046511627906976,
+        0.7976190476190477
+      ],
+      "per_class_recall": [
+        0.8072916666666666,
+        0.7590361445783133,
+        0.7428571428571429,
+        0.9436619718309859
+      ],
+      "per_class_f1": [
+        0.8469945355191257,
+        0.7730061349693251,
+        0.6666666666666666,
+        0.864516129032258
+      ],
+      "log_loss": 1.1186939129236122
+    },
+    {
+      "dataset": "Single",
+      "model_type": "tabpfn",
+      "strategy": "randomundersampler",
+      "version": "v2.5",
+      "display": "[Single] tabpfn / randomundersampler (v2.5)",
+      "balanced_accuracy": 0.8084141268292486,
+      "f1_macro": 0.7535121906131381,
+      "accuracy": 0.7559055118110236,
+      "precision_macro": 0.7479207218167072,
+      "recall_macro": 0.8084141268292486,
+      "matthews_corrcoef": 0.6744862111349635,
+      "cohen_kappa": 0.6542076140100909,
+      "confusion_matrix": [
+        [
+          130,
+          7,
+          8,
+          47
+        ],
+        [
+          0,
+          65,
+          7,
+          11
+        ],
+        [
+          0,
+          0,
+          32,
+          3
+        ],
+        [
+          7,
+          0,
+          3,
+          61
+        ]
+      ],
+      "per_class_precision": [
+        0.948905109489051,
+        0.9027777777777778,
+        0.64,
+        0.5
+      ],
+      "per_class_recall": [
+        0.6770833333333334,
+        0.7831325301204819,
+        0.9142857142857143,
+        0.8591549295774648
+      ],
+      "per_class_f1": [
+        0.790273556231003,
+        0.8387096774193549,
+        0.7529411764705882,
+        0.6321243523316062
+      ],
+      "log_loss": 0.7832610571380512
+    },
+    {
+      "dataset": "Single",
+      "model_type": "extratrees",
+      "strategy": "smote",
+      "version": "v1",
+      "display": "[Single] extratrees / smote",
+      "balanced_accuracy": 0.8057176707332347,
+      "f1_macro": 0.7192500535020021,
+      "accuracy": 0.7139107611548556,
+      "precision_macro": 0.7099340147243108,
+      "recall_macro": 0.8057176707332347,
+      "matthews_corrcoef": 0.6382392876797431,
+      "cohen_kappa": 0.6067404026438893,
+      "confusion_matrix": [
+        [
+          107,
+          17,
+          14,
+          54
+        ],
+        [
+          1,
+          67,
+          7,
+          8
+        ],
+        [
+          1,
+          0,
+          33,
+          1
+        ],
+        [
+          3,
+          0,
+          3,
+          65
+        ]
+      ],
+      "per_class_precision": [
+        0.9553571428571429,
+        0.7976190476190477,
+        0.5789473684210527,
+        0.5078125
+      ],
+      "per_class_recall": [
+        0.5572916666666666,
+        0.8072289156626506,
+        0.9428571428571428,
+        0.9154929577464789
+      ],
+      "per_class_f1": [
+        0.7039473684210527,
+        0.8023952095808383,
+        0.717391304347826,
+        0.6532663316582915
+      ],
+      "log_loss": 1.1947256975378029
+    },
+    {
+      "dataset": "Single",
+      "model_type": "extratrees",
+      "strategy": "randomoversampler",
+      "version": "v1",
+      "display": "[Single] extratrees / randomoversampler",
+      "balanced_accuracy": 0.7976350952098131,
+      "f1_macro": 0.7221186643775476,
+      "accuracy": 0.7217847769028871,
+      "precision_macro": 0.7142179023508137,
+      "recall_macro": 0.7976350952098131,
+      "matthews_corrcoef": 0.6414945643453182,
+      "cohen_kappa": 0.6141145445164249,
+      "confusion_matrix": [
+        [
+          114,
+          13,
+          12,
+          53
+        ],
+        [
+          0,
+          66,
+          9,
+          8
+        ],
+        [
+          1,
+          0,
+          32,
+          2
+        ],
+        [
+          5,
+          0,
+          3,
+          63
+        ]
+      ],
+      "per_class_precision": [
+        0.95,
+        0.8354430379746836,
+        0.5714285714285714,
+        0.5
+      ],
+      "per_class_recall": [
+        0.59375,
+        0.7951807228915663,
+        0.9142857142857143,
+        0.8873239436619719
+      ],
+      "per_class_f1": [
+        0.7307692307692307,
+        0.8148148148148148,
+        0.7032967032967034,
+        0.6395939086294417
+      ],
+      "log_loss": 0.9524831019316974
+    },
+    {
+      "dataset": "Single",
+      "model_type": "extratrees",
+      "strategy": "original",
+      "version": "v1",
+      "display": "[Single] extratrees / original",
+      "balanced_accuracy": 0.7948063695930604,
+      "f1_macro": 0.7279195912974681,
+      "accuracy": 0.7244094488188977,
+      "precision_macro": 0.7191870810275044,
+      "recall_macro": 0.7948063695930604,
+      "matthews_corrcoef": 0.6427262667223087,
+      "cohen_kappa": 0.6161669465099544,
+      "confusion_matrix": [
+        [
+          115,
+          16,
+          9,
+          52
+        ],
+        [
+          1,
+          67,
+          6,
+          9
+        ],
+        [
+          1,
+          0,
+          31,
+          3
+        ],
+        [
+          4,
+          1,
+          3,
+          63
+        ]
+      ],
+      "per_class_precision": [
+        0.9504132231404959,
+        0.7976190476190477,
+        0.6326530612244898,
+        0.49606299212598426
+      ],
+      "per_class_recall": [
+        0.5989583333333334,
+        0.8072289156626506,
+        0.8857142857142857,
+        0.8873239436619719
+      ],
+      "per_class_f1": [
+        0.7348242811501597,
+        0.8023952095808383,
+        0.7380952380952381,
+        0.6363636363636364
+      ],
+      "log_loss": 1.2388599056594096
+    },
+    {
+      "dataset": "Mix",
+      "model_type": "svm",
+      "strategy": "original",
+      "version": "v1",
+      "display": "[Mix] svm / original",
+      "balanced_accuracy": 0.7690387240612349,
+      "f1_macro": 0.8048206655996796,
+      "accuracy": 0.8293963254593176,
+      "precision_macro": 0.8582494977984294,
+      "recall_macro": 0.7690387240612349,
+      "matthews_corrcoef": 0.7347499285404074,
+      "cohen_kappa": 0.7284866956836347,
+      "confusion_matrix": [
+        [
+          177,
+          8,
+          2,
+          5
+        ],
+        [
+          22,
+          60,
+          1,
+          0
+        ],
+        [
+          10,
+          0,
+          22,
+          3
+        ],
+        [
+          14,
+          0,
+          0,
           57
         ]
-      ]
+      ],
+      "per_class_precision": [
+        0.7937219730941704,
+        0.8823529411764706,
+        0.88,
+        0.8769230769230769
+      ],
+      "per_class_recall": [
+        0.921875,
+        0.7228915662650602,
+        0.6285714285714286,
+        0.8028169014084507
+      ],
+      "per_class_f1": [
+        0.8530120481927711,
+        0.7947019867549668,
+        0.7333333333333333,
+        0.8382352941176471
+      ],
+      "log_loss": 0.5233152766336076
     },
     {
       "dataset": "Single",
       "model_type": "randomforest",
       "strategy": "no_resampling",
       "version": "v1",
-      "display_name": "Single_randomforest_no_resampling",
-      "accuracy": 0.6719160104986877,
+      "display": "[Single] randomforest / no_resampling",
       "balanced_accuracy": 0.7679483464542274,
       "f1_macro": 0.6813362679748277,
-      "f1_weighted": 0.6760935890542319,
+      "accuracy": 0.6719160104986877,
       "precision_macro": 0.6810075623767067,
       "recall_macro": 0.7679483464542274,
       "matthews_corrcoef": 0.5901445793055701,
       "cohen_kappa": 0.5541773929323661,
-      "log_loss": 4.321168478306605,
-      "per_class_precision": [
-        0.9603960396039604,
-        0.7444444444444445,
-        0.5714285714285714,
-        0.44776119402985076
-      ],
-      "per_class_recall": [
-        0.5052083333333334,
-        0.8072289156626506,
-        0.9142857142857143,
-        0.8450704225352113
-      ],
-      "per_class_f1": [
-        0.6621160409556314,
-        0.7745664739884393,
-        0.7032967032967034,
-        0.5853658536585366
-      ],
       "confusion_matrix": [
         [
           97,
@@ -3195,113 +2339,52 @@
           4,
           60
         ]
-      ]
-    },
-    {
-      "dataset": "Single",
-      "model_type": "randomforest",
-      "strategy": "smote",
-      "version": "v1",
-      "display_name": "Single_randomforest_smote",
-      "accuracy": 0.6167979002624672,
-      "balanced_accuracy": 0.7068571633111924,
-      "f1_macro": 0.6264424913321972,
-      "f1_weighted": 0.6187037320664,
-      "precision_macro": 0.6283545730929669,
-      "recall_macro": 0.7068571633111924,
-      "matthews_corrcoef": 0.5145600011701079,
-      "cohen_kappa": 0.48116850411326884,
-      "log_loss": 1.5074442472811733,
+      ],
       "per_class_precision": [
-        0.90625,
-        0.6464646464646465,
-        0.5471698113207547,
-        0.41353383458646614
+        0.9603960396039604,
+        0.7444444444444445,
+        0.5714285714285714,
+        0.44776119402985076
       ],
       "per_class_recall": [
-        0.453125,
-        0.7710843373493976,
-        0.8285714285714286,
-        0.7746478873239436
+        0.5052083333333334,
+        0.8072289156626506,
+        0.9142857142857143,
+        0.8450704225352113
       ],
       "per_class_f1": [
-        0.6041666666666666,
+        0.6621160409556314,
+        0.7745664739884393,
         0.7032967032967034,
-        0.6590909090909091,
-        0.5392156862745098
+        0.5853658536585366
       ],
-      "confusion_matrix": [
-        [
-          87,
-          27,
-          15,
-          63
-        ],
-        [
-          1,
-          64,
-          7,
-          11
-        ],
-        [
-          1,
-          1,
-          29,
-          4
-        ],
-        [
-          7,
-          7,
-          2,
-          55
-        ]
-      ]
+      "log_loss": 4.321168478306605
     },
     {
       "dataset": "Single",
-      "model_type": "randomforest",
-      "strategy": "svm_smote",
+      "model_type": "lgbm",
+      "strategy": "original",
       "version": "v1",
-      "display_name": "Single_randomforest_svm_smote",
-      "accuracy": 0.6351706036745407,
-      "balanced_accuracy": 0.739334841882621,
-      "f1_macro": 0.6402421650686273,
-      "f1_weighted": 0.637327395353147,
-      "precision_macro": 0.6402631578947368,
-      "recall_macro": 0.739334841882621,
-      "matthews_corrcoef": 0.5437100541295687,
-      "cohen_kappa": 0.5089614375388267,
-      "log_loss": 1.5957526860223963,
-      "per_class_precision": [
-        0.9473684210526315,
-        0.6736842105263158,
-        0.5,
-        0.44
-      ],
-      "per_class_recall": [
-        0.46875,
-        0.7710843373493976,
-        0.9428571428571428,
-        0.7746478873239436
-      ],
-      "per_class_f1": [
-        0.627177700348432,
-        0.7191011235955056,
-        0.6534653465346535,
-        0.5612244897959183
-      ],
+      "display": "[Single] lgbm / original",
+      "balanced_accuracy": 0.7656699357793346,
+      "f1_macro": 0.6653390540762689,
+      "accuracy": 0.6614173228346457,
+      "precision_macro": 0.6633214649861159,
+      "recall_macro": 0.7656699357793346,
+      "matthews_corrcoef": 0.5775240620223833,
+      "cohen_kappa": 0.5423316882391285,
       "confusion_matrix": [
         [
-          90,
-          25,
-          18,
-          59
+          94,
+          21,
+          20,
+          57
         ],
         [
           0,
           64,
-          10,
-          9
+          11,
+          8
         ],
         [
           0,
@@ -3310,346 +2393,340 @@
           2
         ],
         [
-          5,
           6,
-          5,
-          55
+          1,
+          3,
+          61
         ]
-      ]
-    },
-    {
-      "dataset": "Single",
-      "model_type": "svm",
-      "strategy": "original",
-      "version": "v1",
-      "display_name": "Single_svm_original",
-      "accuracy": 0.6797900262467191,
-      "balanced_accuracy": 0.7223611750826242,
-      "f1_macro": 0.6576960279608768,
-      "f1_weighted": 0.6852311587969097,
-      "precision_macro": 0.6517031525363272,
-      "recall_macro": 0.7223611750826242,
-      "matthews_corrcoef": 0.580017373362201,
-      "cohen_kappa": 0.5551621176740804,
-      "log_loss": 0.6835364171672393,
+      ],
       "per_class_precision": [
-        0.9491525423728814,
-        0.6179775280898876,
-        0.5,
-        0.5396825396825397
+        0.94,
+        0.7441860465116279,
+        0.4925373134328358,
+        0.4765625
       ],
       "per_class_recall": [
-        0.5833333333333334,
-        0.6626506024096386,
-        0.6857142857142857,
-        0.9577464788732394
+        0.4895833333333333,
+        0.7710843373493976,
+        0.9428571428571428,
+        0.8591549295774648
       ],
       "per_class_f1": [
-        0.7225806451612903,
-        0.6395348837209303,
-        0.5783132530120482,
-        0.6903553299492385
+        0.6438356164383562,
+        0.757396449704142,
+        0.6470588235294118,
+        0.6130653266331658
       ],
-      "confusion_matrix": [
-        [
-          112,
-          27,
-          19,
-          34
-        ],
-        [
-          4,
-          55,
-          5,
-          19
-        ],
-        [
-          2,
-          4,
-          24,
-          5
-        ],
-        [
-          0,
-          3,
-          0,
-          68
-        ]
-      ]
+      "log_loss": 1.6004033199855106
     },
     {
       "dataset": "Single",
-      "model_type": "svm",
-      "strategy": "randomoversampler",
-      "version": "v1",
-      "display_name": "Single_svm_randomoversampler",
-      "accuracy": 0.6351706036745407,
-      "balanced_accuracy": 0.7255870249105072,
-      "f1_macro": 0.6255211633143772,
-      "f1_weighted": 0.6315876051160182,
-      "precision_macro": 0.6274680536076048,
-      "recall_macro": 0.7255870249105072,
-      "matthews_corrcoef": 0.5475272495502896,
-      "cohen_kappa": 0.5108752874677898,
-      "log_loss": 0.7823776113398697,
-      "per_class_precision": [
-        0.9139784946236559,
-        0.6847826086956522,
-        0.37142857142857144,
-        0.5396825396825397
-      ],
-      "per_class_recall": [
-        0.4427083333333333,
-        0.7590361445783133,
-        0.7428571428571429,
-        0.9577464788732394
-      ],
-      "per_class_f1": [
-        0.5964912280701754,
-        0.72,
-        0.49523809523809526,
-        0.6903553299492385
-      ],
-      "confusion_matrix": [
-        [
-          85,
-          28,
-          35,
-          44
-        ],
-        [
-          3,
-          63,
-          8,
-          9
-        ],
-        [
-          3,
-          1,
-          26,
-          5
-        ],
-        [
-          2,
-          0,
-          1,
-          68
-        ]
-      ]
-    },
-    {
-      "dataset": "Single",
-      "model_type": "svm",
+      "model_type": "mlp",
       "strategy": "smote",
       "version": "v1",
-      "display_name": "Single_svm_smote",
-      "accuracy": 0.6456692913385826,
-      "balanced_accuracy": 0.7405651403400322,
-      "f1_macro": 0.6393860439295388,
-      "f1_weighted": 0.6401027588861853,
-      "precision_macro": 0.64339012842089,
-      "recall_macro": 0.7405651403400322,
-      "matthews_corrcoef": 0.5651049223539947,
-      "cohen_kappa": 0.5250166223404256,
-      "log_loss": 0.7770351692885051,
-      "per_class_precision": [
-        0.9555555555555556,
-        0.6597938144329897,
-        0.43548387096774194,
-        0.5227272727272727
-      ],
-      "per_class_recall": [
-        0.4479166666666667,
-        0.7710843373493976,
-        0.7714285714285715,
-        0.971830985915493
-      ],
-      "per_class_f1": [
-        0.6099290780141844,
-        0.7111111111111111,
-        0.5567010309278351,
-        0.6798029556650246
-      ],
+      "display": "[Single] mlp / smote",
+      "balanced_accuracy": 0.7565891142537959,
+      "f1_macro": 0.6885707062825087,
+      "accuracy": 0.7086614173228346,
+      "precision_macro": 0.6727939921488308,
+      "recall_macro": 0.7565891142537959,
+      "matthews_corrcoef": 0.6135497974132708,
+      "cohen_kappa": 0.5939414306289006,
       "confusion_matrix": [
         [
-          86,
-          30,
-          26,
-          50
+          115,
+          36,
+          29,
+          12
         ],
         [
-          1,
-          64,
+          5,
+          65,
           9,
-          9
-        ],
-        [
-          1,
-          3,
-          27,
           4
         ],
         [
+          3,
           2,
-          0,
-          0,
-          69
+          26,
+          4
+        ],
+        [
+          1,
+          5,
+          1,
+          64
         ]
-      ]
-    },
-    {
-      "dataset": "Single",
-      "model_type": "xgboost",
-      "strategy": "original",
-      "version": "v1",
-      "display_name": "Single_xgboost_original",
-      "accuracy": 0.6509186351706037,
-      "balanced_accuracy": 0.7410465870019313,
-      "f1_macro": 0.6536144851136292,
-      "f1_weighted": 0.6579117931173796,
-      "precision_macro": 0.6665192711890073,
-      "recall_macro": 0.7410465870019313,
-      "matthews_corrcoef": 0.5683510010061451,
-      "cohen_kappa": 0.5283073314219757,
-      "log_loss": 1.4008959740053004,
+      ],
       "per_class_precision": [
-        0.9693877551020408,
-        0.7468354430379747,
-        0.5084745762711864,
-        0.4413793103448276
+        0.9274193548387096,
+        0.6018518518518519,
+        0.4,
+        0.7619047619047619
       ],
       "per_class_recall": [
-        0.4947916666666667,
-        0.7108433734939759,
-        0.8571428571428571,
+        0.5989583333333334,
+        0.7831325301204819,
+        0.7428571428571429,
         0.9014084507042254
       ],
       "per_class_f1": [
-        0.6551724137931034,
-        0.7283950617283951,
-        0.6382978723404256,
-        0.5925925925925926
+        0.7278481012658228,
+        0.680628272251309,
+        0.52,
+        0.8258064516129032
       ],
-      "confusion_matrix": [
-        [
-          95,
-          19,
-          17,
-          61
-        ],
-        [
-          1,
-          59,
-          8,
-          15
-        ],
-        [
-          0,
-          0,
-          30,
-          5
-        ],
-        [
-          2,
-          1,
-          4,
-          64
-        ]
-      ]
+      "log_loss": 1.029635663566708
     },
     {
       "dataset": "Single",
-      "model_type": "xgboost",
-      "strategy": "randomoversampler",
+      "model_type": "lgbm",
+      "strategy": "smote",
       "version": "v1",
-      "display_name": "Single_xgboost_randomoversampler",
-      "accuracy": 0.6404199475065617,
-      "balanced_accuracy": 0.7345128186286394,
-      "f1_macro": 0.6453716009914148,
-      "f1_weighted": 0.6467084498521164,
-      "precision_macro": 0.6529473390984182,
-      "recall_macro": 0.7345128186286394,
-      "matthews_corrcoef": 0.5505590023114696,
-      "cohen_kappa": 0.5139536832695477,
-      "log_loss": 1.5258420370555565,
-      "per_class_precision": [
-        0.9393939393939394,
-        0.7407407407407407,
-        0.5,
-        0.4316546762589928
-      ],
-      "per_class_recall": [
-        0.484375,
-        0.7228915662650602,
-        0.8857142857142857,
-        0.8450704225352113
-      ],
-      "per_class_f1": [
-        0.6391752577319587,
-        0.7317073170731707,
-        0.6391752577319587,
-        0.5714285714285714
-      ],
+      "display": "[Single] lgbm / smote",
+      "balanced_accuracy": 0.7538877845385566,
+      "f1_macro": 0.6630278640352189,
+      "accuracy": 0.6640419947506562,
+      "precision_macro": 0.6721061102714083,
+      "recall_macro": 0.7538877845385566,
+      "matthews_corrcoef": 0.584651789130016,
+      "cohen_kappa": 0.5461879902850283,
       "confusion_matrix": [
         [
-          93,
-          19,
-          19,
-          61
+          96,
+          17,
+          20,
+          59
+        ],
+        [
+          0,
+          64,
+          8,
+          11
         ],
         [
           1,
-          60,
-          8,
-          14
-        ],
-        [
           0,
-          0,
-          31,
+          30,
           4
         ],
         [
-          5,
+          2,
+          0,
+          6,
+          63
+        ]
+      ],
+      "per_class_precision": [
+        0.9696969696969697,
+        0.7901234567901234,
+        0.46875,
+        0.45985401459854014
+      ],
+      "per_class_recall": [
+        0.5,
+        0.7710843373493976,
+        0.8571428571428571,
+        0.8873239436619719
+      ],
+      "per_class_f1": [
+        0.6597938144329897,
+        0.7804878048780488,
+        0.6060606060606061,
+        0.6057692307692307
+      ],
+      "log_loss": 2.366277827422233
+    },
+    {
+      "dataset": "Single",
+      "model_type": "randomforest",
+      "strategy": "borderline_smote",
+      "version": "v1",
+      "display": "[Single] randomforest / borderline_smote",
+      "balanced_accuracy": 0.7495958178791626,
+      "f1_macro": 0.6505631367821377,
+      "accuracy": 0.6456692913385826,
+      "precision_macro": 0.6516555640517201,
+      "recall_macro": 0.7495958178791626,
+      "matthews_corrcoef": 0.5614767910256268,
+      "cohen_kappa": 0.5235249979156824,
+      "confusion_matrix": [
+        [
+          88,
+          25,
+          19,
+          60
+        ],
+        [
+          1,
+          66,
+          8,
+          8
+        ],
+        [
+          0,
+          2,
+          31,
+          2
+        ],
+        [
+          4,
           2,
           4,
-          60
+          61
         ]
-      ]
+      ],
+      "per_class_precision": [
+        0.946236559139785,
+        0.6947368421052632,
+        0.5,
+        0.46564885496183206
+      ],
+      "per_class_recall": [
+        0.4583333333333333,
+        0.7951807228915663,
+        0.8857142857142857,
+        0.8591549295774648
+      ],
+      "per_class_f1": [
+        0.6175438596491228,
+        0.7415730337078652,
+        0.6391752577319587,
+        0.6039603960396039
+      ],
+      "log_loss": 1.0632506014357481
+    },
+    {
+      "dataset": "Single",
+      "model_type": "mlp",
+      "strategy": "randomoversampler",
+      "version": "v1",
+      "display": "[Single] mlp / randomoversampler",
+      "balanced_accuracy": 0.7478596541598992,
+      "f1_macro": 0.6774573116921292,
+      "accuracy": 0.6955380577427821,
+      "precision_macro": 0.6677460309131086,
+      "recall_macro": 0.7478596541598992,
+      "matthews_corrcoef": 0.6016050979036843,
+      "cohen_kappa": 0.5787326521274974,
+      "confusion_matrix": [
+        [
+          111,
+          42,
+          29,
+          10
+        ],
+        [
+          4,
+          65,
+          10,
+          4
+        ],
+        [
+          2,
+          3,
+          26,
+          4
+        ],
+        [
+          1,
+          4,
+          3,
+          63
+        ]
+      ],
+      "per_class_precision": [
+        0.940677966101695,
+        0.5701754385964912,
+        0.38235294117647056,
+        0.7777777777777778
+      ],
+      "per_class_recall": [
+        0.578125,
+        0.7831325301204819,
+        0.7428571428571429,
+        0.8873239436619719
+      ],
+      "per_class_f1": [
+        0.7161290322580646,
+        0.6598984771573604,
+        0.5048543689320388,
+        0.8289473684210527
+      ],
+      "log_loss": 1.0401133064372845
+    },
+    {
+      "dataset": "Mix",
+      "model_type": "gnb",
+      "strategy": "original",
+      "version": "v1",
+      "display": "[Mix] gnb / original",
+      "balanced_accuracy": 0.743590982390326,
+      "f1_macro": 0.7461828019053736,
+      "accuracy": 0.7716535433070866,
+      "precision_macro": 0.8034455128205128,
+      "recall_macro": 0.743590982390326,
+      "matthews_corrcoef": 0.661180269959132,
+      "cohen_kappa": 0.6506245059288538,
+      "confusion_matrix": [
+        [
+          157,
+          1,
+          1,
+          33
+        ],
+        [
+          30,
+          45,
+          3,
+          5
+        ],
+        [
+          7,
+          2,
+          22,
+          4
+        ],
+        [
+          1,
+          0,
+          0,
+          70
+        ]
+      ],
+      "per_class_precision": [
+        0.8051282051282052,
+        0.9375,
+        0.8461538461538461,
+        0.625
+      ],
+      "per_class_recall": [
+        0.8177083333333334,
+        0.5421686746987951,
+        0.6285714285714286,
+        0.9859154929577465
+      ],
+      "per_class_f1": [
+        0.8113695090439277,
+        0.6870229007633588,
+        0.7213114754098361,
+        0.7650273224043715
+      ],
+      "log_loss": 8.23044053767242
     },
     {
       "dataset": "Single",
       "model_type": "xgboost",
       "strategy": "smote",
       "version": "v1",
-      "display_name": "Single_xgboost_smote",
-      "accuracy": 0.6404199475065617,
+      "display": "[Single] xgboost / smote",
       "balanced_accuracy": 0.7413717495737477,
       "f1_macro": 0.6455201888698345,
-      "f1_weighted": 0.6455951670752998,
+      "accuracy": 0.6404199475065617,
       "precision_macro": 0.6560168390503991,
       "recall_macro": 0.7413717495737477,
       "matthews_corrcoef": 0.5545983832789781,
       "cohen_kappa": 0.5156944431557754,
-      "log_loss": 1.5387417090415605,
-      "per_class_precision": [
-        0.9484536082474226,
-        0.7435897435897436,
-        0.49230769230769234,
-        0.4397163120567376
-      ],
-      "per_class_recall": [
-        0.4791666666666667,
-        0.6987951807228916,
-        0.9142857142857143,
-        0.8732394366197183
-      ],
-      "per_class_f1": [
-        0.6366782006920415,
-        0.7204968944099379,
-        0.64,
-        0.5849056603773585
-      ],
       "confusion_matrix": [
         [
           92,
@@ -3675,53 +2752,229 @@
           4,
           62
         ]
-      ]
+      ],
+      "per_class_precision": [
+        0.9484536082474226,
+        0.7435897435897436,
+        0.49230769230769234,
+        0.4397163120567376
+      ],
+      "per_class_recall": [
+        0.4791666666666667,
+        0.6987951807228916,
+        0.9142857142857143,
+        0.8732394366197183
+      ],
+      "per_class_f1": [
+        0.6366782006920415,
+        0.7204968944099379,
+        0.64,
+        0.5849056603773585
+      ],
+      "log_loss": 1.5387417090415605
     },
     {
       "dataset": "Single",
-      "model_type": "stacking_ensemble",
-      "strategy": "ensemble",
+      "model_type": "xgboost",
+      "strategy": "original",
       "version": "v1",
-      "display_name": "Single_stacking_ensemble_ensemble",
-      "accuracy": 0.6535433070866141,
-      "balanced_accuracy": 0.7545202250147471,
-      "f1_macro": 0.6615179400844895,
-      "f1_weighted": 0.6553292632733824,
-      "precision_macro": 0.6668816104979635,
-      "recall_macro": 0.7545202250147471,
-      "matthews_corrcoef": 0.5719560394255675,
-      "cohen_kappa": 0.5325414087334783,
-      "log_loss": 1.2671730222514321,
-      "per_class_precision": [
-        0.9479166666666666,
-        0.7441860465116279,
-        0.5254237288135594,
-        0.45
-      ],
-      "per_class_recall": [
-        0.4739583333333333,
-        0.7710843373493976,
-        0.8857142857142857,
-        0.8873239436619719
-      ],
-      "per_class_f1": [
-        0.6319444444444444,
-        0.757396449704142,
-        0.6595744680851063,
-        0.5971563981042654
-      ],
+      "display": "[Single] xgboost / original",
+      "balanced_accuracy": 0.7410465870019313,
+      "f1_macro": 0.6536144851136292,
+      "accuracy": 0.6509186351706037,
+      "precision_macro": 0.6665192711890073,
+      "recall_macro": 0.7410465870019313,
+      "matthews_corrcoef": 0.5683510010061451,
+      "cohen_kappa": 0.5283073314219757,
       "confusion_matrix": [
         [
-          91,
-          22,
-          16,
-          63
+          95,
+          19,
+          17,
+          61
+        ],
+        [
+          1,
+          59,
+          8,
+          15
+        ],
+        [
+          0,
+          0,
+          30,
+          5
+        ],
+        [
+          2,
+          1,
+          4,
+          64
+        ]
+      ],
+      "per_class_precision": [
+        0.9693877551020408,
+        0.7468354430379747,
+        0.5084745762711864,
+        0.4413793103448276
+      ],
+      "per_class_recall": [
+        0.4947916666666667,
+        0.7108433734939759,
+        0.8571428571428571,
+        0.9014084507042254
+      ],
+      "per_class_f1": [
+        0.6551724137931034,
+        0.7283950617283951,
+        0.6382978723404256,
+        0.5925925925925926
+      ],
+      "log_loss": 1.4008959740053004
+    },
+    {
+      "dataset": "Single",
+      "model_type": "svm",
+      "strategy": "smote",
+      "version": "v1",
+      "display": "[Single] svm / smote",
+      "balanced_accuracy": 0.7405651403400322,
+      "f1_macro": 0.6393860439295388,
+      "accuracy": 0.6456692913385826,
+      "precision_macro": 0.64339012842089,
+      "recall_macro": 0.7405651403400322,
+      "matthews_corrcoef": 0.5651049223539947,
+      "cohen_kappa": 0.5250166223404256,
+      "confusion_matrix": [
+        [
+          86,
+          30,
+          26,
+          50
+        ],
+        [
+          1,
+          64,
+          9,
+          9
+        ],
+        [
+          1,
+          3,
+          27,
+          4
+        ],
+        [
+          2,
+          0,
+          0,
+          69
+        ]
+      ],
+      "per_class_precision": [
+        0.9555555555555556,
+        0.6597938144329897,
+        0.43548387096774194,
+        0.5227272727272727
+      ],
+      "per_class_recall": [
+        0.4479166666666667,
+        0.7710843373493976,
+        0.7714285714285715,
+        0.971830985915493
+      ],
+      "per_class_f1": [
+        0.6099290780141844,
+        0.7111111111111111,
+        0.5567010309278351,
+        0.6798029556650246
+      ],
+      "log_loss": 0.7770351692885051
+    },
+    {
+      "dataset": "Single",
+      "model_type": "randomforest",
+      "strategy": "svm_smote",
+      "version": "v1",
+      "display": "[Single] randomforest / svm_smote",
+      "balanced_accuracy": 0.739334841882621,
+      "f1_macro": 0.6402421650686273,
+      "accuracy": 0.6351706036745407,
+      "precision_macro": 0.6402631578947368,
+      "recall_macro": 0.739334841882621,
+      "matthews_corrcoef": 0.5437100541295687,
+      "cohen_kappa": 0.5089614375388267,
+      "confusion_matrix": [
+        [
+          90,
+          25,
+          18,
+          59
         ],
         [
           0,
           64,
-          9,
-          10
+          10,
+          9
+        ],
+        [
+          0,
+          0,
+          33,
+          2
+        ],
+        [
+          5,
+          6,
+          5,
+          55
+        ]
+      ],
+      "per_class_precision": [
+        0.9473684210526315,
+        0.6736842105263158,
+        0.5,
+        0.44
+      ],
+      "per_class_recall": [
+        0.46875,
+        0.7710843373493976,
+        0.9428571428571428,
+        0.7746478873239436
+      ],
+      "per_class_f1": [
+        0.627177700348432,
+        0.7191011235955056,
+        0.6534653465346535,
+        0.5612244897959183
+      ],
+      "log_loss": 1.5957526860223963
+    },
+    {
+      "dataset": "Single",
+      "model_type": "xgboost",
+      "strategy": "randomoversampler",
+      "version": "v1",
+      "display": "[Single] xgboost / randomoversampler",
+      "balanced_accuracy": 0.7345128186286394,
+      "f1_macro": 0.6453716009914148,
+      "accuracy": 0.6404199475065617,
+      "precision_macro": 0.6529473390984182,
+      "recall_macro": 0.7345128186286394,
+      "matthews_corrcoef": 0.5505590023114696,
+      "cohen_kappa": 0.5139536832695477,
+      "confusion_matrix": [
+        [
+          93,
+          19,
+          19,
+          61
+        ],
+        [
+          1,
+          60,
+          8,
+          14
         ],
         [
           0,
@@ -3731,12 +2984,680 @@
         ],
         [
           5,
+          2,
+          4,
+          60
+        ]
+      ],
+      "per_class_precision": [
+        0.9393939393939394,
+        0.7407407407407407,
+        0.5,
+        0.4316546762589928
+      ],
+      "per_class_recall": [
+        0.484375,
+        0.7228915662650602,
+        0.8857142857142857,
+        0.8450704225352113
+      ],
+      "per_class_f1": [
+        0.6391752577319587,
+        0.7317073170731707,
+        0.6391752577319587,
+        0.5714285714285714
+      ],
+      "log_loss": 1.5258420370555565
+    },
+    {
+      "dataset": "Single",
+      "model_type": "lgbm",
+      "strategy": "randomoversampler",
+      "version": "v1",
+      "display": "[Single] lgbm / randomoversampler",
+      "balanced_accuracy": 0.7337013357756983,
+      "f1_macro": 0.6445479537483623,
+      "accuracy": 0.6430446194225722,
+      "precision_macro": 0.6531774580335732,
+      "recall_macro": 0.7337013357756983,
+      "matthews_corrcoef": 0.5557361788500079,
+      "cohen_kappa": 0.5182058243760925,
+      "confusion_matrix": [
+        [
+          91,
+          17,
+          22,
+          62
+        ],
+        [
+          0,
+          63,
+          9,
+          11
+        ],
+        [
+          1,
+          1,
+          29,
+          4
+        ],
+        [
+          6,
           0,
           3,
+          62
+        ]
+      ],
+      "per_class_precision": [
+        0.9285714285714286,
+        0.7777777777777778,
+        0.4603174603174603,
+        0.4460431654676259
+      ],
+      "per_class_recall": [
+        0.4739583333333333,
+        0.7590361445783133,
+        0.8285714285714286,
+        0.8732394366197183
+      ],
+      "per_class_f1": [
+        0.6275862068965518,
+        0.7682926829268293,
+        0.5918367346938775,
+        0.5904761904761905
+      ],
+      "log_loss": 2.61137372007719
+    },
+    {
+      "dataset": "Single",
+      "model_type": "svm",
+      "strategy": "randomoversampler",
+      "version": "v1",
+      "display": "[Single] svm / randomoversampler",
+      "balanced_accuracy": 0.7255870249105072,
+      "f1_macro": 0.6255211633143772,
+      "accuracy": 0.6351706036745407,
+      "precision_macro": 0.6274680536076048,
+      "recall_macro": 0.7255870249105072,
+      "matthews_corrcoef": 0.5475272495502896,
+      "cohen_kappa": 0.5108752874677898,
+      "confusion_matrix": [
+        [
+          85,
+          28,
+          35,
+          44
+        ],
+        [
+          3,
+          63,
+          8,
+          9
+        ],
+        [
+          3,
+          1,
+          26,
+          5
+        ],
+        [
+          2,
+          0,
+          1,
+          68
+        ]
+      ],
+      "per_class_precision": [
+        0.9139784946236559,
+        0.6847826086956522,
+        0.37142857142857144,
+        0.5396825396825397
+      ],
+      "per_class_recall": [
+        0.4427083333333333,
+        0.7590361445783133,
+        0.7428571428571429,
+        0.9577464788732394
+      ],
+      "per_class_f1": [
+        0.5964912280701754,
+        0.72,
+        0.49523809523809526,
+        0.6903553299492385
+      ],
+      "log_loss": 0.7823776113398697
+    },
+    {
+      "dataset": "Single",
+      "model_type": "svm",
+      "strategy": "original",
+      "version": "v1",
+      "display": "[Single] svm / original",
+      "balanced_accuracy": 0.7223611750826242,
+      "f1_macro": 0.6576960279608768,
+      "accuracy": 0.6797900262467191,
+      "precision_macro": 0.6517031525363272,
+      "recall_macro": 0.7223611750826242,
+      "matthews_corrcoef": 0.580017373362201,
+      "cohen_kappa": 0.5551621176740804,
+      "confusion_matrix": [
+        [
+          112,
+          27,
+          19,
+          34
+        ],
+        [
+          4,
+          55,
+          5,
+          19
+        ],
+        [
+          2,
+          4,
+          24,
+          5
+        ],
+        [
+          0,
+          3,
+          0,
+          68
+        ]
+      ],
+      "per_class_precision": [
+        0.9491525423728814,
+        0.6179775280898876,
+        0.5,
+        0.5396825396825397
+      ],
+      "per_class_recall": [
+        0.5833333333333334,
+        0.6626506024096386,
+        0.6857142857142857,
+        0.9577464788732394
+      ],
+      "per_class_f1": [
+        0.7225806451612903,
+        0.6395348837209303,
+        0.5783132530120482,
+        0.6903553299492385
+      ],
+      "log_loss": 0.6835364171672393
+    },
+    {
+      "dataset": "Mix",
+      "model_type": "gnb",
+      "strategy": "randomoversampler",
+      "version": "v1",
+      "display": "[Mix] gnb / randomoversampler",
+      "balanced_accuracy": 0.709261252757509,
+      "f1_macro": 0.7039134120081068,
+      "accuracy": 0.7349081364829396,
+      "precision_macro": 0.767733134920635,
+      "recall_macro": 0.709261252757509,
+      "matthews_corrcoef": 0.6097843925256505,
+      "cohen_kappa": 0.5964067711283116,
+      "confusion_matrix": [
+        [
+          150,
+          0,
+          2,
+          40
+        ],
+        [
+          34,
+          39,
+          4,
+          6
+        ],
+        [
+          7,
+          3,
+          21,
+          4
+        ],
+        [
+          1,
+          0,
+          0,
+          70
+        ]
+      ],
+      "per_class_precision": [
+        0.78125,
+        0.9285714285714286,
+        0.7777777777777778,
+        0.5833333333333334
+      ],
+      "per_class_recall": [
+        0.78125,
+        0.46987951807228917,
+        0.6,
+        0.9859154929577465
+      ],
+      "per_class_f1": [
+        0.78125,
+        0.624,
+        0.6774193548387096,
+        0.7329842931937173
+      ],
+      "log_loss": 9.554879244884074
+    },
+    {
+      "dataset": "Single",
+      "model_type": "randomforest",
+      "strategy": "smote",
+      "version": "v1",
+      "display": "[Single] randomforest / smote",
+      "balanced_accuracy": 0.7068571633111924,
+      "f1_macro": 0.6264424913321972,
+      "accuracy": 0.6167979002624672,
+      "precision_macro": 0.6283545730929669,
+      "recall_macro": 0.7068571633111924,
+      "matthews_corrcoef": 0.5145600011701079,
+      "cohen_kappa": 0.48116850411326884,
+      "confusion_matrix": [
+        [
+          87,
+          27,
+          15,
+          63
+        ],
+        [
+          1,
+          64,
+          7,
+          11
+        ],
+        [
+          1,
+          1,
+          29,
+          4
+        ],
+        [
+          7,
+          7,
+          2,
+          55
+        ]
+      ],
+      "per_class_precision": [
+        0.90625,
+        0.6464646464646465,
+        0.5471698113207547,
+        0.41353383458646614
+      ],
+      "per_class_recall": [
+        0.453125,
+        0.7710843373493976,
+        0.8285714285714286,
+        0.7746478873239436
+      ],
+      "per_class_f1": [
+        0.6041666666666666,
+        0.7032967032967034,
+        0.6590909090909091,
+        0.5392156862745098
+      ],
+      "log_loss": 1.5074442472811733
+    },
+    {
+      "dataset": "Single",
+      "model_type": "randomforest",
+      "strategy": "class_weights",
+      "version": "v1",
+      "display": "[Single] randomforest / class_weights",
+      "balanced_accuracy": 0.7057162376871673,
+      "f1_macro": 0.6361992768379212,
+      "accuracy": 0.6325459317585301,
+      "precision_macro": 0.6402468614228942,
+      "recall_macro": 0.7057162376871673,
+      "matthews_corrcoef": 0.5304126117215733,
+      "cohen_kappa": 0.4984720981618165,
+      "confusion_matrix": [
+        [
+          94,
+          22,
+          12,
+          64
+        ],
+        [
+          1,
+          63,
+          8,
+          11
+        ],
+        [
+          1,
+          2,
+          27,
+          5
+        ],
+        [
+          7,
+          4,
+          3,
+          57
+        ]
+      ],
+      "per_class_precision": [
+        0.912621359223301,
+        0.6923076923076923,
+        0.54,
+        0.41605839416058393
+      ],
+      "per_class_recall": [
+        0.4895833333333333,
+        0.7590361445783133,
+        0.7714285714285715,
+        0.8028169014084507
+      ],
+      "per_class_f1": [
+        0.6372881355932203,
+        0.7241379310344828,
+        0.6352941176470588,
+        0.5480769230769231
+      ],
+      "log_loss": 4.225771969082481
+    },
+    {
+      "dataset": "Single",
+      "model_type": "gnb",
+      "strategy": "randomoversampler",
+      "version": "v1",
+      "display": "[Single] gnb / randomoversampler",
+      "balanced_accuracy": 0.7036979974727885,
+      "f1_macro": 0.7179535834184791,
+      "accuracy": 0.7532808398950132,
+      "precision_macro": 0.7358439480477396,
+      "recall_macro": 0.7036979974727885,
+      "matthews_corrcoef": 0.6164568782074188,
+      "cohen_kappa": 0.614501146356953,
+      "confusion_matrix": [
+        [
+          159,
+          17,
+          8,
+          8
+        ],
+        [
+          29,
+          52,
+          2,
+          0
+        ],
+        [
+          12,
+          2,
+          20,
+          1
+        ],
+        [
+          11,
+          1,
+          3,
+          56
+        ]
+      ],
+      "per_class_precision": [
+        0.7535545023696683,
+        0.7222222222222222,
+        0.6060606060606061,
+        0.8615384615384616
+      ],
+      "per_class_recall": [
+        0.828125,
+        0.6265060240963856,
+        0.5714285714285714,
+        0.7887323943661971
+      ],
+      "per_class_f1": [
+        0.7890818858560794,
+        0.6709677419354839,
+        0.5882352941176471,
+        0.8235294117647058
+      ],
+      "log_loss": 8.892659891278248
+    },
+    {
+      "dataset": "Single",
+      "model_type": "gnb",
+      "strategy": "original",
+      "version": "v1",
+      "display": "[Single] gnb / original",
+      "balanced_accuracy": 0.7007081141467277,
+      "f1_macro": 0.7058375680086378,
+      "accuracy": 0.7375328083989501,
+      "precision_macro": 0.7128442728442729,
+      "recall_macro": 0.7007081141467277,
+      "matthews_corrcoef": 0.5963015294481712,
+      "cohen_kappa": 0.5958417311976238,
+      "confusion_matrix": [
+        [
+          152,
+          24,
+          8,
+          8
+        ],
+        [
+          26,
+          54,
+          3,
+          0
+        ],
+        [
+          11,
+          2,
+          21,
+          1
+        ],
+        [
+          11,
+          1,
+          5,
+          54
+        ]
+      ],
+      "per_class_precision": [
+        0.76,
+        0.6666666666666666,
+        0.5675675675675675,
+        0.8571428571428571
+      ],
+      "per_class_recall": [
+        0.7916666666666666,
+        0.6506024096385542,
+        0.6,
+        0.7605633802816901
+      ],
+      "per_class_f1": [
+        0.7755102040816326,
+        0.6585365853658537,
+        0.5833333333333334,
+        0.8059701492537313
+      ],
+      "log_loss": 9.460276480083243
+    },
+    {
+      "dataset": "Single",
+      "model_type": "gnb",
+      "strategy": "smote",
+      "version": "v1",
+      "display": "[Single] gnb / smote",
+      "balanced_accuracy": 0.6984669058527874,
+      "f1_macro": 0.7187971342383106,
+      "accuracy": 0.7506561679790026,
+      "precision_macro": 0.7455331705331705,
+      "recall_macro": 0.6984669058527874,
+      "matthews_corrcoef": 0.6105576212400192,
+      "cohen_kappa": 0.6074891014379595,
+      "confusion_matrix": [
+        [
+          160,
+          18,
+          5,
+          9
+        ],
+        [
+          30,
+          51,
+          2,
+          0
+        ],
+        [
+          14,
+          0,
+          20,
+          1
+        ],
+        [
+          12,
+          1,
+          3,
+          55
+        ]
+      ],
+      "per_class_precision": [
+        0.7407407407407407,
+        0.7285714285714285,
+        0.6666666666666666,
+        0.8461538461538461
+      ],
+      "per_class_recall": [
+        0.8333333333333334,
+        0.6144578313253012,
+        0.5714285714285714,
+        0.7746478873239436
+      ],
+      "per_class_f1": [
+        0.7843137254901961,
+        0.6666666666666666,
+        0.6153846153846154,
+        0.8088235294117647
+      ],
+      "log_loss": 8.98726265607908
+    },
+    {
+      "dataset": "Single",
+      "model_type": "mlp",
+      "strategy": "original",
+      "version": "v1",
+      "display": "[Single] mlp / original",
+      "balanced_accuracy": 0.686664426821976,
+      "f1_macro": 0.6450095070898112,
+      "accuracy": 0.6850393700787402,
+      "precision_macro": 0.6353079455176109,
+      "recall_macro": 0.686664426821976,
+      "matthews_corrcoef": 0.567242129593796,
+      "cohen_kappa": 0.5522081076581032,
+      "confusion_matrix": [
+        [
+          118,
+          33,
+          14,
+          27
+        ],
+        [
+          6,
+          63,
+          5,
+          9
+        ],
+        [
+          6,
+          4,
+          17,
+          8
+        ],
+        [
+          3,
+          4,
+          1,
           63
         ]
-      ]
+      ],
+      "per_class_precision": [
+        0.8872180451127819,
+        0.6057692307692307,
+        0.4594594594594595,
+        0.5887850467289719
+      ],
+      "per_class_recall": [
+        0.6145833333333334,
+        0.7590361445783133,
+        0.4857142857142857,
+        0.8873239436619719
+      ],
+      "per_class_f1": [
+        0.7261538461538461,
+        0.6737967914438503,
+        0.4722222222222222,
+        0.7078651685393258
+      ],
+      "log_loss": 1.0555678614351611
+    },
+    {
+      "dataset": "Mix",
+      "model_type": "gnb",
+      "strategy": "smote",
+      "version": "v1",
+      "display": "[Mix] gnb / smote",
+      "balanced_accuracy": 0.6613670981713575,
+      "f1_macro": 0.6877593277637688,
+      "accuracy": 0.7611548556430446,
+      "precision_macro": 0.8430515387973372,
+      "recall_macro": 0.6613670981713575,
+      "matthews_corrcoef": 0.6335793167187044,
+      "cohen_kappa": 0.6085071306782895,
+      "confusion_matrix": [
+        [
+          176,
+          0,
+          1,
+          15
+        ],
+        [
+          48,
+          32,
+          0,
+          3
+        ],
+        [
+          19,
+          2,
+          13,
+          1
+        ],
+        [
+          2,
+          0,
+          0,
+          69
+        ]
+      ],
+      "per_class_precision": [
+        0.7183673469387755,
+        0.9411764705882353,
+        0.9285714285714286,
+        0.7840909090909091
+      ],
+      "per_class_recall": [
+        0.9166666666666666,
+        0.3855421686746988,
+        0.37142857142857144,
+        0.971830985915493
+      ],
+      "per_class_f1": [
+        0.8054919908466819,
+        0.5470085470085471,
+        0.5306122448979592,
+        0.8679245283018868
+      ],
+      "log_loss": 8.60885159687575
     }
   ],
-  "failed_models": []
+  "failed": []
 }
