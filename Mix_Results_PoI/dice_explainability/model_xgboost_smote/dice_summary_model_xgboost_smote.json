@@ -1,0 +1,28 @@
+{
+  "model": "model_xgboost_smote",
+  "total_counterfactuals": 140,
+  "top10_features_by_change_magnitude": {
+    "C5": 2744.9043485372854,
+    "C4_UpStream_8": 2555.1552853142857,
+    "C4_DownStream_1": 2392.756697885357,
+    "UpStream_8": 2375.555490682643,
+    "C1_UpStream_10": 2359.9750986428576,
+    "C5_UpStream_9": 2356.6830127462863,
+    "C2_DownStream_3": 2350.6881824917145,
+    "UpStream_52": 2218.8600111111427,
+    "C1_DownStream_3": 2208.6773817469,
+    "UpStream_15": 2188.0422532127145
+  },
+  "top10_features_by_change_frequency": {
+    "DownStream_40": 0.2714285714285714,
+    "UpStream_97": 0.21428571428571427,
+    "UpStream_56": 0.19285714285714287,
+    "DownStream_5": 0.19285714285714287,
+    "UpStream_65": 0.19285714285714287,
+    "UpStream_52": 0.19285714285714287,
+    "C2_UpStream_4": 0.19285714285714287,
+    "DownStream_56": 0.18571428571428572,
+    "DownStream_30": 0.18571428571428572,
+    "DownStream_44": 0.17857142857142858
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "model": "model_logistic_regression_classweights",
+  "total_counterfactuals": 144,
+  "top10_features_by_change_magnitude": {
+    "DownStream_29": 1.3108751403542576,
+    "DownStream_60": 1.2355813229672856,
+    "C5_DownStream_7": 1.1004292480827544,
+    "UpStream_90": 0.9413233011851853,
+    "UpStream_2": 0.8223962628705213,
+    "C5_DownStream_8": 0.8061948743448947,
+    "C5_DownStream_10": 0.6992367826820387,
+    "DownStream_30": 0.6845008334213813,
+    "UpStream_12": 0.6663362332749596,
+    "DownStream_20": 0.6342671055435765
+  },
+  "top10_features_by_change_frequency": {
+    "DownStream_29": 0.1388888888888889,
+    "DownStream_16": 0.1111111111111111,
+    "DownStream_31": 0.10416666666666667,
+    "DownStream_60": 0.10416666666666667,
+    "C1": 0.10416666666666667,
+    "DownStream_81": 0.09722222222222222,
+    "C1_UpStream_10": 0.09722222222222222,
+    "C2_UpStream_6": 0.09722222222222222,
+    "C1_DownStream_8": 0.09722222222222222,
+    "UpStream_44": 0.09722222222222222
+  }
+}

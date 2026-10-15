@@ -1,0 +1,28 @@
+{
+  "model": "model_xgboost_randomundersampler",
+  "total_counterfactuals": 144,
+  "top10_features_by_change_magnitude": {
+    "C3_DownStream_3": 2192.8308518159724,
+    "C2_DownStream_5": 2179.2480314293052,
+    "UpStream_31": 2013.046717177639,
+    "C2_UpStream_9": 1860.5572940434447,
+    "C5_DownStream_1": 1855.738870960417,
+    "UpStream_97": 1758.4552023622919,
+    "UpStream_12": 1697.5435664385416,
+    "C1_UpStream_4": 1660.5553527078473,
+    "C2_DownStream_4": 1351.7693522200693,
+    "C1_UpStream_9": 1333.8171657815278
+  },
+  "top10_features_by_change_frequency": {
+    "DownStream_52": 0.3263888888888889,
+    "UpStream_97": 0.3125,
+    "UpStream_63": 0.2708333333333333,
+    "C2_DownStream_5": 0.2013888888888889,
+    "UpStream_98": 0.1527777777777778,
+    "DownStream_20": 0.13194444444444445,
+    "C1_DownStream_9": 0.125,
+    "DownStream_6": 0.125,
+    "C1_UpStream_4": 0.125,
+    "UpStream_66": 0.11805555555555555
+  }
+}

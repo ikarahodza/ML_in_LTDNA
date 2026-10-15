@@ -1,0 +1,28 @@
+{
+  "model": "model_mlp_randomundersampler",
+  "total_counterfactuals": 144,
+  "top10_features_by_change_magnitude": {
+    "DownStream_62": 1.1543562881048486,
+    "DownStream_60": 1.0774426741288308,
+    "DownStream_75": 0.9521407011183359,
+    "C3_UpStream_10": 0.9041857674903151,
+    "C3_UpStream_8": 0.8010037957852302,
+    "UpStream_72": 0.7271096364378615,
+    "UpStream_4": 0.721517618447665,
+    "UpStream_80": 0.715787451140248,
+    "UpStream_83": 0.71196117224596,
+    "UpStream_23": 0.6873334977203284
+  },
+  "top10_features_by_change_frequency": {
+    "UpStream_72": 0.11805555555555555,
+    "DownStream_62": 0.1111111111111111,
+    "DownStream_60": 0.09722222222222222,
+    "C5_DownStream_5": 0.09722222222222222,
+    "C5_DownStream_8": 0.09722222222222222,
+    "DownStream_5": 0.09722222222222222,
+    "C1": 0.09027777777777778,
+    "UpStream_80": 0.09027777777777778,
+    "DownStream_59": 0.09027777777777778,
+    "DownStream_75": 0.08333333333333333
+  }
+}

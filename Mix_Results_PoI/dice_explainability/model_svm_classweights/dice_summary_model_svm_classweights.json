@@ -1,0 +1,28 @@
+{
+  "model": "model_svm_classweights",
+  "total_counterfactuals": 92,
+  "top10_features_by_change_magnitude": {
+    "DownStream_63": 1.189229534835045,
+    "UpStream_33": 1.0368456580447427,
+    "UpStream_18": 0.9312817087731878,
+    "C3_DownStream_2": 0.864859864296974,
+    "UpStream_80": 0.8474767315019499,
+    "C1_UpStream_5": 0.7980922013037876,
+    "C1_UpStream_4": 0.742528701222336,
+    "DownStream_95": 0.6664424974291433,
+    "UpStream_82": 0.6422699801050102,
+    "UpStream_71": 0.5800355999839418
+  },
+  "top10_features_by_change_frequency": {
+    "DownStream_63": 0.11956521739130435,
+    "C1_UpStream_5": 0.08695652173913043,
+    "C5_UpStream_8": 0.08695652173913043,
+    "C3_DownStream_2": 0.08695652173913043,
+    "UpStream_18": 0.07608695652173914,
+    "C2_UpStream_8": 0.07608695652173914,
+    "C2_UpStream_7": 0.07608695652173914,
+    "DownStream_95": 0.07608695652173914,
+    "UpStream_33": 0.07608695652173914,
+    "PoI": 0.06521739130434782
+  }
+}

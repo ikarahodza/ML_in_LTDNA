@@ -1,0 +1,28 @@
+{
+  "model": "lgbm_model_lgbm_smote",
+  "total_counterfactuals": 140,
+  "top10_features_by_change_magnitude": {
+    "DownStream_1": 5211.482793757285,
+    "C5_DownStream_1": 3269.266850974357,
+    "C3_UpStream_10": 2960.533919383214,
+    "C1_UpStream_5": 2898.7942017924997,
+    "C1_DownStream_1": 2868.5577871546357,
+    "UpStream_12": 2586.8080791122857,
+    "UpStream_99": 2528.635791627143,
+    "DownStream_44": 2473.241471615643,
+    "C3_UpStream_9": 2445.756211019714,
+    "PoI": 2395.8746085459998
+  },
+  "top10_features_by_change_frequency": {
+    "DownStream_40": 0.3357142857142857,
+    "DownStream_44": 0.2642857142857143,
+    "DownStream_1": 0.2571428571428571,
+    "DownStream_5": 0.2571428571428571,
+    "C4_UpStream_1": 0.22142857142857142,
+    "UpStream_65": 0.20714285714285716,
+    "UpStream_63": 0.20714285714285716,
+    "UpStream_12": 0.19285714285714287,
+    "UpStream_68": 0.18571428571428572,
+    "DownStream_46": 0.17857142857142858
+  }
+}

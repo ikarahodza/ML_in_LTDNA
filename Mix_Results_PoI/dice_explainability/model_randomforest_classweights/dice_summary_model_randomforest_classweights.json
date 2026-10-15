@@ -1,0 +1,28 @@
+{
+  "model": "model_randomforest_classweights",
+  "total_counterfactuals": 84,
+  "top10_features_by_change_magnitude": {
+    "C5_UpStream_8": 4450.72907690619,
+    "UpStream_57": 4144.109101021903,
+    "C1_DownStream_3": 3813.9656919633335,
+    "C3_DownStream_2": 3581.2879498361544,
+    "UpStream_10": 3375.9439539914297,
+    "DownStream_74": 3214.4714811024883,
+    "UpStream_11": 3063.7190231709524,
+    "C3_UpStream_9": 3038.032495307619,
+    "C1_UpStream_5": 2930.646474994405,
+    "C5_UpStream_10": 2894.814222769048
+  },
+  "top10_features_by_change_frequency": {
+    "UpStream_57": 0.32142857142857145,
+    "UpStream_16": 0.30952380952380953,
+    "DownStream_47": 0.30952380952380953,
+    "DownStream_50": 0.30952380952380953,
+    "DownStream_46": 0.27380952380952384,
+    "C3_DownStream_7": 0.2619047619047619,
+    "DownStream_54": 0.25,
+    "DownStream_43": 0.25,
+    "DownStream_45": 0.25,
+    "DownStream_39": 0.25
+  }
+}

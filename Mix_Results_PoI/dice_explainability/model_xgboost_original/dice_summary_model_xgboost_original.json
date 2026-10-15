@@ -1,0 +1,28 @@
+{
+  "model": "model_xgboost_original",
+  "total_counterfactuals": 140,
+  "top10_features_by_change_magnitude": {
+    "C2_UpStream_10": 5662.319344776229,
+    "C5_UpStream_10": 3303.363606937214,
+    "C1": 2485.0575956025714,
+    "C3_UpStream_10": 2458.1469909689285,
+    "C1_UpStream_6": 2381.3000427327856,
+    "C2_DownStream_2": 2089.687493274286,
+    "UpStream_28": 2026.8267502567855,
+    "C1_DownStream_4": 2025.6216600219286,
+    "UpStream_57": 1937.7891862515714,
+    "UpStream_100": 1914.8799417387856
+  },
+  "top10_features_by_change_frequency": {
+    "C2_UpStream_10": 0.32857142857142857,
+    "DownStream_40": 0.21428571428571427,
+    "DownStream_44": 0.20714285714285716,
+    "UpStream_54": 0.20714285714285716,
+    "DownStream_4": 0.18571428571428572,
+    "C5_UpStream_10": 0.17142857142857143,
+    "C1_UpStream_1": 0.17142857142857143,
+    "UpStream_98": 0.17142857142857143,
+    "UpStream_9": 0.15714285714285714,
+    "UpStream_48": 0.15714285714285714
+  }
+}

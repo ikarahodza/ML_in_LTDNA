@@ -1,0 +1,28 @@
+{
+  "model": "lgbm_model_lgbm_classweights",
+  "total_counterfactuals": 144,
+  "top10_features_by_change_magnitude": {
+    "UpStream_60": 3235.0635123419447,
+    "UpStream_100": 2839.921347305348,
+    "UpStream_99": 2730.940980763889,
+    "C2_UpStream_10": 2627.4128163434443,
+    "UpStream_10": 2492.6137654006943,
+    "C1_DownStream_2": 2363.471012473889,
+    "UpStream_29": 2279.536613352785,
+    "DownStream_2": 2217.156849649236,
+    "DownStream_71": 2103.950465418889,
+    "C1_DownStream_4": 2075.433805742056
+  },
+  "top10_features_by_change_frequency": {
+    "DownStream_4": 0.2986111111111111,
+    "UpStream_97": 0.2777777777777778,
+    "C4_UpStream_1": 0.2569444444444444,
+    "UpStream_60": 0.2361111111111111,
+    "DownStream_39": 0.22916666666666666,
+    "UpStream_65": 0.2222222222222222,
+    "C3_UpStream_3": 0.19444444444444445,
+    "UpStream_92": 0.1875,
+    "UpStream_99": 0.1875,
+    "DownStream_6": 0.1736111111111111
+  }
+}

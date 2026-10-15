@@ -1,0 +1,28 @@
+{
+  "model": "model_xgboost_randomoversampler",
+  "total_counterfactuals": 140,
+  "top10_features_by_change_magnitude": {
+    "C5_UpStream_10": 4057.490480757428,
+    "C4_UpStream_8": 3620.107206804286,
+    "DownStream_74": 3606.738148606786,
+    "UpStream_17": 3362.2559396287143,
+    "C4_UpStream_9": 3343.4799711594287,
+    "C5_UpStream_9": 3321.484327863642,
+    "UpStream_29": 3242.119714556286,
+    "C1_DownStream_2": 3233.2639728094573,
+    "C5_DownStream_2": 3155.3666672708573,
+    "C2_UpStream_10": 3106.4487966014
+  },
+  "top10_features_by_change_frequency": {
+    "UpStream_52": 0.2857142857142857,
+    "C2_UpStream_2": 0.2642857142857143,
+    "UpStream_62": 0.25,
+    "DownStream_32": 0.24285714285714285,
+    "UpStream_60": 0.2357142857142857,
+    "C4_UpStream_5": 0.2357142857142857,
+    "C4_DownStream_10": 0.22857142857142856,
+    "DownStream_62": 0.22857142857142856,
+    "C5_UpStream_10": 0.22857142857142856,
+    "C1_DownStream_2": 0.22857142857142856
+  }
+}

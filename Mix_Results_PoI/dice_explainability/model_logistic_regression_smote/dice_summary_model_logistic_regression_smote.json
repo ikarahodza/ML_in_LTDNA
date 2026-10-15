@@ -1,0 +1,28 @@
+{
+  "model": "model_logistic_regression_smote",
+  "total_counterfactuals": 144,
+  "top10_features_by_change_magnitude": {
+    "C5_DownStream_8": 1.4062286947913574,
+    "UpStream_10": 1.3829334125693704,
+    "DownStream_60": 1.0606655497528834,
+    "DownStream_17": 1.0592518674837872,
+    "DownStream_100": 1.0262674068603685,
+    "C4_DownStream_1": 0.8948447546807591,
+    "C5_DownStream_7": 0.8244340967603183,
+    "UpStream_92": 0.7657975700470417,
+    "C4_DownStream_2": 0.7505909015522563,
+    "C5_DownStream_6": 0.7477362271417042
+  },
+  "top10_features_by_change_frequency": {
+    "UpStream_10": 0.18055555555555555,
+    "UpStream_99": 0.13194444444444445,
+    "DownStream_17": 0.125,
+    "DownStream_100": 0.11805555555555555,
+    "C5_UpStream_7": 0.1111111111111111,
+    "DownStream_35": 0.10416666666666667,
+    "C3_DownStream_7": 0.10416666666666667,
+    "DownStream_22": 0.10416666666666667,
+    "C4_UpStream_10": 0.10416666666666667,
+    "C4_DownStream_2": 0.10416666666666667
+  }
+}

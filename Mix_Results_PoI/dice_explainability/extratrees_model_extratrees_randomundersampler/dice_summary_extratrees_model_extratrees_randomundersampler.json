@@ -1,0 +1,28 @@
+{
+  "model": "extratrees_model_extratrees_randomundersampler",
+  "total_counterfactuals": 140,
+  "top10_features_by_change_magnitude": {
+    "C1_UpStream_8": 4326.5667112030005,
+    "C1_DownStream_2": 4021.108201239071,
+    "C3_UpStream_9": 4007.238968719,
+    "C1": 3938.816827887814,
+    "UpStream_10": 3574.822258794857,
+    "UpStream_30": 3469.4069034482854,
+    "C2": 3160.3662251890714,
+    "C1_UpStream_7": 3153.561762196714,
+    "C5_DownStream_1": 3128.653736750571,
+    "C1_UpStream_6": 3106.338050389214
+  },
+  "top10_features_by_change_frequency": {
+    "UpStream_98": 0.29285714285714287,
+    "UpStream_44": 0.24285714285714285,
+    "C4_UpStream_5": 0.24285714285714285,
+    "C3_UpStream_9": 0.2357142857142857,
+    "DownStream_9": 0.2357142857142857,
+    "UpStream_5": 0.22857142857142856,
+    "DownStream_38": 0.22857142857142856,
+    "C1_DownStream_2": 0.22142857142857142,
+    "DownStream_5": 0.21428571428571427,
+    "UpStream_28": 0.21428571428571427
+  }
+}

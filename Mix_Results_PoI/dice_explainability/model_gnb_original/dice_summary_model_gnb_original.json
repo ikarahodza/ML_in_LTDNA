@@ -1,0 +1,28 @@
+{
+  "model": "model_gnb_original",
+  "total_counterfactuals": 140,
+  "top10_features_by_change_magnitude": {
+    "C1_UpStream_8": 1972.5284866210002,
+    "UpStream_30": 1661.8844666747143,
+    "C5_DownStream_4": 1526.6531998892142,
+    "C1_DownStream_3": 1395.153020997643,
+    "C5_UpStream_10": 1359.5387201752144,
+    "C2": 1262.7901579957856,
+    "C2_DownStream_3": 1180.407975357143,
+    "C1_UpStream_7": 1175.6794444841428,
+    "C5_DownStream_2": 1138.2001707357142,
+    "C2_UpStream_10": 979.8679264737143
+  },
+  "top10_features_by_change_frequency": {
+    "UpStream_30": 0.1,
+    "C1_UpStream_8": 0.07142857142857142,
+    "C2": 0.06428571428571428,
+    "C5": 0.05714285714285714,
+    "DownStream_86": 0.05,
+    "C1_DownStream_3": 0.05,
+    "UpStream_63": 0.05,
+    "C5_UpStream_10": 0.05,
+    "C5_DownStream_4": 0.05,
+    "DownStream_87": 0.04285714285714286
+  }
+}

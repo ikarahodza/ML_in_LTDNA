@@ -1,0 +1,28 @@
+{
+  "model": "model_svm_smote",
+  "total_counterfactuals": 100,
+  "top10_features_by_change_magnitude": {
+    "C3_DownStream_2": 0.547835253831527,
+    "UpStream_72": 0.32984112007216493,
+    "DownStream_61": 0.30903428360596485,
+    "C3_UpStream_8": 0.30382541913768124,
+    "UpStream_73": 0.2929818051404738,
+    "UpStream_80": 0.26941980452541314,
+    "UpStream_71": 0.2480830781601928,
+    "C1_UpStream_6": 0.23495036929500526,
+    "C3_UpStream_7": 0.23311951777116055,
+    "DownStream_82": 0.20274504984911926
+  },
+  "top10_features_by_change_frequency": {
+    "C3_DownStream_2": 0.04,
+    "UpStream_53": 0.03,
+    "UpStream_72": 0.03,
+    "C3_UpStream_7": 0.03,
+    "C2_UpStream_10": 0.03,
+    "DownStream_38": 0.03,
+    "C4_UpStream_10": 0.02,
+    "UpStream_67": 0.02,
+    "DownStream_44": 0.02,
+    "DownStream_31": 0.02
+  }
+}
