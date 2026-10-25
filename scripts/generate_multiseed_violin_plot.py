@@ -1,7 +1,7 @@
 """
 Multi-seed balanced accuracy violin + strip plot for all Mix models.
 Shows the full distribution across 10 seeds for each model, sorted by mean.
-Output: Mix_Results/figures/multiseed_violin_plot.png
+Output: Mix_Results_PoI/figures/multiseed_violin_plot.png
 """
 import os
 import sys
@@ -17,7 +17,8 @@ from model_colors import DISPLAY_COLORS
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(SCRIPT_DIR)
-FIG_DIR = os.path.join(ROOT, 'Mix_Results', 'figures')
+RESULTS = 'Mix_Results_PoI'
+FIG_DIR = os.path.join(ROOT, RESULTS, 'figures')
 os.makedirs(FIG_DIR, exist_ok=True)
 
 SEEDS = [42, 123, 456, 789, 1011, 1213, 1415, 1617, 1819, 2021]
@@ -46,14 +47,25 @@ TAN_BASELINES = {
 # ── Collect per-seed values ───────────────────────────────────────────────────
 records = []
 for seed in SEEDS:
-    path = (os.path.join(ROOT, 'Mix_Results', 'reports', 'combined_results.json')
+    # Standard combined_results.json for all non-TabPFN models
+    path = (os.path.join(ROOT, RESULTS, 'reports', 'combined_results.json')
             if seed == 42 else
-            os.path.join(ROOT, 'Mix_Results', f'seed_{seed}', 'reports', 'combined_results.json'))
+            os.path.join(ROOT, RESULTS, f'seed_{seed}', 'reports', 'combined_results.json'))
     with open(path) as f:
         data = json.load(f)
+    # TabPFN v3 results live in a separate JSON / seed folder
+    path_v3 = (os.path.join(ROOT, RESULTS, 'reports', 'combined_results_v3.json')
+               if seed == 42 else
+               os.path.join(ROOT, RESULTS, f'seed_{seed}_v3', 'reports', 'combined_results_v3.json'))
+    data_v3 = {}
+    if os.path.exists(path_v3):
+        with open(path_v3) as f:
+            data_v3 = json.load(f)
+
     for model_key, strategy, label in MODELS:
-        if model_key in data and 'results' in data[model_key]:
-            strat_data = data[model_key]['results'].get(strategy)
+        src = data_v3 if model_key == 'tabpfn' else data
+        if model_key in src and 'results' in src[model_key]:
+            strat_data = src[model_key]['results'].get(strategy)
             if strat_data:
                 records.append({
                     'model': label,
