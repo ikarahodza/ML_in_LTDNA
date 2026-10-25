@@ -9,3 +9,4 @@ tabpfn-v2.5-classifier-v2.5_default.ckpt
 paper/
 .push_*.log
 LTDNA_MLtoPeak.ipynb
+model_tabpfn_*_v3.pkl
