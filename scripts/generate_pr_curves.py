@@ -1,8 +1,8 @@
 """
-PR curves for the top 4 models (TabPFN, Extra Trees, LightGBM, XGBoost).
+PR curves for the top 4 models by Table 1 ranking (TabPFN, Extra Trees, Random Forest, LightGBM).
 One panel per model, 4 one-vs-rest PR curves per panel.
 Uses seed-42 prediction CSVs (consistent with confusion matrices).
-Output: Mix_Results/figures/pr_curves_top4.png
+Output: Mix_Results_PoI/figures/pr_curves_top4.png
 """
 import os
 import sys
@@ -15,8 +15,9 @@ from sklearn.metrics import precision_recall_curve, average_precision_score
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT       = os.path.dirname(SCRIPT_DIR)
-DATA_DIR   = os.path.join(ROOT, 'Mix_Results', 'data')
-FIG_DIR    = os.path.join(ROOT, 'Mix_Results', 'figures')
+RESULTS    = 'Mix_Results_PoI'
+DATA_DIR   = os.path.join(ROOT, RESULTS, 'data')
+FIG_DIR    = os.path.join(ROOT, RESULTS, 'figures')
 os.makedirs(FIG_DIR, exist_ok=True)
 
 sys.path.insert(0, SCRIPT_DIR)
@@ -33,10 +34,10 @@ PROB_COLS_NAMED  = ['Prob_Allele', 'Prob_Back_Stutter', 'Prob_Forward_Stutter', 
 PROB_COLS_INDEXED = ['Prob_0', 'Prob_1', 'Prob_2', 'Prob_3']
 
 MODELS = [
-    ('tabpfn_original_v2', 'TabPFN (Original)',   MODEL_COLORS['tabpfn']),
-    ('extratrees_smote',   'Extra Trees (SMOTE)',  MODEL_COLORS['extratrees']),
-    ('lgbm_smote',         'LightGBM (SMOTE)',     MODEL_COLORS['lgbm']),
-    ('xgboost_smote',      'XGBoost (SMOTE)',      MODEL_COLORS['xgboost']),
+    ('tabpfn_original_v3',  'TabPFN (Original)',     MODEL_COLORS['tabpfn']),
+    ('extratrees_smote',    'Extra Trees (SMOTE)',    MODEL_COLORS['extratrees']),
+    ('randomforest_smote',  'Random Forest (SMOTE)',  MODEL_COLORS['randomforest']),
+    ('lgbm_smote',          'LightGBM (SMOTE)',       MODEL_COLORS['lgbm']),
 ]
 
 fig, axes = plt.subplots(2, 2, figsize=(10, 8), sharex=True, sharey=True)
