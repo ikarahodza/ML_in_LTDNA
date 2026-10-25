@@ -4,12 +4,13 @@ Two publication figures:
   2. TabPFN performance across all resampling strategies (BA and F1, 10-seed mean +/- std)
 
 Output:
-  Mix_Results/figures/top3_bottom3_models.png
-  Mix_Results/figures/tabpfn_by_strategy.png
+  Mix_Results_PoI/figures/top3_bottom3_models.png
+  Mix_Results_PoI/figures/tabpfn_by_strategy.png
 """
 import os
 import sys
 import json
+import glob as _glob
 import numpy as np
 import matplotlib
 matplotlib.use('Agg')
@@ -17,14 +18,39 @@ import matplotlib.pyplot as plt
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT       = os.path.dirname(SCRIPT_DIR)
-FIG_DIR    = os.path.join(ROOT, 'Mix_Results', 'figures')
+RESULTS    = 'Mix_Results_PoI'
+FIG_DIR    = os.path.join(ROOT, RESULTS, 'figures')
 os.makedirs(FIG_DIR, exist_ok=True)
 
 sys.path.insert(0, SCRIPT_DIR)
 from model_colors import MODEL_COLORS, MODEL_LABELS
 
-with open(os.path.join(ROOT, 'Mix_Results', 'multi_seed_aggregated', 'aggregated_results.json')) as f:
+with open(os.path.join(ROOT, RESULTS, 'multi_seed_aggregated', 'aggregated_results.json')) as f:
     data = json.load(f)
+
+# TabPFN isn't in aggregated_results.json (it's aggregated separately, from the
+# v3 JSONs); patch it in here from the 10-seed v3 reports.
+_tabpfn_v3 = {}
+for _path in (
+    [os.path.join(ROOT, RESULTS, 'reports', 'combined_results_v3.json')] +
+    sorted(_glob.glob(os.path.join(ROOT, RESULTS, 'seed_*_v3', 'reports', 'combined_results_v3.json')))
+):
+    with open(_path) as _f:
+        _d = json.load(_f)['tabpfn']['results']
+    for _strat, _m in _d.items():
+        if _strat not in _tabpfn_v3:
+            _tabpfn_v3[_strat] = {'ba': [], 'f1': []}
+        _tabpfn_v3[_strat]['ba'].append(_m['balanced_accuracy'])
+        _tabpfn_v3[_strat]['f1'].append(_m['f1_macro'])
+
+data['tabpfn'] = {}
+for _strat, _vals in _tabpfn_v3.items():
+    _ba = np.array(_vals['ba'])
+    _f1 = np.array(_vals['f1'])
+    data['tabpfn'][_strat] = {
+        'balanced_accuracy': {'mean': float(_ba.mean()), 'std': float(_ba.std())},
+        'f1_macro':          {'mean': float(_f1.mean()), 'std': float(_f1.std())},
+    }
 
 STRAT_LABELS = {
     'ClassWeights':       'Class Weights',
@@ -162,7 +188,8 @@ for bar in bars_f1:
             f'{h:.3f}', ha='center', va='bottom', fontsize=7.5, color='#212121')
 
 ax.set_xticks(x)
-ax.set_xticklabels([e['label'] for e in tabpfn_entries], fontsize=9.5)
+ax.set_xticklabels([e['label'] for e in tabpfn_entries], fontsize=9.5,
+                   rotation=18, ha='right')
 ax.set_ylabel('Score (10-seed mean ± std)', fontsize=10)
 ax.set_ylim(0, 1.05)
 ax.legend(fontsize=9, framealpha=0.9)
