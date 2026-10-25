@@ -20,7 +20,7 @@ METRICS_TO_AGGREGATE = [
 
 def load_seed_results(dataset_type, seed):
     """Load results for a specific seed"""
-    results_folder = f"{dataset_type.capitalize()}_Results"
+    results_folder = f"{dataset_type.capitalize()}_Results_PoI"
     
     # Seed 42 uses default location (no seed subfolder)
     if seed == 42:
@@ -116,7 +116,7 @@ def aggregate_results(dataset_type):
                     })
     
     # Save results
-    results_folder = f"{dataset_type.capitalize()}_Results"
+    results_folder = f"{dataset_type.capitalize()}_Results_PoI"
     output_dir = os.path.join(results_folder, 'multi_seed_aggregated')
     os.makedirs(output_dir, exist_ok=True)
     
