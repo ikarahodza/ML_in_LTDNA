@@ -22,18 +22,19 @@ from model_colors import MODEL_COLORS
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT       = os.path.dirname(SCRIPT_DIR)
-DATA_DIR   = os.path.join(ROOT, 'Mix_Results', 'data')
-FIG_DIR    = os.path.join(ROOT, 'Mix_Results', 'figures')
-SHAP_DIR   = os.path.join(ROOT, 'Mix_Results', 'shap_explainability')
-PERM_DIR   = os.path.join(ROOT, 'Mix_Results', 'tabpfn_prototypes_and_permutation')
-DICE_DIR   = os.path.join(ROOT, 'Mix_Results', 'dice_explainability')
+RESULTS    = 'Mix_Results_PoI'
+DATA_DIR   = os.path.join(ROOT, RESULTS, 'data')
+FIG_DIR    = os.path.join(ROOT, RESULTS, 'figures')
+SHAP_DIR   = os.path.join(ROOT, RESULTS, 'shap_explainability')
+PERM_DIR   = os.path.join(ROOT, RESULTS, 'tabpfn_prototypes_and_permutation')
+DICE_DIR   = os.path.join(ROOT, RESULTS, 'dice_explainability')
 os.makedirs(FIG_DIR, exist_ok=True)
 
 CLASS_NAMES = ['Allele', 'Back_Stutter', 'Forward_Stutter', 'Pull_Up']
 
 # ── 1. Confusion matrices ─────────────────────────────────────────────────────
 CONF_MODELS = [
-    ('tabpfn_original_v2',   'TabPFN\n(Original)'),
+    ('tabpfn_original_v3',   'TabPFN\n(Original)'),
     ('extratrees_smote',     'Extra Trees\n(SMOTE)'),
     ('lgbm_smote',           'LightGBM\n(SMOTE)'),
     ('xgboost_smote',        'XGBoost\n(SMOTE)'),
@@ -98,9 +99,9 @@ SHAP_MODELS = [
      'shap_importance_model_xgboost_original.csv',
      'shap_bar_model_xgboost_original.png',
      MODEL_COLORS['xgboost']),
-    ('model_tabpfn_original_v2',
-     'shap_importance_model_tabpfn_original_v2.csv',
-     'shap_bar_model_tabpfn_original_v2.png',
+    ('model_tabpfn_original_v3',
+     'shap_importance_model_tabpfn_original_v3.csv',
+     'shap_bar_model_tabpfn_original_v3.png',
      MODEL_COLORS['tabpfn']),
 ]
 
