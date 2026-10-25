@@ -1,0 +1,54 @@
+<html>
+<head><meta charset="utf-8"><title>Combined Comparison Report</title></head>
+<body>
+<h1>Combined Comparison Report</h1>
+<div>Generated: 2026-09-10 20:35:42</div>
+<h2>Model: tabpfn</h2>
+<table border="1" cellpadding="6" cellspacing="0">
+<tr><th>Strategy</th><th>Accuracy</th><th>Balanced Accuracy</th><th>F1 (macro)</th><th>MSE</th><th>Log Loss</th><th>Informedness</th><th>Markedness</th></tr>
+<tr><td>Original</td><td>0.9186046511627907</td><td>0.882390873015873</td><td>0.8742102492102493</td><td>0.20930232558139536</td><td>0.2022519978030147</td><td>0.8554683997968848</td><td>0.8359044148249437</td></tr>
+<tr><td>ClassWeights</td><td>0.8953488372093024</td><td>0.9315972222222222</td><td>0.8698255353716207</td><td>0.4883720930232558</td><td>0.2808861423634899</td><td>0.9013836811095748</td><td>0.796466503267974</td></tr>
+<tr><td>SMOTE</td><td>0.8837209302325582</td><td>0.7367559523809524</td><td>0.7488357843137255</td><td>0.32558139534883723</td><td>0.3039859823027995</td><td>0.6841724830562048</td><td>0.747465175829368</td></tr>
+<tr><td>RandomOverSampler</td><td>0.9186046511627907</td><td>0.8438988095238096</td><td>0.8516566952868103</td><td>0.18604651162790697</td><td>0.2143360328190411</td><td>0.8125410271394757</td><td>0.8346564830380142</td></tr>
+<tr><td>RandomUnderSampler</td><td>0.8255813953488372</td><td>0.8697916666666666</td><td>0.810647436991523</td><td>0.5232558139534884</td><td>0.5216041522496757</td><td>0.8144812559942161</td><td>0.7168519015690755</td></tr>
+</table>
+<h3>Per-class Recall</h3>
+<table border="1" cellpadding="6" cellspacing="0">
+<tr><th>Strategy</th>
+<th>Allele</th>
+<th>Back_Stutter</th>
+<th>Forward_Stutter</th>
+<th>Pull_Up</th>
+</tr>
+<tr><td>Original</td>
+<td>0.9333333333333333</td>
+<td>0.9444444444444444</td>
+<td>0.7142857142857143</td>
+<td>0.9375</td>
+</tr>
+<tr><td>ClassWeights</td>
+<td>0.8444444444444444</td>
+<td>0.9444444444444444</td>
+<td>1.0</td>
+<td>0.9375</td>
+</tr>
+<tr><td>SMOTE</td>
+<td>0.9777777777777777</td>
+<td>0.8888888888888888</td>
+<td>0.14285714285714285</td>
+<td>0.9375</td>
+</tr>
+<tr><td>RandomOverSampler</td>
+<td>0.9777777777777777</td>
+<td>0.8888888888888888</td>
+<td>0.5714285714285714</td>
+<td>0.9375</td>
+</tr>
+<tr><td>RandomUnderSampler</td>
+<td>0.7777777777777778</td>
+<td>0.8888888888888888</td>
+<td>1.0</td>
+<td>0.8125</td>
+</tr>
+</table>
+</body></html>
