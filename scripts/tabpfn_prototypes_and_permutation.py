@@ -51,14 +51,14 @@ assert DATASET_TYPE in ('mix', 'single'), "Use 'mix' or 'single'"
 
 if DATASET_TYPE == 'mix':
     DATA_FILE  = 'Input_Data-Mix-train.csv'
-    MODELS_DIR = Path('Mix_Results/models_v2')
-    SHAP_CSV   = Path('Mix_Results/shap_explainability/shap_aggregated_feature_importance.csv')
-    OUT_DIR    = Path('Mix_Results/tabpfn_prototypes_and_permutation')
+    MODELS_DIR = Path('Mix_Results_PoI/models')
+    SHAP_CSV   = Path('Mix_Results_PoI/shap_explainability/shap_aggregated_feature_importance.csv')
+    OUT_DIR    = Path('Mix_Results_PoI/tabpfn_prototypes_and_permutation')
 else:
     DATA_FILE  = 'Input_Data-Single-train.csv'
-    MODELS_DIR = Path('Single_Results/models_v2')
-    SHAP_CSV   = Path('Single_Results/shap_explainability/shap_aggregated_feature_importance.csv')
-    OUT_DIR    = Path('Single_Results/tabpfn_prototypes_and_permutation')
+    MODELS_DIR = Path('Single_Results_PoI/models')
+    SHAP_CSV   = Path('Single_Results_PoI/shap_explainability/shap_aggregated_feature_importance.csv')
+    OUT_DIR    = Path('Single_Results_PoI/tabpfn_prototypes_and_permutation')
 
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -88,12 +88,12 @@ def load_data():
 
 
 def find_tabpfn_models():
-    """Return all TabPFN model stems, preferring v2 for Mix."""
+    """Return TabPFN model stems for the current checkpoint (v3.5 only; skips superseded v3)."""
     stems = []
     for pkl in sorted(MODELS_DIR.glob('model_tabpfn*.pkl')):
         stem = pkl.stem
-        if DATASET_TYPE == 'mix' and not stem.endswith('_v2'):
-            continue   # Mix has v2 — skip v1
+        if not stem.endswith('_v35'):
+            continue   # skip superseded TabPFN-3.0 (_v3) models
         stems.append(stem)
     print(f"  Found {len(stems)} TabPFN models: {stems}")
     return stems
@@ -153,7 +153,7 @@ def add_model_predictions(proto_df, model_stems, X_test):
         except Exception as e:
             print(f"  ⚠ prediction failed for {stem}: {e}")
             continue
-        short = stem.replace('model_tabpfn_', '').replace('_v2', '')
+        short = stem.replace('model_tabpfn_', '').replace('_v35', '')
         proto_df[f'pred_{short}']     = preds
         proto_df[f'conf_{short}']     = conf.round(3)
         print(f"  ✓ predictions from {stem}")
@@ -232,7 +232,7 @@ def plot_misclassified_prototypes(proto_df, model_stems):
     # Use first model's predictions as reference
     if not model_stems:
         return
-    short0 = model_stems[0].replace('model_tabpfn_', '').replace('_v2', '')
+    short0 = model_stems[0].replace('model_tabpfn_', '').replace('_v35', '')
     pred_col = f'pred_{short0}'
     if pred_col not in proto_df.columns:
         return
@@ -409,7 +409,7 @@ def run_permutation_analysis(X_test, y_test, model_stems, top_features):
             'importance':  importances.mean(axis=1),
             'std':         importances.std(axis=1),
         }).sort_values('importance', ascending=False)
-        short = stem.replace('model_tabpfn_', '').replace('_v2', '')
+        short = stem.replace('model_tabpfn_', '').replace('_v35', '')
         imp_df.to_csv(OUT_DIR / f'permutation_importance_{short}.csv', index=False)
         print(f"  ✓ permutation_importance_{short}.csv")
         plot_permutation_importance(top_features, importances, short, baseline)

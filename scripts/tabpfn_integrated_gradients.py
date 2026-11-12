@@ -38,8 +38,8 @@ import matplotlib.pyplot as plt
 from pathlib import Path
 
 # ── Config ─────────────────────────────────────────────────────────────────────
-TABPFN_MODEL_PATH  = "Mix_Results/models_v2/model_tabpfn_original_v2.pkl"
-XGB_MODEL_PATH     = "Mix_Results/models/model_xgboost_smote.pkl"
+TABPFN_MODEL_PATH  = "Mix_Results_PoI/models/model_tabpfn_original_v35.pkl"
+XGB_MODEL_PATH     = "Mix_Results_PoI/models/model_xgboost_smote.pkl"
 DATA_PATH          = "Input_Data-Mix-train.csv"
 
 N_TRAIN    = 200          # training context for TabPFN

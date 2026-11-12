@@ -1,14 +1,16 @@
 """
 Run all TabPFN explainability analyses for the Mix dataset.
-Run this after overnight TabPFN v2.5 training is complete.
+Run this after TabPFN-3.5 training (scripts/TabPFN.py) is complete.
 
 Steps:
   1. tabpfn_prototypes_and_permutation.py — prototypes + permutation importance
   2. tabpfn_explainability.py             — PDP / ICE plots
-  3. tabpfn_lime_explanations.py          — LIME (TabPFN-specific, one sample)
-  4. tabpfn_iml_analysis.py              — IML / ALE / kernel SHAP
-  5. shap_comprehensive_analysis.py       — full SHAP for all models incl. TabPFN v2.5
-  6. generate_shap_consensus_figure.py    — cross-model SHAP heatmap (needs step 5 first)
+  3. shap_comprehensive_analysis.py       — full SHAP for all models incl. TabPFN-3.5
+  4. generate_shap_consensus_figure.py    — cross-model SHAP heatmap (needs step 3 first)
+
+Note: this previously also listed tabpfn_lime_explanations.py and
+tabpfn_iml_analysis.py as steps 3-4, but neither script exists in this repo —
+they were removed here rather than silently failing on every run.
 
 Usage:
     python scripts/run_tabpfn_explainability.py
@@ -27,27 +29,19 @@ env['PYTHONIOENCODING'] = 'utf-8'
 
 steps = [
     (
-        "1/6  Prototypes & permutation importance",
+        "1/4  Prototypes & permutation importance",
         [sys.executable, os.path.join(SCRIPT_DIR, 'tabpfn_prototypes_and_permutation.py'), DATASET],
     ),
     (
-        "2/6  PDP / ICE plots (TabPFN explainability)",
+        "2/4  PDP / ICE plots (TabPFN explainability)",
         [sys.executable, os.path.join(SCRIPT_DIR, 'tabpfn_explainability.py'), DATASET],
     ),
     (
-        "3/6  LIME explanations (TabPFN)",
-        [sys.executable, os.path.join(SCRIPT_DIR, 'tabpfn_lime_explanations.py'), DATASET],
-    ),
-    (
-        "4/6  IML / ALE / kernel SHAP analysis",
-        [sys.executable, os.path.join(SCRIPT_DIR, 'tabpfn_iml_analysis.py'), DATASET],
-    ),
-    (
-        "5/6  SHAP for all models (incl. TabPFN v2.5)",
+        "3/4  SHAP for all models (incl. TabPFN-3.5)",
         [sys.executable, os.path.join(SCRIPT_DIR, 'shap_comprehensive_analysis.py'), DATASET],
     ),
     (
-        "6/6  Cross-model SHAP consensus heatmap",
+        "4/4  Cross-model SHAP consensus heatmap",
         [sys.executable, os.path.join(SCRIPT_DIR, 'generate_shap_consensus_figure.py')],
     ),
 ]

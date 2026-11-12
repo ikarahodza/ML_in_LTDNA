@@ -29,12 +29,12 @@ DATASET_TYPE = DATASET_TYPE.lower()
 
 if DATASET_TYPE == 'mix':
     DATA_FILE = 'Input_Data-Mix-train.csv'
-    MODELS_DIR = 'Mix_Results'
-    OUTPUT_DIR = 'Mix_Results/tabpfn_explainability'
+    MODELS_DIR = 'Mix_Results_PoI'
+    OUTPUT_DIR = 'Mix_Results_PoI/tabpfn_explainability'
 elif DATASET_TYPE == 'single':
     DATA_FILE = 'Input_Data-Single-train.csv'
-    MODELS_DIR = 'Single_Results'
-    OUTPUT_DIR = 'Single_Results/tabpfn_explainability'
+    MODELS_DIR = 'Single_Results_PoI'
+    OUTPUT_DIR = 'Single_Results_PoI/tabpfn_explainability'
 else:
     print(f"Error: Invalid dataset type '{DATASET_TYPE}'. Use 'mix' or 'single'")
     sys.exit(1)
@@ -69,12 +69,11 @@ def load_data():
 
 
 def find_tabpfn_model():
-    """Find TabPFN model file."""
+    """Find TabPFN model file (current _v35 TabPFN-3.5 checkpoint only)."""
     print("\n[2/6] Finding TabPFN model...")
-    
-    # Search in seed subdirectories
-    model_files = list(Path(MODELS_DIR).glob('**/models_v2/*tabpfn*.pkl'))
-    
+
+    model_files = [p for p in Path(MODELS_DIR).glob('models/*tabpfn*.pkl') if p.stem.endswith('_v35')]
+
     if not model_files:
         print("   ✗ No TabPFN model found!")
         return None, None

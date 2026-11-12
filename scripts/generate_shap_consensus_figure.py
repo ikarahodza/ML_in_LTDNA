@@ -2,7 +2,7 @@
 Cross-model SHAP consensus heatmap.
 Shows normalised feature importance for top features across all tree/boosting models,
 revealing which signal positions are consistently identified regardless of model family.
-Output: Mix_Results/figures/shap_consensus_heatmap.png
+Output: Mix_Results_PoI/figures/shap_consensus_heatmap.png
 """
 import os
 import numpy as np
@@ -16,8 +16,8 @@ import shap
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(SCRIPT_DIR)
-SHAP_DIR = os.path.join(ROOT, 'Mix_Results', 'shap_explainability')
-FIG_DIR  = os.path.join(ROOT, 'Mix_Results', 'figures')
+SHAP_DIR = os.path.join(ROOT, 'Mix_Results_PoI', 'shap_explainability')
+FIG_DIR  = os.path.join(ROOT, 'Mix_Results_PoI', 'figures')
 os.makedirs(FIG_DIR, exist_ok=True)
 
 TOP_N        = 15   # features to consider per model
@@ -31,8 +31,8 @@ csv_map = {
                                             'shap_importance_extratrees_model_extratrees_smote.csv'),
     'XGBoost\n(Original)':    os.path.join(SHAP_DIR, 'model_xgboost_original',
                                             'shap_importance_model_xgboost_original.csv'),
-    'TabPFN\n(Original)':     os.path.join(SHAP_DIR, 'model_tabpfn_original_v2',
-                                            'shap_importance_model_tabpfn_original_v2.csv'),
+    'TabPFN\n(Original)':     os.path.join(SHAP_DIR, 'model_tabpfn_original_v35',
+                                            'shap_importance_model_tabpfn_original_v35.csv'),
 }
 
 shap_dfs = {}
@@ -42,7 +42,7 @@ for label, path in csv_map.items():
     print(f"Loaded {label.replace(chr(10),' ')}: {len(df)} features")
 
 # ── 2. Compute RF SHAP from saved model ──────────────────────────────────────
-rf_model_path = os.path.join(ROOT, 'Mix_Results', 'models', 'model_randomforest_smote.pkl')
+rf_model_path = os.path.join(ROOT, 'Mix_Results_PoI', 'models', 'model_randomforest_smote.pkl')
 data_path     = os.path.join(ROOT, 'Input_Data-Mix-train.csv')
 
 if os.path.exists(rf_model_path) and os.path.exists(data_path):

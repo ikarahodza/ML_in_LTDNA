@@ -34,7 +34,7 @@ PROB_COLS_NAMED  = ['Prob_Allele', 'Prob_Back_Stutter', 'Prob_Forward_Stutter', 
 PROB_COLS_INDEXED = ['Prob_0', 'Prob_1', 'Prob_2', 'Prob_3']
 
 MODELS = [
-    ('tabpfn_original_v3',  'TabPFN (Original)',     MODEL_COLORS['tabpfn']),
+    ('tabpfn_original_v35',  'TabPFN (Original)',     MODEL_COLORS['tabpfn']),
     ('extratrees_smote',    'Extra Trees (SMOTE)',    MODEL_COLORS['extratrees']),
     ('randomforest_smote',  'Random Forest (SMOTE)',  MODEL_COLORS['randomforest']),
     ('lgbm_smote',          'LightGBM (SMOTE)',       MODEL_COLORS['lgbm']),

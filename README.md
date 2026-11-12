@@ -9,8 +9,6 @@
 
 TabPFN-3.0 achieves a 21.1% relative improvement over the best Tan et al. (2025) baseline (MLP: 0.735) on the Mix dataset without any hyperparameter tuning.
 
-Results above include the PoI (Point of Interest) feature — see [PoI feature](#poi-feature) below.
-
 ---
 
 ## Dataset
@@ -24,15 +22,9 @@ Results above include the PoI (Point of Interest) feature — see [PoI feature](
 | Pull-Up | 81 | 19.0% |
 | Forward Stutter | 33 | 7.7% |
 
-305 peak-level features per signal (306 with the PoI feature included — see below). Stratified 80:20 splits, 10 random seeds (42, 123, 456, 789, 1011, 1213, 1415, 1617, 1819, 2021).
+306 peak-level features per signal, including `PoI` (Point of Interest), the column identifying the specific peak location flagged in the electropherogram signal. Stratified 80:20 splits, 10 random seeds (42, 123, 456, 789, 1011, 1213, 1415, 1617, 1819, 2021).
 
----
-
-## PoI feature
-
-`PoI` (Point of Interest) is an additional column in the raw input CSVs identifying the specific peak location flagged in the electropherogram signal. It is excluded from the feature set by default; pass `--include-poi` to any training script to keep it as a 306th predictive feature. Results in this README (Key Results table, `Mix_Results_PoI/`, `Single_Results_PoI/`) are from PoI-included runs, which currently supersede the earlier PoI-excluded runs.
-
-Including PoI improves the Mix dataset result (TabPFN: 0.847 → 0.890) and changes the best Single-source model (Extra Trees → Logistic Regression), though it also caused SVM to collapse to chance-level balanced accuracy (0.25) on the Single-source PoI runs — worth investigating before relying on that combination.
+Note: SVM collapses to chance-level balanced accuracy (0.25) on the Single-source dataset — worth investigating before relying on that combination.
 
 ---
 
@@ -86,7 +78,7 @@ ML_in_LTDNA/
 │   ├── model_colors.py                    # Consistent colour scheme for figures
 │   ├── MLtoPeak-STEP1.py                  # Data preprocessing
 │   ├── run_multi_seed_training.py         # Run all models across 10 seeds
-│   ├── run_tabpfn_all_seeds.py            # Run TabPFN-3.0 across 10 seeds (own script; --include-poi supported)
+│   ├── run_tabpfn_all_seeds.py            # Run TabPFN-3.0 across 10 seeds (own script)
 │   ├── aggregate_multi_seed_results.py    # Aggregate seed results → JSON
 │   ├── generate_model_comparison_figures.py  # Figure 2 and Figure 3
 │   ├── generate_multiseed_violin_plot.py  # Figure 1
@@ -116,12 +108,12 @@ ML_in_LTDNA/
 │
 ├── Single_Results_PoI/                    # Same structure — single-source dataset, PoI included
 │
-├── Input_Data-Mix-train.csv               # Mix dataset (426 signals, 305 features + PoI)
+├── Input_Data-Mix-train.csv               # Mix dataset (426 signals, 306 features)
 ├── Input_Data-Single-train.csv            # Single-source dataset (200 signals)
 └── requirements_pinned.txt               # Pinned Python dependencies
 ```
 
-> The PoI-excluded result trees (`Mix_Results/`, `Single_Results/`) have been deleted from the working copy — the `_PoI` trees above are now the only results tree. Omit `--include-poi` on any training script to regenerate the 305-feature (non-PoI) trees if you need them again; their last committed snapshot also remains in git history. BibTeX references for the manuscript (`cas-refs.bib`) live in the separate, gitignored `paper/` working copy, not in this repository tree.
+> BibTeX references for the manuscript (`cas-refs.bib`) live in the separate, gitignored `paper/` working copy, not in this repository tree.
 
 ---
 
@@ -129,15 +121,15 @@ ML_in_LTDNA/
 
 ```
 python >= 3.11
-scikit-learn==1.3.4
-tabpfn==0.2.8
+scikit-learn==1.6.1
+tabpfn==9.2.0
 xgboost==2.0.3
 lightgbm==3.4.2
 imbalanced-learn==0.11.2
 pandas==2.2.2
 numpy==1.25.2
 matplotlib==3.8.1
-joblib==1.3.2
+joblib==1.6.0
 jsonschema==4.23.0
 ```
 See `requirements_pinned.txt` for the exact pinned set (also includes `shap` and `dice-ml` for the explainability scripts).
@@ -172,13 +164,13 @@ python scripts/logre.py mix
 python scripts/gnb.py mix
 ```
 
-Replace `mix` with `single` for the single-source dataset. Add `--include-poi` to any script to keep the PoI feature and write to `<Dataset>_Results_PoI/` instead of `<Dataset>_Results/` (see [PoI feature](#poi-feature)).
+Replace `mix` with `single` for the single-source dataset. Results are written to `<Dataset>_Results_PoI/`.
 
 ### Run multi-seed training (10 seeds, all models)
 ```bash
-python scripts/run_multi_seed_training.py mix --include-poi
-python scripts/aggregate_multi_seed_results.py --include-poi
-python scripts/run_tabpfn_all_seeds.py mix --include-poi   # TabPFN-3.0 runs separately
+python scripts/run_multi_seed_training.py mix
+python scripts/aggregate_multi_seed_results.py
+python scripts/run_tabpfn_all_seeds.py mix   # TabPFN-3.0 runs separately
 ```
 
 ### Regenerate publication figures

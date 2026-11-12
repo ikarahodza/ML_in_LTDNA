@@ -1,0 +1,54 @@
+<html>
+<head><meta charset="utf-8"><title>Combined Comparison Report</title></head>
+<body>
+<h1>Combined Comparison Report</h1>
+<div>Generated: 2026-11-06 21:25:17</div>
+<h2>Model: tabpfn</h2>
+<table border="1" cellpadding="6" cellspacing="0">
+<tr><th>Strategy</th><th>Accuracy</th><th>Balanced Accuracy</th><th>F1 (macro)</th><th>MSE</th><th>Log Loss</th><th>Informedness</th><th>Markedness</th></tr>
+<tr><td>Original</td><td>0.975</td><td>0.975</td><td>0.9759725400457666</td><td>0.1</td><td>0.09534968631332374</td><td>0.9663793103448276</td><td>0.9711021505376344</td></tr>
+<tr><td>SMOTE</td><td>0.975</td><td>0.975</td><td>0.9759725400457666</td><td>0.1</td><td>0.06964348395688974</td><td>0.9663793103448276</td><td>0.9711021505376344</td></tr>
+<tr><td>RandomOverSampler</td><td>0.975</td><td>0.975</td><td>0.9759725400457666</td><td>0.1</td><td>0.09516210188678316</td><td>0.9663793103448276</td><td>0.9711021505376344</td></tr>
+<tr><td>RandomUnderSampler</td><td>0.95</td><td>0.9522727272727273</td><td>0.9448840633051159</td><td>0.125</td><td>0.10833334883977357</td><td>0.9362990964410842</td><td>0.9248732357742369</td></tr>
+<tr><td>ClassWeights</td><td>0.95</td><td>0.9522727272727273</td><td>0.9448840633051159</td><td>0.125</td><td>0.10010096569245301</td><td>0.9362990964410842</td><td>0.9248732357742369</td></tr>
+</table>
+<h3>Per-class Recall</h3>
+<table border="1" cellpadding="6" cellspacing="0">
+<tr><th>Strategy</th>
+<th>Allele</th>
+<th>Back_Stutter</th>
+<th>Forward_Stutter</th>
+<th>Pull_Up</th>
+</tr>
+<tr><td>Original</td>
+<td>1.0</td>
+<td>0.9</td>
+<td>1.0</td>
+<td>1.0</td>
+</tr>
+<tr><td>SMOTE</td>
+<td>1.0</td>
+<td>0.9</td>
+<td>1.0</td>
+<td>1.0</td>
+</tr>
+<tr><td>RandomOverSampler</td>
+<td>1.0</td>
+<td>0.9</td>
+<td>1.0</td>
+<td>1.0</td>
+</tr>
+<tr><td>RandomUnderSampler</td>
+<td>1.0</td>
+<td>0.9</td>
+<td>1.0</td>
+<td>0.9090909090909091</td>
+</tr>
+<tr><td>ClassWeights</td>
+<td>1.0</td>
+<td>0.9</td>
+<td>1.0</td>
+<td>0.9090909090909091</td>
+</tr>
+</table>
+</body></html>

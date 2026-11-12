@@ -1,6 +1,8 @@
 """
 Multi-Seed Results Aggregator
-Aggregates results across multiple random seeds and computes statistics
+Aggregates results across multiple random seeds and computes statistics.
+Merges in TabPFN v3.5 results (combined_results_v35.json) alongside the
+non-TabPFN models (combined_results.json).
 Usage: python aggregate_multi_seed_results.py [mix|single]
 """
 import json
@@ -19,22 +21,32 @@ METRICS_TO_AGGREGATE = [
 ]
 
 def load_seed_results(dataset_type, seed):
-    """Load results for a specific seed"""
+    """Load results for a specific seed, merging in TabPFN v3.5 results"""
     results_folder = f"{dataset_type.capitalize()}_Results_PoI"
-    
+
     # Seed 42 uses default location (no seed subfolder)
     if seed == 42:
         json_path = os.path.join(results_folder, 'reports', 'combined_results.json')
+        tabpfn_json_path = os.path.join(results_folder, 'reports', 'combined_results_v35.json')
     else:
         seed_folder = f"seed_{seed}"
         json_path = os.path.join(results_folder, seed_folder, 'reports', 'combined_results.json')
-    
+        tabpfn_json_path = os.path.join(results_folder, f"{seed_folder}_v35", 'reports', 'combined_results_v35.json')
+
     if not os.path.exists(json_path):
         print(f"⚠ Warning: Results not found for seed {seed}: {json_path}")
         return None
-    
+
     with open(json_path, 'r', encoding='utf-8') as f:
-        return json.load(f)
+        results = json.load(f)
+
+    if os.path.exists(tabpfn_json_path):
+        with open(tabpfn_json_path, 'r', encoding='utf-8') as f:
+            results.update(json.load(f))
+    else:
+        print(f"⚠ Warning: TabPFN v3.5 results not found for seed {seed}: {tabpfn_json_path}")
+
+    return results
 
 def aggregate_results(dataset_type):
     """Aggregate results across all seeds for a dataset"""

@@ -10,7 +10,6 @@ Output:
 import os
 import sys
 import json
-import glob as _glob
 import numpy as np
 import matplotlib
 matplotlib.use('Agg')
@@ -27,30 +26,6 @@ from model_colors import MODEL_COLORS, MODEL_LABELS
 
 with open(os.path.join(ROOT, RESULTS, 'multi_seed_aggregated', 'aggregated_results.json')) as f:
     data = json.load(f)
-
-# TabPFN isn't in aggregated_results.json (it's aggregated separately, from the
-# v3 JSONs); patch it in here from the 10-seed v3 reports.
-_tabpfn_v3 = {}
-for _path in (
-    [os.path.join(ROOT, RESULTS, 'reports', 'combined_results_v3.json')] +
-    sorted(_glob.glob(os.path.join(ROOT, RESULTS, 'seed_*_v3', 'reports', 'combined_results_v3.json')))
-):
-    with open(_path) as _f:
-        _d = json.load(_f)['tabpfn']['results']
-    for _strat, _m in _d.items():
-        if _strat not in _tabpfn_v3:
-            _tabpfn_v3[_strat] = {'ba': [], 'f1': []}
-        _tabpfn_v3[_strat]['ba'].append(_m['balanced_accuracy'])
-        _tabpfn_v3[_strat]['f1'].append(_m['f1_macro'])
-
-data['tabpfn'] = {}
-for _strat, _vals in _tabpfn_v3.items():
-    _ba = np.array(_vals['ba'])
-    _f1 = np.array(_vals['f1'])
-    data['tabpfn'][_strat] = {
-        'balanced_accuracy': {'mean': float(_ba.mean()), 'std': float(_ba.std())},
-        'f1_macro':          {'mean': float(_f1.mean()), 'std': float(_f1.std())},
-    }
 
 STRAT_LABELS = {
     'ClassWeights':       'Class Weights',

@@ -1,0 +1,54 @@
+<html>
+<head><meta charset="utf-8"><title>Combined Comparison Report</title></head>
+<body>
+<h1>Combined Comparison Report</h1>
+<div>Generated: 2026-11-06 20:04:31</div>
+<h2>Model: tabpfn</h2>
+<table border="1" cellpadding="6" cellspacing="0">
+<tr><th>Strategy</th><th>Accuracy</th><th>Balanced Accuracy</th><th>F1 (macro)</th><th>MSE</th><th>Log Loss</th><th>Informedness</th><th>Markedness</th></tr>
+<tr><td>Original</td><td>0.9302325581395349</td><td>0.8577876984126984</td><td>0.8888634327142392</td><td>0.23255813953488372</td><td>0.21511894574745538</td><td>0.8261495553505955</td><td>0.9266795897862783</td></tr>
+<tr><td>SMOTE</td><td>0.9302325581395349</td><td>0.8276289682539683</td><td>0.8648887002452368</td><td>0.26744186046511625</td><td>0.29529918509203296</td><td>0.7934646927876842</td><td>0.9418653209912281</td></tr>
+<tr><td>RandomOverSampler</td><td>0.9186046511627907</td><td>0.8605654761904762</td><td>0.8802957459207459</td><td>0.2441860465116279</td><td>0.23298883895307526</td><td>0.8276719529275125</td><td>0.9009835946573752</td></tr>
+<tr><td>RandomUnderSampler</td><td>0.8488372093023255</td><td>0.9111111111111111</td><td>0.8363768498678559</td><td>0.686046511627907</td><td>0.4488901442383732</td><td>0.8658898580529257</td><td>0.7391067266067266</td></tr>
+<tr><td>ClassWeights</td><td>0.8837209302325582</td><td>0.934375</td><td>0.8601059941520467</td><td>0.4883720930232558</td><td>0.28972131768107784</td><td>0.9012987315179237</td><td>0.7858035714285714</td></tr>
+</table>
+<h3>Per-class Recall</h3>
+<table border="1" cellpadding="6" cellspacing="0">
+<tr><th>Strategy</th>
+<th>Allele</th>
+<th>Back_Stutter</th>
+<th>Forward_Stutter</th>
+<th>Pull_Up</th>
+</tr>
+<tr><td>Original</td>
+<td>0.9777777777777777</td>
+<td>0.9444444444444444</td>
+<td>0.5714285714285714</td>
+<td>0.9375</td>
+</tr>
+<tr><td>SMOTE</td>
+<td>1.0</td>
+<td>0.9444444444444444</td>
+<td>0.42857142857142855</td>
+<td>0.9375</td>
+</tr>
+<tr><td>RandomOverSampler</td>
+<td>0.9333333333333333</td>
+<td>1.0</td>
+<td>0.5714285714285714</td>
+<td>0.9375</td>
+</tr>
+<tr><td>RandomUnderSampler</td>
+<td>0.7555555555555555</td>
+<td>0.8888888888888888</td>
+<td>1.0</td>
+<td>1.0</td>
+</tr>
+<tr><td>ClassWeights</td>
+<td>0.8</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>0.9375</td>
+</tr>
+</table>
+</body></html>

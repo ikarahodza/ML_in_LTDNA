@@ -5,8 +5,9 @@ scripts/__pycache__/
 .ruff_cache/
 .cache/
 tabpfn-v2.5-classifier-v2.5_default.ckpt
+tabpfn-v3-classifier-v3_default.ckpt
 .claude
 paper/
 .push_*.log
 LTDNA_MLtoPeak.ipynb
-model_tabpfn_*_v3.pkl
+*.pkl

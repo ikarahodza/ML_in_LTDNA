@@ -1,0 +1,38 @@
+TABPFN MULTI-SEED TRAINING LOG
+================================================================================
+
+Started: 2026-11-06 15:32:20
+Seeds: 42, 123, 456, 789, 1011, 1213, 1415, 1617, 1819, 2021
+Datasets: mix, single
+
+✓ Seed=  42 | mix    | TabPFN.py | SUCCESS | 3604.68s
+✓ Seed=  42 | single | TabPFN.py | SUCCESS | 727.92s
+✓ Seed= 123 | mix    | TabPFN.py | SUCCESS | 2039.91s
+✓ Seed= 123 | single | TabPFN.py | SUCCESS | 972.63s
+✓ Seed= 456 | mix    | TabPFN.py | SUCCESS | 3986.68s
+✓ Seed= 456 | single | TabPFN.py | SUCCESS | 1123.47s
+✓ Seed= 789 | mix    | TabPFN.py | SUCCESS | 3885.07s
+✓ Seed= 789 | single | TabPFN.py | SUCCESS | 1359.68s
+✓ Seed=1011 | mix    | TabPFN.py | SUCCESS | 2868.30s
+✓ Seed=1011 | single | TabPFN.py | SUCCESS | 612.06s
+✓ Seed=1213 | mix    | TabPFN.py | SUCCESS | 2240.37s
+✓ Seed=1213 | single | TabPFN.py | SUCCESS | 623.73s
+✓ Seed=1415 | mix    | TabPFN.py | SUCCESS | 2240.07s
+✓ Seed=1415 | single | TabPFN.py | SUCCESS | 600.35s
+✗ Seed=1617 | mix    | TabPFN.py | FAILED | 921.35s
+✗ Seed=1617 | single | TabPFN.py | FAILED | 67.03s
+✗ Seed=1819 | mix    | TabPFN.py | FAILED | 234.69s
+✗ Seed=1819 | single | TabPFN.py | FAILED | 127.95s
+✗ Seed=2021 | mix    | TabPFN.py | FAILED | 249.69s
+✗ Seed=2021 | single | TabPFN.py | FAILED | 112.39s
+
+================================================================================
+SUMMARY
+================================================================================
+
+Completed: 2026-11-06 23:28:58
+Total runs: 20
+Successful: 14
+Failed: 6
+Success rate: 70.00%
+

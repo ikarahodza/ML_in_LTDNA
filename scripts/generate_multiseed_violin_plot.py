@@ -53,10 +53,10 @@ for seed in SEEDS:
             os.path.join(ROOT, RESULTS, f'seed_{seed}', 'reports', 'combined_results.json'))
     with open(path) as f:
         data = json.load(f)
-    # TabPFN v3 results live in a separate JSON / seed folder
-    path_v3 = (os.path.join(ROOT, RESULTS, 'reports', 'combined_results_v3.json')
+    # TabPFN v3.5 results live in a separate JSON / seed folder
+    path_v3 = (os.path.join(ROOT, RESULTS, 'reports', 'combined_results_v35.json')
                if seed == 42 else
-               os.path.join(ROOT, RESULTS, f'seed_{seed}_v3', 'reports', 'combined_results_v3.json'))
+               os.path.join(ROOT, RESULTS, f'seed_{seed}_v35', 'reports', 'combined_results_v35.json'))
     data_v3 = {}
     if os.path.exists(path_v3):
         with open(path_v3) as f:

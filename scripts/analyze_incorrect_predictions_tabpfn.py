@@ -25,7 +25,7 @@ warnings.filterwarnings('ignore')
 DATASET_TYPE = sys.argv[1].lower() if len(sys.argv) > 1 else 'mix'
 assert DATASET_TYPE in ['mix', 'single'], "Dataset type must be 'mix' or 'single'"
 
-BASE_DIR = f"{DATASET_TYPE.capitalize()}_Results"
+BASE_DIR = f"{DATASET_TYPE.capitalize()}_Results_PoI"
 DATA_FILE = f"Input_Data-{DATASET_TYPE.capitalize()}-train.csv"
 MODELS_DIR = os.path.join(BASE_DIR, "models")
 OUTPUT_DIR = os.path.join(BASE_DIR, "incorrect_predictions_analysis")
@@ -67,12 +67,12 @@ def find_tabpfn_models():
         print(f"   ✗ Models directory not found: {MODELS_DIR}")
         return []
     
-    # Get TabPFN model files
+    # Get TabPFN model files (current _v35 TabPFN-3.5 checkpoint only; skips superseded _v3)
     pkl_files = [f for f in os.listdir(MODELS_DIR) if f.endswith('.pkl')]
-    tabpfn_files = [f for f in pkl_files if 'tabpfn' in f.lower()]
-    
+    tabpfn_files = [f for f in pkl_files if 'tabpfn' in f.lower() and f[:-4].endswith('_v35')]
+
     if not tabpfn_files:
-        print(f"   ✗ No TabPFN models found in {MODELS_DIR}")
+        print(f"   ✗ No TabPFN-3.5 (_v35) models found in {MODELS_DIR}")
         return []
     
     print(f"   ✓ Found {len(tabpfn_files)} TabPFN model(s)")

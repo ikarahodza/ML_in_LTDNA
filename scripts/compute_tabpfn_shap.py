@@ -1,10 +1,10 @@
 """
-Compute SHAP values for TabPFN v2.5 (Original strategy).
+Compute SHAP values for TabPFN-3.5 (Original strategy).
 Fits TabPFN fresh from training data — avoids PyTorch pickle issues with joblib.
 
 Output:
-  Mix_Results/shap_explainability/model_tabpfn_original_v2/shap_importance_model_tabpfn_original_v2.csv
-  Mix_Results/shap_explainability/model_tabpfn_original_v2/shap_bar_model_tabpfn_original_v2.png
+  Mix_Results_PoI/shap_explainability/model_tabpfn_original_v35/shap_importance_model_tabpfn_original_v35.csv
+  Mix_Results_PoI/shap_explainability/model_tabpfn_original_v35/shap_bar_model_tabpfn_original_v35.png
 
 Then run: python scripts/generate_shap_consensus_figure.py
 """
@@ -31,24 +31,24 @@ import warnings
 warnings.filterwarnings('ignore')
 
 DATASET_TYPE   = sys.argv[1].lower() if len(sys.argv) > 1 else 'mix'
-TABPFN_MODEL   = 'tabpfn-v2.5-classifier-v2.5_default.ckpt'
+TABPFN_MODEL   = 'tabpfn-v3.5-20260909.safetensors'
 BACKGROUND_N   = 3    # KernelExplainer background samples (TabPFN is slow)
 TEST_N         = 3    # test samples to explain
 NSAMPLES       = 50   # SHAP perturbations per sample
 
 if DATASET_TYPE == 'mix':
     DATA_FILE = 'Input_Data-Mix-train.csv'
-    OUT_BASE  = Path('Mix_Results/shap_explainability')
+    OUT_BASE  = Path('Mix_Results_PoI/shap_explainability')
 else:
     DATA_FILE = 'Input_Data-Single-train.csv'
-    OUT_BASE  = Path('Single_Results/shap_explainability')
+    OUT_BASE  = Path('Single_Results_PoI/shap_explainability')
 
-MODEL_NAME = 'model_tabpfn_original_v2'
+MODEL_NAME = 'model_tabpfn_original_v35'
 OUT_DIR    = OUT_BASE / MODEL_NAME
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
 print("=" * 60)
-print(f"  TabPFN v2.5 SHAP — {DATASET_TYPE.upper()}")
+print(f"  TabPFN-3.5 SHAP — {DATASET_TYPE.upper()}")
 print("=" * 60)
 
 # ── 1. Load and split data (same split as training) ───────────────────────────
@@ -70,7 +70,7 @@ X_train_s = pd.DataFrame(scaler.fit_transform(X_train), columns=X_train.columns,
 X_test_s  = pd.DataFrame(scaler.transform(X_test),      columns=X_test.columns,  index=X_test.index)
 
 # ── 3. Fit TabPFN (Original — no resampling) ──────────────────────────────────
-print(f"\n[2/4] Fitting TabPFN v2.5 (Original)...")
+print(f"\n[2/4] Fitting TabPFN-3.5 (Original)...")
 clf = TabPFNClassifier(model_path=TABPFN_MODEL)
 clf.fit(X_train_s, y_train)
 ba = __import__('sklearn.metrics', fromlist=['balanced_accuracy_score']).balanced_accuracy_score

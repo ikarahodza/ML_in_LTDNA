@@ -34,7 +34,7 @@ CLASS_NAMES = ['Allele', 'Back_Stutter', 'Forward_Stutter', 'Pull_Up']
 
 # ── 1. Confusion matrices ─────────────────────────────────────────────────────
 CONF_MODELS = [
-    ('tabpfn_original_v3',   'TabPFN\n(Original)'),
+    ('tabpfn_original_v35',   'TabPFN\n(Original)'),
     ('extratrees_smote',     'Extra Trees\n(SMOTE)'),
     ('lgbm_smote',           'LightGBM\n(SMOTE)'),
     ('xgboost_smote',        'XGBoost\n(SMOTE)'),
@@ -99,9 +99,9 @@ SHAP_MODELS = [
      'shap_importance_model_xgboost_original.csv',
      'shap_bar_model_xgboost_original.png',
      MODEL_COLORS['xgboost']),
-    ('model_tabpfn_original_v3',
-     'shap_importance_model_tabpfn_original_v3.csv',
-     'shap_bar_model_tabpfn_original_v3.png',
+    ('model_tabpfn_original_v35',
+     'shap_importance_model_tabpfn_original_v35.csv',
+     'shap_bar_model_tabpfn_original_v35.png',
      MODEL_COLORS['tabpfn']),
 ]
 

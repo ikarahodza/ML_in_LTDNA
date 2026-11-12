@@ -13,7 +13,7 @@ from sklearn.metrics import (
     average_precision_score, roc_curve, roc_auc_score, mean_squared_error, mean_absolute_error,
     precision_recall_fscore_support
 )
-from imblearn.over_sampling import SMOTE
+from imblearn.over_sampling import SMOTE, RandomOverSampler
 from imblearn.under_sampling import RandomUnderSampler
 from collections import Counter
 import joblib
@@ -28,10 +28,10 @@ if os.path.exists(_key_file):
 import helper_functions as hf
 from tabpfn import TabPFNClassifier
 
-TABPFN_MODEL = 'tabpfn-v2.5-classifier-v2.5_default.ckpt'
+TABPFN_MODEL = 'tabpfn-v3.5-20260909.safetensors'
 
 MODEL_NAME = 'tabpfn'
-VERSION_SUFFIX = '_v2'  # Add version suffix to distinguish new results from old ones
+VERSION_SUFFIX = '_v35'  # Add version suffix to distinguish new results from old ones
 # Get the absolute path to the project root and construct paths from there
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(SCRIPT_DIR)
@@ -49,7 +49,7 @@ RANDOM_SEED = args.seed
 
 
 # Set paths based on dataset type and seed
-RESULTS_FOLDER = f"{dataset_type.capitalize()}_Results"
+RESULTS_FOLDER = f"{dataset_type.capitalize()}_Results_PoI"
 if RANDOM_SEED != 42:
     # Store in seed-specific subfolder with version suffix
     SEED_FOLDER = f"seed_{RANDOM_SEED}{VERSION_SUFFIX}"
@@ -101,8 +101,11 @@ print(f"\nFeature scaling applied with StandardScaler")
 # Use shared helpers from `helper_functions.py` as `hf`
 
 def train_tabpfn_pipeline(X_train, y_train, X_test, y_test, strategy_name="Original", class_weight=None):
-    # TabPFN doesn't support class_weight parameter directly, so we note it for the strategy name
-    clf = TabPFNClassifier(model_path=TABPFN_MODEL)
+    # TabPFN doesn't support sklearn's class_weight; balance_probabilities rescales
+    # the posterior instead, which is what the "ClassWeights" strategy actually uses.
+    clf = TabPFNClassifier(model_path=TABPFN_MODEL,
+                            balance_probabilities=(class_weight == 'balanced'),
+                            random_state=RANDOM_SEED)
     clf.fit(X_train, y_train)
     
     y_pred = clf.predict(X_test)
@@ -179,8 +182,9 @@ print(f"\nMajority class: {le.inverse_transform([majority_class])[0]} with {clas
 strategies = {
     "Original": (X_train_scaled, y_train),
     "SMOTE": SMOTE(random_state=RANDOM_SEED).fit_resample(X_train_scaled, y_train),
+    "RandomOverSampler": RandomOverSampler(random_state=RANDOM_SEED).fit_resample(X_train_scaled, y_train),
     "RandomUnderSampler": RandomUnderSampler(random_state=RANDOM_SEED, sampling_strategy='auto').fit_resample(X_train_scaled, y_train),
-    "ClassWeights": (X_train_scaled, y_train)  # Note: TabPFN doesn't natively support class_weight, but we keep balanced data
+    "ClassWeights": (X_train_scaled, y_train)  # No resampling; rebalancing comes from balance_probabilities=True (see train_tabpfn_pipeline)
 }
 
 print("\nStrategy sample counts:")

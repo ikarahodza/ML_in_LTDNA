@@ -32,7 +32,7 @@ from matplotlib.colors import LogNorm
 from pathlib import Path
 
 # ── Config ────────────────────────────────────────────────────────────────────
-MODEL_PATH  = "Mix_Results/models_v2/model_tabpfn_original_v2.pkl"
+MODEL_PATH  = "Mix_Results_PoI/models/model_tabpfn_original_v35.pkl"
 DATA_PATH   = "Input_Data-Mix-train.csv"
 
 N_TRAIN     = 200          # context samples fed to the transformer

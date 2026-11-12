@@ -5,7 +5,7 @@ Generates detailed SHAP visualizations and insights.
 Features:
 - TreeExplainer for tree-based models (ExtraTrees, RandomForest, XGBoost, LightGBM)
 - LinearExplainer for logistic regression
-- KernelExplainer for other models (SVM, MLP, GNB, TabPFN v2)
+- KernelExplainer for other models (SVM, MLP, GNB, TabPFN-3.5)
 - Summary plots (beeswarm and bar charts)
 - Dependence plots for top features
 - Waterfall plots
@@ -14,7 +14,7 @@ Features:
 
 Model coverage:
 - All models in the models directory are included
-- TabPFN: only v2 models 
+- TabPFN: only the current _v35 (TabPFN-3.5) checkpoint; superseded _v3 models are skipped
 - MLP, SVM, LogReg: data is standardized before SHAP (matches training regime)
 """
 
@@ -46,12 +46,12 @@ DATASET_TYPE = DATASET_TYPE.lower()
 
 if DATASET_TYPE == 'mix':
     DATA_FILE = 'Input_Data-Mix-train.csv'
-    MODELS_DIR = 'Mix_Results/models'
-    OUTPUT_DIR = 'Mix_Results/shap_explainability'
+    MODELS_DIR = 'Mix_Results_PoI/models'
+    OUTPUT_DIR = 'Mix_Results_PoI/shap_explainability'
 elif DATASET_TYPE == 'single':
     DATA_FILE = 'Input_Data-Single-train.csv'
-    MODELS_DIR = 'Single_Results/models'
-    OUTPUT_DIR = 'Single_Results/shap_explainability'
+    MODELS_DIR = 'Single_Results_PoI/models'
+    OUTPUT_DIR = 'Single_Results_PoI/shap_explainability'
 else:
     print(f"Error: Invalid dataset type '{DATASET_TYPE}'. Use 'mix' or 'single'")
     sys.exit(1)
@@ -92,24 +92,19 @@ def load_data():
     return X_train, X_test, y_train, y_test
 
 
-MODELS_V2_DIR = MODELS_DIR.replace('/models', '/models_v2').replace('\\models', '\\models_v2')
-
-
 def find_all_models():
     """Find ALL model pkl files with these exclusions:
     - scaler-only files
-    - non-v2 TabPFN (v2 uses nsamples cap to stay tractable)
+    - superseded TabPFN checkpoints (only the current _v35 TabPFN-3.5 models are kept)
     - stacking_ensemble (not a single model worth explaining this way)
-    TabPFN v2/v2.5 models are stored in models_v2/ alongside regular models/.
+    All models (including TabPFN) now live directly under MODELS_DIR.
     """
     print("\n[2/5] Discovering models...")
-    models_path    = Path(MODELS_DIR)
-    models_v2_path = Path(MODELS_V2_DIR)
+    models_path = Path(MODELS_DIR)
 
     selected = []
     skipped  = []
 
-    # Non-TabPFN models from models/
     for pkl in sorted(models_path.glob('*.pkl')):
         stem = pkl.stem
         if stem.endswith('_scaler'):
@@ -117,19 +112,10 @@ def find_all_models():
         if stem == 'stacking_ensemble':
             skipped.append(f"{stem} (ensemble excluded)")
             continue
-        if 'tabpfn' in stem.lower():
-            skipped.append(f"{stem} (TabPFN from models/ excluded; using models_v2/)")
+        if 'tabpfn' in stem.lower() and not stem.endswith('_v35'):
+            skipped.append(f"{stem} (superseded TabPFN checkpoint; using _v35 only)")
             continue
         selected.append(stem)
-
-    # TabPFN v2/v2.5 models from models_v2/
-    if models_v2_path.exists():
-        for pkl in sorted(models_v2_path.glob('*tabpfn*.pkl')):
-            stem = pkl.stem
-            if not stem.endswith('_scaler'):
-                selected.append(stem)
-    else:
-        print(f"   Note: {MODELS_V2_DIR} not found; no TabPFN v2.5 SHAP will be run.")
 
     print(f"   Including {len(selected)} models:")
     for name in selected:
@@ -161,15 +147,14 @@ def get_model_data(model_name, X_train, X_test):
 
 
 def load_model(model_name):
-    """Load a trained model from disk, checking models/ then models_v2/."""
-    for search_dir in [Path(MODELS_DIR), Path(MODELS_V2_DIR)]:
-        model_path = search_dir / f"{model_name}.pkl"
-        if model_path.exists():
-            try:
-                return joblib.load(model_path)
-            except Exception as e:
-                print(f"   ✗ Failed to load {model_name}: {e}")
-                return None
+    """Load a trained model from disk."""
+    model_path = Path(MODELS_DIR) / f"{model_name}.pkl"
+    if model_path.exists():
+        try:
+            return joblib.load(model_path)
+        except Exception as e:
+            print(f"   ✗ Failed to load {model_name}: {e}")
+            return None
     return None
 
 
@@ -235,7 +220,7 @@ def get_explainer(model, X_train_model, model_name):
         except Exception as e:
             print(f"   Warning: LinearExplainer failed ({e}), falling back to Kernel...")
 
-    # TabPFN v2: KernelExplainer with very small background and capped nsamples
+    # TabPFN-3.5: KernelExplainer with very small background and capped nsamples
     if 'tabpfn' in name:
         bg = shap.sample(X_train_model, TABPFN_MAX_BACKGROUND)
         explainer = shap.KernelExplainer(_wrap_predict(model), bg)
